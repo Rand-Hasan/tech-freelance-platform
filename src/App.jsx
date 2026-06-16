@@ -1,15 +1,15 @@
 import './styles/App.css';
-import React from 'react';
-import {BrowserRouter,Route} from 'react-router-dom';
-import { useState,UseEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SignIn from './features/Auth/pages/SignIn';
 
 function App() {
- 
   return (
     <BrowserRouter>
-      
+      <Routes>
+        <Route path='/SignIn' element={<SignIn />} />
+      </Routes>
     </BrowserRouter>
   );
 }
 
-export default App
+export default App;

@@ -1,3 +1,227 @@
-body{
+body {
+  margin: 0px;
+  padding: 0px;
+}
+.FatherDiv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: red;
+}
+.LikeNavBar {
+  width: 100%;
+  height: 40px;
+  display:flex;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  background-color: #F6FEFD;
+}
+.TileOnNav{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color:#1E554D
+}
+.BackToHomeNavA{
+    margin-right: 10px;
+    color:#20665c;
+    text-decoration: none;
+}
+.MainContent {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.greenSignInSection {
+  flex: 1;
+  background: linear-gradient(135deg, #134e4a, #2dd4bf);
+  display: block;
+}
+.ContentInsideGreenSection{
+    width:80%;
+    height:20px;
+    background-color:rgb(255, 255, 255,0.1);
+    border-radius: 20px;
+    margin-top: 200px;
+    margin-left: 50px;
+    color:white;
+}
+.h1ContentInsideGreenSection{
+     margin-left: 50px;
+     color:white;
+}
+.h6ContentInsideGreenSection{
+     margin-left: 50px;
+     color:white;
+}
+
+.h5ContentInsideGreenSection{
+     margin-left: 50px;
+     color:white;
+}
+.ThreeCheckPoint{
+    margin-top: 50px;
+}
+
+.SignInSection {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    padding: 40px;
+}
+
+
+.ContentofSingInSection {
+    width: 100%;
+    max-width: 420px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.FormTitle {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+    font-family: sans-serif;
+}
+
+.FormSubtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 32px 0;
+}
+
+.GoogleBtn {
+    width: 100%;
+    height: 48px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     
+}
+
+
+.Separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    margin: 24px 0;
+}
+
+.Separator::before, .Separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.Separator span {
+    padding: 0 10px;
+}
+
+
+.AuthForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.InputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.InputGroup label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.LabelRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ForgotLink {
+    font-size: 13px;
+    color: #20665c; 
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ForgotLink:hover {
+    text-decoration: underline;
+}
+
+.InputWrapper input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f8fafc; 
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.InputWrapper input:focus {
+    border-color: #20665c;
+    background-color: #ffffff;
+}
+
+.SubmitBtn {
+    width: 100%;
+    height: 48px;
+    background-color: #31A18E; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.SubmitBtn:hover {
+    background-color: #164e46;
+}
+
+.RegisterRedirect {
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 24px;
+}
+
+.RegisterRedirect a {
+    color: #20665c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.RegisterRedirect a:hover {
+    text-decoration: underline;
+}
+.error-message{
+    color:red;
+    font-size:10px;
 }
