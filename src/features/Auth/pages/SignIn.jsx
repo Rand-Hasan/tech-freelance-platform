@@ -5,8 +5,10 @@ import axios from "axios";
 import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -14,6 +16,11 @@ export default function SignIn() {
   const [error, setError] = useState({});
 
   const onSuccessGoogle = (credentialResponse) => {
+    const googleToken = credentialResponse.credential;
+    Cookies.set("user_token", googleToken, {
+      expires: 7, 
+      secure: true,
+    });
     const decoded = jwtDecode(credentialResponse.credential);
     console.log("trueeee:", decoded);
   };
@@ -28,38 +35,60 @@ export default function SignIn() {
   function handlePassword(event) {
     setdata({ ...data, password: event.target.value });
   }
+
   function handleLogIn(event) {
-    setError({});
     event.preventDefault();
+    setError({}); 
+    
     const bodyData = {
       email: data.email,
       password: data.password,
     };
+
     axios
       .post("http://localhost:4000/LogIn", bodyData)
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
-        alert("Profile has Created Sucsesfully ! ");
+        alert("LogIn Successfully ! ");
+        
         setError({});
         Cookies.set("user_token", res.data.token, {
           expires: 7, 
           secure: true,
         });
       })
-      .catch((err) => {
-        const errors = err.response?.data?.errors;
+     .catch((err) => {
+      
+        const { errors, message } = err.response?.data || {};
+
         if (Array.isArray(errors)) {
-          setError(
-            errors.reduce(
-              (acc, e) => ({
-                ...acc,
-                [e.path || e.param || e.field]: e.msg || e.message,
-              }),
-              {},
-            ),
-          );
+         
+          setError(errors.reduce((acc, e) => ({ ...acc, [e.path || e.field]: e.msg || e.message }), {}));
+        } else if (message) {
+        
+          const isPwd = message.toLowerCase().includes("password");
+          const isEmail = /email|user|found/i.test(message);
+          
+          if (isPwd || isEmail) setError({ [isPwd ? "password" : "email"]: message });
+          else alert(message);
         }
       });
+  }
+  function HandleForgetPassword(){
+    if (!data.email) {
+    alert("Enter Email First");
+    return;
+  }
+    axios.post('http://localhost:4000/ForgetPassword',{
+     email:data.email 
+    })
+    .then((res)=>{
+      console.log(res.data);
+      Cookies.set("reset_email",data.email);
+      navigate("/ForgetPassword");
+    }).catch((err)=>{
+      console.log(err.response?.data);
+    })
   }
   return (
     <div className="FatherDiv">
@@ -157,7 +186,7 @@ export default function SignIn() {
               <div className="InputGroup">
                 <div className="LabelRow">
                   <label>Password</label>
-                  <a href="#forgot" className="ForgotLink">
+                  <a style={{cursor:"pointer"}} onClick={HandleForgetPassword}  className="ForgotLink">
                     Forgot password?
                   </a>
                 </div>
