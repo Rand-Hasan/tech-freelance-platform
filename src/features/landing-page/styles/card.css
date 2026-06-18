@@ -1,0 +1,69 @@
+.step-card {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-card:last-child .card-border-line {
+  display: none;
+}
+
+.card-body-content {
+  border-radius: 24px;
+  padding: 50px 35px; 
+}
+
+.card-body-content:hover {
+  background-color: var(--bg-main);
+}
+
+.card-border-line {
+  position: absolute;
+  right: 0;
+  top: 10px;       
+  bottom: 50px;      
+  width: 2px;       
+  background-color: #e2edea; 
+  z-index: 2;       
+}
+
+.step-number {
+  font-family: 'Syne', 'Arial Black', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: #e6f0ee; 
+  line-height: 1;
+  display: block;
+  margin-bottom: 30px;
+  letter-spacing: -2px;
+}
+
+.step-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  background-color: #d8eae7; 
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.step-emoji-icon {
+  font-size: 20px;
+}
+
+.step-card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f2421;
+  margin: 0 0 12px 0;
+}
+
+.step-card-desc {
+  font-size: 14px;
+  color: #627773;
+  line-height: 1.6;
+  margin: 0;
+}

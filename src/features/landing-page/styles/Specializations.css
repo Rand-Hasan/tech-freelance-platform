@@ -1,0 +1,27 @@
+.categories{
+  padding: 100px 64px;
+  background-color: white;
+}
+.section-eyebrow{
+  display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+.section-title{
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--text-main);
+    margin-bottom: 14px;
+    line-height: 1.15;
+}
+.categories-item{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 52px;
+}

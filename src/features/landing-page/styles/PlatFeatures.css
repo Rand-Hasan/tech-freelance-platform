@@ -1,0 +1,112 @@
+.features {
+    padding: 80px 70px;
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.section-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--text-main);
+    margin-bottom: 14px;
+    line-height: 1.15;
+}
+
+.feat-list {
+    width: 616px;
+    height: 576px;
+    top: 45.1px;
+    gap: 20px;
+    column-span: 1;
+
+}
+
+.feature-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+
+}
+.feat-mockup{
+     background: white;
+    border-radius: 24px;
+    border: 1px solid rgba(42, 157, 143, 0.15);
+    box-shadow: 0 20px 60px rgba(42, 157, 143, 0.10);
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+}
+.mockup-topbar {
+    padding: 16px 20px;
+    border-bottom: 1px solid  rgba(42, 157, 143, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.mockup-body {
+    padding: 24px 20px;
+    background-color: #f9f9f9; /* أضف خلفية مناسبة إذا لم تكن موجودة */
+}
+
+.chat-msg {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: flex-end;
+}
+
+.chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2A9D8F 0%, #52B788 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.chat-bubble {
+    background: #EDF7F4;
+    color: var(--text-main, #333);
+    border-radius: 4px 14px 14px 14px;
+    padding: 10px 14px; /* تم إضافة بادينج هنا ليعطي مساحة للنص */
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 70%; /* لمنع الفقاعة من التمدد العرضي الكامل */
+}
+
+/* عندما نضيف كلاس right، يعكس اتجاه العناصر بالكامل */
+.chat-msg.right {
+    flex-direction: row-reverse;
+}
+
+.chat-bubble.right {
+    background: var(--p, #2A9D8F); /* تأكد من تعريف متغير --p أو استبداله بلون ثابت */
+    color: white;
+    border-radius: 14px 4px 14px 14px;
+}

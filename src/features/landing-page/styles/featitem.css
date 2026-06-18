@@ -1,0 +1,57 @@
+.feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 24px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+
+}
+
+.feat-item:hover {
+
+    background-color: #FFFFFE;
+
+}
+
+.feat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.15) 0%, rgba(82, 183, 136, 0.08) 100%);
+
+}
+
+.feat-div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.feat-div h4 {
+    font-family: 2;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 15.2px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: var(--text-main);
+}
+
+.feat-div p {
+    font-family: 1;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 13.3px;
+    line-height: 21_25;
+    letter-spacing: 0%;
+    vertical-align: middle;
+
+}

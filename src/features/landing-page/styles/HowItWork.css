@@ -1,0 +1,44 @@
+.container-work {
+  background-color: #FFFFFF;
+  padding: 80px 70px;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.work-header-content {
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.title-work {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--primary, #2a9d8f);
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.desc-work {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--text-main);
+  margin: 0 0 20px 0;
+}
+
+.sub-desc-work {
+  font-size: 18px;
+  color: #607d8b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.container-card {
+  display: flex;
+  flex-direction: row;
+}
