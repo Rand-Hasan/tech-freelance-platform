@@ -1,4 +1,4 @@
-.navbar {
+.navbar-landing {
   position: fixed;
   top: 0;
   display: flex;
@@ -61,7 +61,7 @@
   width: 100%;
 }
 
-/* 3. تنسيق صندوق الأزرار العام */
+
 .nav-actions {
   display: flex;
   align-items: center;

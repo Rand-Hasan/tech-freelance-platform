@@ -1,0 +1,86 @@
+.cta-section {
+    margin: 0 64px 80px;
+    background: linear-gradient(101.93deg, #0F2421 0%, #1E4A44 100%);
+    border-radius: 28px;
+    padding: 80px 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.cta-content{
+    /* width: 956.5469970703125px;
+height: 118.01000213623047px; */
+top: 79.54px;
+left: 64px;
+gap: 12px;
+
+column-span: 1;
+
+}
+.cta-content h2 {
+   
+    font-family: 2;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 40px;
+    line-height: 41_4;
+    letter-spacing: -0_8;
+    vertical-align: middle;
+    color: var(--color-white-solid, #FFFFFF);
+
+}
+
+.cta-content p {
+    font-family: 1;
+    font-weight: 400;
+    font-size: 16px;
+     
+    line-height: 24_32;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: var(--color-white-60, #FFFFFF99);
+
+
+}
+.cta-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
+.cta-btn-white{
+
+   padding: 14px 28px;
+    background: white;
+    color: var(--primary);
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.cta-btn-white:hover{
+    transform: translateY(-3px);
+}
+.btn-cta-outline {
+    padding: 14px 28px;
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.btn-cta-outline:hover{
+    border-color: white;
+}

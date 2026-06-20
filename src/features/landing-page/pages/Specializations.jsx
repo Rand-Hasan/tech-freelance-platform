@@ -1,5 +1,6 @@
 import CategoriesItem from '../components/categoriesitem';
 import '../styles/Specializations.css';
+import Testimonials from './Testimonials';
 export default function Specializations(){
     return(
         <>
@@ -17,6 +18,7 @@ export default function Specializations(){
      <CategoriesItem emoji={"🧩"} title={"Backend & APIs"} details={"110+ freelancers"} />
         </div>
         </section>
+        <Testimonials/>
         </>
     )
 }

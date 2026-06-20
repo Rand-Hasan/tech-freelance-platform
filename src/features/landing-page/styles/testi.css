@@ -1,0 +1,50 @@
+.testi-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid  rgba(42, 157, 143, 0.15);
+    box-shadow: 0 2px 24px rgba(42, 157, 143, 0.10);
+    transition: transform 0.25s;
+}
+.testi-card:hover{
+    transform: translateY(-4px);
+}
+.testi-stars {
+    color: #f4a340;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+}
+.testi-text {
+    font-size: 0.88rem;
+    color:#5a7a76;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.testi-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+        background: linear-gradient(135deg, #2A9D8F, #52B788);
+
+}
+.testi-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text-main);
+}
+.testi-role {
+    font-size: 0.75rem;
+    color:#5a7a76 ;
+}

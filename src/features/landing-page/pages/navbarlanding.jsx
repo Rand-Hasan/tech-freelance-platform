@@ -1,8 +1,12 @@
 import { Button } from '@mui/material';
-import '../styles/navbar.css'
-export default function Navbar() {
+import '../styles/navbarlanding.css';
+import HeroSection from './HeroSection.jsx';
+import { useNavigate } from 'react-router-dom';
+export default function NavbarLanding() {
+   const navigate = useNavigate();
   return (
-    <nav className="navbar">
+    <>
+    <nav className="navbar-landing">
      
       <span className="logo">ProLink</span>
       
@@ -18,8 +22,8 @@ export default function Navbar() {
         <button className="btn-lang">
           <span className="lang-icon">🌐</span>
           عربي</button>
-        <button className="btn-login">Log In</button>
-        <button className="btn-started">Get Started</button>
+        <button className="btn-login" onClick={() => navigate("/SignIn")} >Log In</button>
+        <button className="btn-started" onClick={()=> navigate("/CreateAccount")}>Get Started</button>
        
         {/* <Button variant='containd' className='btn-started'>Get Started</Button> */}
       </div>
@@ -27,6 +31,7 @@ export default function Navbar() {
     ☰
   </button>
     </nav>
-    
+    <HeroSection/>
+    </>
   );
 }
