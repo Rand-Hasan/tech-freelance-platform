@@ -94,19 +94,18 @@
     background: #EDF7F4;
     color: var(--text-main, #333);
     border-radius: 4px 14px 14px 14px;
-    padding: 10px 14px; /* تم إضافة بادينج هنا ليعطي مساحة للنص */
+    padding: 10px 14px; 
     font-size: 0.9rem;
     line-height: 1.4;
-    max-width: 70%; /* لمنع الفقاعة من التمدد العرضي الكامل */
+    max-width: 70%; 
 }
 
-/* عندما نضيف كلاس right، يعكس اتجاه العناصر بالكامل */
 .chat-msg.right {
     flex-direction: row-reverse;
 }
 
 .chat-bubble.right {
-    background: var(--p, #2A9D8F); /* تأكد من تعريف متغير --p أو استبداله بلون ثابت */
+    background: var(--p, #2A9D8F); 
     color: white;
     border-radius: 14px 4px 14px 14px;
 }
