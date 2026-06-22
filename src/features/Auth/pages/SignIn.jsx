@@ -22,7 +22,33 @@ export default function SignIn() {
       secure: true,
     });
     const decoded = jwtDecode(credentialResponse.credential);
-    console.log("trueeee:", decoded);
+    const googleEmail = decoded.email;
+    axios
+      .post("http://localhost:4000/LogIn", {
+        email: googleEmail,
+        password: "majdmajdmajdmajdmajdmajd_________" 
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/Dashboard"); 
+      })
+      .catch((err) => {
+        const message = err.response?.data?.message || "";
+        const lowerCaseMsg = message.toLowerCase();
+
+      
+        if (lowerCaseMsg.includes("password")) {
+          console.log("Email in data base");
+          alert("Go To HomeScreen");
+          navigate("/HomeScreen");
+        } 
+        else {
+          console.log("حساب جديد كلياً عبر غوغل");
+          alert("Go To CreateProfile");
+          
+          navigate("/CreateProfile"); 
+        }
+      });
   };
 
   const onFailureGoogle = () => {
