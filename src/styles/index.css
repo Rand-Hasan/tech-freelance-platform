@@ -18,9 +18,9 @@ html, body {
   height: 100%;
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; /* خطوط هندسية مريحة للعين تليق بالتقنيين */
-   /* overflow-x: hidden;  */
-  -webkit-font-smoothing: antialiased; /* لجعل الخطوط تبدو ناعمة واحترافية على الشاشات */
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif; 
+   /* overflow: hidden !important;  */
+  -webkit-font-smoothing: antialiased; 
 }
 
 ul {

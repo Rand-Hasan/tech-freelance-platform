@@ -1,3 +1,6 @@
+.navbar-landing-wrapper{
+  min-height: 100vh;
+}
 .navbar-landing {
   position: fixed;
   top: 0;
@@ -5,7 +8,7 @@
   justify-content: space-between;
   align-items: center; 
    width: 100%;
-  max-width: 1440 px;
+  max-width: 1440px;
   height: 68px;
   margin: 0 auto;
   padding-right: 64px;

@@ -1,0 +1,113 @@
+.topbar {
+    height: 65px; 
+    background: #ffffff;
+    border-bottom: 1px solid rgba(42, 157, 143, .12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 32px;
+        gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topbar-title span {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #162b29;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px; 
+}
+
+.topbar-search {
+    width: 260px;
+    height: 38px;
+    background: #F4F7F6;
+    border: 1px solid rgba(42, 157, 143, .14);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    flex-shrink: 0;
+}
+
+.clean-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    margin-left: 8px;
+    font-size: .85rem;
+    color: #5a7a76;
+}
+
+.topbar-btn {
+    height: 38px !important;
+    padding: 0 20px !important;
+    border-radius: 10px !important;
+    background: #2a9d8f !important;
+    color: white !important;
+    text-transform: none !important;
+    font-size: .85rem !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    flex-shrink: 0;
+}
+.topbar-btn:hover{
+transform: translateY(-2px);
+box-shadow: #2a9d8f;
+}
+
+.topbar-btn:hover {
+    background: #23857a !important;
+}
+
+.notif-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notif-btn {
+    width: 38px !important;
+    height: 38px !important;
+    border: 1px solid rgba(42, 157, 143, .2) !important; 
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+}
+
+.notif-dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 1.5px solid white;
+    z-index: 2;
+}
+
+/* Avatar */
+.sidebar-avatar {
+    width: 38px;
+    height: 38px;
+    background: #F3A53F;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function NavbarLanding() {
    const navigate = useNavigate();
   return (
-    <>
+    <div className='navbar-landing-wrapper'>
     <nav className="navbar-landing">
      
       <span className="logo">ProLink</span>
@@ -32,6 +32,6 @@ export default function NavbarLanding() {
   </button>
     </nav>
     <HeroSection/>
-    </>
+    </div>
   );
 }
