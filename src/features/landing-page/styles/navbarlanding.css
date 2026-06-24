@@ -1,0 +1,148 @@
+.navbar-landing-wrapper{
+  min-height: 100vh;
+}
+.navbar-landing {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+   width: 100%;
+  max-width: 1440px;
+  height: 68px;
+  margin: 0 auto;
+  padding-right: 64px;
+  padding-left: 64px;
+    background: var(--bg-main);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  z-index: 9999;
+}
+
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+
+.nav-links {
+  display: flex;
+  list-style: none; 
+  gap: 36px;
+  align-items: center;
+}
+.nav-links li {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.nav-links li::after {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  bottom: -5px;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--primary);
+
+  transition: width 0.3s ease;
+
+}
+.nav-links li:hover {
+  color: var(--primary); 
+}
+.nav-links li:hover::after {
+  width: 100%;
+}
+
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px; 
+}
+
+.nav-actions button {
+  height: 36px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-lang {
+  background: #EDF7F4; 
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  color: var(--primary);
+}
+
+
+.btn-login {
+  background: transparent;
+  color: #495057; 
+  border: 1px solid #d7e5e2;
+  border-radius: 10px;
+  padding: 0 24px;
+  height: 40px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn-login:hover {
+ color: var(--primary);
+
+  border-color: var(--primary);
+
+  background: transparent;
+}
+.btn-started {
+  background-color: var(--primary) !important; 
+  border: none;
+  color: white;
+  padding: 0 24px; 
+  box-shadow: 0px 4px 10px rgba(42, 157, 143, 0.2);
+}
+
+.btn-started:hover {
+  background-color: var(--primary-hover) !important;
+}
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding-inline: 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}

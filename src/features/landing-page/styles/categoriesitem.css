@@ -1,0 +1,34 @@
+.cat {
+    padding: 28px 22px;
+    border-radius: 18px;
+    border: 1.5px solid rgba(42, 157, 143, 0.15);
+    background: #F7FFFE;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.cat:hover {
+    border-color: var(--primary); 
+    transform: translateY(-4px) !important;
+    box-shadow: 0 2px 24px rgba(42, 157, 143, 0.20) !important;
+}
+.cat-emoji {
+    font-size: 0.80rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.cat h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.cat-details {
+    font-size: 0.76rem;
+    color: #5a7a76;
+    display: block;
+}
