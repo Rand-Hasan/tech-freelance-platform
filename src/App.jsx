@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './styles/App.css';
 import ClientLayout from './features/Client/layout/ClientLayout';
@@ -32,7 +32,13 @@ function App() {
           <Route path="contracts" element={<Contracts />} />
           <Route path="profile" element={<Profile />} />
          <Route path="setting" element={<Settings />} />
-          
+         <Route path ="SignIn" element={<SignIn/>}/>
+         <Route path ="ForgetPassword" element={<ForgetPassword/>}/>
+          <Route path ="CreateAccount" element={<CreateAccount/>}/>
+          <Route path ="Otp" element={<Otp/>}/>
+          <Route path ="NavbarLanding" element={<NavbarLanding/>}/>
+
+
         </Route>
 
         
