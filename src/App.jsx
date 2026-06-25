@@ -15,19 +15,36 @@ import FindFreelancers from './features/Client/client-findfreelancer/pages/Findf
 import Contracts from './features/Client/client-contracts/pages/Contracts';
 import Profile from './features/Client/client-profile/pages/Profile';
 import Settings from './features/Client/client-setting/pages/Setting';
+import ProjectDetails from './features/Client/client-projects/pages/ProjectDetails';
+import CreateProject from './features/Client/client-projects/pages/CraeteProject';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+         {/* <Route path='/' element={<NavbarLanding/>} /> 
+        <Route path='SignIn' element={<SignIn />} />
+         <Route path='Otp' element={<Otp />} />
+         <Route path='CreateAccount' element={<CreateAccount />} />
+         <Route path='/ForgetPassword' element={<ForgetPassword />} />     */}
         
         <Route path="/" element={<ClientLayout />}>
            <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard/>} />
           <Route path="messages" element={<Messages />} />
           <Route path="wallet" element={<Wallet/>} />
-          
-          <Route path="projects" element={<Projects />} />
+          {/* <Route path='projects'>
+             <Route index element={<Projects />} />
+             <Route path=":projectId" element={<ProjectDetails />} />
+          </Route> */}
+          <Route path="projects" element={<Projects />}>
+             {/* هذا المسار سيفتح عند الضغط على Create Project */}
+             <Route path="create" element={<CreateProject />} />
+             
+             {/* هذا المسار سيفتح عند الضغط على تفاصيل المشروع */}
+             <Route path="id" element={<ProjectDetails />} />
+          </Route>
+         
           <Route path="find-freelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
           <Route path="profile" element={<Profile />} />
@@ -36,11 +53,7 @@ function App() {
         </Route>
 
         
-         {/* <Route path='/' element={<NavbarLanding/>} /> 
-        <Route path='SignIn' element={<SignIn />} />
-         <Route path='Otp' element={<Otp />} />
-         <Route path='CreateAccount' element={<CreateAccount />} />
-         <Route path='/ForgetPassword' element={<ForgetPassword />} />        */}
+         
 
 
       </Routes>

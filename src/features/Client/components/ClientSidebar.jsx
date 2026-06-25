@@ -25,23 +25,23 @@ export default function Sidebar() {
                 <div className="nav-group">
                     <span className="nav-group-title">MAIN</span>
 
-                    <NavLink to="/dashboard" className="nav-item">
+                    <NavLink to="dashboard" className="nav-item">
                         <span className="nav-icon">📊</span>
                         <span className="nav-text">Dashboard</span>
                     </NavLink>
 
-                    <NavLink to="/projects" className="nav-item">
+                    <NavLink to="projects" className="nav-item">
                         <span className="nav-icon">📋</span>
                         <span className="nav-text">My Projects</span>
                         <span className="nav-badge">4</span>
                     </NavLink>
 
-                    <NavLink to="/find-freelancers" className="nav-item">
+                    <NavLink to="find-freelancers" className="nav-item">
                         <span className="nav-icon">🔍</span>
                         <span className="nav-text">Find Freelancers</span>
                     </NavLink>
 
-                    <NavLink to="/contracts" className="nav-item">
+                    <NavLink to="contracts" className="nav-item">
                         <span className="nav-icon">📄</span>
                         <span className="nav-text">Contracts</span>
                     </NavLink>
@@ -50,11 +50,11 @@ export default function Sidebar() {
                 {/* workspace */}
                 <div className="nav-group">
                     <span className="nav-group-title">Workspace</span>
-                    <NavLink to="/messages" className="nav-item">
+                    <NavLink to="messages" className="nav-item">
                         <span className="nav-icon">💬</span>
                         <span className="nav-text">Messages</span>
                     </NavLink>
-                    <NavLink to="/wallet" className="nav-item">
+                    <NavLink to="wallet" className="nav-item">
                         <span className="nav-icon">💰</span>
                         <span className="nav-text">Wallet</span>
                     </NavLink>
@@ -63,11 +63,11 @@ export default function Sidebar() {
                 {/* Account */}
                 <div className="nav-group">
                     <span className="nav-group-title">Account</span>
-                    <NavLink to="/profile" className="nav-item">
+                    <NavLink to="profile" className="nav-item">
                         <span className="nav-icon">👤</span>
                         <span className="nav-text">My Profile</span>
                     </NavLink>
-                    <NavLink to="/setting" className="nav-item">
+                    <NavLink to="setting" className="nav-item">
                         <span className="nav-icon">⚙️</span>
                         <span className="nav-text">Settings</span>
                     </NavLink>
