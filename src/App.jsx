@@ -15,7 +15,7 @@ import FindFreelancers from './features/Client/client-findfreelancer/pages/Findf
 import Contracts from './features/Client/client-contracts/pages/Contracts';
 import Profile from './features/Client/client-profile/pages/Profile';
 import Settings from './features/Client/client-setting/pages/Setting';
-
+import ContractDetails from './features/Client/client-contracts/pages/ContractDetails';
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +30,8 @@ function App() {
           <Route path="projects" element={<Projects />} />
           <Route path="find-freelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
+          
+             <Route path="ContractDetails" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
          <Route path="setting" element={<Settings />} />
          <Route path ="SignIn" element={<SignIn/>}/>
