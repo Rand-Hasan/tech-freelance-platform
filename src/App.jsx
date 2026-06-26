@@ -16,6 +16,7 @@ import Contracts from './features/Client/client-contracts/pages/Contracts';
 import Profile from './features/Client/client-profile/pages/Profile';
 import Settings from './features/Client/client-setting/pages/Setting';
 import ContractDetails from './features/Client/client-contracts/pages/ContractDetails';
+import FreeLanceInfo from './features/Client/client-findfreelancer/pages/FreeLanceInfo';
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +40,7 @@ function App() {
           <Route path ="CreateAccount" element={<CreateAccount/>}/>
           <Route path ="Otp" element={<Otp/>}/>
           <Route path ="NavbarLanding" element={<NavbarLanding/>}/>
+          <Route path="FreeLanceInfo" element={<FreeLanceInfo/>}/>
 
 
         </Route>

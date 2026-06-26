@@ -1,0 +1,542 @@
+.MyProfile{
+   
+    position: relative;
+}
+.NameAndPhoto{
+    width: 100%;
+    height: 120px;
+    background-color: #23867A;
+    border-radius: 30px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    gap:20px;
+}
+
+ .JustPhotoAndName{
+    display: flex;
+    width: 40%;
+    gap:20px;
+ }
+.PhotoDiv{
+    width:100px;
+    height: 100px;
+    border-radius: 100px;
+    background-color: blue;
+    margin-left: 4px;
+}
+.NameDiv{
+    margin-top: 15px;
+    
+}
+.NameHTag{
+    color:white;
+}
+.NumbersDiv{
+width: 40%;
+display: flex;
+justify-content: space-around;
+margin-left: 60px;
+}
+.ProjectPosted{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.projectCompleted{
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.avgGivin{
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1,h6{
+    color:white;
+}
+.EditProfileButton{
+    width:150px;
+    height: 50px;
+    background-color: white;
+    color:#23867A;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+    font-weight: bold;
+    border: #23867A;
+    cursor: pointer;
+}
+
+.PersonalInfo{
+    width: 65%;
+    height: 320px;
+    background-color: yellow;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+.Technical_Assessment_Result{
+      width: 65%;
+    height: 200px;
+    background-color: blueviolet;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+.Reviews_Given{
+    width: 65%;
+    height: 250px;
+    background-color: yellow;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+/* 1. الأب الكبير */
+.ContentUnderNameAndPhotoDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.LeftDivs {
+    width: 65%;
+}
+
+.LeftDivs > div {
+    width: 100% !important; 
+}
+
+.RightDivs {
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.AccountStatus {
+    width: 100%;
+    height: 180px;
+    background-color: white;
+    border-radius: 30px;
+    margin-top: 20px; 
+}
+
+.Spending_Summary {
+    width: 100%;
+    height: 240px;
+    background-color: #e4f8f2;
+    border-radius: 30px;
+}
+
+.Quick_Actions {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    border-radius: 30px;
+}
+.PersonalInfo {
+    width: 100%;
+    height: auto; 
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.PersonalInfoTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+.PersonalInfoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 24px; 
+}
+
+.InfoFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.InfoFieldGroup label {
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.InfoFieldValue {
+    background-color: #f4f6f8;
+    color: #334155;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #e8ecef;
+    text-align: left;
+}
+.Technical_Assessment_Result {
+    width: 100%;
+    height: auto; 
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.AssessmentTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.AssessmentDescription {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.AssessmentBadgeRow {
+    display: flex;
+    align-items: center;
+    background-color: #e4f8f2; 
+    border: 1px solid #ccefe5;
+    border-radius: 16px;
+    padding: 20px 24px;
+    gap: 16px;
+}
+
+.BrainIcon {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BadgeTextGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    flex-grow: 1; 
+}
+
+.BadgeMainText {
+    color: #23867A;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.BadgeSubText {
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.RetakeButton {
+    background-color: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.RetakeButton:hover {
+    background-color: rgba(35, 134, 122, 0.05);
+    border-color: #23867A;
+    color: #23867A;
+}
+.Reviews_Given {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.ReviewsTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.ReviewItem {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9; /* الخط الفاصل الناعم بين المراجعات */
+    text-align: left;
+}
+
+.ReviewItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.ReviewHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.ReviewerName {
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.ReviewStars {
+    color: #f59e0b; 
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.ReviewText {
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 8px 0;
+}
+
+.ReviewMeta {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+}
+.AccountStatus {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px; 
+}
+
+.AccountStatusTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.StatusRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f5f9; 
+}
+
+.StatusRow:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.StatusLabel {
+    color: #64748b;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.StatusBadge {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-verified, .badge-connected {
+    background-color: #e4f8f2; 
+    color: #23867A;
+}
+
+.badge-client {
+    background-color: #fff3e6;
+    color: #f97316;
+}
+
+.StatusValue {
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 600;
+}
+.Spending_Summary {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.SpendingTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.TotalSpentContainer {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.TotalSpentAmount {
+    color: #23867A; 
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.TotalSpentLabel {
+    color: #64748b;
+    font-size: 14px;
+    margin: 6px 0 0 0;
+    font-weight: 500;
+}
+
+.SpendingCategories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.CategoryItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.CategoryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.CategoryName {
+    color: #0f172a;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.CategoryValue {
+    color: #23867A;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.ProgressBarBase {
+    width: 100%;
+    height: 8px;
+    background-color: #e4f8f2; 
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ProgressBarFill {
+    height: 100%;
+    background-color: #23867A; 
+    border-radius: 20px;
+}
+
+.Quick_Actions {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.QuickActionsTitle {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.ActionButtonsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ActionButton {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.ActionButton:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    transform: translateY(-1px);
+}
+
+.ActionIcon {
+    font-size: 18px;
+}
+.Image{
+    width:100px;
+    height: 100px;
+    border-radius: 100px;
+}

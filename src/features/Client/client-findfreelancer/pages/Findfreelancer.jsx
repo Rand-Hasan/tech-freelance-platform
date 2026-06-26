@@ -4,7 +4,10 @@ import NewSkillsWithCheckBox from "../components/NewSkillsWithCheckBox";
 import SliderSizes from "../components/SliderSizes";
 import Raiting from "../components/Raiting";
 import FindFreeLancerCard from "../components/FindFreeLancerCard";
+import { useNavigate } from "react-router-dom";
+
 export default function FindFreelancers() {
+  const navigate = useNavigate();
   const skillsData = [
     { id: "react", label: "React / Next.js", count: 142 },
     { id: "node", label: "Node.js", count: 98 },
@@ -60,17 +63,17 @@ export default function FindFreelancers() {
             <option value="newest">Newest Members</option>
           </select>
         </div>
-        <div className="FreelancersGridContainer">
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
-          <FindFreeLancerCard />
+        <div  className="FreelancersGridContainer">
+          <FindFreeLancerCard  onClick={()=>{
+            navigate('/FreeLanceInfo');
+          }}/>
+          <FindFreeLancerCard onClick={()=>{
+            navigate('/FreeLanceInfo');
+          }}/>
+          <FindFreeLancerCard onClick={()=>{
+            navigate('/FreeLanceInfo');
+          }}/>
+        
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import "../styles/FindFreeLancerCard.css";
-export default function FindFreeLancerCard() {
+export default function FindFreeLancerCard({onClick}) {
   return (
-    <Card className='Card' sx={{ width:'100%',height:"90%", borderRadius:'20px', }}>
+    <Card className='FindFreeLancerCard' onClick={onClick}>
       <CardContent className='CardContent'>
        <div className='LeftSide'>
         <div className='NameAndFirstLater'>

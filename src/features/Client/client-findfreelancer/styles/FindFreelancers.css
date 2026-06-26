@@ -2,12 +2,14 @@
 .FindFreeLancerPage {
     display: flex;
     gap: 20px;     
-    padding: 24px;
-    min-height: 100vh;
+    padding:4px;
+    width:100%;
+    position: relative;
 }
+/* الديف اليساري كامل ك ديف  */
 .AllAboutFiltering {
     margin-left: 2px;
-    width: 300px;
+    width: 26%;
     height: max-content; 
     background-color: #ffffff; 
     border: 1px solid #e9f2f1; 
@@ -15,10 +17,13 @@
     padding: 24px; 
     display: flex;
     flex-direction: column;
-    gap: 28px; 
+    flex: 0;
+    gap: 30px; 
     box-sizing: border-box; 
+    
+   
 }
-/* قائمة العناصر كلياتا */
+/* قائمة العناصر  بالديف اليساري*/
 .FilterGroupList {
     display: flex;
     flex-direction: column;
