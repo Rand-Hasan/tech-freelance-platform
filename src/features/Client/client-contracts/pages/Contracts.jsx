@@ -59,7 +59,7 @@ export default function Contracts() {
             <div className="contract-name">{item.contract}</div>
 
             <div className="freelancer">
-              <div className="avatar">{item.initials}</div>
+              <div className="avatarr">{item.initials}</div>
               <span>{item.freelancer}</span>
             </div>
 
