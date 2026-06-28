@@ -22,7 +22,7 @@ export default function NavbarLanding() {
         <button className="btn-lang">
           <span className="lang-icon">🌐</span>
           عربي</button>
-        <button className="btn-login" onClick={() => navigate("/client")} >Log In</button>
+        <button className="btn-login" onClick={() => navigate("/SignIn")} >Log In</button>
         <button className="btn-started" onClick={()=> navigate("/CreateAccount")}>Get Started</button>
        
         {/* <Button variant='containd' className='btn-started'>Get Started</Button> */}

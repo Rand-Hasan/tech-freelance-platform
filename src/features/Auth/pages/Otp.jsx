@@ -99,7 +99,8 @@ useEffect(() => {
 console.log(res.data);
 console.log(res.status);
   if (role === "client") {
-    navigate(" /dashboard");
+    navigate('/SignIn')
+    // navigate("clientlayout");
   } else {
     navigate("/questions");
   }

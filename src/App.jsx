@@ -17,47 +17,70 @@ import Profile from './features/Client/client-profile/pages/Profile';
 import Settings from './features/Client/client-setting/pages/Setting';
 import ProjectDetails from './features/Client/client-projects/pages/ProjectDetails';
 import CreateProject from './features/Client/client-projects/pages/CraeteProject';
-
+import ContractDetails from './features/Client/client-contracts/pages/ContractDetails';
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-         {/* <Route path='/' element={<NavbarLanding/>} /> 
-        <Route path='SignIn' element={<SignIn />} />
-         <Route path='Otp' element={<Otp />} />
-         <Route path='CreateAccount' element={<CreateAccount />} />
-         <Route path='/ForgetPassword' element={<ForgetPassword />} />     */}
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path='/' element={<NavbarLanding/>} /> 
+    //     <Route path='/SignIn' element={<SignIn />} />
+    //      <Route path='/Otp' element={<Otp />} />
+    //      <Route path='/CreateAccount' element={<CreateAccount />} />
+    //      <Route path='/ForgetPassword' element={<ForgetPassword />} />     
         
-        <Route path="/" element={<ClientLayout />}>
-           <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard/>} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="wallet" element={<Wallet/>} />
-          {/* <Route path='projects'>
-             <Route index element={<Projects />} />
-             <Route path=":projectId" element={<ProjectDetails />} />
-          </Route> */}
-          <Route path="projects" element={<Projects />}>
-             {/* هذا المسار سيفتح عند الضغط على Create Project */}
-             <Route path="create" element={<CreateProject />} />
+    //     <Route path="/clientlayout" element={<ClientLayout />}/>
+    //        {/* <Route index element={<Navigate to="dashboard" replace />} /> */}
+    //       <Route path="/dashboard" element={<Dashboard/>} />
+    //       <Route path="/messages" element={<Messages />} />
+    //       <Route path="/wallet" element={<Wallet/>} />
+      
+    //       <Route path="/projects" element={<Projects />}/>
+    //       <Route path="/createproject" element={<CreateProject />} />
              
-             {/* هذا المسار سيفتح عند الضغط على تفاصيل المشروع */}
-             <Route path="id" element={<ProjectDetails />} />
-          </Route>
+    //       <Route path="id" element={<ProjectDetails />} />
+    //       {/* </Route> */}
          
-          <Route path="find-freelancers" element={<FindFreelancers />} />
-          <Route path="contracts" element={<Contracts />} />
-          <Route path="profile" element={<Profile />} />
-         <Route path="setting" element={<Settings />} />
+    //       <Route path="/find-freelancers" element={<FindFreelancers />} />
+    //       <Route path="/contracts" element={<Contracts />} />
           
-        </Route>
+    //          <Route path="/ContractDetails" element={<ContractDetails />} />
+    //       <Route path="/profile" element={<Profile />} />
+    //      <Route path="/setting" element={<Settings />} />
+          
+    //     {/* </Route> */}
+    //   </Routes>
+    // </BrowserRouter>
+    <BrowserRouter>
+  <Routes>
 
-        
-         
+    {/* صفحات بدون Layout */}
+    <Route path="/" element={<NavbarLanding />} />
+    <Route path="/signin" element={<SignIn />} />
+    <Route path="/otp" element={<Otp />} />
+    <Route path="/createaccount" element={<CreateAccount />} />
+    <Route path="/forgetpassword" element={<ForgetPassword />} />
 
+    {/* Layout */}
+    <Route path="/client" element={<ClientLayout />}>
 
-      </Routes>
-    </BrowserRouter>
+      <Route index element={<Navigate to="dashboard" replace />} />
+
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="messages" element={<Messages />} />
+      <Route path="wallet" element={<Wallet />} />
+      <Route path="projects" element={<Projects />} />
+      <Route path="createproject" element={<CreateProject />} />
+      <Route path="projects/:id" element={<ProjectDetails />} />
+      <Route path="find-freelancers" element={<FindFreelancers />} />
+      <Route path="contracts" element={<Contracts />} />
+      <Route path="ContractDetails" element={<ContractDetails />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="setting" element={<Settings />} />
+
+    </Route>
+
+  </Routes>
+</BrowserRouter>
   );
 }
 

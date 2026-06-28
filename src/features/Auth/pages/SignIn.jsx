@@ -50,9 +50,9 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
         alert("LogIn Successfully ! ");
-        
+       navigate("/clientlayout")
         setError({});
-        Cookies.set("user_token", res.data.token, {
+        Cookies.set("token", res.data.token, {
           expires: 7, 
           secure: true,
         });

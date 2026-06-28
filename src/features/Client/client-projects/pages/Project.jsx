@@ -1,23 +1,29 @@
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate, } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
 
 export default function Projects(){
+   const navigate = useNavigate();
     return(
-        <div style={{ padding: '20px' }}>
+        <>
+        <div>
             {/* الأزرار الثابتة في الأعلى */}
-            <div style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px', marginBottom: '20px' }}>
-                <Button component={Link} to="create" variant="contained" style={{ marginRight: '10px' }}>
-                    Create Project
-                </Button>
-
-                <Button component={Link} to="id" variant="outlined">
-                    Project 1
-                </Button>
+            <div >
+                <Button component={Link} to="id" >All</Button>
+                <Button component={Link} to="id" >Open</Button>
+                <Button component={Link} to="id" >In Progress </Button>
+                <Button component={Link} to="id" >In Review </Button>
+                <Button component={Link} to="id" >Completed</Button>
+                 
+               <Button onClick={() => navigate("/createproject")}>
+  + Post Project
+</Button>
+             
+                
             </div>
-
-            {/* هنا سيتم عرض المكونات الفرعية (CreateProject أو ProjectDetails) دون اختفاء الأزرار */}
-            <Outlet />
+            
         </div>
+       
+        </>
     )
 }
