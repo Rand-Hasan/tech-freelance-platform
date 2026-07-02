@@ -11,7 +11,7 @@ import Messages from "./features/Client/client- messages/pages/Messages";
 import Dashboard from "./features/Client/client-dashboard/pages/Dashboard";
 import Wallet from "./features/Client/client-wallet/pages/Wallet";
 import Projects from "./features/Client/client-projects/pages/Project";
-import FindFreelancers from "./features/Client/client-findfreelancer/pages/Findfreelancer";
+import FindFreelancers from "./features/Client/client-findfreelancer/pages/FindFreelancers";
 import Contracts from "./features/Client/client-contracts/pages/Contracts";
 import Profile from "./features/Client/client-profile/pages/Profile";
 import Settings from "./features/Client/client-setting/pages/Setting";
@@ -28,7 +28,7 @@ function App() {
           <Route path="wallet" element={<Wallet />} />
 
           <Route path="projects" element={<Projects />} />
-          <Route path="find-freelancers" element={<FindFreelancers />} />
+          <Route path="FindFreelancers" element={<FindFreelancers/>} />
           <Route path="contracts" element={<Contracts />} />
 
           <Route path="ContractDetails" element={<ContractDetails />} />

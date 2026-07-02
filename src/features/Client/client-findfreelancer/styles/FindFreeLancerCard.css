@@ -28,7 +28,6 @@
     box-sizing: border-box;
 }
 
-/* القسم اليساري */
 .LeftSide {
     display: flex;
     flex-direction: column;

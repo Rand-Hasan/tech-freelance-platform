@@ -66,6 +66,14 @@ export default function FindFreelancers() {
           <FindFreeLancerCard/>
           <FindFreeLancerCard/>
           <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          
         </div>
       </div>
     </div>
