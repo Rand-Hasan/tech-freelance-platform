@@ -1,9 +1,15 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import "../styles/FindFreeLancerCard.css";
-export default function FindFreeLancerCard({onClick}) {
+import { useNavigate } from "react-router-dom";
+
+export default function FindFreeLancerCard() {
+    const navigate = useNavigate();
+
   return (
-    <Card className='FindFreeLancerCard' onClick={onClick}>
+    <Card  className='FindFreeLancerCard' onClick={()=>{
+      navigate("/FreeLanceInfo");
+    }}>
       <CardContent className='CardContent'>
        <div className='LeftSide'>
         <div className='NameAndFirstLater'>
@@ -25,7 +31,7 @@ export default function FindFreeLancerCard({onClick}) {
        <div className='RightSide'>
         <div className='monyInHour'>$45 / hr</div>
         <div className='RaitingOfFreeLancer'>* 4.9 Expert</div>
-        <button className='InviteButton'>Invite</button>
+        <button  className='InviteButton'>Invite</button>
        </div>
 
       </CardContent>

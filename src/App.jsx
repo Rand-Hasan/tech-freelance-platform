@@ -57,30 +57,34 @@ function App() {
 
       <Routes>
         {/* <Route path="/" element={<NavbarLanding />} /> */}
+
+    <BrowserRouter>
+      <Routes>
         <Route path="/" element={<ClientLayout />}>
-           <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard/>} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="messages" element={<Messages />} />
-          <Route path="wallet" element={<Wallet/>} />
-          
+          <Route path="wallet" element={<Wallet />} />
+
           <Route path="projects" element={<Projects />} />
+
           <Route path="createproject" element={<CreateProject/>}/>
           <Route path="editproject/:id" element={< CreateProject/>} />
           <Route path="find-freelancers" element={<FindFreelancers />} />
+          <Route path="FindFreelancers" element={<FindFreelancers/>} />
           <Route path="contracts" element={<Contracts />} />
-          
-             <Route path="ContractDetails" element={<ContractDetails />} />
+
+          <Route path="ContractDetails" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
-         <Route path="setting" element={<Settings />} />
-         <Route path ="SignIn" element={<SignIn/>}/>
-         <Route path ="ForgetPassword" element={<ForgetPassword/>}/>
-          <Route path ="CreateAccount" element={<CreateAccount/>}/>
-          <Route path ="Otp" element={<Otp/>}/>
-          <Route path ="NavbarLanding" element={<NavbarLanding/>}/>
-          <Route path="FreeLanceInfo" element={<FreeLanceInfo/>}/>
-
-
+          <Route path="setting" element={<Settings />} />
+          <Route path="SignIn" element={<SignIn />} />
+          <Route path="ForgetPassword" element={<ForgetPassword />} />
+          <Route path="CreateAccount" element={<CreateAccount />} />
+          <Route path="Otp" element={<Otp />} />
+          <Route path="NavbarLanding" element={<NavbarLanding />} />
+          <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
         </Route>
+
 
     {/* صفحات بدون Layout */}
     {/* <Route path="/" element={<NavbarLanding />} />
@@ -109,6 +113,14 @@ function App() {
 
   </Routes>
 </BrowserRouter>
+
+        {/* <Route path='/' element={<NavbarLanding/>} /> 
+        <Route path='SignIn' element={<SignIn />} />
+         <Route path='Otp' element={<Otp />} />
+         <Route path='CreateAccount' element={<CreateAccount />} />
+         <Route path='/ForgetPassword' element={<ForgetPassword />} />        */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

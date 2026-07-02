@@ -34,9 +34,9 @@ export default function Profile() {
 
 if (!PersonalData) return null; 
 
-if (PersonalData.isError) {
-  return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
-}
+// if (PersonalData.isError) {
+//   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
+// }
   
   return (
     <div className="MyProfile">
@@ -258,7 +258,11 @@ if (PersonalData.isError) {
           <div className="Quick_Actions">
             <h3 className="QuickActionsTitle">Quick Actions</h3>
             <div className="ActionButtonsGroup">
-              <button className="ActionButton">
+              <button className="ActionButton" 
+              onClick={()=>{
+                navigate("/setting");
+              }}
+              >
                 <span className="ActionIcon">⚙️</span> Edit Profile & Settings
               </button>
               <button onClick={()=>{
