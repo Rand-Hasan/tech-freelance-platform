@@ -51,7 +51,7 @@ function App() {
     //     {/* </Route> */}
     //   </Routes>
     // </BrowserRouter>
-    <BrowserRouter>
+    
 
 
 
@@ -70,7 +70,7 @@ function App() {
 
           <Route path="createproject" element={<CreateProject/>}/>
           <Route path="editproject/:id" element={< CreateProject/>} />
-          <Route path="find-freelancers" element={<FindFreelancers />} />
+          {/* <Route path="find-freelancers" element={<FindFreelancers />} /> */}
           <Route path="FindFreelancers" element={<FindFreelancers/>} />
           <Route path="contracts" element={<Contracts />} />
 
@@ -86,41 +86,15 @@ function App() {
         </Route>
 
 
-    {/* صفحات بدون Layout */}
-    {/* <Route path="/" element={<NavbarLanding />} />
-    <Route path="/signin" element={<SignIn />} />
-    <Route path="/otp" element={<Otp />} />
-    <Route path="/createaccount" element={<CreateAccount />} />
-    <Route path="/forgetpassword" element={<ForgetPassword />} />
+   
 
-    <Route path="/client" element={<ClientLayout />}>
 
-      <Route index element={<Navigate to="dashboard" replace />} />
-
-      <Route path="dashboard" element={<Dashboard />} />
-      <Route path="messages" element={<Messages />} />
-      <Route path="wallet" element={<Wallet />} />
-      <Route path="projects" element={<Projects />} />
-      <Route path="createproject" element={<CreateProject />} />
-      <Route path="projects/:id" element={<ProjectDetails />} />
-      <Route path="find-freelancers" element={<FindFreelancers />} />
-      <Route path="contracts" element={<Contracts />} />
-      <Route path="ContractDetails" element={<ContractDetails />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="setting" element={<Settings />} />
-
-    </Route> */}
 
   </Routes>
 </BrowserRouter>
 
-        {/* <Route path='/' element={<NavbarLanding/>} /> 
-        <Route path='SignIn' element={<SignIn />} />
-         <Route path='Otp' element={<Otp />} />
-         <Route path='CreateAccount' element={<CreateAccount />} />
-         <Route path='/ForgetPassword' element={<ForgetPassword />} />        */}
       </Routes>
-    </BrowserRouter>
+  
   );
 }
 
