@@ -40,9 +40,7 @@ export default function Sidebar({
                         <span className="nav-badge">4</span>
                     </NavLink>
 
-
-                    <NavLink to="find-freelancers" className="nav-item">
-                    {/* <NavLink to="/FindFreelancers" className="nav-item"> */}
+                    <NavLink to="FindFreelancers" className="nav-item">
                         <span className="nav-icon">🔍</span>
                         <span className="nav-text">Find Freelancers</span>
                     </NavLink>

@@ -74,22 +74,21 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
 
-<<<<<<< HEAD
         alert("LogIn Successfully ! ");
        navigate("/clientlayout");
     
         
         setError({});
-        Cookies.set("token", res.data.token, {
-          expires: 7, 
-=======
-        setError({});
-        Cookies.set("user_token", res.data.token, {
-          expires: 7,
->>>>>>> 278d8cd0d4b1a1de126485771950062bb33c25ba
-          secure: true,
-        });
-      })
+      //   Cookies.set("token", res.data.token, {
+      //     expires: 7, 
+      //   setError({});
+      //     expires: 7,
+      //     secure: true,
+      //   }
+        
+      //   Cookies.set("user_token", res.data.token, {
+      //   );
+       })
       .catch((err) => {
         const { errors, message } = err.response?.data || {};
 
