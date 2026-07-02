@@ -139,3 +139,59 @@
   cursor: pointer;
   font-size: 13px;
 }
+/* Mobile */
+@media (max-width: 768px) {
+  .table-header {
+    display: none;
+  }
+
+  .contracts-table {
+    border: none;
+    background: transparent;
+  }
+
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: white;
+    border: 1px solid #e7eeee;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    padding: 16px;
+  }
+
+  .contract-name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .freelancer {
+    width: 100%;
+  }
+
+  .type-badge,
+  .status {
+    width: fit-content;
+  }
+
+  .value {
+    font-size: 15px;
+  }
+
+  .view-btn {
+    display: inline-block;
+    margin-top: 5px;
+  }
+     .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .tab-btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}
