@@ -17,7 +17,10 @@
     font-size: 1.2rem;
     font-weight: 700;
     color: #162b29;
+    white-space:nowrap;
+
 }
+/* .topbar-title{} */
 
 .topbar-actions {
     display: flex;
@@ -110,4 +113,26 @@ box-shadow: #2a9d8f;
     font-size: .85rem;
     font-weight: 700;
     flex-shrink: 0;
+}
+
+@media(max-width:768px){
+
+.topbar{
+
+    padding:14px;
+
+}
+
+.topbar-search{
+
+    display:none;
+
+}
+
+.topbar-btn{
+
+    display:none;
+
+}
+
 }

@@ -1,13 +1,55 @@
 import React from "react";
 import { Button, IconButton } from "@mui/material";
 import "../styles/ClientHeader.css";
-
-export default function ClientHeader() {
+import { useLocation, useNavigate } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; 
+import MenuIcon from "@mui/icons-material/Menu";
+export default function ClientHeader({ setSidebarOpen }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pagetitle ={
+    "/dashboard": "overview",
+    "/projects" : "My Projects",
+    "/messages" : "Messages" ,
+    "/wallet"   : "Wallet" ,
+    "/find-freelancers" : "Find Freelancers",
+    "/contracts" :"Contracts",
+    "/profile"  :"My Profile",
+    "/setting" : "Settings",
+    "/createproject" : "Post a New Project",
+    "/editproject/:1" : "Edit Project"
+  }
+   const backButtonRoutes = ["/createproject","/editproject"];
+   const currentTitle = pagetitle[location.pathname] || "overview";
+    const showBackButton = backButtonRoutes.includes(location.pathname);
   return (
     <div className="topbar">
-      
+    
       <div className="topbar-title">
-        <span>Overview</span>
+        <IconButton
+    className="menu-btn"
+    onClick={() => setSidebarOpen(true)}
+>
+    <MenuIcon />
+</IconButton>
+          {showBackButton&&(
+        <IconButton 
+          onClick={() => navigate(-1)} 
+          style={{ 
+            backgroundColor: "white",
+            border:"1.5px solid rgba(42, 157, 143, 0.14)", 
+            // color: "#ffffff", 
+            borderRadius: "8px",
+
+          }}
+          size="small"
+        >
+          <ArrowBackIcon fontSize="small" />
+        </IconButton>
+      )
+
+      }
+        <span>{currentTitle}</span>
       </div>
 
       <div className="topbar-actions">

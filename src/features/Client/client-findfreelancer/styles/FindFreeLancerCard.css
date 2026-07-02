@@ -1,0 +1,103 @@
+/* هي الأب الحاوي للكاردات بكلاس الفايند كرمال فكرة الغريد*/
+.FreelancersGridContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap:24px;
+    width:100%;
+}
+.LeftSide{
+    width:70%;
+}
+.NameAndFirstLater{
+    display: flex;
+    gap:15px;
+}
+.FirstLaterOfFreeLancer{
+    width: 40px;
+    height: 40px;
+    background-color: #46A095;
+    padding:8px;
+    border-radius: 10px;
+    color:white;
+    animation: changeAvatarColor 10s infinite ease-in-out;
+}
+@keyframes changeAvatarColor {
+    0%, 100% { background-color: #46A095; }
+    20%      { background-color: #7B3FE6; }
+    40%      { background-color: #E68909; }
+    60%      { background-color: #C84035; }
+    80%      { background-color: #048145; }
+}
+
+.StatusOfFreeLancer{
+    margin-top: 10px;
+    font-size: 12px;
+}
+.SkillsOfFreeLancer{
+    display: flex;
+    gap:15px;
+    margin-top: 10px;
+}
+.SkillItemOfFreeLancer{
+    width: 70px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    background-color: #e4f8f2;
+    border-radius: 6px;
+    color:gray;
+    margin-top: 10px;
+}
+.CountOfProjectCompleted{
+    font-size: 12px;
+    margin-top: 25px;
+}
+.CardContent{
+    display: flex;
+}
+.RightSide{
+margin-left: 20px;
+}
+.monyInHour{
+    color:#46A095;
+    font-weight: bold;
+    margin-left: 30px;
+}
+.RaitingOfFreeLancer{
+     width: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    background-color: #e4f8f2;
+    border-radius: 9px;
+    color:gray;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+.InviteButton{
+    margin-top: 45px;
+    margin-left: 50px;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #46A095;
+    color: white;
+    font-weight: bold;
+    border: #46A095 solid;
+    cursor: pointer;
+}
+.InviteButton:hover{
+     background-color: #056d61;
+      border: #056d61 solid;
+}
+.FindFreeLancerCard{
+    width:100% ;
+    height:90%;
+    border-radius: 30px !important;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px gray !important;
+
+}
+.FindFreeLancerCard:hover{
+    box-shadow: 6px 6px 6px gray !important;
+}

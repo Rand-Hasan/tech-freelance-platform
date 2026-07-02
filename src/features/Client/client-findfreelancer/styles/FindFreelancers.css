@@ -1,0 +1,118 @@
+/* الأب الأكبر  */
+.FindFreeLancerPage {
+    display: flex;
+    gap: 20px;     
+    padding:4px;
+    width:100%;
+    position: relative;
+}
+/* الديف اليساري كامل ك ديف  */
+.AllAboutFiltering {
+    margin-left: 2px;
+    width: 26%;
+    height: max-content; 
+    background-color: #ffffff; 
+    border: 1px solid #e9f2f1; 
+    border-radius: 30px;
+    padding: 24px; 
+    display: flex;
+    flex-direction: column;
+    flex: 0;
+    gap: 30px; 
+    box-sizing: border-box; 
+    
+   
+}
+/* قائمة العناصر  بالديف اليساري*/
+.FilterGroupList {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+/* السطر الواحد الحاوي على التشيك بوكس والكلام والكاونت */
+.FilterItemRow {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+/* الطرف الأيسر (التشيك بوكس + النص) */
+.FilterLabelSide {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    cursor: pointer;
+}
+/* نص المهارة  */
+.SkillLabelText {
+    color: #2c3e50;
+    font-size: 15px;
+    font-weight: 500;
+}
+/* الكاونت */
+.SkillCountNumber {
+    color: #94a3b8;
+    font-size: 14px;
+}
+.CustomCheckboxInput {
+    width: 18px;
+    height: 18px;
+    accent-color: #46A095; 
+    cursor: pointer;
+    margin: 0;
+}
+.ResetFiltersButton{
+    width:250px;
+    height: 50px;
+    background-color: white;
+    color:gray;
+    border:1px rgb(165, 164, 164) solid;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
+.ResetFiltersButton:hover{
+    color:gray;
+    border:2px #46A095 solid;
+    color:#46A095;
+    border-radius: #46A095;
+}
+
+.DolarsRaiting{
+    display: flex;
+    justify-content: space-between;
+    color:gray;
+}
+/* القسم الأيمن كامل */
+.ResultOfFiltering {
+    flex: 1;         
+    display: flex;
+    flex-direction: column;
+    gap: 24px;       
+}
+/* 1. الديف الحاوي للعدد الفريلانسر والقائمة المنسدلة */
+.ContentHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;            
+    width: 100%;
+}
+/* 2. نص عدد الفريلانسرز المطابقين */
+.FreelancersCount {
+    color: #2c3e50;              
+    font-size: 16px;
+    font-weight: 600;            
+}
+
+/* 3. القائمة المنسدلة  */
+.SortDropdownSelection {
+    background-color: #ffffff;
+    color: #2c3e50;                
+    font-size: 14px;
+    /* font-weight: 500; */
+    padding: 10px 10px;            
+    border: 1px solid #e2e8f0; 
+    border-radius: 12px;       
+    cursor: pointer;
+    transition: all 0.2s ease; 
+}

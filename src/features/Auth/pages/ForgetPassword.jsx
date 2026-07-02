@@ -2,19 +2,24 @@ import { useRef, useState } from "react";
 import "../styles/forgetPassword.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { baseURL } from "../../../services/Api/api";
+import {ResetPassword } from "../Services/api_auth";
+
 
 export default function ForgetPassword() {
   const [error, setError] = useState({});
    const [data, setdata] = useState({
     new_password: "",
     new_password_confirmation: "",
-  });
-  function HanleNewPassword(event) {
-    setdata({ ...data, new_password: event.target.value });
+  });  
+  function handleChanges(event) {
+ 
+    setdata({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
   }
-  function Hanlenew_password_confirmation(event) {
-    setdata({ ...data, new_password_confirmation: event.target.value });
-  }
+
 //=========================================
   const [code, setCode] = useState(new Array(6).fill(""));
   const inputRefs = useRef([]);
@@ -44,17 +49,18 @@ export default function ForgetPassword() {
     const email = Cookies.get("reset_email");
 
     const bodyData = {
+      //عم نرسل الايميل كرمال التوكنايزيشن يعني بدال ال توكن
       email: email,
       new_password: data.new_password,
       new_password_confirmation: data.new_password_confirmation,
     };
 
     axios
-      .post("http://localhost:4000/ResetPassword", bodyData)
+      .post(baseURL+ResetPassword, bodyData)
       .then((res) => {
         console.log("trueeeeeee");
         console.log(res.data);
-        alert("done");
+       
       })
       .catch((err) => {
         console.log("Errrorrrrr", err.response?.data);
@@ -74,6 +80,9 @@ export default function ForgetPassword() {
   }
 
 // function HandleResetPassword() {
+//هادا التابع لازم يتأكد انو رمز ال فيريفاي نفسو وحقول الكلمات 
+//طيب والتابع مابياخد غير الحقول ...لهيك انا ساويت تابع الفيريفاي 
+//وجواتو حطيت تابع الريسيت
    
 //     const email = Cookies.get("reset_email");
 //     const verificationCode = code.join(""); 
@@ -207,9 +216,10 @@ export default function ForgetPassword() {
             )}
             <input
               type="password"
+              name="new_password"
               placeholder="At least 8 characters"
               value={data.new_password}
-              onChange={HanleNewPassword}
+              onChange={handleChanges}
             />
           </div>
         </div>
@@ -224,9 +234,10 @@ export default function ForgetPassword() {
             )}
             <input
               type="password"
+              name="new_password_confirmation"
               placeholder="Re-enter password"
               value={data.new_password_confirmation}
-              onChange={Hanlenew_password_confirmation}
+              onChange={handleChanges}
             />
           </div>
         </div>

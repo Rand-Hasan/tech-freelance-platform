@@ -6,7 +6,8 @@ import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import { baseURL } from "../../../services/Api/api";
+import { LogIn,ForgetPassword } from "../Services/api_auth";
 export default function SignIn() {
   const navigate = useNavigate();
   const [data, setdata] = useState({
@@ -22,18 +23,45 @@ export default function SignIn() {
       secure: true,
     });
     const decoded = jwtDecode(credentialResponse.credential);
-    console.log("trueeee:", decoded);
+    const googleEmail = decoded.email;
+    axios
+      .post(baseURL+LogIn, {
+        email: googleEmail,
+        password: "majdmajdmajdmajdmajdmajd_________" 
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/Dashboard"); 
+      })
+      .catch((err) => {
+        const message = err.response?.data?.message || "";
+        const lowerCaseMsg = message.toLowerCase();
+
+      
+        if (lowerCaseMsg.includes("password")) {
+          console.log("Email in data base");
+      
+          navigate("/HomeScreen");
+        } 
+        else {
+          console.log("new Account on google");
+          
+          
+          navigate("/CreateProfile"); 
+        }
+      });
   };
 
   const onFailureGoogle = () => {
     console.log("Errrrorrrrr");
   };
 
-  function handleEmail(event) {
-    setdata({ ...data, email: event.target.value });
-  }
-  function handlePassword(event) {
-    setdata({ ...data, password: event.target.value });
+  function handleChange(event) {
+ 
+    setdata({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
   }
 
   function handleLogIn(event) {
@@ -46,11 +74,14 @@ export default function SignIn() {
     };
 
     axios
-      .post("http://localhost:4000/LogIn", bodyData)
+      .post(baseURL+LogIn, bodyData)
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
+
         alert("LogIn Successfully ! ");
-       navigate("/clientlayout")
+       navigate("/clientlayout");
+    
+        
         setError({});
         Cookies.set("token", res.data.token, {
           expires: 7, 
@@ -70,16 +101,17 @@ export default function SignIn() {
           const isEmail = /email|user|found/i.test(message);
           
           if (isPwd || isEmail) setError({ [isPwd ? "password" : "email"]: message });
-          else alert(message);
+          else 
+        console.log(message)
         }
       });
   }
   function HandleForgetPassword(){
     if (!data.email) {
-    alert("Enter Email First");
+  
     return;
   }
-    axios.post('http://localhost:4000/ForgetPassword',{
+    axios.post(baseURL+ForgetPassword,{
      email:data.email 
     })
     .then((res)=>{
@@ -177,8 +209,9 @@ export default function SignIn() {
                   <input
                     type="email"
                     placeholder="you@example.com"
+                    name="email"
                     value={data.email}
-                    onChange={handleEmail}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -196,9 +229,10 @@ export default function SignIn() {
                 <div className="InputWrapper">
                   <input
                     type="password"
+                    name="password"
                     placeholder="••••••••"
                     value={data.password}
-                    onChange={handlePassword}
+                    onChange={handleChange}
                   />
                 </div>
               </div>

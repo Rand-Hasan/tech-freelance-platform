@@ -1,5 +1,5 @@
 .sidebar{
-    width:260px;
+    width:240px;
     min-height: 100vh;
     background: #234743;
     display: flex;
@@ -74,7 +74,8 @@
 .nav-sidebar {
     flex: 1;
     padding: 12px 0;
-    overflow-y: auto;
+     scrollbar-width: none;
+    overflow-y:auto;
 }
 .nav-group{
     display: flex;
@@ -131,4 +132,73 @@
 }
 .sidebar-footer span:hover{
     color: #e05252;
+}
+
+
+
+
+
+
+
+
+
+
+/* زر القائمة */
+.menu-btn{
+    display:none !important;
+}
+
+/* Overlay */
+.sidebar-overlay{
+    display:none;
+}
+
+/* Tablet + Mobile */
+@media (max-width:1024px){
+
+    .menu-btn{
+        display:flex !important;
+    }
+
+    .sidebar{
+
+        transform:translateX(-100%);
+        transition:.35s ease;
+
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+
+    }
+
+    .sidebar-overlay{
+
+        display:block;
+
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(0,0,0,.35);
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transition:.3s;
+
+        z-index:150;
+
+    }
+
+    .sidebar-overlay.show{
+
+        opacity:1;
+
+        visibility:visible;
+
+    }
+
 }

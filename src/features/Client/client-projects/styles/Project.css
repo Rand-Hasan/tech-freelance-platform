@@ -1,0 +1,239 @@
+.page-view-project {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 15px;
+    animation: fadeUp 0.35s ease;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--muted);
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.filter-chip:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(42, 157, 143, .08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(42,157,143,.12);
+}
+
+.filter-chip.active {
+    background: linear-gradient(135deg, var(--primary), #52B788);
+    color: white;
+    border-color: transparent;
+}
+
+
+.tobar-btn {
+    height: 40px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), #52B788);
+    color: white;
+    font-size: .83rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    transition: .25s;
+    box-shadow: 0 10px 22px rgba(42,157,143,.18);
+}
+
+.tobar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(42,157,143,.28);
+} 
+.tab-btn:hover{
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: rgba(42, 157, 143, 0.10);
+}
+
+.card-project {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(42,157,143,.12);
+    box-shadow: 0 10px 28px rgba(15,23,42,.04);
+    padding: 22px;
+}
+
+
+
+.project-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(42, 157, 143, 0.07);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+
+.project-item:last-child {
+    border-bottom: none;
+}
+
+.project-item:hover {
+    background: #EDF7F4;
+    margin: 0 -22px;
+    padding: 14px 22px;
+    border-radius: 10px;
+    /* transform: translateX(4px); */
+}
+
+
+
+.project-icon{
+    width:42px;
+    height:42px;
+
+    border-radius:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:20px;
+    font-weight:700;
+
+    flex-shrink:0;
+
+    user-select:none;
+}
+
+
+
+.project-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.project-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.project-freelancer {
+    font-size: .78rem;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.project-extra {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: .73rem;
+    color: #94a3b8;
+}
+
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.project-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-transform: capitalize;
+}
+
+.status-badge.open,
+.status-badge.all {
+    background: #EAF8F7;
+    color: #2BBBB1;
+}
+
+.status-badge.in_progress {
+    background: #E0F2FE;
+    color: #0369A1;
+}
+
+.status-badge.in_review {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+.status-badge.completed {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+
+
+.project-actions {
+    display: flex;
+     flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.action-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* color: var(--primary); */
+    transition: all .2s ease;
+}
+
+.action-btn:hover {
+    background: rgba(42,157,143,.12);
+    transform: scale(1.08);
+}
+
+
+.no-projects-text {
+    padding: 50px 0;
+    text-align: center;
+    color: #94A3B8;
+    font-size: 15px;
+    font-weight: 500;
+}
