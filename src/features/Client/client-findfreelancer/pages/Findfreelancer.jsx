@@ -4,10 +4,9 @@ import NewSkillsWithCheckBox from "../components/NewSkillsWithCheckBox";
 import SliderSizes from "../components/SliderSizes";
 import Raiting from "../components/Raiting";
 import FindFreeLancerCard from "../components/FindFreeLancerCard";
-import { useNavigate } from "react-router-dom";
 
 export default function FindFreelancers() {
-  const navigate = useNavigate();
+ 
   const skillsData = [
     { id: "react", label: "React / Next.js", count: 142 },
     { id: "node", label: "Node.js", count: 98 },
@@ -42,9 +41,9 @@ export default function FindFreelancers() {
         <h4>HOURLY RATE </h4>
         <SliderSizes />
         <div className="DolarsRaiting">
-          <h6>10$</h6>
-          <h6>UP TO 60$</h6>
-          <h6>100$</h6>
+          <h6 style={{color:"black"}}>10$</h6>
+          <h6 style={{color:"black"}}>UP TO 60$</h6>
+          <h6 style={{color:"black"}}>100$</h6>
         </div>
         <h4>RATING</h4>
         <Raiting />
@@ -64,16 +63,9 @@ export default function FindFreelancers() {
           </select>
         </div>
         <div  className="FreelancersGridContainer">
-          <FindFreeLancerCard  onClick={()=>{
-            navigate('/FreeLanceInfo');
-          }}/>
-          <FindFreeLancerCard onClick={()=>{
-            navigate('/FreeLanceInfo');
-          }}/>
-          <FindFreeLancerCard onClick={()=>{
-            navigate('/FreeLanceInfo');
-          }}/>
-        
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
+          <FindFreeLancerCard/>
         </div>
       </div>
     </div>

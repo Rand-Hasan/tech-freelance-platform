@@ -3,7 +3,7 @@ import "../styles/forgetPassword.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { baseURL } from "../../../services/Api/api";
-import {ResetPassword } from "../Services/api_auth";
+import {ResetPassword,VerfiyEmail } from "../Services/api_auth";
 
 
 export default function ForgetPassword() {
@@ -13,7 +13,6 @@ export default function ForgetPassword() {
     new_password_confirmation: "",
   });  
   function handleChanges(event) {
- 
     setdata({
       ...data,
       [event.target.name]: event.target.value,
@@ -49,14 +48,13 @@ export default function ForgetPassword() {
     const email = Cookies.get("reset_email");
 
     const bodyData = {
-      //عم نرسل الايميل كرمال التوكنايزيشن يعني بدال ال توكن
-      email: email,
+      email:email,
       new_password: data.new_password,
       new_password_confirmation: data.new_password_confirmation,
     };
 
     axios
-      .post(baseURL+ResetPassword, bodyData)
+      .post(baseURL+ResetPassword,bodyData)
       .then((res) => {
         console.log("trueeeeeee");
         console.log(res.data);
@@ -80,9 +78,9 @@ export default function ForgetPassword() {
   }
 
 // function HandleResetPassword() {
-//هادا التابع لازم يتأكد انو رمز ال فيريفاي نفسو وحقول الكلمات 
-//طيب والتابع مابياخد غير الحقول ...لهيك انا ساويت تابع الفيريفاي 
-//وجواتو حطيت تابع الريسيت
+// // هادا التابع لازم يتأكد انو رمز ال فيريفاي نفسو وحقول الكلمات 
+// // طيب والتابع مابياخد غير الحقول ...لهيك انا ساويت تابع الفيريفاي 
+// // وجواتو حطيت تابع الريسيت
    
 //     const email = Cookies.get("reset_email");
 //     const verificationCode = code.join(""); 
@@ -93,7 +91,7 @@ export default function ForgetPassword() {
 //     }
 
    
-//     axios.post("http://localhost:4000/VerfiyEmail", {
+//     axios.post(baseURL+VerfiyEmail, {
 //         email: email,
 //         otp: verificationCode
 //       })
@@ -102,11 +100,12 @@ export default function ForgetPassword() {
 //         console.log("done", verifyRes.data);
 
 //         const resetBodyData = {
+//           email:email,
 //           new_password: data.new_password,
 //           new_password_confirmation: data.new_password_confirmation,
 //         };
 
-//         return axios.post("http://localhost:4000/ResetPassword", resetBodyData);
+//         return axios.post(baseURL+ResetPassword, resetBodyData);
 //       })
 //       .then((resetRes) => {
 //         console.log(resetRes.data);

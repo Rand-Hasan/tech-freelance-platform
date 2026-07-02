@@ -7,7 +7,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../../services/Api/api";
-import { LogIn,ForgetPassword } from "../Services/api_auth";
+import { LogIn, ForgetPassword } from "../Services/api_auth";
 export default function SignIn() {
   const navigate = useNavigate();
   const [data, setdata] = useState({
@@ -19,35 +19,32 @@ export default function SignIn() {
   const onSuccessGoogle = (credentialResponse) => {
     const googleToken = credentialResponse.credential;
     Cookies.set("user_token", googleToken, {
-      expires: 7, 
+      expires: 7,
       secure: true,
     });
     const decoded = jwtDecode(credentialResponse.credential);
     const googleEmail = decoded.email;
     axios
-      .post(baseURL+LogIn, {
+      .post(baseURL + LogIn, {
         email: googleEmail,
-        password: "majdmajdmajdmajdmajdmajd_________" 
+        password: "majdmajdmajdmajdmajdmajd_________",
       })
       .then((res) => {
         console.log(res.data);
-        navigate("/Dashboard"); 
+        navigate("/Dashboard");
       })
       .catch((err) => {
         const message = err.response?.data?.message || "";
         const lowerCaseMsg = message.toLowerCase();
 
-      
         if (lowerCaseMsg.includes("password")) {
           console.log("Email in data base");
-      
+
           navigate("/HomeScreen");
-        } 
-        else {
+        } else {
           console.log("new Account on google");
-          
-          
-          navigate("/CreateProfile"); 
+
+          navigate("/CreateProfile");
         }
       });
   };
@@ -57,7 +54,6 @@ export default function SignIn() {
   };
 
   function handleChange(event) {
- 
     setdata({
       ...data,
       [event.target.name]: event.target.value,
@@ -66,58 +62,67 @@ export default function SignIn() {
 
   function handleLogIn(event) {
     event.preventDefault();
-    setError({}); 
-    
+    setError({});
+
     const bodyData = {
       email: data.email,
       password: data.password,
     };
 
     axios
-      .post(baseURL+LogIn, bodyData)
+      .post(baseURL + LogIn, bodyData)
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
-     
-        
+
         setError({});
         Cookies.set("user_token", res.data.token, {
-          expires: 7, 
+          expires: 7,
           secure: true,
         });
       })
-     .catch((err) => {
-      
+      .catch((err) => {
         const { errors, message } = err.response?.data || {};
 
         if (Array.isArray(errors)) {
-         
-          setError(errors.reduce((acc, e) => ({ ...acc, [e.path || e.field]: e.msg || e.message }), {}));
+          setError(
+            errors.reduce(
+              (acc, e) => ({ ...acc, [e.path || e.field]: e.msg || e.message }),
+              {},
+            ),
+          );
         } else if (message) {
-        
           const isPwd = message.toLowerCase().includes("password");
           const isEmail = /email|user|found/i.test(message);
-          
-          if (isPwd || isEmail) setError({ [isPwd ? "password" : "email"]: message });
-          else 
-        console.log(message)
+
+          if (isPwd || isEmail)
+            setError({ [isPwd ? "password" : "email"]: message });
+          else console.log(message);
         }
       });
   }
-  function HandleForgetPassword(){
+  function HandleForgetPassword() {
+    setError({});
     if (!data.email) {
-  
-    return;
-  }
-    axios.post(baseURL+ForgetPassword,{
-     email:data.email 
-    })
-    .then((res)=>{
-      console.log(res.data);
-      Cookies.set("reset_email",data.email);
-      navigate("/ForgetPassword");
-    }).catch((err)=>{
-      console.log(err.response?.data);
-    })
+      setError({ email: "Please enter your email address first." });
+      return;
+    }
+    axios
+      .post(baseURL + ForgetPassword, {
+        // هي مو مصادقة
+        email: data.email,
+      })
+      .then((res) => {
+        console.log(res.data);
+        Cookies.set("reset_email", data.email);
+        navigate("/ForgetPassword");
+      })
+      .catch((err) => {
+        console.log(err.response?.data);
+        const backendMessage =
+          err.response?.data?.message || "An error occurred. Please try again.";
+
+        setError({ email: backendMessage });
+      });
   }
   return (
     <div className="FatherDiv">
@@ -216,7 +221,11 @@ export default function SignIn() {
               <div className="InputGroup">
                 <div className="LabelRow">
                   <label>Password</label>
-                  <a style={{cursor:"pointer"}} onClick={HandleForgetPassword}  className="ForgotLink">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    onClick={HandleForgetPassword}
+                    className="ForgotLink"
+                  >
                     Forgot password?
                   </a>
                 </div>
