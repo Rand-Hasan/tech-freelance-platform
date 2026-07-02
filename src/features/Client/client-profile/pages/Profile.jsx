@@ -4,7 +4,7 @@ import Cookies from "cookie-universal";
 import { ShowProfile } from "../services/MyProfileApi";
 import { baseURL } from "../../../../services/Api/api";
 import { useNavigate } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 export default function Profile() {
   const [PersonalData, setPersonalData] = useState(null);
   const cookies = Cookies();
@@ -69,7 +69,11 @@ if (PersonalData.isError) {
             <h6> AVG.Givin</h6>
           </div>
         </div>
-        <button className="EditProfileButton">Edit Profile</button>
+     <NavLink to="/setting">
+  <button className="EditProfileButton">
+    Edit Profile
+  </button>
+</NavLink>
       </div>
 
       <div className="ContentUnderNameAndPhotoDiv">
