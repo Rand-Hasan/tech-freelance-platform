@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import "../styles/Otp.css";
 import { baseURL } from "../../../services/Api/api";
-import { VerfiyEmail } from "../../../features/Auth/Services/api_auth";
+import { VerfiyEmail ,ResendOtp} from "../../../features/Auth/Services/api_auth";
 import Loading from "../../../components/Loading/Loading";
 import { useEffect } from "react";
 function Otp() {
@@ -13,6 +13,7 @@ function Otp() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
+
   const inputsRef = useRef([]);
   const navigate = useNavigate();
   const cookies = Cookies();
@@ -33,6 +34,31 @@ const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
       inputsRef.current[index + 1]?.focus();
     }
   };
+  async function handleResendOtp() {
+  try {
+    const email = cookies.get("email");
+
+    const res = await axios.post(
+      baseURL + ResendOtp,
+      {
+        email,
+      }
+    );
+  console.log("Success:", res.data.message);
+
+    setError(""); // امسح أي خطأ سابق
+    setTimeLeft(300);
+
+  } catch (err) {
+    console.log("Error:", err.response?.data?.message);
+
+    setError(
+      err.response?.data?.message ||
+      err.response?.data?.errors?.[0]?.message ||
+      "Server Error"
+    );
+  }
+}
 useEffect(() => {
   if (timeLeft <= 0) return;
 
@@ -161,9 +187,14 @@ const formatTime = (seconds) => {
           </div>
   <span>{formatTime(timeLeft)}</span>
 
-          <a href="#" className="resend">
-            Resend code
-          </a>
+     <button
+  type="button"
+  className="resend"
+  onClick={handleResendOtp}
+  disabled={timeLeft > 0}
+>
+  {timeLeft > 0 ? "  code expires" : "Resend code"}
+</button>
           {error && <p className="error-message">{error}</p>}
 
           <button className="verify-btn" onClick={handleVerify}>

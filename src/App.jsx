@@ -73,6 +73,8 @@ function App() {
           <Route path="ContractDetails" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
           <Route path="setting" element={<Settings />} />
+              <Route path="/createaccount" element={<CreateAccount />} />
+                <Route path="/otp" element={<Otp />} />
           {/* <Route path="SignIn" element={<SignIn />} />
           <Route path="ForgetPassword" element={<ForgetPassword />} />
           <Route path="CreateAccount" element={<CreateAccount />} />

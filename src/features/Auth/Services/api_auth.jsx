@@ -4,3 +4,4 @@ export const FreelancerRegister='FreelancerRegister';
   export const LogIn='LogIn';
   export const ForgetPassword='ForgetPassword';
   export const ResetPassword = 'ResetPassword';
+    export const ResendOtp='ResendOtp';

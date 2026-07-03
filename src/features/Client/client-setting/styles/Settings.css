@@ -38,8 +38,8 @@
 }
 
 .avatar {
-  width: 79px;
-  height: 79px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -493,4 +493,23 @@ box-shadow: #2a9d8f;
   color: white;
   border-radius: 10px;
   cursor: pointer;
+}
+.success-message {
+  background: #ecfdf3;
+  color: #027a48;
+  border: 1px solid #abefc6;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.error-message {
+  background: #fef3f2;
+  color: #b42318;
+  border: 1px solid #fecdca;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
 }
