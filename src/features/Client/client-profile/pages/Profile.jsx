@@ -12,6 +12,7 @@ export default function Profile() {
     const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Current Token in React:", token);
   fetch(baseURL + ShowProfile, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -19,6 +20,7 @@ export default function Profile() {
   })
     .then((response) => response.json())
     .then((data) => {
+      console.log("Response Data from Backend:", data);
       // يعني اذا ماكان في داتا من الاساس راجعة ف كريت بروفايل اول شي 
       if (!data.user_profile) {
         setPersonalData({ isError: true, text: data.message || "Create Profile First Please ! " });
@@ -26,17 +28,18 @@ export default function Profile() {
         setPersonalData(data.user_profile);
       }
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error("Fetch Error:", error);
       // هون معناها في خطأ ضرب ايرور من السيرفر
       setPersonalData({ isError: true, text: "Error Connection ! " });
     });
-},);
+},[]);
 
 if (!PersonalData) return null; 
 
-// if (PersonalData.isError) {
-//   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
-// }
+if (PersonalData.isError) {
+  return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
+}
   
   return (
     <div className="MyProfile">

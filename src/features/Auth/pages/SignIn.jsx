@@ -111,13 +111,14 @@ export default function SignIn() {
   }
   function HandleForgetPassword() {
     setError({});
+    // يعني في حال ما عبا ايميلو وتركو فاضي خزن هي الرسالة بالايرورات
     if (!data.email) {
       setError({ email: "Please enter your email address first." });
       return;
     }
     axios
       .post(baseURL + ForgetPassword, {
-        // هي مو مصادقة
+        // مطلوب مني اعطيه الايميل كرمال يعرف يبعت الرمز
         email: data.email,
       })
       .then((res) => {

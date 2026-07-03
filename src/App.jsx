@@ -73,11 +73,12 @@ function App() {
           <Route path="ContractDetails" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
           <Route path="setting" element={<Settings />} />
-          {/* <Route path="SignIn" element={<SignIn />} />
+          <Route path="SignIn" element={<SignIn />} />
           <Route path="ForgetPassword" element={<ForgetPassword />} />
           <Route path="CreateAccount" element={<CreateAccount />} />
           <Route path="Otp" element={<Otp />} />
-          <Route path="NavbarLanding" element={<NavbarLanding />} /> */}
+          <Route path="NavbarLanding" element={<NavbarLanding />} />
+
           <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
         </Route>
 
