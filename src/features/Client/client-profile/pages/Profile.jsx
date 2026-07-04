@@ -69,7 +69,7 @@ if (!PersonalData) return null;
             <h6> AVG.Givin</h6>
           </div>
         </div>
-     <NavLink to="/setting">
+     <NavLink to="/clientlayout/setting">
   <button className="EditProfileButton">
     Edit Profile
   </button>
