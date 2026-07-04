@@ -11,7 +11,7 @@ export default function CreateProject() {
    const { id } = useParams();
    const isEditMode = Boolean(id);
    const token = cookies.get('token');
-   console.log('tokenis:', token);
+   console.log('tokenis222:', token);
 
    const [data, setData] = useState({
       project_name: '',

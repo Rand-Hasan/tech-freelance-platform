@@ -143,7 +143,7 @@ export default function Projects() {
           Completed
         </button>
         <div style={{ flex: 1 }}></div>
-        <button className="tobar-btn" onClick={() => navigate('/createproject')}>+ post project</button>
+        <button className="tobar-btn" onClick={() => navigate('/clientlayout/createproject')}>+ post project</button>
       </div>
 
       <div className="card-project">
@@ -196,7 +196,7 @@ export default function Projects() {
 
               <div
                 className="action-btn" style={{ color: "#5ea0cc" }}
-                onClick={() => navigate(`/editproject/${project.id}`)}
+                onClick={() => navigate(`/clientlayout/editproject/${project.id}`)}
               >
                 <EditIcon fontSize="small" />
               </div>
