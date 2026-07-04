@@ -169,10 +169,11 @@ cookies.set("email", data.email, {
             <button className="create-btn" onClick={handleSubmit}>
               Create Account
             </button>
-            <p className="signin">
-              Already have an account?
-              <a href="#"> Sign In</a>
-            </p>
+            <p className="signin"> Already have an account?
+          <a href="#" onClick={() => navigate('/signin')}>
+  Sign In
+</a>
+</p>
           </div>
         </div>
 
