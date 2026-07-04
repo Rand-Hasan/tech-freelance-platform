@@ -8,3 +8,56 @@
     gap: 20px;
     margin-top: 52px;
 }
+
+
+
+/* =========================
+   Tablet (992px)
+========================= */
+@media (max-width: 992px) {
+
+  .testimonials {
+    padding: 70px 40px;
+  }
+
+  .testi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+}
+
+
+/* =========================
+   Mobile (768px)
+========================= */
+@media (max-width: 768px) {
+
+  .testimonials {
+    padding: 50px 20px;
+  }
+
+  .testi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+}
+
+
+/* =========================
+   Small Mobile (480px)
+========================= */
+@media (max-width: 480px) {
+
+  .testimonials {
+    padding: 40px 15px;
+  }
+
+  .testi-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+}

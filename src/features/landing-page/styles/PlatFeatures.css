@@ -109,3 +109,89 @@
     color: white;
     border-radius: 14px 4px 14px 14px;
 }
+
+
+
+
+/* =========================
+   Tablet (992px)
+========================= */
+@media (max-width: 992px) {
+
+    .features {
+        padding: 60px 40px;
+    }
+
+    .feature-layout {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+    .feat-list {
+        width: 100%;
+        height: auto;
+    }
+
+    .feat-mockup {
+        position: static;
+        width: 100%;
+    }
+
+}
+
+
+/* =========================
+   Mobile (768px)
+========================= */
+@media (max-width:768px) {
+
+    .features {
+        padding: 50px 20px;
+    }
+
+    .feature-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .feat-list {
+        width: 100%;
+        height: auto;
+    }
+
+    .feat-mockup {
+        width: 100%;
+        position: static;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+}
+
+
+/* =========================
+   Small Mobile (480px)
+========================= */
+@media (max-width:480px) {
+
+    .features {
+        padding: 40px 15px;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        line-height: 1.3;
+    }
+
+    .chat-bubble {
+        max-width: 85%;
+        font-size: 0.85rem;
+    }
+
+    .mockup-body {
+        padding: 16px;
+    }
+
+}
