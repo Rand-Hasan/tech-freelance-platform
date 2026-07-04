@@ -93,9 +93,17 @@ export default function Profile() {
             <h6> AVG.Givin</h6>
           </div>
         </div>
+
         <NavLink to="/setting">
           <button className="EditProfileButton">Edit Profile</button>
         </NavLink>
+
+     <NavLink to="/clientlayout/setting">
+  <button className="EditProfileButton">
+    Edit Profile
+  </button>
+</NavLink>
+
       </div>
 
       <div className="ContentUnderNameAndPhotoDiv">

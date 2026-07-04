@@ -165,8 +165,8 @@ async function handleSave() {
 
     const token = cookies.get("token");
 
-    // const formData = new FormData();
-     const formData = new URLSearchParams();
+     const formData = new FormData();
+    //  const formData = new URLSearchParams();
 
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.last_name);
@@ -231,7 +231,7 @@ async function handleDeleteProfile() {
     );
 console.log(res.data.message)
     
-    navigate("/Profile");
+    navigate("/clientlayout/Profile");
   } catch (err) {
     console.log(err);
   } finally {
