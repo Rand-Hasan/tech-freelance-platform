@@ -428,3 +428,215 @@
   color: var(--primary);
   white-space: nowrap;
 }
+
+
+/* =========================
+   Tablet (992px)
+========================= */
+@media (max-width: 992px) {
+
+  .hero-container {
+    flex-direction: column;
+    padding: 40px 30px;
+    gap: 50px;
+    margin-top: 20px;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero-title {
+    width: 100%;
+    height: auto;
+    font-size: 52px;
+  }
+
+  .hero-description {
+    max-width: 100%;
+  }
+
+  .hero-panel {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+  }
+
+  .float-card {
+    top: 20px;
+    left: 10px;
+  }
+
+  .time-card {
+    right: 10px;
+    bottom: 20px;
+  }
+
+  .hero-stats {
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .stat-item + .stat-item {
+    padding-left: 20px;
+  }
+
+}
+
+
+/* =========================
+   Mobile (768px)
+========================= */
+@media (max-width:768px) {
+
+  .hero-container {
+    padding: 30px 20px;
+    gap: 40px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+    width: 100%;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+
+  .stat-item {
+    width: calc(50% - 15px);
+  }
+
+  .stat-item + .stat-item {
+    border: none;
+    padding-left: 0;
+  }
+
+  .stat-number {
+    font-size: 30px;
+  }
+
+  .float-card,
+  .time-card {
+    position: static;
+    margin-bottom: 15px;
+    width: 100%;
+    animation: none;
+  }
+
+  .hero-right {
+    flex-direction: column;
+  }
+
+  .hero-panel {
+    width: 100%;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+
+/* =========================
+   Small Mobile (480px)
+========================= */
+@media (max-width:480px) {
+
+  .hero-container {
+    padding: 20px 15px;
+  }
+
+  .verified-badge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hero-buttons {
+    gap: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .stat-item {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-meta {
+    width: 100%;
+  }
+
+  .profile-stats {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .info h4 {
+    font-size: 14px;
+  }
+
+  .info p {
+    font-size: 12px;
+  }
+
+  .hero-header,
+  .hero-footer {
+    padding: 15px;
+  }
+
+}

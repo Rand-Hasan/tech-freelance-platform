@@ -79,12 +79,12 @@ export default function SignIn() {
          setLoading(false);
        navigate("/clientlayout");
         setError({});
-      //   Cookies.set("token", res.data.token, {
-      //     expires: 7, 
-      //   setError({});
-      //     expires: 7,
-      //     secure: true,
-      //   }
+        Cookies.set("token", res.data.token, {
+          expires: 7, 
+        // setError({});
+          expires: 7,
+          secure: true,
+        });
         
       //   Cookies.set("user_token", res.data.token, {
       //   );

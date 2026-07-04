@@ -85,61 +85,116 @@ function handlePhotoChange(e) {
   setPhotoPreview(URL.createObjectURL(file));
 }
 
+// async function handleSave() {
+//   try {
+//     setLoading(true);
+
+//     const token = cookies.get("token");
+
+//     // =========================
+//     // 1. SEND TEXT DATA (encoded)
+//     // =========================
+//     const body = new URLSearchParams();
+
+//     body.append("first_name", data.first_name);
+//     body.append("last_name", data.last_name);
+//     body.append("phone", data.phone);
+//     body.append("birthday", data.birthday);
+//     body.append("location", data.location);
+
+//     const url = isEditMode
+//       ? baseURL + UpdateProfile
+//       : baseURL + CreateProfile;
+
+//     const dataRes = await axios.post(url, body, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+   
+//       },
+//     });
+
+//     console.log("TEXT RESPONSE:", dataRes.data);
+
+//     // =========================
+//     // 2. SEND PHOTO (FormData)
+//     // =========================
+//     if (data.photo) {
+//       const formData = new FormData();
+//       formData.append("photo", data.photo);
+
+//       const photoRes = await axios.post(url, formData, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+         
+//         },
+//       });
+
+//       console.log("PHOTO RESPONSE:", photoRes.data);
+//     }
+
+//     // =========================
+//     // SUCCESS
+//     // =========================
+//     setSuccess(dataRes.data.message || "Profile saved successfully!");
+//     setError("");
+
+//     setTimeout(() => {
+//       navigate("/profile");
+//     }, 1500);
+
+//   } catch (err) {
+//     console.log("FULL ERROR:", err.response?.data);
+
+//     const msg =
+//       err.response?.data?.errors?.[0]?.message ||
+//       err.response?.data?.message ||
+//       "Server Error";
+
+//     setError(msg);
+//     setSuccess("");
+//   } finally {
+//     setLoading(false);
+//   }
+// }
+
+/////////////////////delete///////////////
+
 async function handleSave() {
   try {
     setLoading(true);
 
     const token = cookies.get("token");
 
-    // =========================
-    // 1. SEND TEXT DATA (encoded)
-    // =========================
-    const body = new URLSearchParams();
+    // const formData = new FormData();
+     const formData = new URLSearchParams();
 
-    body.append("first_name", data.first_name);
-    body.append("last_name", data.last_name);
-    body.append("phone", data.phone);
-    body.append("birthday", data.birthday);
-    body.append("location", data.location);
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+    formData.append("phone", data.phone);
+    formData.append("birthday", data.birthday);
+    formData.append("location", data.location);
+
+    if (data.photo) {
+      formData.append("photo", data.photo);
+    }
 
     const url = isEditMode
       ? baseURL + UpdateProfile
       : baseURL + CreateProfile;
 
-    const dataRes = await axios.post(url, body, {
+    const response = await axios.post(url, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
-   
       },
     });
 
-    console.log("TEXT RESPONSE:", dataRes.data);
+    console.log(response.data);
 
-    // =========================
-    // 2. SEND PHOTO (FormData)
-    // =========================
-    if (data.photo) {
-      const formData = new FormData();
-      formData.append("photo", data.photo);
-
-      const photoRes = await axios.post(url, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-         
-        },
-      });
-
-      console.log("PHOTO RESPONSE:", photoRes.data);
-    }
-
-    // =========================
-    // SUCCESS
-    // =========================
-    setSuccess(dataRes.data.message || "Profile saved successfully!");
+    setSuccess(response.data.message || "Profile saved successfully!");
     setError("");
 
     setTimeout(() => {
-      navigate("/profile");
+      navigate("/clientlayout/profile");
     }, 1500);
 
   } catch (err) {
@@ -157,7 +212,7 @@ async function handleSave() {
   }
 }
 
-/////////////////////delete///////////////
+
 async function handleDeleteProfile() {
 
   try {
