@@ -5,56 +5,77 @@ import { ShowProfile } from "../services/MyProfileApi";
 import { baseURL } from "../../../../services/Api/api";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import Loading from "../../../../components/Loading/Loading";
 export default function Profile() {
   const [PersonalData, setPersonalData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const cookies = Cookies();
   const token = cookies.get("token");
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const unKnownImageURL = new URL(
+    "../../../../assets/UnknownPerson.png",
+    import.meta.url,
+  ).href;
+   
   useEffect(() => {
-    console.log("Current Token in React:", token);
-  fetch(baseURL + ShowProfile, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Response Data from Backend:", data);
-      // يعني اذا ماكان في داتا من الاساس راجعة ف كريت بروفايل اول شي 
-      if (!data.user_profile) {
-        setPersonalData({ isError: true, text: data.message || "Create Profile First Please ! " });
-      } else {
-        setPersonalData(data.user_profile);
-      }
-    })
-    .catch((error) => {
-      console.error("Fetch Error:", error);
-      // هون معناها في خطأ ضرب ايرور من السيرفر
-      setPersonalData({ isError: true, text: "Error Connection ! " });
-    });
-},[]);
-
-if (!PersonalData) return null; 
-
-if (PersonalData.isError) {
-  return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
-}
   
+   
+    fetch(baseURL + ShowProfile, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      
+    })
+    
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response Data from Backend:", data);
+        setLoading(false);
+        // يعني اذا ماكان في داتا من الاساس راجعة ف كريت بروفايل اول شي
+        if (!data.user_profile) {
+          setPersonalData({
+            isError: true,
+            text: data.message || "Create Profile First Please ! ",
+          });
+        } else {
+          setPersonalData(data.user_profile);
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch Error:", error);
+        setLoading(false);
+        // هون معناها في خطأ ضرب ايرور من السيرفر
+        setPersonalData({ isError: true, text: "Error Connection ! " });
+      });
+  }, []);
+
+  if (!PersonalData) return null;
+
+  // if (PersonalData.isError) {
+  //   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
+  // }
+
   return (
     <div className="MyProfile">
+      {loading && <Loading />}
       <div className="NameAndPhoto">
         <div className="JustPhotoAndName">
           <div className="PhotoDiv">
-            <img className="Image" src={PersonalData.photo} alt="ksjd" />
+            <img
+              className="Image"
+              src={PersonalData.photo ? PersonalData.photo : unKnownImageURL}
+              alt="Profile"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = unKnownImageURL;
+              }}
+            />
           </div>
           <div className="NameDiv">
-            <h1 className="NameHTag">
-              {PersonalData.first_name} {PersonalData.last_name}
-            </h1>
-            <h6 className="NameHTag">
-              Location :  {PersonalData.location}
-            </h6>
+            <h2 className="NameHTag">
+              Name : {PersonalData.first_name} {PersonalData.last_name}
+            </h2>
+            <h6 className="NameHTag">Location :  {PersonalData.location}</h6>
           </div>
         </div>
         <div className="NumbersDiv">
@@ -72,11 +93,9 @@ if (PersonalData.isError) {
             <h6> AVG.Givin</h6>
           </div>
         </div>
-     <NavLink to="/setting">
-  <button className="EditProfileButton">
-    Edit Profile
-  </button>
-</NavLink>
+        <NavLink to="/setting">
+          <button className="EditProfileButton">Edit Profile</button>
+        </NavLink>
       </div>
 
       <div className="ContentUnderNameAndPhotoDiv">
@@ -94,7 +113,7 @@ if (PersonalData.isError) {
 
               <div className="InfoFieldGroup">
                 <label>Email</label>
-                <div className="InfoFieldValue">khalid@techsolutions.com</div>
+                <div className="InfoFieldValue"></div>
               </div>
 
               <div className="InfoFieldGroup">
@@ -114,7 +133,7 @@ if (PersonalData.isError) {
 
               <div className="InfoFieldGroup">
                 <label>Company</label>
-                <div className="InfoFieldValue">Tech Solutions Co.</div>
+                <div className="InfoFieldValue"></div>
               </div>
             </div>
           </div>
@@ -261,18 +280,22 @@ if (PersonalData.isError) {
           <div className="Quick_Actions">
             <h3 className="QuickActionsTitle">Quick Actions</h3>
             <div className="ActionButtonsGroup">
-              <button className="ActionButton" 
-              onClick={()=>{
-                navigate("/setting");
-              }}
+              <button
+                className="ActionButton"
+                onClick={() => {
+                  navigate("/setting");
+                }}
               >
                 <span className="ActionIcon">⚙️</span> Edit Profile & Settings
               </button>
-              <button onClick={()=>{
-                navigate("/wallet");
-              }} className="ActionButton">
+              <button
+                onClick={() => {
+                  navigate("/wallet");
+                }}
+                className="ActionButton"
+              >
                 <span className="ActionIcon">💰</span>
-                 Manage Wallet
+                Manage Wallet
               </button>
             </div>
           </div>

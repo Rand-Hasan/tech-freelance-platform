@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import Loading from "../../../../components/Loading/Loading";
-import {   ShowProfile, UpdateProfile, DeleteProfile} from "../../client-profile/services/MyProfileApi";
+import {   ShowProfile, UpdateProfile, DeleteProfile,CreateProfile} from "../../client-profile/services/MyProfileApi";
 import { baseURL } from "../../../../services/Api/api";
 import { useNavigate } from "react-router-dom";
  
@@ -12,54 +12,64 @@ function Settings() {
   const cookies = Cookies();
 const navigate = useNavigate();
 const [loading, setLoading] = useState(false);
-
+const [isEditMode, setIsEditMode] = useState(false);
+const [success, setSuccess] = useState("");
+const [error, setError] = useState("");
 const [data, setData] = useState({
   first_name: "",
   last_name: "",
   phone: "",
   birthday: "",
   location: "",
-  photo: null,
+   photo: null,
 });
 
 const [photoPreview, setPhotoPreview] = useState("");
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 useEffect(() => {
+  const getProfile = async () => {
+    try {
+      setLoading(true);
+
+      const token = cookies.get("token");
+
+      const res = await axios.get(baseURL + ShowProfile, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const profile = res.data.user_profile;
+
+      if (!profile) return;
+
+      setIsEditMode(true);
+
+      setData({
+        first_name: profile.first_name || "",
+        last_name: profile.last_name || "",
+        phone: profile.phone || "",
+        birthday: profile.birthday || "",
+        location: profile.location || "",
+         photo: null,
+      });
+
+      setPhotoPreview(profile.photo || "");
+       console.log(res.data);
+    } catch (err) {
+  console.log(err.response?.data);
+}finally {
+      setLoading(false);
+    }
+  };
+
   getProfile();
 }, []);
-
-async function getProfile() {
-  try {
-    setLoading(true);
-
-    const token = cookies.get("token");
-
-    const res = await axios.get(baseURL + ShowProfile, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const profile = res.data.user_profile;
-
-  setData({
-  ...profile,
-  photo: null,
-});
-
-    setPhotoPreview(profile.photo);
-  } catch (err) {
-    console.log(err);
-  } finally {
-    setLoading(false);
-  }
-}
-
 function handleChange(e) {
-  setData({
-    ...data,
-    [e.target.name]: e.target.value,
-  });
+ setData((prev) => ({
+  ...prev,
+  [e.target.name]: e.target.value,
+}));
 }
 
 function handlePhotoChange(e) {
@@ -81,35 +91,67 @@ async function handleSave() {
 
     const token = cookies.get("token");
 
-    const formData = new FormData();
+    // =========================
+    // 1. SEND TEXT DATA (encoded)
+    // =========================
+    const body = new URLSearchParams();
 
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
-    formData.append("phone", data.phone);
-    formData.append("birthday", data.birthday);
-    formData.append("location", data.location);
+    body.append("first_name", data.first_name);
+    body.append("last_name", data.last_name);
+    body.append("phone", data.phone);
+    body.append("birthday", data.birthday);
+    body.append("location", data.location);
 
+    const url = isEditMode
+      ? baseURL + UpdateProfile
+      : baseURL + CreateProfile;
+
+    const dataRes = await axios.post(url, body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+   
+      },
+    });
+
+    console.log("TEXT RESPONSE:", dataRes.data);
+
+    // =========================
+    // 2. SEND PHOTO (FormData)
+    // =========================
     if (data.photo) {
+      const formData = new FormData();
       formData.append("photo", data.photo);
-    }
 
-const res = await axios.post(
-      baseURL + UpdateProfile,
-      formData,
-      {
+      const photoRes = await axios.post(url, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-  
+         
         },
-      }
-    );
+      });
 
- console.log(res.data.message); 
-navigate("/Profile");
-    getProfile();
+      console.log("PHOTO RESPONSE:", photoRes.data);
+    }
+
+    // =========================
+    // SUCCESS
+    // =========================
+    setSuccess(dataRes.data.message || "Profile saved successfully!");
+    setError("");
+
+    setTimeout(() => {
+      navigate("/profile");
+    }, 1500);
+
   } catch (err) {
-    console.log(err);
-     
+    console.log("FULL ERROR:", err.response?.data);
+
+    const msg =
+      err.response?.data?.errors?.[0]?.message ||
+      err.response?.data?.message ||
+      "Server Error";
+
+    setError(msg);
+    setSuccess("");
   } finally {
     setLoading(false);
   }
@@ -145,6 +187,7 @@ console.log(res.data.message)
     
     <div className="settings-page">
       {loading && <Loading />}
+   
     <div className="settings-container">
 
       {/* Left Section */}
@@ -174,7 +217,17 @@ console.log(res.data.message)
             <p className="photo-note">JPG or PNG, max 2MB</p>
           </div>
         </div>
+   {success && (
+  <div className="success-message">
+    ✓ {success}
+  </div>
+)}
 
+{error && (
+  <div className="error-message">
+    {error}
+  </div>
+)}
         <div className="form-grid">
          <div className="form-group">
   <label>First Name</label>

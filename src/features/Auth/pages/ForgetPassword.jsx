@@ -3,15 +3,21 @@ import "../styles/forgetPassword.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { baseURL } from "../../../services/Api/api";
-import {ResetPassword,VerfiyResetPassword } from "../Services/api_auth";
-
+import {
+  ResetPassword,
+  VerfiyResetPassword,
+  ResendOtp,
+} from "../Services/api_auth";
+import Loading from "../../../components/Loading/Loading";
 
 export default function ForgetPassword() {
   const [error, setError] = useState({});
-   const [data, setdata] = useState({
+  const [loading, setLoading] = useState(false);
+  const email = Cookies.get("reset_email");
+  const [data, setdata] = useState({
     new_password: "",
     new_password_confirmation: "",
-  });  
+  });
   function handleChanges(event) {
     setdata({
       ...data,
@@ -19,13 +25,12 @@ export default function ForgetPassword() {
     });
   }
 
-//=========================================
-// الن علاقة بالواجهة فقط تبع الفيريفاي
+  //=========================================
+  // الن علاقة بالواجهة فقط تبع الفيريفاي
   const [code, setCode] = useState(new Array(6).fill(""));
   const inputRefs = useRef([]);
 
-  // ===== Resend OTP timer (نفس منطق صفحة الـ Otp) =====
-  const [timeLeft, setTimeLeft] = useState(300); // 5 دقايق
+  const [timeLeft, setTimeLeft] = useState(300);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -44,14 +49,30 @@ export default function ForgetPassword() {
   };
 
   function HandleResendCode() {
-    if (timeLeft > 0) return; // ممنوع الريسيند قبل ما ينتهي الوقت
-
-    // TODO: هون بنحط استدعاء الـ API تبع الريسيند لما تبعتيلي اسم الـ endpoint
-    setTimeLeft(300); // تصفير التايمر من جديد بعد الريسيند
+    setLoading(true);
+    if (timeLeft > 0) return;
+    axios
+      .post(baseURL + ResendOtp, {
+        email: email,
+      })
+      .then(() => {
+        setTimeLeft(300);
+        console.log("resend successfully ! ");
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Resend OTP Error:", err.response?.data);
+        const errorMsg =
+          err.response?.data?.message ||
+          "Error resending code. Please try again.";
+        alert(errorMsg);
+        setLoading(false);
+      });
   }
 
+  // الو علاقة بالبوكسز
   const handleChange = (element, index) => {
-    if (isNaN(element.value)) return false;
+    if (!/^\d?$/.test(element.value)) return false;
 
     const newCode = [...code];
     newCode[index] = element.value;
@@ -68,71 +89,65 @@ export default function ForgetPassword() {
     }
   };
 
-//================================================
+  //================================================
+  function HandleResetPassword() {
+    setLoading(true);
+    const OTP = code.join("");
 
-function HandleResetPassword() {
-// هادا التابع لازم يتأكد انو رمز ال فيريفاي نفسو وحقول الكلمات 
-// طيب والتابع مابياخد غير الحقول ...لهيك انا ساويت تابع الفيريفاي 
-// وجواتو حطيت تابع الريسيت
-   
-    const email = Cookies.get("reset_email");
-    const verificationCode = code.join(""); 
-  
-    if (verificationCode.length < 6) {
-     alert("verfy is less than 6 digit ");
-      return;
+    if (OTP.length < 6) {
+      setLoading(false);
+      return setError({ otp: "enter the 6 digits please" });
     }
 
-   
-    axios.post(baseURL+VerfiyResetPassword, {
-        email: email,
-        otp: verificationCode
-      })
-      .then((verifyRes) => {
-      
-        console.log("done", verifyRes.data);
-        alert("doneverfying");
-        const resetBodyData = {
-          email:email,
-          new_password: data.new_password,
-          new_password_confirmation: data.new_password_confirmation,
-        };
+    setError({});
 
-        return axios.post(baseURL+ResetPassword, resetBodyData);
+    axios
+      .post(baseURL + VerfiyResetPassword, { email, otp: OTP })
+      .then(() => {
+        console.log("trueeeeeeeee verifying");
+        return axios.post(baseURL + ResetPassword, { email, ...data });
       })
-      .then((resetRes) => {
-        console.log(resetRes.data);
-       alert("reset done ");
-        
+      .then(() => {
+        console.log("trueeeeeeeeee resetting ! ");
         setError({});
-        Cookies.remove("reset_email"); 
-        
-       
+        Cookies.remove("reset_email");
+        setLoading(false);
       })
+
       .catch((err) => {
-        console.log("Errrorrrrr", err.response?.data);
-        
-        const errors = err.response?.data?.errors;
-        
-        if (Array.isArray(errors)) {
-          setError(
-            errors.reduce(
+        const backendData = err.response?.data;
+        console.log("Error from Backend:", backendData);
+        setLoading(false);
+        if (!backendData) {
+          return setError({ new_password: "Connection error with server." });
+        }
+
+        if (Array.isArray(backendData.errors)) {
+          return setError(
+            backendData.errors.reduce(
               (acc, e) => ({
                 ...acc,
                 [e.path || e.param || e.field]: e.msg || e.message,
               }),
-              {}
-            )
+              {},
+            ),
           );
-        } else {
-          alert(err.response?.data?.message);
-         
         }
+        if (backendData.message) {
+          const isOtp = /otp|code/.test(backendData.message.toLowerCase());
+          return setError(
+            isOtp
+              ? { otp: backendData.message }
+              : { new_password: backendData.message },
+          );
+        }
+        setError(backendData.errors || backendData);
       });
   }
   //===================================================
   return (
     <div className="FatherDiv">
+      {loading && <Loading />}
       <div className="LikeNavBar">
         <h3 className="TileOnNav">CodeLance</h3>
         <h3 className="BackToHomeNav">
@@ -170,20 +185,22 @@ function HandleResetPassword() {
           </div>
         </div>
 
-       
         <div className="contentOfVerefecation">
-         <div style={{display:"flex",gap:"200px",}}>
-           <label className="VerificationLabel">Verification Code</label>
-          <label
-            style={{
-              color: timeLeft > 0 ? "#a0a0a0" : "#5caea0",
-              cursor: timeLeft > 0 ? "not-allowed" : "pointer",
-            }}
-            onClick={HandleResendCode}
-          >
-            {timeLeft > 0 ? `resend code (${formatTime(timeLeft)})` : "resend code"}
-          </label>
-         </div>
+          <div style={{ display: "flex", gap: "200px" }}>
+            <label className="VerificationLabel">Verification Code</label>
+            <label
+              style={{
+                color: timeLeft > 0 ? "#a0a0a0" : "#5caea0",
+                cursor: timeLeft > 0 ? "not-allowed" : "pointer",
+              }}
+              onClick={HandleResendCode}
+            >
+              {timeLeft > 0
+                ? `resend code (${formatTime(timeLeft)})`
+                : "resend code"}
+            </label>
+          </div>
+          {error.otp && <p className="error-message">{error.otp}</p>}
           <div className="CodeContainer">
             {code.map((data, index) => (
               <input
@@ -201,11 +218,6 @@ function HandleResetPassword() {
             ))}
           </div>
         </div>
-            {/* <div className="ResendOtp">
-              <h6 style={{color:"black"}}>I don't recive OTP</h6>
-              <h6  style={{color:"black"}}>Resend OTP</h6>
-            </div> */}
-
         <div className="InputGroup">
           <label>New password</label>
 

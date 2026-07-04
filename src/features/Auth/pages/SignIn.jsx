@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../../services/Api/api";
 import { LogIn, ForgetPassword } from "../Services/api_auth";
+import Loading from "../../../components/Loading/Loading";
 export default function SignIn() {
   const navigate = useNavigate();
   const [data, setdata] = useState({
@@ -15,6 +16,7 @@ export default function SignIn() {
     password: "",
   });
   const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const onSuccessGoogle = (credentialResponse) => {
     const googleToken = credentialResponse.credential;
@@ -61,6 +63,7 @@ export default function SignIn() {
   }
 
   function handleLogIn(event) {
+    setLoading(true);
     event.preventDefault();
     setError({});
 
@@ -73,11 +76,8 @@ export default function SignIn() {
       .post(baseURL + LogIn, bodyData)
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
-
-        alert("LogIn Successfully ! ");
+         setLoading(false);
        navigate("/clientlayout");
-    
-        
         setError({});
       //   Cookies.set("token", res.data.token, {
       //     expires: 7, 
@@ -107,9 +107,11 @@ export default function SignIn() {
             setError({ [isPwd ? "password" : "email"]: message });
           else console.log(message);
         }
+         setLoading(false);
       });
   }
   function HandleForgetPassword() {
+    setLoading(true);
     setError({});
     // يعني في حال ما عبا ايميلو وتركو فاضي خزن هي الرسالة بالايرورات
     if (!data.email) {
@@ -124,6 +126,7 @@ export default function SignIn() {
       .then((res) => {
         console.log(res.data);
         Cookies.set("reset_email", data.email);
+         setLoading(false);
         navigate("/ForgetPassword");
       })
       .catch((err) => {
@@ -132,10 +135,12 @@ export default function SignIn() {
           err.response?.data?.message || "An error occurred. Please try again.";
 
         setError({ email: backendMessage });
+         setLoading(false);
       });
   }
   return (
     <div className="FatherDiv">
+      {loading && <Loading />}
       <div className="LikeNavBar">
         <h3 className="TileOnNav">CodeLance</h3>
         <h3 className="BackToHomeNav">

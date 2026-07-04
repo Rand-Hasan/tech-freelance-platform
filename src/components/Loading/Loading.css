@@ -22,7 +22,7 @@
   height: 16px;
   border-radius: 50%;
 
-  animation: bounce 0.8s infinite alternate;
+  animation: bounce 0.3s infinite alternate;
 }
 
 .loading-dots span:nth-child(1) {
@@ -54,6 +54,6 @@
 
   to {
     transform: translateY(-12px);
-    opacity: 1;
+    opacity: 2;
   }
 }
