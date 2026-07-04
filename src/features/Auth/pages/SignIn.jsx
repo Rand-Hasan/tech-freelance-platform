@@ -1,6 +1,6 @@
 import "../styles/SignIn.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import Cookies from "js-cookie";
+import Cookies from "cookie-universal";
 import axios from "axios";
 import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
@@ -11,6 +11,8 @@ import { LogIn, ForgetPassword } from "../Services/api_auth";
 import Loading from "../../../components/Loading/Loading";
 export default function SignIn() {
   const navigate = useNavigate();
+    const cookies = Cookies();
+  const role = cookies.get("role");
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -77,17 +79,19 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
          setLoading(false);
-       navigate("/clientlayout");
+        if(role==="client"){
+          navigate("/clientlayout");
+        }else {
+          navigate("/الرئيسية الخاصة بالمستقل");
+       }
         setError({});
         Cookies.set("token", res.data.token, {
           expires: 7, 
         // setError({});
-          expires: 7,
           secure: true,
         });
         
-      //   Cookies.set("user_token", res.data.token, {
-      //   );
+     
        })
       .catch((err) => {
         const { errors, message } = err.response?.data || {};
@@ -116,6 +120,7 @@ export default function SignIn() {
     // يعني في حال ما عبا ايميلو وتركو فاضي خزن هي الرسالة بالايرورات
     if (!data.email) {
       setError({ email: "Please enter your email address first." });
+      setLoading(false);
       return;
     }
     axios

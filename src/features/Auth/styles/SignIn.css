@@ -1,4 +1,4 @@
-
+/* 
 .FatherDiv {
   width: 100vw;
   height: 100vh;
@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   background-color: white;
-}
+} */
 .LikeNavBar {
   width: 100%;
   height: 40px;
@@ -27,17 +27,17 @@
     color:#20665c;
     text-decoration: none;
 }
-.MainContent {
+/* .MainContent {
   display: flex;
   flex-direction: row;
   height: 100%;
-}
-.greenSignInSection {
+} */
+/* .greenSignInSection {
   flex: 1;
   background: linear-gradient(135deg, #134e4a, #2dd4bf);
   display: block;
-}
-.ContentInsideGreenSection{
+} */
+/* .ContentInsideGreenSection{
     width:80%;
     height:20px;
     background-color:rgb(255, 255, 255,0.1);
@@ -45,7 +45,7 @@
     margin-top: 200px;
     margin-left: 50px;
     color:white;
-}
+} */
 .h1ContentInsideGreenSection{
      margin-left: 50px;
      color:white;
@@ -59,10 +59,10 @@
      margin-left: 50px;
      color:white;
 }
-.ThreeCheckPoint{
+/* .ThreeCheckPoint{
     margin-top: 50px;
-}
-
+} */
+/* 
 .SignInSection {
     flex: 1;
     background-color: #ffffff;
@@ -70,15 +70,91 @@
     justify-content: center; 
     align-items: center;   
     padding: 40px;
-}
+} */
 
-
+/* 
 .ContentofSingInSection {
     width: 100%;
     max-width: 420px; 
     display: flex;
     flex-direction: column;
+} */
+
+/* test */
+.FatherDiv {
+  width: 100%;     
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  box-sizing: border-box;
+  overflow: hidden;    
 }
+
+.MainContent {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;      
+  overflow: hidden;
+}
+
+.greenSignInSection {
+  flex: 1;
+  background: linear-gradient(135deg, #134e4a, #2dd4bf);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ContentInsideGreenSection {
+  width: 80%;
+  height: 20px;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-radius: 20px;
+  margin-top: 0;                  
+  margin-bottom: clamp(16px, 3vh, 32px);
+  margin-left: 50px;
+  color: white;
+}
+
+.ThreeCheckPoint {
+  margin-top: clamp(16px, 4vh, 50px);
+}
+
+
+.SignInSection {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(16px, 4vh, 40px);
+  box-sizing: border-box;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;           
+  -ms-overflow-style: none;       
+}
+
+.SignInSection::-webkit-scrollbar {
+  display: none;                    
+}
+
+.ContentofSingInSection {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;                  
+}
+/* test */
 
 .FormTitle {
     font-size: 36px;
