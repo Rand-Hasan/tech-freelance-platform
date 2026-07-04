@@ -1,17 +1,23 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "../styles/forgetPassword.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { baseURL } from "../../../services/Api/api";
-import {ResetPassword,VerfiyEmail } from "../Services/api_auth";
-
+import {
+  ResetPassword,
+  VerfiyResetPassword,
+  ResendOtp,
+} from "../Services/api_auth";
+import Loading from "../../../components/Loading/Loading";
 
 export default function ForgetPassword() {
   const [error, setError] = useState({});
-   const [data, setdata] = useState({
+  const [loading, setLoading] = useState(false);
+  const email = Cookies.get("reset_email");
+  const [data, setdata] = useState({
     new_password: "",
     new_password_confirmation: "",
-  });  
+  });
   function handleChanges(event) {
     setdata({
       ...data,
@@ -19,18 +25,60 @@ export default function ForgetPassword() {
     });
   }
 
-//=========================================
+  //=========================================
+  // الن علاقة بالواجهة فقط تبع الفيريفاي
   const [code, setCode] = useState(new Array(6).fill(""));
   const inputRefs = useRef([]);
 
+  const [timeLeft, setTimeLeft] = useState(300);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const formatTime = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  };
+
+  function HandleResendCode() {
+    setLoading(true);
+    if (timeLeft > 0) return;
+    axios
+      .post(baseURL + ResendOtp, {
+        email: email,
+      })
+      .then(() => {
+        setTimeLeft(300);
+        console.log("resend successfully ! ");
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Resend OTP Error:", err.response?.data);
+        const errorMsg =
+          err.response?.data?.message ||
+          "Error resending code. Please try again.";
+        alert(errorMsg);
+        setLoading(false);
+      });
+  }
+
+  // الو علاقة بالبوكسز
   const handleChange = (element, index) => {
-    if (isNaN(element.value)) return false;
+    if (!/^\d?$/.test(element.value)) return false;
 
     const newCode = [...code];
     newCode[index] = element.value;
     setCode(newCode);
 
-    if (element.value !== "" && index < 6) {
+    if (element.value !== "" && index < 5) {
       inputRefs.current[index + 1].focus();
     }
   };
@@ -41,31 +89,42 @@ export default function ForgetPassword() {
     }
   };
 
-//================================================
-
-//================================================
+  //================================================
   function HandleResetPassword() {
-    const email = Cookies.get("reset_email");
+    setLoading(true);
+    const OTP = code.join("");
 
-    const bodyData = {
-      email:email,
-      new_password: data.new_password,
-      new_password_confirmation: data.new_password_confirmation,
-    };
+    if (OTP.length < 6) {
+      setLoading(false);
+      return setError({ otp: "enter the 6 digits please" });
+    }
+
+    setError({});
 
     axios
-      .post(baseURL+ResetPassword,bodyData)
-      .then((res) => {
-        console.log("trueeeeeee");
-        console.log(res.data);
-       
+      .post(baseURL + VerfiyResetPassword, { email, otp: OTP })
+      .then(() => {
+        console.log("trueeeeeeeee verifying");
+        return axios.post(baseURL + ResetPassword, { email, ...data });
       })
+      .then(() => {
+        console.log("trueeeeeeeeee resetting ! ");
+        setError({});
+        Cookies.remove("reset_email");
+        setLoading(false);
+      })
+
       .catch((err) => {
-        console.log("Errrorrrrr", err.response?.data);
-        const errors = err.response?.data?.errors;
-        if (Array.isArray(errors)) {
-          setError(
-            errors.reduce(
+        const backendData = err.response?.data;
+        console.log("Error from Backend:", backendData);
+        setLoading(false);
+        if (!backendData) {
+          return setError({ new_password: "Connection error with server." });
+        }
+
+        if (Array.isArray(backendData.errors)) {
+          return setError(
+            backendData.errors.reduce(
               (acc, e) => ({
                 ...acc,
                 [e.path || e.param || e.field]: e.msg || e.message,
@@ -74,71 +133,21 @@ export default function ForgetPassword() {
             ),
           );
         }
+        if (backendData.message) {
+          const isOtp = /otp|code/.test(backendData.message.toLowerCase());
+          return setError(
+            isOtp
+              ? { otp: backendData.message }
+              : { new_password: backendData.message },
+          );
+        }
+        setError(backendData.errors || backendData);
       });
   }
-
-// function HandleResetPassword() {
-// // هادا التابع لازم يتأكد انو رمز ال فيريفاي نفسو وحقول الكلمات 
-// // طيب والتابع مابياخد غير الحقول ...لهيك انا ساويت تابع الفيريفاي 
-// // وجواتو حطيت تابع الريسيت
-   
-//     const email = Cookies.get("reset_email");
-//     const verificationCode = code.join(""); 
-   
-//     if (verificationCode.length < 6) {
-//      alert("verfy is less than 6 digit ");
-//       return;
-//     }
-
-   
-//     axios.post(baseURL+VerfiyEmail, {
-//         email: email,
-//         otp: verificationCode
-//       })
-//       .then((verifyRes) => {
-      
-//         console.log("done", verifyRes.data);
-
-//         const resetBodyData = {
-//           email:email,
-//           new_password: data.new_password,
-//           new_password_confirmation: data.new_password_confirmation,
-//         };
-
-//         return axios.post(baseURL+ResetPassword, resetBodyData);
-//       })
-//       .then((resetRes) => {
-//         console.log(resetRes.data);
-//        alert("reset done ");
-        
-//         setError({});
-//         Cookies.remove("reset_email"); 
-        
-       
-//       })
-//       .catch((err) => {
-//         console.log("Errrorrrrr", err.response?.data);
-        
-//         const errors = err.response?.data?.errors;
-        
-//         if (Array.isArray(errors)) {
-//           setError(
-//             errors.reduce(
-//               (acc, e) => ({
-//                 ...acc,
-//                 [e.path || e.param || e.field]: e.msg || e.message,
-//               }),
-//               {}
-//             )
-//           );
-//         } else {
-//           alert(err.response?.data?.message);
-//         }
-//       });
-//   }
   //===================================================
   return (
     <div className="FatherDiv">
+      {loading && <Loading />}
       <div className="LikeNavBar">
         <h3 className="TileOnNav">CodeLance</h3>
         <h3 className="BackToHomeNav">
@@ -176,17 +185,22 @@ export default function ForgetPassword() {
           </div>
         </div>
 
-        {/* <div className="InputGroup">
-          <label>Email address</label>
-
-          <div className="InputWrapper">
-            <span className="InputIcon">✉</span>
-            <input type="email" placeholder="you@example.com" />
-          </div>
-        </div> */}
-
         <div className="contentOfVerefecation">
-          <label className="VerificationLabel">Verification Code</label>
+          <div style={{ display: "flex", gap: "200px" }}>
+            <label className="VerificationLabel">Verification Code</label>
+            <label
+              style={{
+                color: timeLeft > 0 ? "#a0a0a0" : "#5caea0",
+                cursor: timeLeft > 0 ? "not-allowed" : "pointer",
+              }}
+              onClick={HandleResendCode}
+            >
+              {timeLeft > 0
+                ? `resend code (${formatTime(timeLeft)})`
+                : "resend code"}
+            </label>
+          </div>
+          {error.otp && <p className="error-message">{error.otp}</p>}
           <div className="CodeContainer">
             {code.map((data, index) => (
               <input
@@ -204,7 +218,6 @@ export default function ForgetPassword() {
             ))}
           </div>
         </div>
-
         <div className="InputGroup">
           <label>New password</label>
 
