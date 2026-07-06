@@ -79,17 +79,18 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
          setLoading(false);
-        if(role==="client"){
-          navigate("/clientlayout");
-        }else {
-          navigate("/الرئيسية الخاصة بالمستقل");
-       }
+       
         setError({});
         Cookies.set("token", res.data.token, {
           expires: 7, 
         // setError({});
           secure: true,
         });
+         if(role==="client"){
+          navigate("/clientlayout");
+        }else {
+          navigate("/الرئيسية الخاصة بالمستقل");
+       }
         
      
        })
