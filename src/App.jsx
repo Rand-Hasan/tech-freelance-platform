@@ -18,6 +18,8 @@ import ProjectDetails from './features/Client/client-projects/pages/ProjectDetai
 import ContractDetails from './features/Client/client-contracts/pages/ContractDetails';
 import FreeLanceInfo from './features/Client/client-findfreelancer/pages/FreeLanceInfo';
 import CreateProject from './features/Client/client-projects/pages/CraeteProject';
+import CreatePortifolio from './features/FreeLancer/Portifolio/Pages/CreatePortifolio';
+import CreateCv from './features/FreeLancer/CV/pages/CreateCv';
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +29,14 @@ function App() {
        <Route path="/otp" element={<Otp />} />
        <Route path="/createaccount" element={<CreateAccount />} />
        <Route path="/forgetpassword" element={<ForgetPassword />} />
+       
+
+
+        <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
+        <Route path="/CreateCv" element={<CreateCv />} />
+
+
+
 
       {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
