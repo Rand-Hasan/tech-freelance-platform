@@ -1,0 +1,63 @@
+.skills-wrapper{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* .portfolio-card{
+    width:780px;
+    margin:auto;
+    background:white;
+    border-radius:18px;
+    padding:35px;
+} */
+
+.portfolio-header{
+    margin:25px 0;
+}
+
+.portfolio-header h1{
+    font-size:35px;
+    font-weight:600;
+    color:#1b2a2f;
+    margin-bottom:8px;
+}
+
+.portfolio-header p{
+    font-size:15px;
+    color:#6b7280;
+    line-height:1.6;
+}
+
+.github-box{
+    background:#EDF7F4;
+    border:1px solid #d8ece8;
+    border-radius:12px;
+    padding:18px 20px;
+    margin-bottom:30px;
+}
+
+.github-box strong{
+    display:block;
+    font-size:15px;
+    color:#24343b;
+    margin-bottom:5px;
+}
+
+.github-box p{
+    margin:0;
+    font-size:13px;
+    color:#6b7280;
+}
+.github-header{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.github-icon{
+    font-size:22px;
+    /* color:#2CB5A5; */
+    margin-top:2px;
+}

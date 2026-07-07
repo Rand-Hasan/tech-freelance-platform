@@ -122,7 +122,7 @@ const navigate = useNavigate();
 
          <button
   className="primary-btn"
-  onClick={() => navigate("/CreateCV")}
+  onClick={() => navigate("/CreateCv")}
 >
   Next → CV
 </button>
