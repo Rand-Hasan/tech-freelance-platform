@@ -1,0 +1,122 @@
+.Companies{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.CompanisLabels{
+    width: 100%;
+    display: flex;
+    /* justify-content: space-around; */
+    gap:225px;
+}
+.CompanisInputs{
+    width: 100%;
+    display: flex;
+    gap:10px;
+}
+.EduAndSpecialization{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.EduAndSpecializationLabel{
+     width: 100%;
+    display: flex;
+    /* justify-content: space-around; */
+    gap:225px;
+}
+.SpecializationAndEduSelections{
+     width: 100%;
+    display: flex;
+    gap:10px;
+}
+.EduLevelSelect{
+  width: 100%;
+  background: #eefaf8;
+  border: 1px solid #d9e4e6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+ 
+}
+.specializSelect{
+     width: 100%;
+  background: #eefaf8;
+  border: 1px solid #d9e4e6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+ 
+}
+.LanguageSelect{
+     width: 100%;
+  background: #eefaf8;
+  border: 1px solid #d9e4e6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+ 
+}
+input{
+    min-height: 0px;
+}
+
+select{
+    min-height: 40px;
+}
+
+.NextToSkillsButton{
+    width:100%;
+    background: linear-gradient(90deg, #2A9D8F, #52B788);
+  height: 42px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid white;
+  margin-top: 20px;
+}
+
+.UploadYourCv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px;
+  background-color: #f4faf9; 
+  border: 1px dashed #049c8d; 
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  height: 60px;
+}
+
+.UploadYourCv:hover {
+  background-color: #ebf6f4;
+  border-color: #99d5cf;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  
+}
+
+.upload-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.upload-subtitle {
+  color: #94a3b8;
+  font-size: 12px;
+}
