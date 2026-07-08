@@ -10,37 +10,29 @@ body {
 }
 
 .portfolio-page {
-  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 10px;
+  padding: 30px;
+}
 
-}
-.progress-fill {
-  height: 100%;
-  background: #2db6a3;
-  transition: width 0.4s ease;
-}
 .portfolio-card {
   width: 100%;
-  background-color: white;
   max-width: 690px;
-  padding: 16px 18px;
-  border-radius: 14px;
-  padding: 20px 24px;
+    min-height: 80vh;
+  background: white;
   margin-top: 30px;
+  padding: 20px 24px;
+  border-radius: 14px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 /* Progress */
-
 .progress-wrapper {
   display: flex;
   align-items: center;
   gap: 6px;
- margin-bottom: 10px;
-
+  margin-bottom: 10px;
 }
 
 .step-text,
@@ -59,37 +51,24 @@ body {
 }
 
 .progress-fill {
-  width: 25%;
   height: 100%;
   background: #2db6a3;
+  transition: width 0.4s ease;
 }
 
-/* Title */
-
-h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 6px;
-}
-
-.subtitle {
-  font-size: 12px;
-  color: #6b7280;
-  line-height: 1.5;
-  margin-bottom: 1px;
-  margin-top: 10px;
-}
+/* Titles */
+.subtitle,
 .subtitle2 {
   font-size: 12px;
   color: #6b7280;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  
+  margin-top: 10px;
 }
 
-/* Github */
+.subtitle2 {
+  margin-bottom: 10px;
+}
 
+/* GitHub */
 .github-box {
   background: #eefaf8;
   border: 1px solid #d9efea;
@@ -98,12 +77,10 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .github-left {
   display: flex;
-  align-items: center;
   gap: 8px;
   font-size: 12px;
   font-weight: 600;
@@ -117,42 +94,29 @@ h1 {
   border-radius: 20px;
 }
 
-/* Form */
-
+/* Inputs */
 .form-group {
-  margin-bottom: 8px;
-  
+  margin-bottom: 10px;
 }
-.optional{
-    color: #9ca3af;
-}
+
 .form-group label {
-  display: block;
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 5px;
   color: #374151;
-      
+  display: block;
+  margin-bottom: 5px;
 }
 
 input,
 textarea {
   width: 100%;
+  background: #eefaf8;
   border: 1px solid #d9e4e6;
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 13px;
   outline: none;
-  background: #eefaf8;
-}
-
-input {
-  height: 40px;
-}
-
-textarea {
-  min-height: 50px;
-  resize: none;
+    min-height: 70px;
 }
 
 input:focus,
@@ -160,15 +124,22 @@ textarea:focus {
   border-color: #2db6a3;
 }
 
-/* Upload */
-
+/* Upload box */
 .upload-box {
   border: 2px dashed #d9ece8;
   border-radius: 12px;
- min-height: 55px;
+  min-height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 5px;
+}
+
+.upload-box:hover {
+  background: #f3fffd;
+  border-color: #2db6a3;
 }
 
 .upload-content {
@@ -176,37 +147,32 @@ textarea:focus {
 }
 
 .upload-icon {
-  font-size: 20px;
-}
-
-.upload-content p {
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 4px;
-}
-
-.upload-content small {
-  font-size: 10px;
-  color: #9ca3af;
+  font-size: 22px;
 }
 
 /* Preview */
-
 .preview-list {
   display: flex;
   gap: 8px;
-  margin: 6px 0 8px;
+  margin: 8px 0;
 }
 
 .preview-item {
-  width: 32px;
-  height: 32px;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  overflow: hidden;
   border: 1px solid #d9e4e6;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  background: #f8fffe;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .preview-item.add {
@@ -215,7 +181,6 @@ textarea:focus {
 }
 
 /* Buttons */
-
 .action-row {
   display: flex;
   gap: 10px;
@@ -223,30 +188,29 @@ textarea:focus {
 
 .secondary-btn,
 .primary-btn {
-  flex: 1;
+ flex: auto;
   height: 42px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
+  justify-content: center;
 }
 
 .secondary-btn {
   background: white;
-  color: #6b7280;
   border: 1px solid #d9e4e6;
+  color: #6b7280;
 }
 
 .primary-btn {
   border: none;
   color: white;
-  background: linear-gradient(
-    90deg,
-    #2A9D8F,
-    #52B788
-  );
+
+  background: linear-gradient(90deg, #2A9D8F, #52B788);
 }
 
+/* Skip */
 .skip-link {
   text-align: center;
   margin-top: 6px;
@@ -254,12 +218,9 @@ textarea:focus {
   color: #6b7280;
 }
 
-@media (max-width: 768px) {
-  .portfolio-card {
-    max-width: 100%;
-  }
-
-  .action-row {
-    flex-direction: column;
-  }
+/* Error */
+.error-message {
+  color: #dc2626;
+  font-size: 13px;
+  margin-bottom: 10px;
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SkillCategory from "../components/SkillCategory";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
-import { GetFreelancerSkills } from "../services/api_skill";
+import { AddFreelancerSkills, GetFreelancerSkills } from "../services/api_skill";
 import Cookies from "universal-cookie";
 import { GetSkills } from "../../../Client/client-projects/services/api_project";
 import '../styles/CreateSkillis.css';
@@ -13,8 +13,9 @@ export default function CreateSkill() {
     const totalSteps = 4;
     const cookies = new Cookies();
     const token = cookies.get('token');
-    console.log('coooooooooo', token);
+    console.log('coooooooooo:', token);
     const [allSkill, setallSkill] = useState([]);
+    const [selectedSkills, setSelectedSkills] = useState([]);
     useEffect(() => {
         axios.get(`${baseURL}${GetSkills}`, {
             headers: {
@@ -24,6 +25,7 @@ export default function CreateSkill() {
             .then((res) => {
                 setallSkill(res.data.skills);
                 console.log("dataaaaa:", res.data.skills);
+                console.log("iddddddddddddddddd:",res.data.skills.id)
             })
             .catch((err) => {
                 console.error("حدث خطأ أثناء جلب البيانات:", err);
@@ -33,6 +35,36 @@ export default function CreateSkill() {
     const frontSkill = allSkill.slice(0, 4);
     const backSkill = allSkill.slice(4, 5);
     const dataSkill = allSkill.slice(5, 7);
+
+
+    const handleSkillChange = (id, isChecked) => {
+        if (isChecked) {
+            setSelectedSkills((prev) => [...prev, id]);
+        } else {
+            setSelectedSkills((prev) => prev.filter((skillId) => skillId !== id));
+        }
+    };
+
+
+    function handleSubmit()  {
+        
+        const dataToSend = {
+            skill_id:  selectedSkills
+        };
+        console.log(selectedSkills)
+        
+        axios.post(`${baseURL}${AddFreelancerSkills}`, dataToSend, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+        
+        .then((res) => {
+            console.log("تم حفظ المهارات بنجاح:", res.data);
+            navigate("/Createprofile");
+        })
+        .catch((err) => {
+            console.error("خطأ أثناء إرسال المهارات:", err);
+        });
+    };
     return (
         <div className="portfolio-page">
             <div className="portfolio-card">
@@ -77,15 +109,30 @@ export default function CreateSkill() {
 
 
                 <div className="skills-wrapper">
-                    <SkillCategory title={"frontend"} skills={frontSkill} />
-                    <SkillCategory title={"backend"} skills={backSkill} />
-                    <SkillCategory title={"database"} skills={dataSkill} />
+                    <SkillCategory 
+                        title={"frontend"} 
+                        skills={frontSkill} 
+                        onSkillChange={handleSkillChange}
+                        selectedSkills={selectedSkills}
+                    />
+                    <SkillCategory 
+                        title={"backend"} 
+                        skills={backSkill} 
+                        onSkillChange={handleSkillChange}
+                        selectedSkills={selectedSkills}
+                    />
+                    <SkillCategory 
+                        title={"database"} 
+                        skills={dataSkill} 
+                        onSkillChange={handleSkillChange}
+                        selectedSkills={selectedSkills}
+                    />
                 </div>
-
 
                 <button
                     className="primary-btn"
-                    onClick={() => navigate("/Createprofile")}
+                   
+                    onClick={handleSubmit}
                 >
                     Next → profile
                 </button>

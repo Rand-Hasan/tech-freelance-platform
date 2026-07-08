@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/forgetPassword.css";
 import axios from "axios";
-import Cookies from "js-cookie";
+import Cookies from "cookie-universal";
 import { baseURL } from "../../../services/Api/api";
 import {
   ResetPassword,
@@ -14,10 +15,12 @@ export default function ForgetPassword() {
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const email = Cookies.get("reset_email");
+  const role = Cookies.get("role");
   const [data, setdata] = useState({
     new_password: "",
     new_password_confirmation: "",
   });
+   const navigate = useNavigate();
   function handleChanges(event) {
     setdata({
       ...data,
@@ -112,6 +115,11 @@ export default function ForgetPassword() {
         setError({});
         Cookies.remove("reset_email");
         setLoading(false);
+        if (role === "client") {
+          navigate("/clientlayout");
+        } else {
+          navigate("/الرئيسية الخاصة بالمستقل");
+        }
       })
 
       .catch((err) => {

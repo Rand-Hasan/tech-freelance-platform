@@ -79,17 +79,18 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
          setLoading(false);
-        if(role==="client"){
-          navigate("/clientlayout");
-        }else {
-          navigate("/الرئيسية الخاصة بالمستقل");
-       }
+       
         setError({});
         Cookies.set("token", res.data.token, {
           expires: 7, 
         // setError({});
           secure: true,
         });
+         if(role==="client"){
+          navigate("/clientlayout");
+        }else {
+          navigate("/الرئيسية الخاصة بالمستقل");
+       }
         
      
        })
@@ -149,7 +150,7 @@ export default function SignIn() {
       <div className="LikeNavBar">
         <h3 className="TileOnNav">CodeLance</h3>
         <h3 className="BackToHomeNav">
-          <a className="BackToHomeNavA" href="#Home">
+          <a className="BackToHomeNavA" href="/">
             ⬅BackToHome
           </a>
         </h3>
@@ -269,7 +270,7 @@ export default function SignIn() {
             </form>
 
             <p className="RegisterRedirect">
-              Don't have an account? <a href="#create">Create one</a>
+              Don't have an account? <a href="/createaccount">Create one</a>
             </p>
           </div>
         </div>

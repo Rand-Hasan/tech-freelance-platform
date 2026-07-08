@@ -40,7 +40,7 @@ export default function CreateProject() {
          try {
             const res = await axios.get(`${baseURL}${GetSkills}`);
             setSuggestions(res.data.skills);
-            // console.log(res.data.skills.skill_name);
+            console.log(res.data.skills);
             // console.log(res.data.skills.id)
          } catch (err) {
             console.error(err);
