@@ -171,9 +171,9 @@ export default function CreatePortifolio() {
           </button>
         </div>
 
-        <div className="skip-link">
+        {/* <div className="skip-link">
           Skip for now
-        </div>
+        </div> */}
 
       </div>
     </div>

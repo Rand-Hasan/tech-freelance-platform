@@ -12,6 +12,7 @@ export default function CreateSkill() {
     const currentStep = 3;
     const totalSteps = 4;
     const cookies = new Cookies();
+    
     const token = cookies.get('token');
     console.log('coooooooooo:', token);
     const [allSkill, setallSkill] = useState([]);
@@ -59,7 +60,7 @@ export default function CreateSkill() {
         
         .then((res) => {
             console.log("تم حفظ المهارات بنجاح:", res.data);
-            navigate("/Createprofile");
+            navigate("/CreateProfile");
         })
         .catch((err) => {
             console.error("خطأ أثناء إرسال المهارات:", err);
