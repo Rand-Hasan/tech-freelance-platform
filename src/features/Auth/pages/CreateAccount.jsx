@@ -39,11 +39,28 @@ function CreateAccount() {
       const res = await axios.post(baseURL + endpoint, data);
 
       console.log("SUCCESS RESPONSE:", res.data);
+      
 cookies.set("email", data.email, {
   path: "/",
   maxAge: 60 * 60 * 24 * 7,
 });
-      cookies.set('token', res.data.token, { path: '/', maxAge: 60 * 60 * 24 * 7 });
+
+
+
+      if (role === "freelancer") {
+  cookies.set("token-freelancer", res.data.token, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+} else {
+  cookies.set("token-client", res.data.token, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
+
+
+
       cookies.set("role", role, {
         path: "/",
         maxAge: 60 * 60 * 24 * 7,

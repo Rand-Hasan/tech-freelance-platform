@@ -51,7 +51,7 @@ async function handleSubmit() {
     setLoading(true);
     setError("");
 
-    const token = cookies.get("token");
+    const token = cookies.get("token-freelancer");
 
     const formData = new FormData();
 
@@ -88,9 +88,10 @@ console.log("TOKEN:", token);
 
 
     let msg =
-      err.response?.data?.errors?.[0]?.message ||
-      err.response?.data?.message ||
-      "Server Error";
+  err.response?.data?.errors?.[0]?.message ||
+  err.response?.data?.message?.[0]?.message ||
+  err.response?.data?.message ||
+  "Server Error";
        if (msg === "faild to create profile") {
     msg = "You already have a profile";
   }

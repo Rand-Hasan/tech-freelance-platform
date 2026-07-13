@@ -39,7 +39,7 @@ export default function CreatePortifolio() {
       setLoading(true);
       setError("");
 
-      const token = cookies.get("token");
+      const token = cookies.get("token-freelancer");
 
  
     const body = new URLSearchParams();
