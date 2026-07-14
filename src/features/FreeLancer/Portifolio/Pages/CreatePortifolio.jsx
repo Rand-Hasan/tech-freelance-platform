@@ -39,7 +39,7 @@ export default function CreatePortifolio() {
       setLoading(true);
       setError("");
 
-      const token = cookies.get("token");
+      const token = cookies.get("token-freelancer");
 
  
     const body = new URLSearchParams();
@@ -166,15 +166,14 @@ export default function CreatePortifolio() {
         {/* Buttons */}
         <div className="action-row">
         
-
           <button className="primary-btn" onClick={handleSave}>
             Next → CV
           </button>
         </div>
 
-        <div className="skip-link">
+        {/* <div className="skip-link">
           Skip for now
-        </div>
+        </div> */}
 
       </div>
     </div>

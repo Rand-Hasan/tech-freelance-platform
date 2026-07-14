@@ -19,7 +19,7 @@ body {
 .portfolio-card {
   width: 100%;
   max-width: 690px;
-    min-height: 80vh;
+  min-height: 55vh;
   background: white;
   margin-top: 30px;
   padding: 20px 24px;
@@ -195,6 +195,7 @@ textarea:focus {
   font-weight: 500;
   cursor: pointer;
   justify-content: center;
+  margin-top:20px;
 }
 
 .secondary-btn {

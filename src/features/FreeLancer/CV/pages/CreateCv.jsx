@@ -1,4 +1,6 @@
 import "../../Portifolio/Styles/CreatePortifolio.css";
+import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
@@ -102,6 +104,7 @@ export default function CreateCv() {
         console.log(res.data.json);
         setLoading(false);
       })
+      navigate("/CreateSkillis")
       .catch((err) => {
         console.log("errrror", err);
         setLoading(false);
@@ -126,7 +129,7 @@ export default function CreateCv() {
 
   const currentStep = 2;
   const totalSteps = 4;
-
+      const navigate = useNavigate();
   return (
     <div className="portfolio-page">
       {loading && <Loading />}
@@ -146,6 +149,8 @@ export default function CreateCv() {
             ></div>
           </div>
 
+
+   
           <span className="section-name">CV</span>
         </div>
         <h1
@@ -260,7 +265,7 @@ export default function CreateCv() {
           </label>
         </div>
 
-        <button onClick={HanleGoToSkills} className="NextToSkillsButton">
+        <button onClick={HanleGoToSkills} className="NextToSkillsButton" >
           {" "}
           Next → Skills
         </button>

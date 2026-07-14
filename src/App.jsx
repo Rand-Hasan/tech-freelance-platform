@@ -20,6 +20,8 @@ import FreeLanceInfo from './features/Client/client-findfreelancer/pages/FreeLan
 import CreateProject from './features/Client/client-projects/pages/CraeteProject';
 import CreatePortifolio from './features/FreeLancer/Portifolio/Pages/CreatePortifolio';
 import CreateCv from './features/FreeLancer/CV/pages/CreateCv';
+import CreateSkill from './features/FreeLancer/Skills/pages/CreateSkillis';
+import CreateProfilee from './features/FreeLancer/Profile/pages/Createprofile';
 function App() {
   return (
     <BrowserRouter>
@@ -31,11 +33,11 @@ function App() {
        <Route path="/forgetpassword" element={<ForgetPassword />} />
        
 
-
+         <Route path="/CreateSkillis" element={<CreateSkill/>}/>
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
-        <Route path="/CreateCv" element={<CreateCv />} />
-
-
+        <Route path='CreateCv' element={<CreateCv/>}/>CreateProfile
+         <Route path="/CreateProfile" element={<CreateProfilee />} />
+        
 
 
       {/* Client */}

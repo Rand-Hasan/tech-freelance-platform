@@ -105,7 +105,12 @@ useEffect(() => {
     setError("");
 
     try {
-      const token = cookies.get("token");
+   const role = cookies.get("role");
+
+const token =
+  role === "freelancer"
+    ? cookies.get("token-freelancer")
+    : cookies.get("token-client");
 
       const res = await axios.post(
         baseURL + VerfiyEmail,
