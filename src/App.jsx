@@ -22,6 +22,12 @@ import CreatePortifolio from './features/FreeLancer/Portifolio/Pages/CreatePorti
 import CreateCv from './features/FreeLancer/CV/pages/CreateCv';
 import CreateSkill from './features/FreeLancer/Skills/pages/CreateSkillis';
 import CreateProfilee from './features/FreeLancer/Profile/pages/Createprofile';
+import FreeLancerLayout from './features/FreeLancer/layout/FreelancerLayout';
+import ContractFree from './features/FreeLancer/freelancer-contract/pages/ContractFree';
+import ProjectFree from './features/FreeLancer/freelancer-project/pages/ProjectFree';
+import MessageFree from './features/FreeLancer/freelancer-message/pages/MessageFree';
+import WalletFree from './features/FreeLancer/freelancer-wallet/pages/WalletFree';
+import ShowProfile from './features/FreeLancer/Profile/pages/ShowProfile';
 function App() {
   return (
     <BrowserRouter>
@@ -59,8 +65,14 @@ function App() {
           <Route path="setting" element={<Settings />} />
           <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
         </Route>
-
-
+       {/* Freelancer */}
+         <Route path='/freelancerlayout' element={<FreeLancerLayout/>}>
+          <Route path="contractfree" element={<ContractFree/>} />
+          <Route path='projectfree' element={<ProjectFree/>}/>
+          <Route path='messagefree' element={<MessageFree/>}/>
+          <Route path='walletfree' element={<WalletFree/>}/>
+          <Route path='showprofile' element={<ShowProfile/>}/>
+         </Route>
       </Routes>
     </BrowserRouter>
   );
