@@ -10,7 +10,7 @@ export default function Profile() {
   const [PersonalData, setPersonalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const cookies = Cookies();
-  const token = cookies.get("token");
+  const token = cookies.get("token-client");
   const navigate = useNavigate();
   const unKnownImageURL = new URL(
     "../../../../assets/UnknownPerson.png",
@@ -94,9 +94,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <NavLink to="/setting">
-          <button className="EditProfileButton">Edit Profile</button>
-        </NavLink>
+       
 
      <NavLink to="/clientlayout/setting">
   <button className="EditProfileButton">

@@ -1,0 +1,108 @@
+.ExperinceTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    max-width: 200px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #E6F5F1;
+    color: #008060;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.CurrentPastEduSpecilize{
+    display: flex;
+    flex-direction: column;
+}
+.CurrentPast{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 30px;
+}
+.dataofCurrentPast{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 10px;
+}
+.EduSpecilize{
+     display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 30px;
+}
+.dataofEduSpecilize{
+     display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 10px;
+}
+.H2languages{
+    margin-top: 40px;
+}
+.languages{
+    display: flex;
+    gap:20px;
+}
+.language{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    max-width: 200px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #E6F5F1;
+    color: #008060;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.CV{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e2f7f1;
+    margin-top: 30px;
+    border: #008060 dotted;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.PDFAndUploadedCv{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+.PDF{
+    width: 40px;
+    height: 40px;
+    background-color: #FFFFFF;
+    color:#008060;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.UploadedCv{
+    display: flex;
+    flex-direction: column;
+}
+.viewCVButton{
+    width:100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #008060;
+    color: white;
+    font-weight: bold;
+    border: #008060;
+    cursor: pointer;
+}
+.viewCVButton:hover{
+    box-shadow: 1px 1px gray;
+}

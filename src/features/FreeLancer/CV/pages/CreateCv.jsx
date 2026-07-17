@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
-import { CreateCV } from "../services/CreateCvApi";
+import { CreateCV } from "../services/CvAPI";
 import { baseURL } from "../../../../services/Api/api";
 import Loading from "../../../../components/Loading/Loading";
 import "../styles/CreateCv.css";
 import SelectLanguage from "../components/SelectLanguage";
-const cookies = Cookies();
-const token = cookies.get("token");
+
 export default function CreateCv() {
+const cookies = Cookies();
+const token = cookies.get("token-freelancer");
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState("");
   const education_level_value = [
@@ -103,8 +104,9 @@ export default function CreateCv() {
         console.log("trueeeeeeeee");
         console.log(res.data.json);
         setLoading(false);
+         navigate("/CreateSkillis")
       })
-      navigate("/CreateSkillis")
+     
       .catch((err) => {
         console.log("errrror", err);
         setLoading(false);

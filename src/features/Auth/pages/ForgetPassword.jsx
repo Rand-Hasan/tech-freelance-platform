@@ -110,15 +110,25 @@ export default function ForgetPassword() {
         console.log("trueeeeeeeee verifying");
         return axios.post(baseURL + ResetPassword, { email, ...data });
       })
-      .then(() => {
+      .then((res) => {
         console.log("trueeeeeeeeee resetting ! ");
         setError({});
         Cookies.remove("reset_email");
         setLoading(false);
-        if (role === "client") {
-          navigate("/clientlayout");
+
+        
+        if (role === "freelancer") {
+          Cookies.set("token-freelancer", res.data.token, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7,
+          });
+          navigate("/freelancerlayout");
         } else {
-          navigate("/الرئيسية الخاصة بالمستقل");
+          Cookies.set("token-client", res.data.token, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7,
+          });
+          navigate("/clientlayout");
         }
       })
 
