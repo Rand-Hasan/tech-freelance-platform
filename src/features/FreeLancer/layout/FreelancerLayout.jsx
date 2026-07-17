@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import HomepageFreelancer from '../Home/pages/HomepageFreelancer';
+import NavbarFreelancer from '../components/NavbarFreelancer';
 export default function FreeLancerLayout(){
     return(
         <div>
-        <HomepageFreelancer/>
+        <NavbarFreelancer/>
        
         <main >
        <Outlet/>

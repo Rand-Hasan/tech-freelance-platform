@@ -23,6 +23,7 @@ export default function ShowProfile(){
     return (
     <div>
         <div className='hero'></div>
+        <div className='container-profile'>
      <div className='profile-header'>
   <div className='avatar-row'>
     
@@ -38,10 +39,10 @@ export default function ShowProfile(){
       </div>
     </div>
     
-    <div className='profile-actions-btns'>
+    {/* <div className='profile-actions-btns'>
       <button className='btn-outline'>Message</button>
       <button className='btn-solid'>Edit Profile</button>
-    </div>
+    </div> */}
 
   </div>
 </div>
@@ -75,11 +76,11 @@ export default function ShowProfile(){
           📄 CV & Experience
         </button>
       </div>
-
+     
       <div className="profile-tab-content">
         {renderTabContent()}
       </div>
-
+       </div>
     </div>
   );
 }
