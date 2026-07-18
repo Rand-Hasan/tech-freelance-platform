@@ -272,7 +272,7 @@ async function handleDeleteProject(){
     <div className="portfolio-card" key={project.id}
     onClick={() => {
     cookies.set("project-id", project.id);
-    navigate("/Showportofoliodetails");
+    navigate("/freelancerlayout/showprofile/showportofoliodetails");
   }}
    >
 <button

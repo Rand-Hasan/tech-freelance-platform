@@ -63,7 +63,7 @@ const navigate = useNavigate();
 
      <button
   className="back-btn"
-  onClick={() => navigate("/ShowPortfolio")}
+  onClick={() => navigate("/freelancerlayout/showprofile/portfolio")}
 >
   ← Back to Portfolio
 </button>
