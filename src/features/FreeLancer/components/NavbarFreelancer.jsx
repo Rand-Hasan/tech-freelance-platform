@@ -5,9 +5,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, Badge, Menu, MenuItem } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../styles/HomepageFreelancer.css"; 
+import "../styles/NavbarFreelancer.css"; 
 
-export default function HomepageFreelancer() {
+export default function NavbarFreelancer() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   
@@ -48,7 +48,7 @@ export default function HomepageFreelancer() {
      
       <div className="rightfree">
         
-        <form onSubmit={handleSearchSubmit} className="search-form-free">
+        {/* <form onSubmit={handleSearchSubmit} className="search-form-free">
           <SearchIcon className="search-icon-free" />
           <input 
             type="text" 
@@ -57,8 +57,33 @@ export default function HomepageFreelancer() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
-        </form>
+        </form> */}
+         <form onSubmit={handleSearchSubmit} className="search-form-free">
+  {/* 1. حقل الإدخال النصي */}
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    className="search-input-free" 
+    value={searchValue}
+    onChange={(e) => setSearchValue(e.target.value)}
+  />
 
+  {/* 2. الخط الفاصل الرمادي */}
+  <div className="search-divider"></div>
+
+  {/* 3. القائمة المنسدلة الخيارات */}
+  <div className="search-select-wrapper">
+    <select className="search-select-free">
+      <option value="projects">Projects</option>
+      <option value="clients">Clients</option>
+    </select>
+  </div>
+
+  {/* 4. حاوية الأيقونة الدائرية في أقصى اليمين */}
+  <button type="submit" className="search-btn-submit-free">
+    <SearchIcon className="search-icon-free" />
+  </button>
+</form>
         <div className="notif-wrapper-free">
           <IconButton className="notif-btn-free" style={{ color: "#5a7a76" }}>
             <Badge color="error" variant="dot" invisible={false}>

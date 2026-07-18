@@ -4,13 +4,15 @@
     background: linear-gradient(180deg, rgba(0, 32, 26, 0.35), rgba(0, 32, 26, 0.15)), linear-gradient(120deg, #0d3b30 0%, #145a48 35%, #1c7a5e 65%, #2fa17c 100%);
     overflow: hidden;
 }
-
-.profile-header {
-    max-width: 1180px;
+.container-profile{
+  max-width: 1190px;
     margin: 0 auto;
     padding: 0 40px;
+}
+
+.profile-header {
     position: relative;
-    box-sizing: border-box;
+    width: 100%;
 }
 
 .avatar-row {
@@ -113,40 +115,27 @@
     border-color: #ccc;
 }
 
-.profile-tabs-bar {
+.profile-tabs-bar{
   display: flex;
-  gap: 12px;
-  border-bottom: 1px solid #eef2f1;
-  margin: 30px 0 20px 0; 
-  padding: 0 10px;
+  gap: 40px;
+  border-bottom: 2px solid #eef2f1;
+  margin: 40px 10px 20px 0; 
+  padding: 0;
 }
 
-
-.profile-tabs-bar {
-  display: flex;
-  gap: 8px; 
-  border-bottom: 2px solid #eef2f1; 
-  margin: 35px 0 20px 0; 
-  padding: 0 10px;
-  background-color: transparent;
-}
 
 .profile-tab-btn {
   background: none;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 16px; 
   cursor: pointer;
   font-size: 15px;
-  font-weight: 500;
-  color: #666; 
+  color: #666;
+  font-weight: 600; 
   font-family: 'Inter', sans-serif;
-  
-  position: relative;
-  border-bottom: 3px solid transparent; 
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-  display: flex;
-  align-items: center;
-  gap: 8px; }
+  border-bottom: 3px solid rgba(42, 157, 143, 0);
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
 
 .profile-tab-btn:hover {
   color: #1c7a5e; 
@@ -156,8 +145,7 @@
 
 .profile-tab-btn.active {
   color: #2a9d8f; 
-  font-weight: 700; 
-  border-bottom: 3px solid #2a9d8f; 
+  border-bottom-color: #2a9d8f; 
 }
 
 .profile-tab-btn .badge {
@@ -167,6 +155,7 @@
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 20px;
+  margin-left: 6px;
   transition: all 0.3s ease;
 }
 
