@@ -1,0 +1,491 @@
+/* =========================
+   Main Layout
+========================= */
+.portfolio-container {
+  width: 100%;
+}
+
+.portfolio-layout {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  padding: 30px 40px;
+}
+.delete-project-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #fff;
+  color: #e63946;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  opacity: 0;
+  transform: scale(.8);
+
+  transition: .25s;
+
+  z-index: 5;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,.15);
+}
+
+
+.portfolio-card:hover .delete-project-btn{
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+.delete-project-btn:hover{
+  background:#e63946;
+  color:white;
+}
+/* =========================
+   Portfolio Info (Clean/No Card)
+========================= */
+.portfolio-side {
+  width: 350px;
+  min-width: 350px;
+  position: sticky;
+  top: 20px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.portfolio-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2A9D8F;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.portfolio-side h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #22313b;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.portfolio-side p {
+  font-size: 16px;
+  color: #6f7c84;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.github-link {
+  display: inline-block;
+  color: #2A9D8F;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  transition: opacity 0.3s;
+}
+
+.github-link:hover {
+  opacity: 0.7;
+}
+.edit-btn{
+  width:38px;
+  height:38px;
+margin-bottom: 30px;
+  border:none;
+  border-radius:50%;
+
+  background:white;
+  color:#2A9D8F;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  cursor:pointer;
+  font-size:18px;
+
+  transition:.3s;
+}
+
+.edit-btn:hover{
+  transform:scale(1.08);
+  background:#f5f5f5;
+}
+.side-edit-btn{
+  position:absolute;
+  top:0;
+  right:0;
+}
+/* =========================
+   Projects Grid (التعديل الأساسي هنا)
+========================= */
+.portfolio-grid {
+  display: grid;
+  /* تقسيم المساحة لـ 3 أعمدة متساوية دائماً */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.portfolio-card {
+  position: relative;
+
+  background: #ffffff;
+  border: 1px solid #eef2f1;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+  height: 280px;
+}
+
+.project-placeholder {
+  width: 100%;
+  height: 150px;
+  background-color: #e8f5f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #14796d;
+}
+
+.card-body {
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.card-body h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* كارد الإضافة */
+.add-card {
+  border: 2px dashed #d0e6e1;
+  background: transparent;
+  border-radius: 12px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #555;
+}
+
+.add-card:hover {
+  background: #f8fcfc;
+}
+
+.add-card span {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.add-card p {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* =========================
+   Modal & Other styles (تم الإبقاء عليها كما هي)
+========================= */
+
+.modal-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, .5);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+
+}
+
+
+
+.modal-box {
+
+  background: white;
+
+  width: min(600px, 90vw);
+
+  padding: 35px;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+}
+
+.modal-box input,
+
+.modal-box textarea {
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  border: 1px solid #ddd;
+
+}
+
+
+
+.modal-actions {
+
+  display: flex;
+
+  gap: 12px;      
+
+  margin-top: 15px;
+
+}
+
+
+
+.modal-actions .save-btn,
+
+.modal-actions .cancel-btn {
+
+  flex: 1;
+
+  height: 42px !important;
+
+  min-height: 42px !important;
+
+  max-height: 42px !important;
+
+  padding: 0 !important;
+
+  margin: 0 !important;
+
+  border: none !important;
+
+  box-sizing: border-box !important;
+
+
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+
+.save-btn {
+
+  background: #2A9D8F;
+
+  color: white;
+
+}
+
+
+
+.save-btn:hover {
+
+  background: #238579;
+
+}
+
+
+
+.cancel-btn {
+
+  background: #e5e7eb;
+
+  color: #333;
+
+}
+
+
+
+.cancel-btn:hover {
+
+  background: #d1d5db;
+
+}
+/* تنسيق الكارد الذي يتحول لنموذج */
+.add-project-form-card {
+  background: white;
+  border: 2px dashed #ccc; /* لتمييزه أنه نموذج إضافة */
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 250px; /* نفس طول الكارد تقريباً */
+}
+
+.add-project-form-card input, 
+.add-project-form-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* هذا التنسيق سيطبق على كل الأزرار داخل form-actions لتوحيد شكلها */
+.form-actions button {
+  flex: 1; 
+  height: 44px; /* حددنا ارتفاع ثابت للزرين */
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* لضمان توسيط النص في الزرين */
+}
+
+/* تنسيق زر الكانسل */
+.my-cancel-btn {
+  flex: 1 !important;
+  height: 45px !important;
+  background-color: #e5e7eb !important;
+  color: #374151 !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.my-save-btn {
+  flex: 1 !important;
+  height: 45px !important;
+  background-color: #00bfa5 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.my-cancel-btn:hover {
+  background-color: #e0e0e0 !important;
+}
+
+/* تنسيق زر السيف */
+
+
+.my-save-btn:hover {
+  background: #008f7a !important;
+}
+
+/* تأثير الضغط للزرين معاً (اختياري) */
+.form-actions button:active {
+  transform: translateY(1px);
+}
+/* تنسيق زر رفع الصور */
+.upload-section {
+  width: 100%;
+}
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border: 2px dashed #00bfa5;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f9f9f9;
+  color: #00bfa5;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.custom-file-upload:hover {
+  background: #e0fdf9;
+}
+
+/* إخفاء حقل الـ input الحقيقي */
+input[type="file"] {
+  display: none;
+}
+.preview-images{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+
+.preview-images img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+.delete-btn{
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete-btn:hover{
+  background: #bb2d3b;
+}
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 992px) {
+  .portfolio-layout { flex-direction: column; }
+  .portfolio-side { width: 100%; margin-bottom: 40px; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
