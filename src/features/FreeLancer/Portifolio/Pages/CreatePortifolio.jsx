@@ -76,10 +76,10 @@ export default function CreatePortifolio() {
   }
 
   return (
-    <div className="portfolio-page">
+    <div className="portfolioo-page">
       {loading && <Loading />}
 
-      <div className="portfolio-card">
+      <div className="portfolioo-card">
 
         {/* Progress */}
         <div className="progress-wrapper">

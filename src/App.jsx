@@ -28,6 +28,7 @@ import ProjectFree from './features/FreeLancer/freelancer-project/pages/ProjectF
 import MessageFree from './features/FreeLancer/freelancer-message/pages/MessageFree';
 import WalletFree from './features/FreeLancer/freelancer-wallet/pages/WalletFree';
 import ShowProfile from './features/FreeLancer/Profile/pages/ShowProfile';
+import Showportofoliodetails from './features/FreeLancer/Portifolio/Pages/Showportofoliodetails';
 function App() {
   return (
     <BrowserRouter>
@@ -71,6 +72,7 @@ function App() {
           <Route path='projectfree' element={<ProjectFree/>}/>
           <Route path='messagefree' element={<MessageFree/>}/>
           <Route path='walletfree' element={<WalletFree/>}/>
+      
           <Route path='showprofile' element={<ShowProfile/>}/>
          </Route>
       </Routes>

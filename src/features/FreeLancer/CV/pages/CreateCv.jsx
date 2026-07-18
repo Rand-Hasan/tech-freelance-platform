@@ -131,9 +131,9 @@ export default function CreateCv() {
   const totalSteps = 4;
       const navigate = useNavigate();
   return (
-    <div className="portfolio-page">
+    <div className="portfolioo-page">
       {loading && <Loading />}
-      <div className="portfolio-card">
+      <div className="portfolioo-card">
         {/* Progress */}
         <div className="progress-wrapper">
           <span className="step-text">
