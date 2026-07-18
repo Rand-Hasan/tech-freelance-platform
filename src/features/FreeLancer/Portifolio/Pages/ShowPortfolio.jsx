@@ -312,18 +312,18 @@ onClick={(e)=>{
       <textarea placeholder="Description" />
       {/* منطقة رفع الصور */}
     <div className="upload-section">
-      <label htmlFor="file-upload" className="custom-file-upload">
+      <label htmlFor="file-uploadd" className="custom-file-uploadd">
         <span>📷 Upload Screenshots</span>
       </label>
     <input
-  id="file-upload"
+  id="file-uploadd"
   type="file"
   multiple
   accept="image/*"
-  onChange={(e)=>{
-    const files = Array.from(e.target.files);
-    setPhotos(files);
-  }}
+onChange={(e) => {
+  const files = Array.from(e.target.files);
+  setPhotos((prev) => [...prev, ...files]); // دمج الصور القديمة مع الجديدة
+}}
 /><div className="preview-images">
 
 {
