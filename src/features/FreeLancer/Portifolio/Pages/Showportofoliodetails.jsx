@@ -154,8 +154,7 @@ export default function Showportofoliodetails() {
         {
           headers:{
             Authorization:`Bearer ${token}`,
-            "Content-Type":
-              "multipart/form-data",
+           
           }
         }
 

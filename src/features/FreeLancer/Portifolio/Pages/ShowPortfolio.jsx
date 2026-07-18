@@ -8,7 +8,7 @@ import { ShowPortofolio ,UpdatePortofolio,DeleteProjectFromPortofolio,AddProject
 import Loading from "../../../../components/Loading/Loading";
 import { FaGithub } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+
 export default function ShowPortfolio() {
 
   const cookies = Cookies();
@@ -179,7 +179,7 @@ async function handleDeleteProject(){
       {
         headers:{
           Authorization:`Bearer ${token}`,
-          "Content-Type":"multipart/form-data"
+       
         }
       }
     );
@@ -295,7 +295,7 @@ onClick={(e)=>{
     </div>
   ))}
 
- {/* كارد الإضافة المتوسع */}
+
   {isAdding ? (
     <div className="add-project-form-card">
     {addError && (
@@ -310,7 +310,7 @@ onClick={(e)=>{
   onChange={(e)=>setProjectName(e.target.value)}
 />
       <textarea placeholder="Description" />
-      {/* منطقة رفع الصور */}
+     
     <div className="upload-section">
       <label htmlFor="file-uploadd" className="custom-file-uploadd">
         <span>📷 Upload Screenshots</span>
