@@ -142,7 +142,7 @@ margin-bottom: 30px;
 .portfolio-grid {
   display: grid;
   /* تقسيم المساحة لـ 3 أعمدة متساوية دائماً */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
 }
