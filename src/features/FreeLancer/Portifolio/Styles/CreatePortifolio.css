@@ -9,14 +9,14 @@ body {
   background: #f4fcfb;
 }
 
-.portfolio-page {
+.portfolioo-page {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 30px;
 }
 
-.portfolio-card {
+.portfolioo-card {
   width: 100%;
   max-width: 690px;
   min-height: 55vh;

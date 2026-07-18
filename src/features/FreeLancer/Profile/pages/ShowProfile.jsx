@@ -4,6 +4,7 @@ import ShowCv from '../../CV/pages/ShowCv';
 import ShowPortfolio from '../../Portifolio/Pages/ShowPortfolio';
 import PersonalInfo from './PersonalInfo';
 import ShowSkills from '../../Skills/pages/ShowSkills';
+import Showportofoliodetails from '../../Portifolio/Pages/Showportofoliodetails';
 export default function ShowProfile(){
     const [activeTab,setActiveTab]= useState('personal');
     const renderTabContent = () => {
@@ -16,6 +17,9 @@ export default function ShowProfile(){
         return <ShowPortfolio/>;
       case "cv":
         return <ShowCv />;
+
+         case "Showportofoliodetails":
+        return <Showportofoliodetails/>;
       default:
         return <PersonalInfo />;
     }
@@ -67,6 +71,12 @@ export default function ShowProfile(){
           onClick={() => setActiveTab('portfolio')}
         >
           🖼️ Portfolio
+        </button>
+         <button 
+          className={`profile-tab-btn ${activeTab === 'Showportofoliodetails' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('Showportofoliodetails')}
+        >
+          🖼️ ShowportofolioDetails
         </button>
 
         <button 
