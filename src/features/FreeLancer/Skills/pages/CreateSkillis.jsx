@@ -13,7 +13,7 @@ export default function CreateSkill() {
     const totalSteps = 4;
     const cookies = new Cookies();
     
-    const token = cookies.get('token');
+    const token = cookies.get('token-freelancer');
     console.log('coooooooooo:', token);
     const [allSkill, setallSkill] = useState([]);
     const [selectedSkills, setSelectedSkills] = useState([]);

@@ -15,7 +15,7 @@ export default function Projects() {
   const [filterproject, setfilterproject] = useState([]);
   const [activeTab, setactiveTab] = useState("all");
   const cookies = new Cookies();
-  const token = cookies.get('token');
+  const token = cookies.get('token-client');
 
 
   useEffect(() => {

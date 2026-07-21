@@ -10,8 +10,9 @@ export default function CreateProject() {
    const cookies = new Cookies();
    const { id } = useParams();
    const isEditMode = Boolean(id);
-   const token = cookies.get('token');
-   console.log('tokenis222:', token);
+   const token1= cookies.get('token-client');
+   
+   console.log('tokenis222:', token1);
 
    const [data, setData] = useState({
       project_name: '',
@@ -103,7 +104,7 @@ export default function CreateProject() {
             method: 'Post',
             url: url,
             data: finalDataToSend,
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token1}` }
          });
          // console.log(token);
          console.log("SUCCESS RESPONSE:", res.data.message);

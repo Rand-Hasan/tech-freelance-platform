@@ -8,7 +8,7 @@ import { ShowPortofolio ,UpdatePortofolio,DeleteProjectFromPortofolio,AddProject
 import Loading from "../../../../components/Loading/Loading";
 import { FaGithub } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+
 export default function ShowPortfolio() {
 
   const cookies = Cookies();
@@ -179,7 +179,7 @@ async function handleDeleteProject(){
       {
         headers:{
           Authorization:`Bearer ${token}`,
-          "Content-Type":"multipart/form-data"
+       
         }
       }
     );
@@ -272,7 +272,7 @@ async function handleDeleteProject(){
     <div className="portfolio-card" key={project.id}
     onClick={() => {
     cookies.set("project-id", project.id);
-    navigate("/Showportofoliodetails");
+    navigate("/freelancerlayout/showprofile/showportofoliodetails");
   }}
    >
 <button
@@ -295,7 +295,7 @@ onClick={(e)=>{
     </div>
   ))}
 
- {/* كارد الإضافة المتوسع */}
+
   {isAdding ? (
     <div className="add-project-form-card">
     {addError && (
@@ -310,20 +310,20 @@ onClick={(e)=>{
   onChange={(e)=>setProjectName(e.target.value)}
 />
       <textarea placeholder="Description" />
-      {/* منطقة رفع الصور */}
+     
     <div className="upload-section">
-      <label htmlFor="file-upload" className="custom-file-upload">
+      <label htmlFor="file-uploadd" className="custom-file-uploadd">
         <span>📷 Upload Screenshots</span>
       </label>
     <input
-  id="file-upload"
+  id="file-uploadd"
   type="file"
   multiple
   accept="image/*"
-  onChange={(e)=>{
-    const files = Array.from(e.target.files);
-    setPhotos(files);
-  }}
+onChange={(e) => {
+  const files = Array.from(e.target.files);
+  setPhotos((prev) => [...prev, ...files]); // دمج الصور القديمة مع الجديدة
+}}
 /><div className="preview-images">
 
 {

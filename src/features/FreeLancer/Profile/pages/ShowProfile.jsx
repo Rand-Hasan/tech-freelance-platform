@@ -5,25 +5,8 @@ import ShowPortfolio from '../../Portifolio/Pages/ShowPortfolio';
 import PersonalInfo from './PersonalInfo';
 import ShowSkills from '../../Skills/pages/ShowSkills';
 import Showportofoliodetails from '../../Portifolio/Pages/Showportofoliodetails';
-export default function ShowProfile(){
-    const [activeTab,setActiveTab]= useState('personal');
-    const renderTabContent = () => {
-    switch (activeTab) {
-      case "personal":
-        return <PersonalInfo />;
-      case "skills":
-        return <ShowSkills />;
-      case "portfolio":
-        return <ShowPortfolio/>;
-      case "cv":
-        return <ShowCv />;
-
-         case "Showportofoliodetails":
-        return <Showportofoliodetails/>;
-      default:
-        return <PersonalInfo />;
-    }
-  };
+import { NavLink, Outlet } from 'react-router-dom';
+export default function ShowProfile(){   
     return (
     <div>
         <div className='hero'></div>
@@ -52,43 +35,45 @@ export default function ShowProfile(){
 </div>
 
       <div className="profile-tabs-bar">
-        <button 
-          className={`profile-tab-btn ${activeTab === 'personal' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('personal')}
-        >
-          👤 Personal Info
-        </button>
-        
-        <button 
-          className={`profile-tab-btn ${activeTab === 'skills' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('skills')}
-        >
-          🛠️ Technical Skills
-        </button>
+         <NavLink
+            to='personal'
+            className={({ isActive }) =>
+              `profile-tab-btn ${isActive ? 'active' : ''}`
+            }
+          >
+            👤 Personal Info
+          </NavLink>
 
-        <button 
-          className={`profile-tab-btn ${activeTab === 'portfolio' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('portfolio')}
-        >
-          🖼️ Portfolio
-        </button>
-         <button 
-          className={`profile-tab-btn ${activeTab === 'Showportofoliodetails' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('Showportofoliodetails')}
-        >
-          🖼️ ShowportofolioDetails
-        </button>
+          <NavLink
+            to='skills'
+            className={({ isActive }) =>
+              `profile-tab-btn ${isActive ? 'active' : ''}`
+            }
+          >
+            🛠️ Technical Skills
+          </NavLink>
 
-        <button 
-          className={`profile-tab-btn ${activeTab === 'cv' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('cv')}
-        >
-          📄 CV & Experience
-        </button>
+          <NavLink
+            to='portfolio'
+            className={({ isActive }) =>
+              `profile-tab-btn ${isActive ? 'active' : ''}`
+            }
+          >
+            🖼️ Portfolio
+          </NavLink>
+
+          <NavLink
+            to='cv'
+            className={({ isActive }) =>
+              `profile-tab-btn ${isActive ? 'active' : ''}`
+            }
+          >
+            📄 CV & Experience
+          </NavLink>
       </div>
      
       <div className="profile-tab-content">
-        {renderTabContent()}
+        <Outlet/>
       </div>
        </div>
     </div>
