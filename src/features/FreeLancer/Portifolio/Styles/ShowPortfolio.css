@@ -431,7 +431,7 @@ margin-bottom: 30px;
   width: 100%;
 }
 
-.custom-file-upload {
+.custom-file-uploadd {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,7 +445,7 @@ margin-bottom: 30px;
   transition: 0.3s;
 }
 
-.custom-file-upload:hover {
+.custom-file-uploadd:hover {
   background: #e0fdf9;
 }
 
