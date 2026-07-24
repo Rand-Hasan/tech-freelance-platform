@@ -52,11 +52,21 @@ cookies.set("email", data.email, {
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
-} else {
+  cookies.set("freelancer_email",data.email,{
+     path: "/",
+     maxAge: 60 * 60 * 24 * 7,
+  })
+}
+
+else {
   cookies.set("token-client", res.data.token, {
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
+  cookies.set("client_email",data.email,{
+     path: "/",
+     maxAge: 60 * 60 * 24 * 7,
+  })
 }
 
 

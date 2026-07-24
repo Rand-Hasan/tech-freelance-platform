@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Loading from "../../../../components/Loading/Loading";
 export default function Profile() {
+ 
   const [PersonalData, setPersonalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const cookies = Cookies();
@@ -54,6 +55,7 @@ export default function Profile() {
   // if (PersonalData.isError) {
   //   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
   // }
+   const client_email=cookies.get('client_email');
 
   return (
     <div className="MyProfile">
@@ -119,7 +121,8 @@ export default function Profile() {
 
               <div className="InfoFieldGroup">
                 <label>Email</label>
-                <div className="InfoFieldValue"></div>
+                
+                <div className="InfoFieldValue">{client_email}</div>
               </div>
 
               <div className="InfoFieldGroup">
@@ -137,10 +140,10 @@ export default function Profile() {
                 <div className="InfoFieldValue">{PersonalData.location}</div>
               </div>
 
-              <div className="InfoFieldGroup">
+              {/* <div className="InfoFieldGroup">
                 <label>Company</label>
                 <div className="InfoFieldValue"></div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="Technical_Assessment_Result">

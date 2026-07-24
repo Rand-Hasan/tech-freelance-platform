@@ -33,6 +33,7 @@ import PersonalInfo from './features/FreeLancer/Profile/pages/PersonalInfo';
 import ShowSkills from './features/FreeLancer/Skills/pages/ShowSkills';
 import ShowPortfolio from './features/FreeLancer/Portifolio/Pages/ShowPortfolio';
 import ShowCv from './features/FreeLancer/CV/pages/ShowCv';
+
 function App() {
   return (
     <BrowserRouter>
@@ -78,6 +79,7 @@ function App() {
           <Route path='walletfree' element={<WalletFree/>}/>
       
           <Route path='showprofile' element={<ShowProfile/>}>
+          <Route index element={<Navigate to="personal" replace />} />
           <Route path='personal' element={<PersonalInfo/>}/>
           <Route path='skills' element={<ShowSkills/>}/>
           <Route path='portfolio' element={<ShowPortfolio/>}/>

@@ -1,11 +1,13 @@
 import "../styles/ShowCv.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../../../services/Api/api";
 import { ShowCV } from "../services/CvAPI";
 import Cookies from "cookie-universal";
 import Loading from "../../../../components/Loading/Loading";
 
 export default function ShowCv() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [error, seterror] = useState("");
@@ -24,38 +26,57 @@ export default function ShowCv() {
         return response.json();
       })
       .then((data) => {
-        console.log("res from back : " , data.cv);
         setData(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Fetch Error:", error);
         setLoading(false);
         seterror(error.message);
       });
   }, []);
+  
+  function HanldeShowCV(){
+    const fileUrl = data.cv?.cv_file;
+    if (fileUrl) {
+      window.open(fileUrl, "_blank", "noopener,noreferrer");
+    } else {
+      alert("No CV file available!");
+    }
+  }
+
+  function handleEditButton(){
+    navigate("/createCV",{
+      state: {
+        isEdit: true,
+        cvData: data
+      },
+    });
+  }
   return (
     <div>
       {loading && <Loading />}
        {error && <p className="error-message" style={{width:"50%"}}>{error}</p>}
-      <h3 className="CVAndWorkExperince">CV & Work Experince</h3>
-      <div className="ExperinceTitle">{data.cv?.experience_title}</div>
-      <div className="CurrentPastEduSpecilize">
-        <div className="CurrentPast">
-          <h4>Current Company</h4>
-          <h4>Past Companies</h4>
+      <div className="CVAndWorkExperinceAndButton">
+        <h3 className="CVAndWorkExperince">CV & Work Experince</h3>
+        <button onClick={handleEditButton}  className="EditButton" >Edit</button>
+      </div>
+      <div className="ExperinceTitle">{data.cv?.experience_title||"no Experince found"}</div>
+     <div className="CurrentPastEduSpecilize">
+        <div className="info-group">
+          <h2>Current Company</h2>
+          <h5>{data.cv?.current_company||"no currnet company found"}</h5>
         </div>
-        <div className="dataofCurrentPast">
-          <h5>{data.cv?.current_company}</h5>
-          <h5 style={{ marginRight: "80px" }}>{data.cv?.past_companies}</h5>
+        <div className="info-group">
+          <h2>Past Companies</h2>
+          <h5>{data.cv?.past_companies||"no past companies found"}</h5>
         </div>
-        <div className="EduSpecilize">
-          <h4>Education level</h4>
-          <h4 style={{ marginRight: "18px" }}>Specialization</h4>
+        <div className="info-group">
+          <h2>Education level</h2>
+          <h5>{data.cv?.education_level||"no edu level found"}</h5>
         </div>
-        <div className="dataofEduSpecilize">
-          <h5>{data.cv?.education_level}</h5>
-          <h5 style={{marginRight:"35px" }}>{data.cv?.specialization}</h5>
+        <div className="info-group">
+          <h2>Specialization</h2>
+          <h5>{data.cv?.specialization||"no specialization found"}</h5>
         </div>
       </div>
 
@@ -84,7 +105,7 @@ export default function ShowCv() {
                   : "N/A"}
           </div>
         </div>
-        <button className="viewCVButton">Show CV</button>
+        <button onClick={HanldeShowCV} className="viewCVButton">Show CV</button>
       </div>
     </div>
   );

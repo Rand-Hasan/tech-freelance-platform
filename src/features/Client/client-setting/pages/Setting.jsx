@@ -31,7 +31,7 @@ useEffect(() => {
     try {
       setLoading(true);
 
-      const token = cookies.get("token");
+      const token = cookies.get("token-client");
 
       const res = await axios.get(baseURL + ShowProfile, {
         headers: {

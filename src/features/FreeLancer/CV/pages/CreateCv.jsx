@@ -1,18 +1,61 @@
 import "../../Portifolio/Styles/CreatePortifolio.css";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react"; // تأكد إنك مستورده
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
-import { CreateCV } from "../services/CvAPI";
+import { CreateCV, UpdateCv } from "../services/CvAPI";
 import { baseURL } from "../../../../services/Api/api";
 import Loading from "../../../../components/Loading/Loading";
 import "../styles/CreateCv.css";
-import SelectLanguage from "../components/SelectLanguage";
+
+import SelectLanguage, {
+  languages as ALL_LANGUAGES,
+} from "../components/SelectLanguage";
 
 export default function CreateCv() {
-const cookies = Cookies();
-const token = cookies.get("token-freelancer");
+  const [data, setData] = useState({
+    experience_title: "",
+    education_level: "",
+    specialization: "",
+    current_company: "",
+    past_companies: "",
+    languages: [],
+    cv_file: null,
+  });
+
+  ///////////For Editting ///////////////
+  const location = useLocation();
+  const isEdit = location.state?.isEdit || false;
+  const cvData = location.state?.cvData || null;
+  useEffect(() => {
+    if (isEdit && cvData) {
+      setData({
+        experience_title: cvData.cv?.experience_title || "",
+        education_level: cvData.cv?.education_level || "",
+        specialization: cvData.cv?.specialization || "",
+        current_company: cvData.cv?.current_company || "",
+        past_companies: cvData.cv?.past_companies || "",
+
+        languages:
+          cvData.languages?.map((lang) => {
+            const langName =
+              typeof lang === "string"
+                ? lang
+                : lang.language_name || lang.name || lang.label || lang.value;
+            const matched = ALL_LANGUAGES.find((l) => l.label === langName);
+            return matched || { code: "", label: langName };
+          }) || [],
+
+        cv_file: null, 
+      });
+    }
+  }, [isEdit, cvData]);
+  ////////////For Editting ///////////////
+
+  const cookies = Cookies();
+  const token = cookies.get("token-freelancer");
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState("");
   const education_level_value = [
@@ -45,15 +88,7 @@ const token = cookies.get("token-freelancer");
     "Computer Science",
     "Network Engineering",
   ];
-  const [data, setData] = useState({
-    experience_title: "",
-    education_level: "",
-    specialization: "",
-    current_company: "",
-    past_companies: "",
-    languages: [],
-    cv_file: null,
-  });
+
   // كرمال الحقول التكست
   function handleChange(e) {
     setData({
@@ -78,6 +113,7 @@ const token = cookies.get("token-freelancer");
   }
 
   function HanleGoToSkills() {
+    const apiEndpoint = isEdit ? baseURL + UpdateCv : baseURL + CreateCV;
     seterror("");
     setLoading(true);
     const formdata = new FormData();
@@ -88,14 +124,16 @@ const token = cookies.get("token-freelancer");
     formdata.append("past_companies", data.past_companies);
 
     data.languages.forEach((lang) => {
-      formdata.append("languages", lang.label);
+      const langValue =
+        typeof lang === "object" ? lang.label || lang.value : lang;
+      formdata.append("languages[]", langValue);
     });
 
     if (data.cv_file) {
       formdata.append("cv_file", data.cv_file);
     }
     axios
-      .post(baseURL + CreateCV, formdata, {
+      .post(apiEndpoint, formdata, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -104,9 +142,13 @@ const token = cookies.get("token-freelancer");
         console.log("trueeeeeeeee");
         console.log(res.data.json);
         setLoading(false);
-         navigate("/CreateSkillis")
+        if (isEdit) {
+          navigate("/freelancerlayout/showprofile/cv");
+        } else {
+          navigate("/CreateSkillis");
+        }
       })
-     
+
       .catch((err) => {
         console.log("errrror", err);
         setLoading(false);
@@ -131,7 +173,7 @@ const token = cookies.get("token-freelancer");
 
   const currentStep = 2;
   const totalSteps = 4;
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="portfolioo-page">
       {loading && <Loading />}
@@ -150,9 +192,6 @@ const token = cookies.get("token-freelancer");
               }}
             ></div>
           </div>
-
-
-   
           <span className="section-name">CV</span>
         </div>
         <h1
@@ -237,7 +276,7 @@ const token = cookies.get("token-freelancer");
         <label style={{ fontWeight: "bold", marginTop: "10px" }}>
           Languages (also choose your native language )
         </label>
-        
+
         <SelectLanguage
           value={data.languages}
           onChange={handleLanguageChange}
@@ -267,9 +306,8 @@ const token = cookies.get("token-freelancer");
           </label>
         </div>
 
-        <button onClick={HanleGoToSkills} className="NextToSkillsButton" >
-          {" "}
-          Next → Skills
+        <button onClick={HanleGoToSkills} className="NextToSkillsButton">
+          {isEdit ? "Save Changes" : "Next ➡️ Skills"}
         </button>
       </div>{" "}
     </div>

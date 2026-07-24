@@ -1,16 +1,15 @@
 import "../../Profile/styles/CreateProfile.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import Loading from "../../../../components/Loading/Loading";
-import { CreateProfile} from "../../../FreeLancer/Profile/services/freelancerprfileapi";
+import { CreateProfile,UpdateProfile} from "../../../FreeLancer/Profile/services/freelancerprfileapi";
 import { baseURL } from "../../../../services/Api/api";
-import { useNavigate } from "react-router-dom";
-export default function CreateProfilee() {
-  const currentStep = 4;
-  const totalSteps = 4;
+import { useNavigate,useLocation } from "react-router-dom";
 
+export default function CreateProfilee() {
+  
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -19,6 +18,26 @@ export default function CreateProfilee() {
     location: "",
     photo: null,
   });
+  /////////////////////for update//////////////////////////////////
+  const location = useLocation();
+  const isEdit=location.state?.isEdit ||false;
+  const profiledata=location.state?.profiledata||null;
+   useEffect(() => {
+      if (isEdit && profiledata) {
+        setData({
+          first_name: profiledata?.first_name || "",
+          last_name:profiledata?.last_name||"",
+          phone:profiledata?.phone||"",
+          birthday:profiledata?.birthday||"",
+          location:profiledata?.location||"",
+        });
+      }
+    }, [isEdit, profiledata]);
+
+  ///////////////////for update/////////////////////////////
+  const currentStep = 4;
+  const totalSteps = 4;
+
 
   const [preview, setPreview] = useState("");
 const cookies = Cookies();
@@ -70,8 +89,9 @@ console.log("TOKEN:", token);
 // for (let pair of formData.entries()) {
 //   console.log(pair[0], pair[1]);
 // }
+const ApiEndPoint=isEdit?(baseURL+UpdateProfile):(baseURL+CreateProfile);
     const response = await axios.post(
-      baseURL + CreateProfile,
+     ApiEndPoint,
       formData,
       {
         headers: {
@@ -82,7 +102,12 @@ console.log("TOKEN:", token);
 
     console.log(response.data);
 
-    navigate("/dashboard");
+   if(isEdit){
+    navigate("/FreeLancerLayout/ShowProfile/personal")
+   }
+   else{
+    navigate("/FreeLancerLayout/ShowProfile")
+   }
   } catch (err) {
     console.log("FULL ERROR:", err.response?.data);
 
@@ -246,7 +271,7 @@ console.log("TOKEN:", token);
   className="create-profile-btn"
   onClick={handleSubmit}
 >
-  Create Profile
+  {isEdit?"Save Changes":"Create Profile"}
 </button>
        
       </div>
