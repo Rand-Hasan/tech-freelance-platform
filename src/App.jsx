@@ -33,36 +33,39 @@ import PersonalInfo from './features/FreeLancer/Profile/pages/PersonalInfo';
 import ShowSkills from './features/FreeLancer/Skills/pages/ShowSkills';
 import ShowPortfolio from './features/FreeLancer/Portifolio/Pages/ShowPortfolio';
 import ShowCv from './features/FreeLancer/CV/pages/ShowCv';
+import ProjectProposal from './features/FreeLancer/project-proposal/pages/projectproposal';
+import Request from './features/FreeLancer/request/pages/client-request';
+import Myproject from './features/FreeLancer/myproject/pages/myproject';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavbarLanding />} />
         <Route path="/signin" element={<SignIn />} />
-       <Route path="/otp" element={<Otp />} />
-       <Route path="/createaccount" element={<CreateAccount />} />
-       <Route path="/forgetpassword" element={<ForgetPassword />} />
-       
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/createaccount" element={<CreateAccount />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
 
-         <Route path="/CreateSkillis" element={<CreateSkill/>}/>
+
+        <Route path="/CreateSkillis" element={<CreateSkill />} />
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
-        <Route path='CreateCv' element={<CreateCv/>}/>CreateProfile
-         <Route path="/CreateProfile" element={<CreateProfilee />} />
-        
+        <Route path='CreateCv' element={<CreateCv />} />CreateProfile
+        <Route path="/CreateProfile" element={<CreateProfilee />} />
 
 
-      {/* Client */}
+
+        {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="messages" element={<Messages />} />
-          <Route path="wallet" element={<Wallet/>} />
+          <Route path="wallet" element={<Wallet />} />
 
           <Route path="projects" element={<Projects />} />
 
-          <Route path="createproject" element={<CreateProject/>}/>
-          <Route path="editproject/:id" element={< CreateProject/>} />
-          <Route path="FindFreelancers" element={<FindFreelancers/>} />
+          <Route path="createproject" element={<CreateProject />} />
+          <Route path="editproject/:id" element={< CreateProject />} />
+          <Route path="FindFreelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
 
           <Route path="ContractDetails" element={<ContractDetails />} />
@@ -70,21 +73,27 @@ function App() {
           <Route path="setting" element={<Settings />} />
           <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
         </Route>
-       {/* Freelancer */}
-         <Route path='/freelancerlayout' element={<FreeLancerLayout/>}>
-          <Route path="contractfree" element={<ContractFree/>} />
-          <Route path='projectfree' element={<ProjectFree/>}/>
-          <Route path='messagefree' element={<MessageFree/>}/>
-          <Route path='walletfree' element={<WalletFree/>}/>
-      
-          <Route path='showprofile' element={<ShowProfile/>}>
-          <Route path='personal' element={<PersonalInfo/>}/>
-          <Route path='skills' element={<ShowSkills/>}/>
-          <Route path='portfolio' element={<ShowPortfolio/>}/>
-          <Route path='cv' element={<ShowCv/>}/>
-          <Route path='showportofoliodetails' element={<Showportofoliodetails/>}/>
+        {/* Freelancer */}
+        <Route path='/freelancerlayout' element={<FreeLancerLayout />}>
+          <Route path="contractfree" element={<ContractFree />} />
+          {/* project */}
+          <Route path='projectfree' element={<ProjectFree />}>
+            <Route path='projectproposal' element={<ProjectProposal />} />
+            <Route path='clientrequest' element={<Request />} />
+            <Route path='myproject' element={<Myproject />} />
           </Route>
-         </Route>
+
+          <Route path='messagefree' element={<MessageFree />} />
+          <Route path='walletfree' element={<WalletFree />} />
+
+          <Route path='showprofile' element={<ShowProfile />}>
+            <Route path='personal' element={<PersonalInfo />} />
+            <Route path='skills' element={<ShowSkills />} />
+            <Route path='portfolio' element={<ShowPortfolio />} />
+            <Route path='cv' element={<ShowCv />} />
+            <Route path='showportofoliodetails' element={<Showportofoliodetails />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
