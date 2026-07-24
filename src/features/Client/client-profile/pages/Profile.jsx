@@ -50,11 +50,7 @@ export default function Profile() {
       });
   }, []);
 
-  if (!PersonalData) return null;
 
-  // if (PersonalData.isError) {
-  //   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
-  // }
    const client_email=cookies.get('client_email');
 
   return (
@@ -65,7 +61,7 @@ export default function Profile() {
           <div className="PhotoDiv">
             <img
               className="Image"
-              src={PersonalData.photo ? PersonalData.photo : unKnownImageURL}
+              src={PersonalData?.photo ? PersonalData?.photo : unKnownImageURL}
               alt="Profile"
               onError={(e) => {
                 e.target.onerror = null;
@@ -75,9 +71,9 @@ export default function Profile() {
           </div>
           <div className="NameDiv">
             <h2 className="NameHTag">
-              Name : {PersonalData.first_name} {PersonalData.last_name}
+              Name : {PersonalData?.first_name} {PersonalData?.last_name}
             </h2>
-            <h6 className="NameHTag">Location :  {PersonalData.location}</h6>
+            <h6 className="NameHTag">Location :  {PersonalData?.location}</h6>
           </div>
         </div>
         <div className="NumbersDiv">
@@ -115,7 +111,7 @@ export default function Profile() {
               <div className="InfoFieldGroup">
                 <label>Full Name</label>
                 <div className="InfoFieldValue">
-                  {PersonalData.first_name} {PersonalData.last_name}
+                  {PersonalData?.first_name} {PersonalData?.last_name}
                 </div>
               </div>
 
@@ -127,17 +123,17 @@ export default function Profile() {
 
               <div className="InfoFieldGroup">
                 <label>Phone number</label>
-                <div className="InfoFieldValue">{PersonalData.phone}</div>
+                <div className="InfoFieldValue">{PersonalData?.phone}</div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Date of birth</label>
-                <div className="InfoFieldValue">{PersonalData.birthday}</div>
+                <div className="InfoFieldValue">{PersonalData?.birthday}</div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Country</label>
-                <div className="InfoFieldValue">{PersonalData.location}</div>
+                <div className="InfoFieldValue">{PersonalData?.location}</div>
               </div>
 
               {/* <div className="InfoFieldGroup">
@@ -223,7 +219,7 @@ export default function Profile() {
 
               <span className="StatusValue">
                 {PersonalData?.createdAt
-                  ? new Date(PersonalData.createdAt).toLocaleDateString(
+                  ? new Date(PersonalData?.createdAt).toLocaleDateString(
                       "en-US",
                       {
                         year: "numeric",
