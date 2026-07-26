@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ShowFreelancerFiltered } from "../services/getFreelancersApi.jsx";
 import FindFreeLancerCard from "../components/FindFreeLancerCard";
 import { baseURL } from "../../../../services/Api/api";

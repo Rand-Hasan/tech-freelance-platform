@@ -48,6 +48,10 @@ export default function ProjectDetails() {
         <NavLink to="matched-freelancers" className="tab-link">
           🤝 Matched Freelancers
         </NavLink>
+
+        {/* <NavLink to="Invaitations" className="tab-link">
+          📩 Invaitations 
+        </NavLink> */}
       </div>
 
       <div className="project-tab-content">

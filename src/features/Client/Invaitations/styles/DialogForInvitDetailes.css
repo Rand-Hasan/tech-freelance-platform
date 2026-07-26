@@ -1,0 +1,10 @@
+.CancleButton{
+    background-color: red;
+    width: 200px;
+    color: white;
+}
+.closeButton{
+    width: 200px;
+    color: white;
+    background-color: gray;
+}

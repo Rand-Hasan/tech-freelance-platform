@@ -26,23 +26,21 @@ export default function FindFreeLancerCard({ item }) {
         },
       )
       .then((response) => {
-       alert("trueeee");
+      alert(response.data.message || "done ");
         console.log(response);
         setIsInvited(true);
       })
       .catch((error) => {
         console.log(error);
-        alert("Errorrr");
+      const backendMessage = error.response?.data?.message || "Errorrr";
+        alert(backendMessage);
       });
   }
-  function HandleCancelInvite() {
-    alert("Invitation Canceled");
-    setIsInvited(false);
-  }
+
   // بس مشان نعرف ايا تابع نستخدم حسب حالة الستيت
   function HandleButtonClick() {
     if (isInvited) {
-      HandleCancelInvite();
+      alert("You Invited This Freelancer ! ");
     } else {
       HanldeInviteFreelancer();
     }
@@ -73,9 +71,9 @@ export default function FindFreeLancerCard({ item }) {
 
           <button
             onClick={HandleButtonClick}
-            className={isInvited ? "CancelButton" : "InviteButton"}
+            className={isInvited ? "HadInvitedButton" : "InviteButton"}
           >
-            {isInvited ? "Cancel Invite" : "Invite"}
+            {isInvited ? " Invited" : "Invite"}
           </button>
         </div>
       </CardContent>

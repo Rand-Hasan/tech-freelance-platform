@@ -37,6 +37,7 @@ import ShowPortfolio from "./features/FreeLancer/Portifolio/Pages/ShowPortfolio"
 import ShowCv from "./features/FreeLancer/CV/pages/ShowCv";
 import ProgressMonitor from "./features/Client/ProgressMonitor/pages/ProgressMonitor";
 import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAndCodeReview";
+import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 function App() {
   return (
     <BrowserRouter>
@@ -57,7 +58,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="messages" element={<Messages />} />
           <Route path="wallet" element={<Wallet />} />
-
+           <Route path="Invaitations" element={<Invaitations/>}/>
           <Route path="projects" element={<Projects />} />
 
           <Route path="createproject" element={<CreateProject />} />
@@ -75,6 +76,7 @@ function App() {
             <Route path="matched-freelancers" element={<MatchedFreelancers />} />
             <Route path="progress-monitor" element={<ProgressMonitor/>}/>
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview/>}/>
+           
           </Route>
 
         </Route>
