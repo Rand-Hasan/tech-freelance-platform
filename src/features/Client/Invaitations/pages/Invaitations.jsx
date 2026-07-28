@@ -38,7 +38,7 @@ export default function Invaitations() {
       {invaitations.map((item) => (
         <div className="Container">
           <div
-            onClick={() => HandleShowInvaitDetailes(item.id)}
+            onClick={() => HandleShowInvaitDetailes(item)}
             key={item.id}
             className="FreelacneAndProjectName"
           >
