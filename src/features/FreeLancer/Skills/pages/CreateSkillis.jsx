@@ -26,7 +26,6 @@ export default function CreateSkill() {
             .then((res) => {
                 setallSkill(res.data.skills);
                 console.log("dataaaaa:", res.data.skills);
-                console.log("iddddddddddddddddd:",res.data.skills.id)
             })
             .catch((err) => {
                 console.error("حدث خطأ أثناء جلب البيانات:", err);
@@ -67,8 +66,8 @@ export default function CreateSkill() {
         });
     };
     return (
-        <div className="portfolio-page">
-            <div className="portfolio-card">
+        <div className="Skill-page">
+            <div className="Skill-card">
 
                 {/* Progress */}
                 <div className="progress-wrapper">
@@ -88,7 +87,7 @@ export default function CreateSkill() {
                     <span className="section-name">skill</span>
 
                 </div>
-                <div className="portfolio-header">
+                <div className="Skill-header">
                     <h1>Add your skills</h1>
 
                     <p>

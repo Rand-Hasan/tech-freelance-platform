@@ -4,6 +4,7 @@ import "../styles/forgetPassword.css";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import { baseURL } from "../../../services/Api/api";
+import { jwtDecode } from "jwt-decode";
 import {
   ResetPassword,
   VerfiyResetPassword,
@@ -12,10 +13,11 @@ import {
 import Loading from "../../../components/Loading/Loading";
 
 export default function ForgetPassword() {
+   const cookies = Cookies();
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
-  const email = Cookies.get("reset_email");
-  const role = Cookies.get("role");
+  const email = cookies.get("reset_email");
+
   const [data, setdata] = useState({
     new_password: "",
     new_password_confirmation: "",
@@ -113,18 +115,18 @@ export default function ForgetPassword() {
       .then((res) => {
         console.log("trueeeeeeeeee resetting ! ");
         setError({});
-        Cookies.remove("reset_email");
+        cookies.remove("reset_email");
         setLoading(false);
-
-        
-        if (role === "freelancer") {
-          Cookies.set("token-freelancer", res.data.token, {
+        const token = res.data.token;
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role===1) {
+          cookies.set("token-freelancer", res.data.token, {
             path: "/",
             maxAge: 60 * 60 * 24 * 7,
           });
           navigate("/freelancerlayout");
-        } else {
-          Cookies.set("token-client", res.data.token, {
+        } else if(decodedToken.role===2) {
+          cookies.set("token-client", res.data.token, {
             path: "/",
             maxAge: 60 * 60 * 24 * 7,
           });

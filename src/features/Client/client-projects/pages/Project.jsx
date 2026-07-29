@@ -155,14 +155,14 @@ export default function Projects() {
               {getInitial(project.project_name)}
             </div>
 
-        
+            {/* تعديل من مجد */}
             <div
               className="project-details"
               onClick={() => {
-                cookies.set("projectId", project.id, { path: "/" });
                 navigate(`/clientlayout/projectdetails/${project.id}`);
               }}
             >
+              {/* انتهى تعديل مجد */}
               <h3 className="project-name">{project.project_name}</h3>
 
               <p className="project-freelancer">

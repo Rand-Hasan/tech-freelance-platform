@@ -1,6 +1,7 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { useState } from "react";
+import { useState, } from "react";
+import { useParams } from "react-router-dom";
 import "../styles/FindFreeLancerCard.css";
 import Cookies from "cookie-universal";
 import { InviteFreelancer } from "../services/inviteFreelancer.jsx";
@@ -12,7 +13,7 @@ export default function FindFreeLancerCard({ item }) {
 
   const freelancer_id = item.freelancer_id;
   const cookies = Cookies();
-  const projectId = cookies.get("projectId");
+  const { id: projectId } = useParams();
   const token = cookies.get("token-client");
   function HanldeInviteFreelancer() {
     axios

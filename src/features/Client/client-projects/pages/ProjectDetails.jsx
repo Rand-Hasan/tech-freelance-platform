@@ -1,13 +1,11 @@
-import { Outlet, NavLink, useLocation,useParams } from "react-router-dom";
+import { Outlet, NavLink, useParams } from "react-router-dom";
 import "../styles/ProjectDetailes.css";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
 
 export default function ProjectDetails() {
-   
   const navigate = useNavigate();
-    const cookies = new Cookies();
-    const ProjectId=cookies.get("projectId");
+  const { id: ProjectId } = useParams();
+
   return (
     <div className="project-details-containerr">
       <div className="project-info-header">
@@ -19,9 +17,7 @@ export default function ProjectDetails() {
         >
           ⬅️Back to My Projects
         </button>
-        <h2>
-           ID Of Project : {ProjectId}
-        </h2>
+        <h2>ID Of Project : {ProjectId}</h2>
         <p>Complete redesign of the storefront...</p>
         <div className="info-stats">
           <span>Freelancer: Ahmad</span>

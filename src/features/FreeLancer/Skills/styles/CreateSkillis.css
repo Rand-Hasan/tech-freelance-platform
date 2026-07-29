@@ -5,26 +5,26 @@
     gap:25px;
 }
 
-/* .portfolio-card{
+.Skill-card{
     width:780px;
     margin:auto;
     background:white;
     border-radius:18px;
     padding:35px;
-} */
+}
 
-.portfolio-header{
+.Skill-header{
     margin:25px 0;
 }
 
-.portfolio-header h1{
+.Skill-header h1{
     font-size:35px;
     font-weight:600;
     color:#1b2a2f;
     margin-bottom:8px;
 }
 
-.portfolio-header p{
+.Skill-header p{
     font-size:15px;
     color:#6b7280;
     line-height:1.6;

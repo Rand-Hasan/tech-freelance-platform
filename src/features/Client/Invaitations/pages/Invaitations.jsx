@@ -46,9 +46,7 @@ export default function Invaitations() {
             <h3> 🧑🏼‍🎓Freelancer Name : {item.freelancer_name} </h3>
             <h4> 📊Project Name : {item.project_name} </h4>
           </div>
-          {/* <button onClick={HandleCancleInvitation} className="CancleButton">
-            Cancel Invite
-          </button> */}
+         
         </div>
       ))}
       <DialogForInvitDetailes

@@ -1,0 +1,257 @@
+.project-details-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 25px 30px 50px;
+}
+
+
+/* Back Button */
+
+.back-projects-btn {
+    border: none;
+    background: transparent;
+
+    color: #007a63;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+}
+
+.back-projects-btn:hover {
+    color: #005a49;
+}
+
+
+/* Header */
+
+.project-details-header-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5e3;
+    border-radius: 18px;
+
+    padding: 28px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Title Section */
+
+.project-details-title-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.project-details-icon {
+    width: 58px;
+    height: 58px;
+
+    background: #e5f5f0;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+
+.project-details-title-section h1 {
+    margin: 0 0 6px;
+
+    color: #10202d;
+
+    font-size: 24px;
+}
+
+
+.project-details-title-section span {
+    color: #71808c;
+
+    font-size: 14px;
+}
+
+
+/* Price */
+
+.project-details-price {
+    padding: 12px 20px;
+
+    background: #e8f6f3;
+
+    border: 1px solid #c7ebe3;
+
+    border-radius: 12px;
+
+    color: #007a63;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* Description */
+
+.project-description-section {
+    margin-top: 20px;
+
+    padding: 28px 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5e3;
+
+    border-radius: 18px;
+}
+
+
+.project-description-section h2,
+.project-info-card h2,
+.submit-offer-card h2 {
+    margin: 0 0 16px;
+
+    color: #10202d;
+
+    font-size: 18px;
+}
+
+
+.project-description-section p {
+    margin: 0;
+
+    color: #52677a;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* Bottom Grid */
+
+.project-details-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+/* Information Card */
+
+.project-info-card {
+    padding: 28px 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5e3;
+
+    border-radius: 18px;
+}
+
+
+.project-info-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+.project-info-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 16px;
+
+    background: #f7faf9;
+
+    border-radius: 10px;
+}
+
+
+.info-label {
+    color: #52677a;
+
+    font-size: 14px;
+}
+
+
+.project-info-item strong {
+    color: #10202d;
+
+    font-size: 14px;
+}
+
+
+/* Submit Offer */
+
+.submit-offer-card {
+    padding: 28px 32px;
+
+    background: #eaf7f3;
+
+    border: 1px solid #c7ebe3;
+
+    border-radius: 18px;
+}
+
+
+.submit-offer-card p {
+    color: #52677a;
+
+    font-size: 14px;
+
+    margin-bottom: 24px;
+}
+
+
+/* Button */
+
+.details-submit-offer {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #00866b;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.details-submit-offer:hover {
+    background: #006f59;
+}
