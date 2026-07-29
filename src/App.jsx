@@ -6,7 +6,7 @@ import Otp from "./features/Auth/pages/Otp";
 import ForgetPassword from "./features/Auth/pages/ForgetPassword";
 import CreateAccount from "./features/Auth/pages/CreateAccount";
 import NavbarLanding from "./features/landing-page/pages/navbarlanding";
-import Messages from "./features/Client/client- messages/pages/Messages";
+import Messages from "./features/Client/client- messages/pages/MessageClient";
 import Dashboard from "./features/Client/client-dashboard/pages/Dashboard";
 import FindFreelancers from "./features/Client/client-findfreelancer/pages/FindFreelancers";
 import Wallet from "./features/Client/client-wallet/pages/Wallet";

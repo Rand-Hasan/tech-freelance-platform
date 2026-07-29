@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
@@ -5,10 +6,10 @@ import { baseURL } from "../../../../services/Api/api";
 import {
   getMyConversations,
   getMessages,
-} from "../../../FreeLancer/freelancer-message/services/freelancer-messages";
-import "../../../FreeLancer/freelancer-message/styles/MessageFree.css";
-import socket from "../../../FreeLancer/freelancer-message/pages/socket";
-export default function MessageFree() {
+} from "../services/MessageClientapi";
+import "../../../Client/client- messages/styles/MessageClient.css";
+import socket from "./socket";
+export default function MessageClient() {
   const cookies = Cookies();
 
   const [conversations, setConversations] = useState([]);
@@ -35,8 +36,8 @@ const [text, setText] = useState("");
 }, []);
   async function getConversations() {
     try {
-      const token = cookies.get("token-freelancer");
-
+      const token = cookies.get("token-client");
+console.log(cookies.get("token-client"));
       const res = await axios.get(`${baseURL}${getMyConversations}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -44,7 +45,7 @@ const [text, setText] = useState("");
       });
 
       console.log("Conversations:", res.data);
-console.log(cookies.get("token-freelancer"));
+
       setConversations(res.data.conversations || []);
     } catch (err) {
       console.log(err.response?.data || err);
@@ -53,7 +54,7 @@ console.log(cookies.get("token-freelancer"));
 
   async function handleGetMessages(conversationId) {
     try {
-      const token = cookies.get("token-freelancer");
+      const token = cookies.get("token-client");
 
       const res = await axios.get(
         `${baseURL}${getMessages}${conversationId}`,
@@ -86,7 +87,6 @@ console.log(cookies.get("token-freelancer"));
     content: text,
   });
 
- 
   // setMessages((prev) => [
   //   ...prev,
   //   {
@@ -102,7 +102,7 @@ console.log(cookies.get("token-freelancer"));
   return (
     <div className="messages-page">
       <h1>Messages</h1>
-      <p>Your inbox and client conversations</p>
+      <p>Your inbox and Freelancer conversations</p>
 
       <div className="chat-container">
         <div className="sidebarr">
@@ -123,7 +123,7 @@ console.log(cookies.get("token-freelancer"));
 
               <div className="chat-info">
                 <h4>Conversation #{chat.id}</h4>
-                <p>Client ID: {chat.clientId}</p>
+            <p>Freelancer ID: {chat.freelancerId}</p>
               </div>
 
               <span>
