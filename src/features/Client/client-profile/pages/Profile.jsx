@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Loading from "../../../../components/Loading/Loading";
 export default function Profile() {
+ 
   const [PersonalData, setPersonalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const cookies = Cookies();
-  const token = cookies.get("token");
+  const token = cookies.get("token-client");
   const navigate = useNavigate();
   const unKnownImageURL = new URL(
     "../../../../assets/UnknownPerson.png",
@@ -49,11 +50,8 @@ export default function Profile() {
       });
   }, []);
 
-  if (!PersonalData) return null;
 
-  // if (PersonalData.isError) {
-  //   return <div style={{ color: "red", padding: "30px", textAlign: "center", fontWeight: "bold" }}>{PersonalData.text}</div>;
-  // }
+   const client_email=cookies.get('client_email');
 
   return (
     <div className="MyProfile">
@@ -63,7 +61,7 @@ export default function Profile() {
           <div className="PhotoDiv">
             <img
               className="Image"
-              src={PersonalData.photo ? PersonalData.photo : unKnownImageURL}
+              src={PersonalData?.photo ? PersonalData?.photo : unKnownImageURL}
               alt="Profile"
               onError={(e) => {
                 e.target.onerror = null;
@@ -73,9 +71,9 @@ export default function Profile() {
           </div>
           <div className="NameDiv">
             <h2 className="NameHTag">
-              Name : {PersonalData.first_name} {PersonalData.last_name}
+              Name : {PersonalData?.first_name} {PersonalData?.last_name}
             </h2>
-            <h6 className="NameHTag">Location :  {PersonalData.location}</h6>
+            <h6 className="NameHTag">Location :  {PersonalData?.location}</h6>
           </div>
         </div>
         <div className="NumbersDiv">
@@ -94,9 +92,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <NavLink to="/setting">
-          <button className="EditProfileButton">Edit Profile</button>
-        </NavLink>
+       
 
      <NavLink to="/clientlayout/setting">
   <button className="EditProfileButton">
@@ -115,34 +111,35 @@ export default function Profile() {
               <div className="InfoFieldGroup">
                 <label>Full Name</label>
                 <div className="InfoFieldValue">
-                  {PersonalData.first_name} {PersonalData.last_name}
+                  {PersonalData?.first_name} {PersonalData?.last_name}
                 </div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Email</label>
-                <div className="InfoFieldValue"></div>
+                
+                <div className="InfoFieldValue">{client_email}</div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Phone number</label>
-                <div className="InfoFieldValue">{PersonalData.phone}</div>
+                <div className="InfoFieldValue">{PersonalData?.phone}</div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Date of birth</label>
-                <div className="InfoFieldValue">{PersonalData.birthday}</div>
+                <div className="InfoFieldValue">{PersonalData?.birthday}</div>
               </div>
 
               <div className="InfoFieldGroup">
                 <label>Country</label>
-                <div className="InfoFieldValue">{PersonalData.location}</div>
+                <div className="InfoFieldValue">{PersonalData?.location}</div>
               </div>
 
-              <div className="InfoFieldGroup">
+              {/* <div className="InfoFieldGroup">
                 <label>Company</label>
                 <div className="InfoFieldValue"></div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="Technical_Assessment_Result">
@@ -222,7 +219,7 @@ export default function Profile() {
 
               <span className="StatusValue">
                 {PersonalData?.createdAt
-                  ? new Date(PersonalData.createdAt).toLocaleDateString(
+                  ? new Date(PersonalData?.createdAt).toLocaleDateString(
                       "en-US",
                       {
                         year: "numeric",

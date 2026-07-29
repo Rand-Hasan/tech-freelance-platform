@@ -1,0 +1,148 @@
+/* هي الاب الحاوي للكاردات كرمال فكرة الغريد */
+.FreelancersGridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px; 
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.FindFreeLancerCard {
+    width: 100%;
+    height: 100%; 
+    border-radius: 20px !important;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08) !important;
+    transition: 0.3s ease-in-out; 
+}
+.FindFreeLancerCard:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.CardContent {
+    display: flex;
+    justify-content: space-between; 
+    height: 100%;
+    padding: 20px !important; 
+    box-sizing: border-box;
+}
+
+.LeftSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    flex: 1; 
+}
+
+.NameAndFirstLater {
+    display: flex;
+    gap: 15px;
+    align-items: center; 
+}
+.NameOfFreeLancerAndNickName h3, 
+.NameOfFreeLancerAndNickName h6 {
+    margin: 0;
+}
+.NameOfFreeLancerAndNickName h3 {
+    font-size: 16px;
+}
+.NameOfFreeLancerAndNickName h6 {
+    font-weight: normal;
+    color: gray;
+    margin-top: 4px;
+}
+
+.FirstLaterOfFreeLancer {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #46A095;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    animation: changeAvatarColor 10s infinite ease-in-out;
+}
+@keyframes changeAvatarColor {
+    0%, 100% { background-color: #46A095; }
+    20%      { background-color: #7B3FE6; }
+    40%      { background-color: #E68909; }
+    60%      { background-color: #C84035; }
+    80%      { background-color: #048145; }
+}
+
+.StatusOfFreeLancer {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.SkillsOfFreeLancer {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    margin-top: 15px;
+}
+.SkillItemOfFreeLancer {
+    padding: 5px 12px;
+    background-color: #e4f8f2;
+    border-radius: 6px;
+    color: gray;
+    font-size: 12px;
+}
+
+.CountOfProjectCompleted {
+    font-size: 12px;
+    margin-top: 20px;
+    color: gray;
+}
+
+.RightSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: flex-end; 
+    min-width: 100px;
+    margin-left: 20px;
+}
+
+.monyInHour {
+    color: #46A095;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.RaitingOfFreeLancer {
+    padding: 5px 10px;
+    background-color: #e4f8f2;
+    border-radius: 9px;
+    color: gray;
+    font-size: 12px;
+    margin-top: 10px; 
+}
+
+.InviteButton {
+    padding: 8px 25px; 
+    border-radius: 10px;
+    background-color: #46A095;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.InviteButton:hover {
+    background-color: #056d61;
+}
+.HadInvitedButton {
+    padding: 8px 20px; 
+    border-radius: 10px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}

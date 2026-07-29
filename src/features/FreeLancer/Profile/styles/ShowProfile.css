@@ -43,6 +43,11 @@
     margin-top: -64px;
     z-index: 2;
 }
+.ProfileImage{
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
 
 .profile-info-text {
     flex-grow: 1; 

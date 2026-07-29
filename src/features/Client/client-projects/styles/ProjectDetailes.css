@@ -1,0 +1,24 @@
+.project-info-header{
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 30px;
+    border: 0.1px gray solid;
+}
+.project-details-containerrr{
+    width: 100%;
+}
+.back-btn{
+    /* background-color: red; */
+    margin-bottom: 0;
+}
+.info-stats{
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 200px;
+
+}

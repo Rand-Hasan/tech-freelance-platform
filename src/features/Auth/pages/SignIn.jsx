@@ -11,8 +11,8 @@ import { LogIn, ForgetPassword } from "../Services/api_auth";
 import Loading from "../../../components/Loading/Loading";
 export default function SignIn() {
   const navigate = useNavigate();
-    const cookies = Cookies();
-  const role = cookies.get("role");
+  const cookies = Cookies();
+  // const role = cookies.get("role");
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -78,22 +78,23 @@ export default function SignIn() {
       .post(baseURL + LogIn, bodyData)
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
-         setLoading(false);
-       
+        setLoading(false);
         setError({});
-        Cookies.set("token", res.data.token, {
-          expires: 7, 
-        // setError({});
-          secure: true,
-        });
-         if(role==="client"){
+         const message = res.data.message?.toLowerCase() || "";
+        if (message.includes("freelancer")) {
+          cookies.set("token-freelancer", res.data.token, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7,
+          });
+          navigate("/freelancerlayout");
+        } else if(message.includes("client")){
+          cookies.set("token-client", res.data.token, {
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7,
+          });
           navigate("/clientlayout");
-        }else {
-          navigate("/الرئيسية الخاصة بالمستقل");
-       }
-        
-     
-       })
+        }
+      })
       .catch((err) => {
         const { errors, message } = err.response?.data || {};
 
@@ -112,7 +113,7 @@ export default function SignIn() {
             setError({ [isPwd ? "password" : "email"]: message });
           else console.log(message);
         }
-         setLoading(false);
+        setLoading(false);
       });
   }
   function HandleForgetPassword() {
@@ -131,8 +132,8 @@ export default function SignIn() {
       })
       .then((res) => {
         console.log(res.data);
-        Cookies.set("reset_email", data.email);
-         setLoading(false);
+        cookies.set("reset_email", data.email);
+        setLoading(false);
         navigate("/ForgetPassword");
       })
       .catch((err) => {
@@ -141,7 +142,7 @@ export default function SignIn() {
           err.response?.data?.message || "An error occurred. Please try again.";
 
         setError({ email: backendMessage });
-         setLoading(false);
+        setLoading(false);
       });
   }
   return (

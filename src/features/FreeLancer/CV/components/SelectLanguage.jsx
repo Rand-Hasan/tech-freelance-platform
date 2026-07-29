@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 export default function SelectLanguage({ value, onChange }) {
+  
   const englishOption = { code: 'GB', label: 'English' };
 
   const [internalValue, setInternalValue] = useState(
     value && value.length > 0 ? value : [englishOption]
   );
+  useEffect(() => {
+  if (value && value.length > 0) {
+    setInternalValue(value);
+  }
+}, [value]);
 
   const handleChange = (event, newValue, reason) => {
     let finalValue = newValue;
@@ -27,6 +33,7 @@ export default function SelectLanguage({ value, onChange }) {
       onChange(finalValue); 
     }
   };
+  
 
   return (
     <Autocomplete
@@ -133,7 +140,7 @@ export default function SelectLanguage({ value, onChange }) {
   );
 }
 
-const languages = [
+export const languages = [
   { code: 'SA', label: 'Arabic' },
   { code: 'GB', label: 'English' },
   { code: 'FR', label: 'French' },

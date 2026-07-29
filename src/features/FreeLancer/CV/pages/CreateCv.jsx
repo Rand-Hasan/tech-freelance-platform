@@ -1,17 +1,61 @@
 import "../../Portifolio/Styles/CreatePortifolio.css";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react"; // تأكد إنك مستورده
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
-import { CreateCV } from "../services/CreateCvApi";
+import { CreateCV, UpdateCv } from "../services/CvAPI";
 import { baseURL } from "../../../../services/Api/api";
 import Loading from "../../../../components/Loading/Loading";
 import "../styles/CreateCv.css";
-import SelectLanguage from "../components/SelectLanguage";
-const cookies = Cookies();
-const token = cookies.get("token");
+
+import SelectLanguage, {
+  languages as ALL_LANGUAGES,
+} from "../components/SelectLanguage";
+
 export default function CreateCv() {
+  const [data, setData] = useState({
+    experience_title: "",
+    education_level: "",
+    specialization: "",
+    current_company: "",
+    past_companies: "",
+    languages: [],
+    cv_file: null,
+  });
+
+  ///////////For Editting ///////////////
+  const location = useLocation();
+  const isEdit = location.state?.isEdit || false;
+  const cvData = location.state?.cvData || null;
+  useEffect(() => {
+    if (isEdit && cvData) {
+      setData({
+        experience_title: cvData.cv?.experience_title || "",
+        education_level: cvData.cv?.education_level || "",
+        specialization: cvData.cv?.specialization || "",
+        current_company: cvData.cv?.current_company || "",
+        past_companies: cvData.cv?.past_companies || "",
+
+        languages:
+          cvData.languages?.map((lang) => {
+            const langName =
+              typeof lang === "string"
+                ? lang
+                : lang.language_name || lang.name || lang.label || lang.value;
+            const matched = ALL_LANGUAGES.find((l) => l.label === langName);
+            return matched || { code: "", label: langName };
+          }) || [],
+
+        cv_file: null, 
+      });
+    }
+  }, [isEdit, cvData]);
+  ////////////For Editting ///////////////
+
+  const cookies = Cookies();
+  const token = cookies.get("token-freelancer");
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState("");
   const education_level_value = [
@@ -44,15 +88,7 @@ export default function CreateCv() {
     "Computer Science",
     "Network Engineering",
   ];
-  const [data, setData] = useState({
-    experience_title: "",
-    education_level: "",
-    specialization: "",
-    current_company: "",
-    past_companies: "",
-    languages: [],
-    cv_file: null,
-  });
+
   // كرمال الحقول التكست
   function handleChange(e) {
     setData({
@@ -77,6 +113,7 @@ export default function CreateCv() {
   }
 
   function HanleGoToSkills() {
+    const apiEndpoint = isEdit ? baseURL + UpdateCv : baseURL + CreateCV;
     seterror("");
     setLoading(true);
     const formdata = new FormData();
@@ -87,14 +124,16 @@ export default function CreateCv() {
     formdata.append("past_companies", data.past_companies);
 
     data.languages.forEach((lang) => {
-      formdata.append("languages", lang.label);
+      const langValue =
+        typeof lang === "object" ? lang.label || lang.value : lang;
+      formdata.append("languages[]", langValue);
     });
 
     if (data.cv_file) {
       formdata.append("cv_file", data.cv_file);
     }
     axios
-      .post(baseURL + CreateCV, formdata, {
+      .post(apiEndpoint, formdata, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,8 +142,13 @@ export default function CreateCv() {
         console.log("trueeeeeeeee");
         console.log(res.data.json);
         setLoading(false);
+        if (isEdit) {
+          navigate("/freelancerlayout/showprofile/cv");
+        } else {
+          navigate("/CreateSkillis");
+        }
       })
-      navigate("/CreateSkillis")
+
       .catch((err) => {
         console.log("errrror", err);
         setLoading(false);
@@ -129,7 +173,7 @@ export default function CreateCv() {
 
   const currentStep = 2;
   const totalSteps = 4;
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="portfolioo-page">
       {loading && <Loading />}
@@ -148,9 +192,6 @@ export default function CreateCv() {
               }}
             ></div>
           </div>
-
-
-   
           <span className="section-name">CV</span>
         </div>
         <h1
@@ -235,7 +276,7 @@ export default function CreateCv() {
         <label style={{ fontWeight: "bold", marginTop: "10px" }}>
           Languages (also choose your native language )
         </label>
-        
+
         <SelectLanguage
           value={data.languages}
           onChange={handleLanguageChange}
@@ -265,9 +306,8 @@ export default function CreateCv() {
           </label>
         </div>
 
-        <button onClick={HanleGoToSkills} className="NextToSkillsButton" >
-          {" "}
-          Next → Skills
+        <button onClick={HanleGoToSkills} className="NextToSkillsButton">
+          {isEdit ? "Save Changes" : "Next ➡️ Skills"}
         </button>
       </div>{" "}
     </div>

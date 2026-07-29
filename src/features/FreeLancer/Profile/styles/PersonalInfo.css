@@ -1,0 +1,40 @@
+.personalInfoAndEditButton{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.EditButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    background-color:#1e9a7b ;
+    color: white;
+    font-weight: bold;
+    border: #1e9a7b;
+    cursor: pointer;
+}
+.divThatContain2div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.FullNameAndLocationDiv{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap:20px;
+  
+}
+.phoneNumberAndBirthdayDiv{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap:20px;
+  
+}
+h5{
+    color: gray;
+}

@@ -6,9 +6,11 @@ import { RespondToInvitation, ShowInitaions, ShowInvitaionById } from "../servic
 import CardInvation from "../components/CardInvation";
 import { Pagination } from "@mui/material";
 import '../styles/ShowInvationFree.css';
+import { useNavigate } from "react-router-dom";
 export default function ShowInvationFree() {
     const cookies = new Cookies();
     const token = cookies.get('token-freelancer');
+    const navigate= useNavigate();
     console.log(token)
     const [Invitations, setInvitations] = useState([]);
     const [page, setPage] = useState(1);
@@ -28,6 +30,7 @@ export default function ShowInvationFree() {
             })
 
             setInvitations(res.data.invitations);
+           
         } catch (err) {
 
             console.error("", err);
@@ -84,6 +87,7 @@ export default function ShowInvationFree() {
      setSelectedInvitation(null);
 
         showInvitation(page);
+         navigate('/freelancerlayout/messagefree')
         }catch(err){
             console.log('hfujfdjjfiojdoiskdksdssklklsdksljdjf')
         }
