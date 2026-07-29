@@ -6,7 +6,7 @@ import Otp from './features/Auth/pages/Otp';
 import ForgetPassword from './features/Auth/pages/ForgetPassword';
 import CreateAccount from './features/Auth/pages/CreateAccount';
 import NavbarLanding from './features/landing-page/pages/navbarlanding';
-import Messages from './features/Client/client- messages/pages/Messages';
+import MessageClient from './features/Client/client- messages/pages/MessageClient';
 import Dashboard from './features/Client/client-dashboard/pages/Dashboard';
 import FindFreelancers from './features/Client/client-findfreelancer/pages/FindFreelancers';
 import Wallet from './features/Client/client-wallet/pages/Wallet';
@@ -42,6 +42,7 @@ import ProgressMonitor from "./features/Client/ProgressMonitor/pages/ProgressMon
 import StagesAndTasks from './features/Client/StagesAndTasks/pages/StagesAndTasks';
 import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAndCodeReview";
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
+
 function App() {
   return (
     <BrowserRouter>
@@ -55,15 +56,15 @@ function App() {
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path='CreateCv' element={<CreateCv />} />
         <Route path="/CreateProfile" element={<CreateProfilee />} />
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="messages" element={<Messages />} />
+          <Route path="messageClient" element={<MessageClient/>} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
-          <Route path='Invaitations' element={<Invaitations/>}/>
+          <Route path='invaitations' element={<Invaitations/>}/>
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
