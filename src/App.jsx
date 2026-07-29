@@ -55,7 +55,7 @@ function App() {
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path='CreateCv' element={<CreateCv />} />
         <Route path="/CreateProfile" element={<CreateProfilee />} />
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
@@ -63,6 +63,7 @@ function App() {
           <Route path="messages" element={<Messages />} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
+          <Route path='Invaitations' element={<Invaitations/>}/>
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
@@ -91,8 +92,9 @@ function App() {
             <Route path='projectproposaldetails/:id' element={<ProjectProposalDetails />} />
             <Route path='freelancerrequest' element={<ShowInvationFree />} />
             <Route path='myproject' element={<Myproject />} />
+             
           </Route>
-          <Route path='messagefree' element={<MessageFree />} />
+         <Route path='messagefree' element={<MessageFree />} />
           <Route path='walletfree' element={<WalletFree />} />
           {/* Show Profile */}
           <Route path='showprofile' element={<ShowProfile />}>

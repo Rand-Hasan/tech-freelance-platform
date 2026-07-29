@@ -1,0 +1,141 @@
+/* الحاوية التي تحتوي كل الدعوات */
+.invitations-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* Invitation Card */
+.invitation-card {
+    width: 100%;
+    min-height: 100px;
+
+    padding: 22px 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5e3;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    box-sizing: border-box;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover */
+.invitation-card:hover {
+    border-color: #00866b;
+
+    box-shadow: 0 8px 20px rgba(0, 111, 89, 0.08);
+
+    /* transform: translateY(-2px); */
+}
+
+
+/* الأيقونة */
+.invitation-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    background: #e5f5f0;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+/* محتوى الكارد */
+.invitation-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* عنوان الدعوة */
+.invitation-title {
+    margin: 0;
+
+    color: #17212b;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* Direct Invitation */
+.invitation-title span {
+    color: #007a63;
+
+    font-weight: 600;
+}
+
+
+/* اسم العميل */
+.invitation-client {
+    margin: 7px 0 0;
+
+    color: #7a8790;
+
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+/* زر السهم */
+.invitation-arrow {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eef8f5;
+
+    color: #00866b;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover على السهم */
+.invitation-arrow:hover {
+    background: #00866b;
+
+    color: #ffffff;
+
+    transform: translateX(4px);
+}
+
+
+

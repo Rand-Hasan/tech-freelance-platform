@@ -6,10 +6,10 @@ import Cookies from "cookie-universal";
 import Loading from "../../../../components/Loading/Loading";
 import { CreateProfile,UpdateProfile} from "../../../FreeLancer/Profile/services/freelancerprfileapi";
 import { baseURL } from "../../../../services/Api/api";
+
 import { useNavigate,useLocation } from "react-router-dom";
 
 export default function CreateProfilee() {
-  
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -71,6 +71,7 @@ async function handleSubmit() {
     setError("");
 
     const token = cookies.get("token-freelancer");
+    console.log(token)
 
     const formData = new FormData();
 

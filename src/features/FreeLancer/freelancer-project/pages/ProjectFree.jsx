@@ -11,7 +11,7 @@ export default function ProjectFree(){
             </div>
             <div className="project-tabs">
                 <NavLink to="projectproposal">🔍 Available Projects</NavLink>
-                <NavLink to="clientrequest">📩 Client Requests</NavLink>
+                <NavLink to="freelancerrequest">📩 Client Requests</NavLink>
                  <NavLink to="myproject">💼 My Projects</NavLink>
             </div>
             <div className="view-project">
