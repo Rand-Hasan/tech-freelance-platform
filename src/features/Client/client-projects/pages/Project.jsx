@@ -159,7 +159,6 @@ export default function Projects() {
             <div
               className="project-details"
               onClick={() => {
-                cookies.set("projectId", project.id, { path: "/" });
                 navigate(`/clientlayout/projectdetails/${project.id}`);
               }}
             >

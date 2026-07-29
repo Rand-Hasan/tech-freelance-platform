@@ -4,9 +4,10 @@ import { baseURL } from "../../../../services/Api/api";
 import "../styles/MatchedFreelancers.css";
 import { useEffect, useState } from "react";
 import Cookies from "cookie-universal";
+import { useParams } from "react-router-dom";
 export default function MatchedFreelancers() {
   const cookies = Cookies();
-  const projectId = cookies.get("projectId");
+  const { id: projectId } = useParams();
   const token = cookies.get("token-client");
   const [freelancers, setfreelancers] = useState([]);
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function MatchedFreelancers() {
       })
       .then((data) => {
         setfreelancers(data.freelancer || []);
-        
+        console.log(data.freelancer)
       })
       .catch((error) => {
         console.log(error.message);

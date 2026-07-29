@@ -12,7 +12,7 @@ import Loading from "../../../components/Loading/Loading";
 export default function SignIn() {
   const navigate = useNavigate();
   const cookies = Cookies();
-  const role = cookies.get("role");
+  // const role = cookies.get("role");
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -79,16 +79,15 @@ export default function SignIn() {
       .then((res) => {
         console.log("trueeeeeeeeeeee", res.data);
         setLoading(false);
-
         setError({});
-
-        if (role === "freelancer") {
+         const message = res.data.message?.toLowerCase() || "";
+        if (message.includes("freelancer")) {
           cookies.set("token-freelancer", res.data.token, {
             path: "/",
             maxAge: 60 * 60 * 24 * 7,
           });
           navigate("/freelancerlayout");
-        } else {
+        } else if(message.includes("client")){
           cookies.set("token-client", res.data.token, {
             path: "/",
             maxAge: 60 * 60 * 24 * 7,
@@ -133,7 +132,7 @@ export default function SignIn() {
       })
       .then((res) => {
         console.log(res.data);
-        Cookies.set("reset_email", data.email);
+        cookies.set("reset_email", data.email);
         setLoading(false);
         navigate("/ForgetPassword");
       })

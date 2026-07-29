@@ -46,7 +46,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/createaccount" element={<CreateAccount />} />
-        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
         <Route path="/CreateSkillis" element={<CreateSkill />} />
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path="CreateCv" element={<CreateCv />} />

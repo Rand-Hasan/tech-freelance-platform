@@ -71,7 +71,7 @@ export default function DialogForInvitDetailes({ open, onClose, invite }) {
   return (
     <Dialog
       className="Dialog"
-      // PaperProps={{ className: 'DialogCard' }}
+      
       open={open}
       slots={{
         transition: Transition,
