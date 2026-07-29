@@ -7,7 +7,7 @@ import Loading from "../../../../components/Loading/Loading";
 import { CreateProfile} from "../../../FreeLancer/Profile/services/freelancerprfileapi";
 import { baseURL } from "../../../../services/Api/api";
 import { useNavigate } from "react-router-dom";
-export default function CreateProfilee() {
+export default function CreateProfilefree() {
   const currentStep = 4;
   const totalSteps = 4;
 
@@ -52,6 +52,7 @@ async function handleSubmit() {
     setError("");
 
     const token = cookies.get("token-freelancer");
+    console.log(token)
 
     const formData = new FormData();
 
@@ -82,7 +83,7 @@ console.log("TOKEN:", token);
 
     console.log(response.data);
 
-    navigate("/dashboard");
+    navigate("freelancerlayout");
   } catch (err) {
     console.log("FULL ERROR:", err.response?.data);
 

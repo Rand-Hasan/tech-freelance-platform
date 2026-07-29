@@ -9,15 +9,15 @@ export default function ClientHeader({ setSidebarOpen }) {
   const navigate = useNavigate();
   const pagetitle ={
     "/dashboard": "overview",
-    "/projects" : "My Projects",
-    "/messages" : "Messages" ,
-    "/wallet"   : "Wallet" ,
-    "/find-freelancers" : "Find Freelancers",
-    "/contracts" :"Contracts",
-    "/profile"  :"My Profile",
-    "/setting" : "Settings",
-    "/createproject" : "Post a New Project",
-    "/editproject/:1" : "Edit Project"
+    "/clientlayout/projects" : "My Projects",
+    "/clientlayout/messages" : "Messages" ,
+    "/clientlayout/wallet"   : "Wallet" ,
+    "/clientlayout/find-freelancers" : "Find Freelancers",
+    "/clientlayout/contracts" :"Contracts",
+    "/clientlayout/profile"  :"My Profile",
+    "/clientlayout/setting" : "Settings",
+    "/clientlayout/createproject" : "Post a New Project",
+    "/clientlayout/editproject/:1" : "Edit Project"
   }
    const backButtonRoutes = ["/createproject","/editproject"];
    const currentTitle = pagetitle[location.pathname] || "overview";

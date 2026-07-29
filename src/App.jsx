@@ -21,7 +21,7 @@ import CreateProject from './features/Client/client-projects/pages/CraeteProject
 import CreatePortifolio from './features/FreeLancer/Portifolio/Pages/CreatePortifolio';
 import CreateCv from './features/FreeLancer/CV/pages/CreateCv';
 import CreateSkill from './features/FreeLancer/Skills/pages/CreateSkillis';
-import CreateProfilee from './features/FreeLancer/Profile/pages/Createprofile';
+import CreateProfilefree from './features/FreeLancer/Profile/pages/Createprofile';
 import FreeLancerLayout from './features/FreeLancer/layout/FreelancerLayout';
 import ContractFree from './features/FreeLancer/freelancer-contract/pages/ContractFree';
 import ProjectFree from './features/FreeLancer/freelancer-project/pages/ProjectFree';
@@ -34,8 +34,9 @@ import ShowSkills from './features/FreeLancer/Skills/pages/ShowSkills';
 import ShowPortfolio from './features/FreeLancer/Portifolio/Pages/ShowPortfolio';
 import ShowCv from './features/FreeLancer/CV/pages/ShowCv';
 import ProjectProposal from './features/FreeLancer/project-proposal/pages/projectproposal';
-import Request from './features/FreeLancer/request/pages/client-request';
 import Myproject from './features/FreeLancer/myproject/pages/myproject';
+import ProjectProposalDetails from './features/FreeLancer/project-proposal/pages/ProjectProposaldetails';
+import ShowInvationFree from './features/FreeLancer/request/pages/freelancer-invation';
 function App() {
   return (
     <BrowserRouter>
@@ -49,8 +50,8 @@ function App() {
 
         <Route path="/CreateSkillis" element={<CreateSkill />} />
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
-        <Route path='CreateCv' element={<CreateCv />} />CreateProfile
-        <Route path="/CreateProfile" element={<CreateProfilee />} />
+        <Route path='CreateCv' element={<CreateCv />} />
+        <Route path="/CreateProfile" element={<CreateProfilefree />} />
 
 
 
@@ -79,7 +80,8 @@ function App() {
           {/* project */}
           <Route path='projectfree' element={<ProjectFree />}>
             <Route path='projectproposal' element={<ProjectProposal />} />
-            <Route path='clientrequest' element={<Request />} />
+            <Route path='projectproposaldetails/:id' element={<ProjectProposalDetails />} />
+            <Route path='freelancerrequest' element={<ShowInvationFree />} />
             <Route path='myproject' element={<Myproject />} />
           </Route>
 
