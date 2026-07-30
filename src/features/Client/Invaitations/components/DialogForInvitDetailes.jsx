@@ -81,18 +81,18 @@ export default function DialogForInvitDetailes({ open, onClose, invite }) {
       aria-describedby="alert-dialog-slide-description"
       role="alertdialog"
     >
-      <DialogTitle>Invitation Details</DialogTitle>
+      <DialogTitle className="DialogTitle">Invitation Details</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
           {invite ? (
             <>
-              Invitation ID: {data.id}
+              Invitation ID: <span>{data.id}</span>
               <br />
-              Freelancer: {data.freelancer_name}
+              Freelancer: <span>{data.freelancer_name}</span>
               <br />
-              Project: {data.project_name}
+              Project: <span>{data.project_name}</span>
               <br />
-              Status: {data.status}
+              Status: <span>{data.status}</span>
             </>
           ) : (
             "No invitation selected."
