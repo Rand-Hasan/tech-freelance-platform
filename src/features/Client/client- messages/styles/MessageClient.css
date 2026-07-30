@@ -10,27 +10,29 @@ body{
 }
 
 /* الصفحة */
-.messages-page{
+.messagess-page{
     width:85%;
     max-width:1200px;
-    margin:25px auto;
+    margin:10px auto;
 }
 
-.messages-page h1{
+.messagess-page h1{
     font-size:30px;
     margin-bottom:6px;
-    color: black;
+    margin-top:-10px;
+    color:black;
 }
 
-.messages-page>p{
+.messagess-page > p{
     color:#777;
     margin-bottom:20px;
 }
 
+
 /* الكارد كامل */
 .chat-container{
     width:100%;
-    height:600px;      /* كان 720 */
+    height:600px;
     display:flex;
     background:#fff;
     border-radius:18px;
@@ -38,9 +40,10 @@ body{
     overflow:hidden;
 }
 
+
 /* القائمة اليسار */
 .sidebarr{
-    width:320px;      /* كان 380 */
+    width:320px;
     border-right:1px solid #eee;
     background:#fff;
 }
@@ -54,7 +57,8 @@ body{
     outline:none;
 }
 
-/* العنصر */
+
+/* المحادثات */
 .chat-item{
     display:flex;
     align-items:center;
@@ -62,7 +66,6 @@ body{
     padding:14px 16px;
     cursor:pointer;
     transition:.2s;
-    
 }
 
 .chat-item:hover{
@@ -72,6 +75,7 @@ body{
 .chat-item.active{
     background:#e7f7f2;
 }
+
 
 /* الصورة */
 .avatar{
@@ -86,13 +90,12 @@ body{
     font-weight:bold;
     flex-shrink:0;
 }
-.chat-header{
-    border-bottom:1px solid #eef2f5;
+
+.green{
+    background:#2AA198;
 }
 
-.chat-input{
-    border-top:1px solid #eef2f5;
-}
+
 .chat-info{
     flex:1;
 }
@@ -112,19 +115,24 @@ body{
     color:#999;
 }
 
+
 /* القسم اليمين */
 .chat-section{
     flex:1;
     display:flex;
     flex-direction:column;
+    min-height:0;
 }
 
+
+/* الهيدر */
 .chat-header{
     display:flex;
     align-items:center;
     gap:12px;
     padding:18px 22px;
     border-bottom:1px solid #eee;
+    flex-shrink:0;
 }
 
 .chat-header h3{
@@ -136,31 +144,60 @@ body{
     color:#777;
 }
 
-.green{
-    background:#2AA198;
-}
 
+/* الرسائل */
 .chat-body{
     flex:1;
     padding:25px;
     background:#fff;
+    overflow-y:auto;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
 }
 
+
 .message{
-    width:65%;
-    background:#edf4f3;
-    padding:16px 18px;
-    border-radius:16px;
+    max-width:60%;
+    padding:10px 15px;
+    border-radius:15px;
+    margin:8px;
     font-size:14px;
     line-height:1.6;
 }
 
+
+.my-message{
+    align-self:flex-end;
+    background:#2AA198;
+    color:white;
+}
+
+
+.other-message{
+    align-self:flex-start;
+    background:#e5e5e5;
+    color:black;
+}
+
+
+.message small{
+    display:block;
+    margin-top:5px;
+    font-size:11px;
+}
+
+
+/* مكان الكتابة */
 .chat-input{
     display:flex;
     gap:10px;
     padding:16px 20px;
     border-top:1px solid #eee;
+    background:white;
+    flex-shrink:0;
 }
+
 
 .chat-input input{
     flex:1;
@@ -169,15 +206,39 @@ body{
     border-radius:12px;
     padding:0 15px;
     outline:none;
+    font-size:14px;
 }
+
+
+.chat-input input:focus{
+    border-color:#2AA198;
+}
+
 
 .chat-input button{
     width:50px;
     height:46px;
     border:none;
     border-radius:12px;
-    background:#0b8b68;
-    color:#fff;
+    background:#2AA198;
+    color:white;
     cursor:pointer;
     font-size:18px;
+}
+
+
+.chat-input button:hover{
+    opacity:.9;
+}
+/* .message{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+} */
+
+.message-status{
+    font-size: 11px;
+    align-self: flex-end;
+    margin-top: 5px;
+    opacity: 0.8;
 }

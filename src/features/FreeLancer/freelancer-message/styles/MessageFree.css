@@ -176,8 +176,32 @@ body{
     height:46px;
     border:none;
     border-radius:12px;
-    background:#0b8b68;
+    background:#2AA198;
     color:#fff;
     cursor:pointer;
     font-size:18px;
+}
+.chat-body{
+    display:flex;
+    flex-direction:column;
+}
+
+.message{
+    max-width:60%;
+    padding:10px 15px;
+    border-radius:15px;
+    margin:8px;
+}
+
+.my-message{
+    align-self:flex-end;
+   background:#2AA198;
+;
+    color:white;
+}
+
+.other-message{
+    align-self:flex-start;
+    background:#e5e5e5;
+    color:black;
 }

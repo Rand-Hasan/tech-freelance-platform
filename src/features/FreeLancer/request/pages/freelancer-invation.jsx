@@ -87,7 +87,8 @@ export default function ShowInvationFree() {
      setSelectedInvitation(null);
 
         showInvitation(page);
-         navigate('/freelancerlayout/messagefree')
+        //  navigate('/freelancerlayout/messagefree')
+navigate(`/freelancerlayout/messagefree/${selectedInvitation.project.clientId}`)
         }catch(err){
             console.log('hfujfdjjfiojdoiskdksdssklklsdksljdjf')
         }

@@ -95,6 +95,7 @@ function App() {
             <Route path='myproject' element={<Myproject />} />
              
           </Route>
+         <Route path='messagefree/:clientId' element={<MessageFree />} />
          <Route path='messagefree' element={<MessageFree />} />
           <Route path='walletfree' element={<WalletFree />} />
           {/* Show Profile */}

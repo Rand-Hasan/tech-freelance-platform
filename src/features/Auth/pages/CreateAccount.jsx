@@ -37,7 +37,7 @@ function CreateAccount() {
           : ClientRegister;
 
       const res = await axios.post(baseURL + endpoint, data);
-
+console.log(res.data);
       console.log("SUCCESS RESPONSE:", res.data);
       
 cookies.set("email", data.email, {

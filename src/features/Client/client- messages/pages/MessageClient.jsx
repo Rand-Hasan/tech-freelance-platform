@@ -1,20 +1,20 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import { baseURL } from "../../../../services/Api/api";
 import {
   getMyConversations,
-  getMessages,
+  getMessages,startClientConversation,
 } from "../services/MessageClientapi";
 import "../../../Client/client- messages/styles/MessageClient.css";
 import socket from "./socket";
 export default function MessageClient() {
   const cookies = Cookies();
-
+const [myId, setMyId] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [selectedConversation, setSelectedConversation] = useState(null);
+  const selectedConversationRef = useRef(null);
 const [text, setText] = useState("");
   useEffect(() => {
   getConversations();
@@ -22,18 +22,110 @@ const [text, setText] = useState("");
   socket.on("joined_status", (data) => {
     console.log(data);
   });
+socket.on("left_status", (data)=>{
+  console.log("Left:", data);
+});
+socket.on("receive_message", (message) => {
+  console.log("New Message:", message);
 
-  socket.on("receive_message", (message) => {
-    console.log("New Message:", message);
+  setMessages((prev) => {
+    const exists = prev.some((msg) => msg.id === message.id);
 
-    setMessages((prev) => [...prev, message]);
+    if (exists) return prev;
+
+    return [...prev, message];
   });
 
+
+  if (selectedConversation === message.conversationId) {
+    socket.emit("mark_as_read", {
+      messageId: message.id,
+      conversationId: message.conversationId,
+    });
+  }
+});
+socket.on("all_messages_read_confirm", (data) => {
+  console.log(data);
+
+  setMessages((prev) =>
+    prev.map((msg) => ({
+      ...msg,
+      isRead: true,
+    }))
+  );
+});
+socket.on("message_read_confirm", (message) => {
+  setMessages((prev) =>
+    prev.map((msg) =>
+      msg.id === message.id
+        ? { ...msg, isRead: true }
+        : msg
+    )
+  );
+});
   return () => {
     socket.off("joined_status");
     socket.off("receive_message");
+     socket.off("all_messages_read_confirm");
+     socket.off("message_read_confirm");
+     socket.off("left_status");
   };
+
+
+  
 }, []);
+
+
+
+/////الانشاء/////////////
+async function createConversation(freelancerId) {
+  try {
+
+    const token = cookies.get("token-client");
+
+    const res = await axios.post(
+      `${baseURL}${startClientConversation}${freelancerId}`,
+      {},
+      {
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      }
+    );
+
+
+    console.log("Created:", res.data);
+
+
+    const newConversation = res.data.conversation;
+
+
+    // أضيفها للقائمة بدون refresh
+    setConversations((prev)=>{
+
+      const exists = prev.some(
+        (chat)=>chat.id === newConversation.id
+      );
+
+      if(exists) return prev;
+
+      return [
+        ...prev,
+        newConversation
+      ];
+
+    });
+
+
+    // افتح المحادثة مباشرة
+    handleGetMessages(newConversation.id);
+
+
+  } catch(err){
+    console.log(err.response?.data || err);
+  }
+}
+///////////////////
   async function getConversations() {
     try {
       const token = cookies.get("token-client");
@@ -54,6 +146,12 @@ console.log(cookies.get("token-client"));
 
   async function handleGetMessages(conversationId) {
     try {
+       if (selectedConversationRef.current) {
+      socket.emit(
+        "leave_conversation",
+        selectedConversationRef.current
+      );
+    }
       const token = cookies.get("token-client");
 
       const res = await axios.get(
@@ -64,17 +162,33 @@ console.log(cookies.get("token-client"));
           },
         }
       );
+setSelectedConversation(conversationId);
+    selectedConversationRef.current = conversationId;
 
       console.log("Messages:", res.data);
 
-      setMessages(res.data.messages || []);
-      setSelectedConversation(conversationId);
-      socket.emit("join_conversation", conversationId);
+ setSelectedConversation(conversationId);
+setMessages(res.data.messages || []);
+
+socket.emit("join_conversation", conversationId);
+
+socket.emit("mark_all_as_read", {
+  conversationId,
+});
+        const conversation = conversations.find(
+  (c) => c.id === conversationId
+);
+
+if (conversation) {
+  setMyId(conversation.clientId);
+}
+console.log("My ID:", conversation.clientId);
+      
     } catch (err) {
       console.log(err.response?.data || err);
     }
   } 
-  function sendMessage() {
+function sendMessage() {
   if (!selectedConversation) {
     alert("Select conversation first");
     return;
@@ -82,25 +196,29 @@ console.log(cookies.get("token-client"));
 
   if (text.trim() === "") return;
 
+  const newMessage = {
+    id: Date.now(),
+    content: text,
+    senderId: myId,
+    conversationId: selectedConversation,
+    isRead: false,
+  };
+
+
+  setMessages((prev) => [...prev, newMessage]);
+
   socket.emit("send_message", {
     conversationId: selectedConversation,
     content: text,
   });
 
-  // setMessages((prev) => [
-  //   ...prev,
-  //   {
-  //     id: Date.now(),
-  //     content: text,
-  //     senderId: "me",
-  //   },
-  // ]);
-
   setText("");
 }
 
   return (
-    <div className="messages-page">
+    
+    <div className="messagess-page">
+     
       <h1>Messages</h1>
       <p>Your inbox and Freelancer conversations</p>
 
@@ -152,28 +270,49 @@ console.log(cookies.get("token-client"));
             </div>
           </div>
 
-          <div className="chat-body">
-            {messages.length === 0 ? (
-              <p>No messages</p>
-            ) : (
-              messages.map((msg) => (
-                <div className="message" key={msg.id}>
-                  {msg.content}
-                </div>
-              ))
-            )}
-          </div>
+         <div className="chat-body">
+ {messages.length === 0 ? (
+  <p>No messages</p>
+) : (
+  messages.map((msg) => {
+    console.log("sender:", msg.senderId);
+    console.log("myId:", myId);
 
-          <div className="chat-input">
-    <input
-  value={text}
-  onChange={(e) => setText(e.target.value)}
-  placeholder="Type your reply..."
-/>
-        <button onClick={sendMessage}>
-  ➤
-</button>
-          </div>
+    return (
+      <div
+        key={msg.id}
+        className={
+          msg.senderId === myId
+            ? "message my-message"
+            : "message other-message"
+        }
+      >
+        <div>{msg.content}</div>
+
+        {msg.senderId === myId && (
+          <small>
+            <div className="message-status">
+    {msg.isRead ? "✔✔ Read" : "✔ Sent"}
+  </div>
+          </small>
+        )}
+      </div>
+    );
+  })
+)}
+</div>
+
+<div className="chat-input">
+  <input
+    value={text}
+    onChange={(e) => setText(e.target.value)}
+    placeholder="Type your reply..."
+  />
+
+  <button onClick={sendMessage}>
+    ➤
+  </button>
+</div>
         </div>
       </div>
     </div>

@@ -1,3 +1,3 @@
 export const getMyConversations = "getMyConversations";
-export const startClientConversation = "startClientConversation/";
+export const startFreelancerConversation = "startFreelancerConversation/";
 export const getMessages = "getMessages/";
