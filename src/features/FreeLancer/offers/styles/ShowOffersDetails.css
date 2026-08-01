@@ -1,0 +1,181 @@
+.offer-modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+
+.offer-details-modal{
+
+    width:520px;
+    background:white;
+    border-radius:22px;
+    padding:30px;
+    position:relative;
+    box-shadow:0 15px 40px rgba(0,0,0,0.18);
+
+    animation:modalShow .25s ease;
+}
+
+
+@keyframes modalShow{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+
+.offer-modal-close{
+
+    position:absolute;
+    right:20px;
+    top:15px;
+
+    width:35px;
+    height:35px;
+
+    border-radius:50%;
+    border:none;
+
+    background:#f2f2f2;
+
+    font-size:24px;
+    cursor:pointer;
+
+}
+
+
+
+.offer-modal-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.offer-modal-header h2{
+
+    margin:0;
+    color:#222;
+    font-size:26px;
+
+}
+
+
+
+.offer-status{
+
+    padding:7px 16px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+    text-transform:capitalize;
+
+}
+
+
+.offer-status.pending{
+
+    background:#fff3cd;
+    color:#9a6b00;
+
+}
+
+
+.offer-status.accepted{
+
+    background:#d8f8eb;
+    color:#00885f;
+
+}
+
+
+.offer-status.rejected{
+
+    background:#ffe0e0;
+    color:#c62828;
+
+}
+
+
+
+.offer-details-content{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+}
+
+
+
+.offer-detail-box{
+
+    background:#f8faf9;
+    border-radius:15px;
+    padding:18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.offer-detail-box span{
+
+    color:#777;
+    font-size:15px;
+
+}
+
+
+.offer-detail-box strong{
+
+    color:#007a5a;
+    font-size:18px;
+
+}
+
+
+
+.offer-detail-description{
+
+    background:#f8faf9;
+    padding:18px;
+    border-radius:15px;
+
+}
+
+
+
+.offer-detail-description h3{
+
+    margin-top:0;
+    color:#222;
+
+}
+
+
+
+.offer-detail-description p{
+
+    color:#666;
+}

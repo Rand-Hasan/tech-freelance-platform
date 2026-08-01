@@ -42,6 +42,7 @@ import ProgressMonitor from "./features/Client/ProgressMonitor/pages/ProgressMon
 import StagesAndTasks from './features/Client/StagesAndTasks/pages/StagesAndTasks';
 import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAndCodeReview";
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
+import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 function App() {
   return (
     <BrowserRouter>
@@ -63,6 +64,7 @@ function App() {
           <Route path="messages" element={<Messages />} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
+          <Route path='invaitations' element={<Invaitations/>}/>
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
@@ -90,10 +92,10 @@ function App() {
             <Route path='projectproposal' element={<ProjectProposal />} />
             <Route path='projectproposaldetails/:id' element={<ProjectProposalDetails />} />
             <Route path='freelancerrequest' element={<ShowInvationFree />} />
-            <Route path='myproject' element={<Myproject />} />
-             
+            <Route path='myoffers' element ={<ShowOffersFreelancer/>}/>
+            <Route path='myproject' element={<Myproject />}/> 
           </Route>
-         <Route path='messagefree' element={<MessageFree />} />
+         <Route path='messagefree/:id' element={<MessageFree />} />
           <Route path='walletfree' element={<WalletFree />} />
           {/* Show Profile */}
           <Route path='showprofile' element={<ShowProfile />}>

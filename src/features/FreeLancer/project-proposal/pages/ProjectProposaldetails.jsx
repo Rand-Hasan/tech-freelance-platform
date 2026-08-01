@@ -2,19 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { baseURL } from "../../../../services/Api/api";
 import { GetClientProjectById } from "../../../Client/client-projects/services/api_project";
-
 import "../styles/ProjectCardDetails.css";
+import CreateOffers from "../../offers/pages/CreateOffers";
+import { baseURL } from "../../../../services/Api/api";
 
 export default function ProjectProposalDetails() {
     const cookies = new Cookies();
     const token = cookies.get("token-freelancer");
     const navigate = useNavigate();
-
     const { id } = useParams();
-
     const [proposalDetails, setProposalDetails] = useState(null);
+    const [message, setMessage] = useState("");
+    const [isModel, setIsModel] = useState(false);
 
     useEffect(() => {
         getProposedDetails();
@@ -44,6 +44,17 @@ export default function ProjectProposalDetails() {
     if (!proposalDetails) {
         return <p>Loading...</p>;
     }
+
+    // const handleSubmit = async (id) => {
+    //     try {
+    //         const res = await axios.post(`${baseURL}${MakeOffer}${id}`, data, {
+    //             headers: { Authorization: `Bearer ${token}` }
+    //         })
+    //         console.log('truuuuuuuuuuuuuuuuuuu')
+    //     } catch (err) {
+    //         console.log('hwidjisjipdoikikdmkjdnsidjs ')
+    //     }
+    // }
 
     return (
         <div className="project-details-page">
@@ -143,20 +154,20 @@ export default function ProjectProposalDetails() {
 
                     <button
                         className="details-submit-offer"
-                        onClick={() => {
-                            console.log(
-                                "Submit offer:",
-                                proposalDetails.id
-                            );
-                        }}
-                    >
+                        onClick={() => setIsModel(true)}>
                         Submit Offer
                     </button>
 
                 </div>
 
             </div>
-
+            {isModel && (
+                <CreateOffers
+                    proposalDetails={proposalDetails}
+                    onClose={() => setIsModel(false)}
+                />
+            )}
         </div>
+
     );
 }

@@ -7,12 +7,13 @@ import Cookies from "universal-cookie";
 import { GetSkills } from "../../../Client/client-projects/services/api_project";
 import '../styles/CreateSkillis.css';
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateSkill() {
     const currentStep = 3;
     const totalSteps = 4;
     const cookies = new Cookies();
-    
+    const navigate= useNavigate();
     const token = cookies.get('token-freelancer');
     console.log('coooooooooo:', token);
     const [allSkill, setallSkill] = useState([]);

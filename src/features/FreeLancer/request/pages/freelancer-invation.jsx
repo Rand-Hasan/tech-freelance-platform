@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function ShowInvationFree() {
     const cookies = new Cookies();
     const token = cookies.get('token-freelancer');
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     console.log(token)
     const [Invitations, setInvitations] = useState([]);
     const [page, setPage] = useState(1);
@@ -21,50 +21,33 @@ export default function ShowInvationFree() {
     useEffect(() => {
         showInvitation(page);
     }, [page])
+
     const showInvitation = async (currentPage) => {
-        setLoading(true)
+        setLoading(true);
         setInvitations([]);
+
         try {
-            const res = await axios.get(`${baseURL}${ShowInitaions}${currentPage}/${limit}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
+            const res = await axios.get(
+                `${baseURL}${ShowInitaions}${currentPage}/${limit}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
 
-            setInvitations(res.data.invitations);
-           
+            const filteredInvitations = res.data.invitations.filter(
+                (invitation) =>
+                    invitation.status === "pending" ||
+                    invitation.status === "canceled"
+            );
+
+            setInvitations(filteredInvitations);
+
         } catch (err) {
-
-            console.error("", err);
+            console.error(err);
         } finally {
             setLoading(false);
         }
-    }
-
-//     const showInvitation = async (currentPage) => {
-//     setLoading(true);
-//     setInvitations([]);
-
-//     try {
-//         const res = await axios.get(
-//             `${baseURL}${ShowInitaions}${currentPage}/${limit}`,
-//             {
-//                 headers: { Authorization: `Bearer ${token}` }
-//             }
-//         );
-
-//         const filteredInvitations = res.data.invitations.filter(
-//             (invitation) =>
-//                 invitation.status === "rejected" ||
-//                 invitation.status === "canceled"
-//         );
-
-//         setInvitations(filteredInvitations);
-
-//     } catch (err) {
-//         console.error(err);
-//     } finally {
-//         setLoading(false);
-//     }
-// };
+    };
     const handlePageChange = (event, value) => {
         setPage(value);
     }
@@ -78,17 +61,19 @@ export default function ShowInvationFree() {
             console(err)
         }
     }
-    const RespondInvitation = async(id,respond)=>{
-        try{
-     const res = await axios.post(`${baseURL}${RespondToInvitation}${id}`,{respond:respond},{
-        headers:{Authorization:`Bearer ${token}`}
-     })
-     console.log('truuuuuuuuuuuuuu')
-     setSelectedInvitation(null);
+    const RespondInvitation = async (id, respond) => {
+        try {
+            const res = await axios.post(`${baseURL}${RespondToInvitation}${id}`, { respond: respond }, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            console.log(res.data)
+            setSelectedInvitation(null);
 
-        showInvitation(page);
-         navigate('/freelancerlayout/messagefree')
-        }catch(err){
+            showInvitation(page);
+            if (respond == 'Ok') {
+                navigate(`/freelancerlayout/messagefree/${selectedInvitation.project.clientId}`)
+            }
+        } catch (err) {
             console.log('hfujfdjjfiojdoiskdksdssklklsdksljdjf')
         }
     }
@@ -171,7 +156,7 @@ export default function ShowInvationFree() {
                             </span>
 
                             <span className="modal-price">
-                                £{selectedInvitation.project.price}
+                                ${selectedInvitation.project.price}
                             </span>
 
                         </div>
@@ -183,14 +168,14 @@ export default function ShowInvationFree() {
                         <div className="modal-actions">
 
                             <button className="accept-request-btn"
-                             onClick={() => RespondInvitation(selectedInvitation.id,'Ok')}
+                                onClick={() => RespondInvitation(selectedInvitation.id, 'Ok')}
                             >
                                 Accept Request
                             </button>
 
                             <button
                                 className="decline-request-btn"
-                                onClick={() => RespondInvitation(selectedInvitation.id,'No')}
+                                onClick={() => RespondInvitation(selectedInvitation.id, 'No')}
                             >
                                 Decline Request
                             </button>

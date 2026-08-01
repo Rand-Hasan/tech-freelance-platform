@@ -63,7 +63,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <span className="nav-text">Wallet</span>
             </NavLink>
 
-            <NavLink to="Invaitations" className="nav-item">
+            <NavLink to="invaitations" className="nav-item">
                <span className="nav-icon">📩</span>
               <span className="nav-text">Invaitations</span>
             </NavLink>

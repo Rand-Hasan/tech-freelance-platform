@@ -255,3 +255,138 @@
 .details-submit-offer:hover {
     background: #006f59;
 }
+
+.proposal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.proposal-modal {
+  width: 430px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.proposal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+}
+
+.proposal-close-btn:hover {
+  color: #000;
+}
+
+.proposal-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.proposal-project-name {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 22px;
+}
+
+.proposal-inputs-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.proposal-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal-input-group label,
+.proposal-textarea-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.proposal-input {
+  height: 44px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.25s;
+}
+
+.proposal-input:focus,
+.proposal-textarea:focus {
+  border-color: #007a5a;
+}
+
+.proposal-textarea-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.proposal-textarea {
+  resize: none;
+  height: 110px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.25s;
+}
+
+.proposal-submit-btn {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background: #007a5a;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.proposal-submit-btn:hover {
+  background: #00664b;
+}
+
+@media (max-width: 500px) {
+  .proposal-modal {
+    width: 92%;
+    padding: 22px;
+  }
+
+  .proposal-inputs-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+.proposal-message {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}

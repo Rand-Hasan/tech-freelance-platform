@@ -6,14 +6,14 @@ import { baseURL } from "../../../../services/Api/api";
 import axios from "axios";
 import { GetProposedProject } from "../services/projectproposal";
 import { useNavigate } from "react-router-dom";
-export default function ProjectProposal(){
-   const cookies = new Cookies();
+export default function ProjectProposal() {
+  const cookies = new Cookies();
   const token = cookies.get('token-freelancer');
-  console.log('tttt:',token)
+  console.log('tttt:', token)
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
-  const [page, setPage] = useState(1);         
-  const [limit] = useState(4);               
+  const [page, setPage] = useState(1);
+  const [limit] = useState(4);
   const [totalPages, setTotalPages] = useState(6);
   const [loading, setLoading] = useState(false);
 
@@ -23,9 +23,10 @@ export default function ProjectProposal(){
 
   const fetchProjects = async (currentPage) => {
     setLoading(true);
+    setProjects([]);
     try {
       const res = await axios.get(`${baseURL}${GetProposedProject}${currentPage}/${limit}`, {
-      
+
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -39,7 +40,7 @@ export default function ProjectProposal(){
   };
 
   const handlePageChange = (event, value) => {
-    setPage(value); 
+    setPage(value);
   };
 
   // const handleOfferSubmit = (project) => {
@@ -48,40 +49,40 @@ export default function ProjectProposal(){
 
   return (
     <div style={{ maxWidth: '1300px', margin: '30px auto', padding: '0 15px' }}>
-      
+
       {loading ? (
         <p style={{ textAlign: 'center' }}>Loading proposed projetcs...</p>
-      ) :projects.length > 0 ? (
+      ) : projects.length > 0 ? (
         <div>
-       { projects.map((proj) => (
-          <ProjectCard
-            key={proj.id} 
-            project={proj} 
-             
-            // onSubmitOffer={handleOfferSubmit} 
-          />
-      ))}
-      </div>
-    ):(
-        <div className="empty-invitations">
-    <div className="empty-invitations-icon">
-        🖥️
-    </div>
+          {projects.map((proj) => (
+            <ProjectCard
+              key={proj.id}
+              project={proj}
 
-    <p>No Proposed project found</p>
-</div>
+            // onSubmitOffer={handleOfferSubmit} 
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="empty-invitations">
+          <div className="empty-invitations-icon">
+            🖥️
+          </div>
+
+          <p>No Proposed project found</p>
+        </div>
       )
       }
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-        <Pagination 
-          count={totalPages} 
-          page={page} 
-          onChange={handlePageChange} 
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
           color="primary"
           sx={{
             '& .Mui-selected': {
-              backgroundColor: '#007a5a !important', 
+              backgroundColor: '#007a5a !important',
               color: '#fff'
             }
           }}
@@ -89,5 +90,5 @@ export default function ProjectProposal(){
       </div>
 
     </div>
-    )
+  )
 }
