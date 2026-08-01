@@ -9,8 +9,10 @@ import {
 } from "../../../FreeLancer/freelancer-message/services/freelancer-messages";
 import "../../../FreeLancer/freelancer-message/styles/MessageFree.css";
 import socket from "../../../FreeLancer/freelancer-message/pages/socket";
+import EmojiPicker from "emoji-picker-react";
 export default function MessageFree() {
   const cookies = Cookies();
+  const [showEmoji, setShowEmoji] = useState(false);
 const [myId, setMyId] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -18,12 +20,16 @@ const [myId, setMyId] = useState(null);
 const [text, setText] = useState("");
 const selectedConversationRef = useRef(null);
 const { clientId } = useParams();
+const onEmojiClick = (emojiData) => {
+  setText((prev) => prev + emojiData.emoji);
+};
+const createdRef = useRef(false);
+
 useEffect(() => {
+  if (!clientId || createdRef.current) return;
 
-  if(clientId){
-    createConversation(clientId);
-  }
-
+  createdRef.current = true;
+  createConversation(clientId);
 }, [clientId]);
  useEffect(() => {
   getConversations();
@@ -97,7 +103,7 @@ async function createConversation(clientId) {
         }
       }
     );
-
+console.log("createConversation called");
     console.log("Created:", res.data);
 
     const newConversation = res.data.conversation;
@@ -107,7 +113,7 @@ async function createConversation(clientId) {
       newConversation
     ]);
 
-   await handleGetMessages(newConversation);
+await handleGetMessages(newConversation.id);
 
   } catch(err){
     console.log(err.response?.data || err);
@@ -123,7 +129,7 @@ async function createConversation(clientId) {
           Authorization: `Bearer ${token}`,
         },
       });
-
+console.log("Create Conversation:", clientId, );
       console.log("Conversations:", res.data);
       console.log(res.data.conversations[0]);
 console.log(cookies.get("token-freelancer"));
@@ -276,6 +282,13 @@ if (conversation) {
             )} </div>
 
           <div className="chat-input">
+            <button onClick={() => setShowEmoji(!showEmoji)}>
+    😊
+  </button>
+
+  {showEmoji && (
+    <EmojiPicker onEmojiClick={onEmojiClick} />
+  )}
     <input
   value={text}
   onChange={(e) => setText(e.target.value)}

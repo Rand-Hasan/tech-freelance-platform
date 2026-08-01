@@ -2,7 +2,12 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+ font-family:
+      "Segoe UI Emoji",
+      "Apple Color Emoji",
+      "Noto Color Emoji",
+      Arial,
+      sans-serif;
 }
 
 body{
@@ -204,4 +209,14 @@ body{
     align-self:flex-start;
     background:#e5e5e5;
     color:black;
+}
+.chat-input {
+  position: relative;
+}
+
+.emoji-picker {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  z-index: 100;
 }

@@ -7,6 +7,7 @@ import {
   getMessages,startClientConversation,
 } from "../services/MessageClientapi";
 import "../../../Client/client- messages/styles/MessageClient.css";
+import EmojiPicker from "emoji-picker-react";
 import socket from "./socket";
 export default function MessageClient() {
   const cookies = Cookies();
@@ -16,6 +17,10 @@ const [myId, setMyId] = useState(null);
   const [selectedConversation, setSelectedConversation] = useState(null);
   const selectedConversationRef = useRef(null);
 const [text, setText] = useState("");
+  const [showEmoji, setShowEmoji] = useState(false);
+  const onEmojiClick = (emojiData) => {
+  setText((prev) => prev + emojiData.emoji);
+};
   useEffect(() => {
   getConversations();
 
@@ -206,7 +211,7 @@ function sendMessage() {
 
 
   setMessages((prev) => [...prev, newMessage]);
-
+console.log(text);
   socket.emit("send_message", {
     conversationId: selectedConversation,
     content: text,
@@ -303,6 +308,14 @@ function sendMessage() {
 </div>
 
 <div className="chat-input">
+  <button onClick={() => setShowEmoji(!showEmoji)}>
+    😊
+  </button>
+
+  {showEmoji && (
+    <EmojiPicker onEmojiClick={onEmojiClick} />
+  )}
+
   <input
     value={text}
     onChange={(e) => setText(e.target.value)}
