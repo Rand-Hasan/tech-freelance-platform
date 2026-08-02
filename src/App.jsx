@@ -44,6 +44,7 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
+import CreateContract from './features/Client/client-contracts/pages/CreateContract';
 function App() {
   return (
     <BrowserRouter>
@@ -73,10 +74,11 @@ function App() {
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
             <Route path='offer-project' element={<ShowOfferProject/>}/>
-
           </Route>
           <Route path="createproject" element={<CreateProject />} />
           <Route path="editproject/:id" element={< CreateProject />} />
+          <Route path='createcontract' element={<CreateContract/>} />
+          <Route path='editcontract/:id' element={<CreateContract/>}/>
           <Route path="FindFreelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
 
