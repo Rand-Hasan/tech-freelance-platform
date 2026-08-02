@@ -114,7 +114,7 @@ async function createConversation(freelancerId) {
     const newConversation = res.data.conversation;
 
 
-    // أضيفها للقائمة بدون refresh
+   
     setConversations((prev)=>{
 
       const exists = prev.some(
@@ -131,7 +131,7 @@ async function createConversation(freelancerId) {
     });
 
 
-    // افتح المحادثة مباشرة
+   
     handleGetMessages(newConversation.id);
 
 
