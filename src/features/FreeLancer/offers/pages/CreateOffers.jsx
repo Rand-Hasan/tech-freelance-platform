@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import "../../project-proposal/styles/ProjectCardDetails.css";
 import { baseURL } from "../../../../services/Api/api";
-import { MakeOffer } from "../services/api_offers";
+import { GetOfferDetailes, MakeOffer, UpdateOffer } from "../services/api_offers";
 
-export default function CreateOffers({proposalDetails,onClose}) {
+export default function CreateOffers({ proposalDetails, onClose, mode = 'create', offerId }) {
     const cookies = new Cookies();
     const token = cookies.get("token-freelancer");
     const [message, setMessage] = useState("");
@@ -25,27 +25,50 @@ export default function CreateOffers({proposalDetails,onClose}) {
     const handleSubmit = async () => {
         try {
             setMessage("");
-            await axios.post(
-                `${baseURL}${MakeOffer}${proposalDetails.id}`,
-                data,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
 
-            setMessage("Offer sent successfully.");
+            const url =
+                mode === "create"
+                    ? `${baseURL}${MakeOffer}${proposalDetails.id}`
+                    : `${baseURL}${UpdateOffer}${offerId}`;
+
+            const successMessage =
+                mode === "create"
+                    ? "Offer sent successfully."
+                    : "Offer updated successfully.";
+
+            await axios.post(url, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            setMessage(successMessage);
 
         } catch (err) {
             if (err.response?.data?.errors?.length > 0) {
                 setMessage(err.response.data.errors[0].message);
             } else {
-                setMessage("Something went wrong, please try again.");
+                setMessage("Something went wrong.");
             }
         }
     };
-
+    useEffect(() => {
+        getOfferDetails();
+    }, []);
+    const getOfferDetails = async () => {
+        try {
+            const res = await axios.get(`${baseURL}${GetOfferDetailes}${offerId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            setData({
+                proposed_price: res.data.offer.proposed_price,
+                proposed_duration: res.data.offer.proposed_duration.split("T")[0],
+                proposalText: res.data.offer.proposalText,
+            });
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <div className="proposal-modal-overlay">
             <div className="proposal-modal">
@@ -58,7 +81,9 @@ export default function CreateOffers({proposalDetails,onClose}) {
                 </button>
 
                 <h2 className="proposal-title">
-                    Submit Offer
+                    {mode === "create"
+                        ? "Submit Offer"
+                        : "Edit Offer"}
                 </h2>
 
                 {message && (
@@ -67,9 +92,11 @@ export default function CreateOffers({proposalDetails,onClose}) {
                     </p>
                 )}
 
-                <p className="proposal-project-name">
-                    {proposalDetails.project_name}
-                </p>
+                {proposalDetails && (
+                    <p className="proposal-project-name">
+                        {proposalDetails.project_name}
+                    </p>
+                )}
 
                 <div className="proposal-inputs-row">
 
@@ -119,7 +146,9 @@ export default function CreateOffers({proposalDetails,onClose}) {
                     className="proposal-submit-btn"
                     onClick={handleSubmit}
                 >
-                    Send Proposal
+                    {mode === "create"
+                        ? "Send Proposal"
+                        : "Save Changes"}
                 </button>
 
             </div>

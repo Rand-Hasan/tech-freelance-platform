@@ -1,14 +1,23 @@
 .CancleButton{
-    background-color: red!important;
+    background: linear-gradient(to right, #259B89, #32A88E, #48BA94) !important;
     width: 200px!important;
     color: white!important;
+    border-radius: 10px!important;
 }
 .closeButton{
     width: 200px!important;
     color: white!important;
-    background-color: gray!important;
+    background: linear-gradient(to right, #259B89, #32A88E, #48BA94) !important;
 }
 .Dialog .MuiPaper-root {
     width: 500px;
     min-height: 150px;
+    border-radius: 20px; 
+    border: 1px solid black;
+}
+.DialogTitle{
+    font-weight: bold!important;
+}
+span{
+    color: black;
 }

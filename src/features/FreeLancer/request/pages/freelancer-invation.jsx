@@ -69,11 +69,13 @@ export default function ShowInvationFree() {
             console.log(res.data)
             setSelectedInvitation(null);
 
+
             showInvitation(page);
             if (respond == 'Ok') {
                 navigate(`/freelancerlayout/messagefree/${selectedInvitation.project.clientId}`)
             }
         } catch (err) {
+
             console.log('hfujfdjjfiojdoiskdksdssklklsdksljdjf')
         }
     }

@@ -6,7 +6,7 @@ import Otp from './features/Auth/pages/Otp';
 import ForgetPassword from './features/Auth/pages/ForgetPassword';
 import CreateAccount from './features/Auth/pages/CreateAccount';
 import NavbarLanding from './features/landing-page/pages/navbarlanding';
-import Messages from './features/Client/client- messages/pages/Messages';
+import MessageClient from './features/Client/client- messages/pages/MessageClient';
 import Dashboard from './features/Client/client-dashboard/pages/Dashboard';
 import FindFreelancers from './features/Client/client-findfreelancer/pages/FindFreelancers';
 import Wallet from './features/Client/client-wallet/pages/Wallet';
@@ -43,6 +43,7 @@ import StagesAndTasks from './features/Client/StagesAndTasks/pages/StagesAndTask
 import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAndCodeReview";
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
+import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
 function App() {
   return (
     <BrowserRouter>
@@ -56,12 +57,12 @@ function App() {
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path='CreateCv' element={<CreateCv />} />
         <Route path="/CreateProfile" element={<CreateProfilee />} />
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="messages" element={<Messages />} />
+          <Route path="messageClient" element={<MessageClient/>} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
           <Route path='invaitations' element={<Invaitations/>}/>
@@ -71,6 +72,7 @@ function App() {
             <Route path="matched-freelancers" element={<MatchedFreelancers />} />
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
+            <Route path='offer-project' element={<ShowOfferProject/>}/>
 
           </Route>
           <Route path="createproject" element={<CreateProject />} />
@@ -95,7 +97,9 @@ function App() {
             <Route path='myoffers' element ={<ShowOffersFreelancer/>}/>
             <Route path='myproject' element={<Myproject />}/> 
           </Route>
-         <Route path='messagefree/:id' element={<MessageFree />} />
+
+         <Route path='messagefree/:clientId' element={<MessageFree />} />
+         <Route path='messagefree' element={<MessageFree />} />
           <Route path='walletfree' element={<WalletFree />} />
           {/* Show Profile */}
           <Route path='showprofile' element={<ShowProfile />}>

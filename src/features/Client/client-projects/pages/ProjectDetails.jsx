@@ -45,9 +45,9 @@ export default function ProjectDetails() {
           🤝 Matched Freelancers
         </NavLink>
 
-        {/* <NavLink to="Invaitations" className="tab-link">
-          📩 Invaitations 
-        </NavLink> */}
+        <NavLink to="offer-project" className="tab-link">
+           Submitted Proposal 
+        </NavLink>
       </div>
 
       <div className="project-tab-content">

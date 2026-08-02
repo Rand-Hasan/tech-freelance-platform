@@ -10,8 +10,8 @@ export default function CreateProject() {
    const cookies = new Cookies();
    const { id } = useParams();
    const isEditMode = Boolean(id);
-   const token= cookies.get('token-client');
-   
+   const token = cookies.get('token-client');
+
    console.log('tokenis222:', token);
 
    const [data, setData] = useState({
@@ -120,7 +120,7 @@ export default function CreateProject() {
          setError(msg);
          setLoading(false);
       }
-   
+
 
    }
    return (

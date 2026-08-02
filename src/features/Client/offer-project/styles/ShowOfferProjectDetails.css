@@ -1,0 +1,168 @@
+.client-offer-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.client-offer-modal{
+    width:480px;
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    position:relative;
+    animation:showModal .25s ease;
+}
+
+@keyframes showModal{
+
+from{
+    opacity:0;
+    transform:translateY(-20px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+.client-close-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:#f2f2f2;
+    cursor:pointer;
+    font-size:22px;
+    transition:.25s;
+}
+
+.client-close-btn:hover{
+    background:#e3e3e3;
+}
+
+.client-offer-title{
+    font-size:28px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:8px;
+}
+
+.client-name{
+    color:#666;
+    margin-bottom:10px;
+}
+
+.client-status{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.client-status.pending{
+    background:#fff5d9;
+    color:#d98d00;
+}
+
+.client-status.accepted{
+    background:#dff7ea;
+    color:#14804a;
+}
+
+.client-status.rejected{
+    background:#fde2e2;
+    color:#d93025;
+}
+
+.client-info-row{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.client-info-card{
+    flex:1;
+    border:1px solid #ececec;
+    border-radius:14px;
+    padding:16px;
+}
+
+.client-info-card span{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.client-info-card strong{
+    font-size:22px;
+    color:#222;
+}
+
+.client-proposal-box{
+    border:1px solid #ececec;
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:22px;
+}
+
+.client-proposal-box h4{
+    margin-bottom:10px;
+    font-size:15px;
+    color:#555;
+}
+
+.client-proposal-box p{
+    color:#444;
+    line-height:1.7;
+}
+
+.client-offer-actions{
+    display:flex;
+    gap:14px;
+}
+
+.accept-offer-btn{
+    flex:1;
+    border:none;
+    background:#0b8f67;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.accept-offer-btn:hover{
+    background:#087857;
+}
+
+.reject-offer-btn{
+    flex:1;
+    border:none;
+    background:#d93636;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.reject-offer-btn:hover{
+    background:#b82525;
+}

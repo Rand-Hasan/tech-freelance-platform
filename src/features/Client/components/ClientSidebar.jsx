@@ -54,7 +54,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           {/* workspace */}
           <div className="nav-group">
             <span className="nav-group-title">Workspace</span>
-            <NavLink to="messages" className="nav-item">
+            <NavLink to="messageClient" className="nav-item">
               <span className="nav-icon">💬</span>
               <span className="nav-text">Messages</span>
             </NavLink>

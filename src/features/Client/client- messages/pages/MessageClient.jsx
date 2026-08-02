@@ -2,36 +2,26 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import { baseURL } from "../../../../services/Api/api";
-import { useParams } from "react-router-dom";
 import {
   getMyConversations,
-  getMessages,startFreelancerConversation
-} from "../../../FreeLancer/freelancer-message/services/freelancer-messages";
-import "../../../FreeLancer/freelancer-message/styles/MessageFree.css";
-import socket from "../../../FreeLancer/freelancer-message/pages/socket";
+  getMessages,startClientConversation,
+} from "../services/MessageClientapi";
+import "../../../Client/client- messages/styles/MessageClient.css";
 import EmojiPicker from "emoji-picker-react";
-export default function MessageFree() {
+import socket from "./socket";
+export default function MessageClient() {
   const cookies = Cookies();
-  const [showEmoji, setShowEmoji] = useState(false);
 const [myId, setMyId] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [selectedConversation, setSelectedConversation] = useState(null);
+  const selectedConversationRef = useRef(null);
 const [text, setText] = useState("");
-const selectedConversationRef = useRef(null);
-const { clientId } = useParams();
-const onEmojiClick = (emojiData) => {
+  const [showEmoji, setShowEmoji] = useState(false);
+  const onEmojiClick = (emojiData) => {
   setText((prev) => prev + emojiData.emoji);
 };
-const createdRef = useRef(false);
-
-useEffect(() => {
-  if (!clientId || createdRef.current) return;
-
-  createdRef.current = true;
-  createConversation(clientId);
-}, [clientId]);
- useEffect(() => {
+  useEffect(() => {
   getConversations();
 
   socket.on("joined_status", (data) => {
@@ -89,13 +79,17 @@ socket.on("message_read_confirm", (message) => {
 
   
 }, []);
-//////////////الانشاء//////////////
-async function createConversation(clientId) {
+
+
+
+/////الانشاء/////////////
+async function createConversation(freelancerId) {
   try {
-    const token = cookies.get("token-freelancer");
+
+    const token = cookies.get("token-client");
 
     const res = await axios.post(
-      `${baseURL}${startFreelancerConversation}${clientId}`,
+      `${baseURL}${startClientConversation}${freelancerId}`,
       {},
       {
         headers:{
@@ -103,36 +97,52 @@ async function createConversation(clientId) {
         }
       }
     );
-console.log("createConversation called");
+
+
     console.log("Created:", res.data);
+
 
     const newConversation = res.data.conversation;
 
-    setConversations((prev)=>[
-      ...prev.filter(c=>c.id !== newConversation.id),
-      newConversation
-    ]);
 
-await handleGetMessages(newConversation.id);
+    // أضيفها للقائمة بدون refresh
+    setConversations((prev)=>{
+
+      const exists = prev.some(
+        (chat)=>chat.id === newConversation.id
+      );
+
+      if(exists) return prev;
+
+      return [
+        ...prev,
+        newConversation
+      ];
+
+    });
+
+
+    // افتح المحادثة مباشرة
+    handleGetMessages(newConversation.id);
+
 
   } catch(err){
     console.log(err.response?.data || err);
   }
 }
-/////////////////////
+///////////////////
   async function getConversations() {
     try {
-      const token = cookies.get("token-freelancer");
-
+      const token = cookies.get("token-client");
+console.log(cookies.get("token-client"));
       const res = await axios.get(`${baseURL}${getMyConversations}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-console.log("Create Conversation:", clientId, );
+
       console.log("Conversations:", res.data);
-      console.log(res.data.conversations[0]);
-console.log(cookies.get("token-freelancer"));
+
       setConversations(res.data.conversations || []);
     } catch (err) {
       console.log(err.response?.data || err);
@@ -147,7 +157,7 @@ console.log(cookies.get("token-freelancer"));
         selectedConversationRef.current
       );
     }
-      const token = cookies.get("token-freelancer");
+      const token = cookies.get("token-client");
 
       const res = await axios.get(
         `${baseURL}${getMessages}${conversationId}`,
@@ -162,7 +172,7 @@ setSelectedConversation(conversationId);
 
       console.log("Messages:", res.data);
 
-    setSelectedConversation(conversationId);
+ setSelectedConversation(conversationId);
 setMessages(res.data.messages || []);
 
 socket.emit("join_conversation", conversationId);
@@ -170,20 +180,20 @@ socket.emit("join_conversation", conversationId);
 socket.emit("mark_all_as_read", {
   conversationId,
 });
-       
-  const conversation = conversations.find(
+        const conversation = conversations.find(
   (c) => c.id === conversationId
 );
 
 if (conversation) {
-  setMyId(conversation.freelancerId);
+  setMyId(conversation.clientId);
 }
+console.log("My ID:", conversation.clientId);
       
     } catch (err) {
       console.log(err.response?.data || err);
     }
   } 
- function sendMessage() {
+function sendMessage() {
   if (!selectedConversation) {
     alert("Select conversation first");
     return;
@@ -199,8 +209,9 @@ if (conversation) {
     isRead: false,
   };
 
-  setMessages((prev) => [...prev, newMessage]);
 
+  setMessages((prev) => [...prev, newMessage]);
+console.log(text);
   socket.emit("send_message", {
     conversationId: selectedConversation,
     content: text,
@@ -210,10 +221,11 @@ if (conversation) {
 }
 
   return (
-    <div className="messages-page">
+    
+    <div className="messagess-page">
      
       <h1>Messages</h1>
-      <p>Your inbox and client conversations</p>
+      <p>Your inbox and Freelancer conversations</p>
 
       <div className="chat-container">
         <div className="sidebarr">
@@ -234,7 +246,7 @@ if (conversation) {
 
               <div className="chat-info">
                 <h4>Conversation #{chat.id}</h4>
-                <p>Client ID: {chat.clientId}</p>
+            <p>Freelancer ID: {chat.freelancerId}</p>
               </div>
 
               <span>
@@ -263,41 +275,57 @@ if (conversation) {
             </div>
           </div>
 
-          <div className="chat-body">
-            {messages.length === 0 ? (
-              
-              <p>No messages</p>
-            ) : (
-            messages.map((msg) => 
-              ( <div key={msg.id} 
-              className={ msg.senderId === myId ?
-               "message my-message" : "message other-message" } >
-                 <div>{msg.content}</div> {msg.senderId === myId &&
-             ( <small> 
-          <div className="message-status">
+         <div className="chat-body">
+ {messages.length === 0 ? (
+  <p>No messages</p>
+) : (
+  messages.map((msg) => {
+    console.log("sender:", msg.senderId);
+    console.log("myId:", myId);
+
+    return (
+      <div
+        key={msg.id}
+        className={
+          msg.senderId === myId
+            ? "message my-message"
+            : "message other-message"
+        }
+      >
+        <div>{msg.content}</div>
+
+        {msg.senderId === myId && (
+          <small>
+            <div className="message-status">
     {msg.isRead ? "✔✔ Read" : "✔ Sent"}
   </div>
-               </small> )} 
-              </div> )) 
-            )} </div>
+          </small>
+        )}
+      </div>
+    );
+  })
+)}
+</div>
 
-          <div className="chat-input">
-            <button onClick={() => setShowEmoji(!showEmoji)}>
+<div className="chat-input">
+  <button onClick={() => setShowEmoji(!showEmoji)}>
     😊
   </button>
 
   {showEmoji && (
     <EmojiPicker onEmojiClick={onEmojiClick} />
   )}
-    <input
-  value={text}
-  onChange={(e) => setText(e.target.value)}
-  placeholder="Type your reply..."
-/>
-        <button onClick={sendMessage}>
-  ➤
-</button>
-          </div>
+
+  <input
+    value={text}
+    onChange={(e) => setText(e.target.value)}
+    placeholder="Type your reply..."
+  />
+
+  <button onClick={sendMessage}>
+    ➤
+  </button>
+</div>
         </div>
       </div>
     </div>

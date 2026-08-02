@@ -163,6 +163,7 @@ export default function ProjectProposalDetails() {
             </div>
             {isModel && (
                 <CreateOffers
+                    mode="create"
                     proposalDetails={proposalDetails}
                     onClose={() => setIsModel(false)}
                 />

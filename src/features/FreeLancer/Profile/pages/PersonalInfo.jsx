@@ -28,23 +28,6 @@ export default function PersonalInfo() {
       .then((data) => {
         setdata(data);
         setLoading(false);
-
-        if (data.user_profile) {
-          localStorage.setItem("location", data.user_profile.location || "");
-          const fullName = `${data.user_profile.first_name || ""} ${data.user_profile.last_name || ""}`;
-          localStorage.setItem("FullName", fullName);
-          localStorage.setItem(
-            "evaluation",
-            data.user_profile.evaluation || "",
-          );
-          localStorage.setItem("photo", data.user_profile.photo || "");
-          window.dispatchEvent(new Event("storage_updated"));
-        } else {
-          localStorage.removeItem("location");
-          localStorage.removeItem("FullName");
-          localStorage.removeItem("evaluation");
-          localStorage.removeItem("photo");
-        }
       })
       .catch((error) => {
         seterror(error.message);

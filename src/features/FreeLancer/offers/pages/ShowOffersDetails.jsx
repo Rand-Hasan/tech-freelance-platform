@@ -1,26 +1,43 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { baseURL } from "../../../../services/Api/api";
-import { GetOfferDetailes } from "../services/api_offers";
+import { Cancel_Offer, GetOfferDetailes } from "../services/api_offers";
 import '../styles/ShowOffersDetails.css';
 import Cookies from "universal-cookie";
+import CreateOffers from "./CreateOffers";
 
-export default function ShowOffersDetails({onClose,offerdetails}){
-    const cookies= new Cookies();
-    const token= cookies.get('token-freelancer');
-    const [offerDetails,setOfferDetails]=useState([]);
-   useEffect(() => {
-    if (offerdetails) {
-        showofferdetails();
+export default function ShowOffersDetails({ onClose, offerdetails }) {
+    const cookies = new Cookies();
+    const token = cookies.get('token-freelancer');
+    const [offerDetails, setOfferDetails] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+    useEffect(() => {
+        if (offerdetails) {
+            showofferdetails();
+        }
+    }, [offerdetails]);
+
+    const showofferdetails = async () => {
+        try {
+            const res = await axios.get(`${baseURL}${GetOfferDetailes}${offerdetails.offer_id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setOfferDetails(res.data.offer);
+        } catch (err) {
+            console.log(err)
+        }
     }
-}, [offerdetails]);
-    const showofferdetails=async ()=>{
-        try{
-        const res= await axios.get(`${baseURL}${GetOfferDetailes}${offerdetails.offer_id}`,{
-            headers:{Authorization:`Bearer ${token}`}
-        });
-        setOfferDetails(res.data.offer);
-        }catch(err){
+    const handleDeleteOffer = async (id) => {
+        try {
+            const res = await axios.post(`${baseURL}${Cancel_Offer}${id}`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            console.log('truuuuuuio')
+            setOfferDetails({
+                ...offerDetails,
+                offerStatus: "canceled"
+            });
+        } catch (err) {
             console.log(err)
         }
     }
@@ -30,74 +47,81 @@ export default function ShowOffersDetails({onClose,offerdetails}){
 
             <div className="offer-details-modal">
 
-                <button 
-                    className="offer-modal-close"
-                    onClick={onClose}
-                >
-                    ×
-                </button>
+
 
 
                 <div className="offer-modal-header">
 
-                    <h2>
-                        Offer Details
-                    </h2>
+                    <div>
+                        <h2 className="offer-title">
+                            Offer Details
+                        </h2>
 
+                        <p className="offer-client">
+                            {offerDetails.client_name}
+                        </p>
 
-                    <span className={`offer-status ${offerDetails.offerStatus}`}>
-                        {offerDetails.offerStatus}
-                    </span>
+                        <span className={`offer-status ${offerDetails.offerStatus}`}>
+                            ● {offerDetails.offerStatus}
+                        </span>
+                    </div>
+
+                    <button
+                        className="offer-close-btn"
+                        onClick={onClose}
+                    >
+                        ×
+                    </button>
 
                 </div>
-
 
 
                 <div className="offer-details-content">
 
 
-                    <div className="offer-detail-box">
+                    <div className="offer-info-row">
 
-                        <span>
-                            💰 Price
-                        </span>
+                        <div className="offer-info-box">
 
-                        <strong>
-                            ${offerDetails.proposed_price}
-                        </strong>
+                            <span className="offer-label">
+                                💲 Proposed Price
+                            </span>
+
+                            <strong>
+                                ${offerDetails.proposed_price}
+                            </strong>
+
+                        </div>
+
+                        <div className="offer-info-box">
+
+                            <span className="offer-label">
+                                📅 Proposed Duration
+                            </span>
+
+                            <strong>
+                                {new Date(
+                                    offerDetails.proposed_duration
+                                ).toLocaleDateString()}
+                            </strong>
+
+                        </div>
 
                     </div>
 
 
 
-                    <div className="offer-detail-box">
+                    <div className="proposal-section">
 
-                        <span>
-                            📅 Duration
-                        </span>
-
-                        <strong>
-                            {new Date(
-                                offerDetails.proposed_duration
-                            ).toLocaleDateString()}
-                        </strong>
-
-                    </div>
-
-
-
-                    <div className="offer-detail-description">
-
-                        <h3>
-                            Proposal
-                        </h3>
+                        <h4>
+                            📄 PROPOSAL TEXT
+                        </h4>
 
                         <p>
                             {offerDetails.proposalText}
                         </p>
 
                     </div>
-
 
                 </div>
 
@@ -107,17 +131,27 @@ export default function ShowOffersDetails({onClose,offerdetails}){
 
                     <div className="offer-actions">
 
-                        <button className="offer-edit-btn">
+                        <button className="edit-offer-btn"
+                            onClick={() => setIsEdit(true)}
+                        >
                             Edit Offer
                         </button>
 
+                        {isEdit && (
+                            <CreateOffers
+                                mode="edit"
+                                offerId={offerdetails.offer_id}
+                                onClose={() => setIsEdit(false)}
+                            />
+                        )}
 
-                        <button className="offer-delete-btn">
+                        <button className="delete-offer-btn"
+                            onClick={() => handleDeleteOffer(offerdetails.offer_id)}
+                        >
                             Delete Offer
                         </button>
 
                     </div>
-
                 )}
 
 

@@ -50,3 +50,33 @@
     justify-content:center;
     margin-top:35px;
 }
+
+.offers-filters{
+    display:flex;
+    gap:12px;
+    margin-bottom:24px;
+    flex-wrap:wrap;
+}
+
+.offers-filters button{
+    border:none;
+    outline:none;
+    background:#eef2f3;
+    color:#444;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.offers-filters button:hover{
+    background:#dfe6e9;
+}
+
+.active-filter{
+    background:#007a5a !important;
+    color:white !important;
+    box-shadow:0 4px 12px rgba(0,122,90,.25);
+}
