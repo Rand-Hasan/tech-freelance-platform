@@ -62,7 +62,8 @@ function App() {
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="messageClient" element={<MessageClient/>} />
+         <Route path="messageClient" element={<MessageClient/>} />
+          <Route path="messageClient/:freelancer_id" element={<MessageClient/>} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
           <Route path='invaitations' element={<Invaitations/>}/>

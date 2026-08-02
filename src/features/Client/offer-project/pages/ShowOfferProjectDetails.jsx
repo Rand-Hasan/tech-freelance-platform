@@ -46,7 +46,7 @@ export default function ShowOfferProjectDetails({ onClose, refreshOffers, offerd
             const res = await axios.post(`${baseURL}${ReposedOffer}${id}`, {
                 reposed: reposed
             }, { headers: { Authorization: `Bearer ${token}` } })
-            navigate('......${selectedOffer.freelancer_id}')
+            navigate(`/clientlayout/messageClient/${offerdetails.freelancer_id}`)
             //     onClose();              
             // refreshOffers();   
         } catch (err) {
@@ -124,11 +124,11 @@ export default function ShowOfferProjectDetails({ onClose, refreshOffers, offerd
 
                     <div className="client-offer-actions">
 
-                        <button className="accept-offer-btn" onClick={() => handlerespond(offerId, 'Ok')}>
+                        <button className="accept-offer-btn" onClick={() => handlerespond(offerdetails.offer_id, 'Ok')}>
                             Accept Offer
                         </button>
 
-                        <button className="reject-offer-btn" onClick={() => handlerespond(offerId, 'No')}>
+                        <button className="reject-offer-btn" onClick={() => handlerespond(offerdetails.offer_id, 'No')}>
                             Reject Offer
                         </button>
 
