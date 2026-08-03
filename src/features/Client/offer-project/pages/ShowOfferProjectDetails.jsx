@@ -11,6 +11,7 @@ export default function ShowOfferProjectDetails({ onClose, refreshOffers, offerd
 
     const cookies = new Cookies();
     const token = cookies.get("token-client");
+    const { id: projectId } = useParams();
 
     const navigate = useNavigate();
     const [offerDetails, setOfferDetails] = useState(null);
@@ -48,9 +49,14 @@ export default function ShowOfferProjectDetails({ onClose, refreshOffers, offerd
             const res = await axios.post(`${baseURL}${ReposedOffer}${id}`, {
                 reposed: reposed
             }, { headers: { Authorization: `Bearer ${token}` } })
-            navigate('......${selectedOffer.freelancer_id}')
 
-
+            // navigate(`/clientlayout/messageClient/${offerdetails.freelancer_id}`)
+            navigate(`/clientlayout/messageClient/${offerdetails.freelancer_id}`, {
+    state: {
+        projectId,
+    },
+});
+           
             //     onClose();              
             // refreshOffers();   
         } catch (err) {

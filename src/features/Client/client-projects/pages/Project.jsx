@@ -98,7 +98,7 @@ export default function Projects() {
   }
   return (
     <div className="page-view-project">
-      <div className="filter-bar">
+      <div className="filter-barr">
         <button
           onClick={() => setactiveTab("all")}
           className={activeTab === "all" ? "tab-btn active" : "tab-btn"}

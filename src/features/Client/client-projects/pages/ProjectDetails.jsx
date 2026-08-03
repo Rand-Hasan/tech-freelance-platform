@@ -26,7 +26,7 @@ export default function ProjectDetails() {
           <span>Dead Line</span>
         </div>
         <h1></h1>
-        <button onClick={()=>navigate('/clientlayout/createcontract')}>Create Contract</button>
+        {/* <button onClick={()=>navigate('/clientlayout/createcontract')}>Create Contract</button> */}
       </div>
 
       <div className="project-tabs">

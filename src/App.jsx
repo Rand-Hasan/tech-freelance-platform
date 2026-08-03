@@ -44,7 +44,7 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
-import CreateContract from './features/Client/client-contracts/pages/CreateContract';
+import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 function App() {
   return (
     <BrowserRouter>
@@ -63,7 +63,8 @@ function App() {
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="messageClient" element={<MessageClient/>} />
+         <Route path="messageClient" element={<MessageClient/>} />
+          <Route path="messageClient/:freelancer_id" element={<MessageClient/>} />
           <Route path="wallet" element={<Wallet />} />
           <Route path="projects" element={<Projects />} />
           <Route path='invaitations' element={<Invaitations/>}/>
@@ -77,12 +78,12 @@ function App() {
           </Route>
           <Route path="createproject" element={<CreateProject />} />
           <Route path="editproject/:id" element={< CreateProject />} />
-          <Route path='createcontract' element={<CreateContract/>} />
-          <Route path='editcontract/:id' element={<CreateContract/>}/>
+          <Route path='createcontract' element={<CreateContractt/>} />
+          <Route path='editcontract/:id' element={<CreateContractt/>}/>
           <Route path="FindFreelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
 
-          <Route path="ContractDetails" element={<ContractDetails />} />
+          <Route path="ContractDetails/:id" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
           <Route path="setting" element={<Settings />} />
           <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />

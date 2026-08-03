@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { baseURL } from "../../../../services/Api/api";
 import {
   getMyConversations,
@@ -10,7 +11,16 @@ import "../../../Client/client- messages/styles/MessageClient.css";
 import EmojiPicker from "emoji-picker-react";
 import socket from "./socket";
 export default function MessageClient() {
-  const cookies = Cookies();
+
+  // const { id: freelancerId } = useParams();
+
+
+const { state } = useLocation();
+
+const projectId = state?.projectId; // ✅
+
+const navigate = useNavigate();
+const cookies = new Cookies();
 const [myId, setMyId] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -18,9 +28,17 @@ const [myId, setMyId] = useState(null);
   const selectedConversationRef = useRef(null);
 const [text, setText] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
+  const { freelancer_id } = useParams();
+  const createdRef = useRef(false);
   const onEmojiClick = (emojiData) => {
   setText((prev) => prev + emojiData.emoji);
 };
+useEffect(() => {
+  if (!freelancer_id || createdRef.current) return;
+
+  createdRef.current = true;
+  createConversation(freelancer_id);
+}, [freelancer_id]);
   useEffect(() => {
   getConversations();
 
@@ -105,7 +123,7 @@ async function createConversation(freelancerId) {
     const newConversation = res.data.conversation;
 
 
-    // أضيفها للقائمة بدون refresh
+   
     setConversations((prev)=>{
 
       const exists = prev.some(
@@ -122,7 +140,7 @@ async function createConversation(freelancerId) {
     });
 
 
-    // افتح المحادثة مباشرة
+   
     handleGetMessages(newConversation.id);
 
 
@@ -142,7 +160,10 @@ console.log(cookies.get("token-client"));
       });
 
       console.log("Conversations:", res.data);
-
+console.log(
+  "Conversations:",
+  JSON.stringify(res.data.conversations, null, 2)
+);
       setConversations(res.data.conversations || []);
     } catch (err) {
       console.log(err.response?.data || err);
@@ -158,7 +179,12 @@ console.log(cookies.get("token-client"));
       );
     }
       const token = cookies.get("token-client");
+    console.log("Token:", token);
+     console.log("Opening conversation:", conversationId);
 
+
+
+  console.log("Current token:", token);
       const res = await axios.get(
         `${baseURL}${getMessages}${conversationId}`,
         {
@@ -223,7 +249,12 @@ console.log(text);
   return (
     
     <div className="messagess-page">
-     
+     <button onClick={()=>navigate("/clientlayout/createcontract", {
+    state: {
+        projectId,
+        freelancerId:freelancer_id,
+    },
+})}>Create contract</button>
       <h1>Messages</h1>
       <p>Your inbox and Freelancer conversations</p>
 

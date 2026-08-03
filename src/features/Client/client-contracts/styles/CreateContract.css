@@ -1,0 +1,235 @@
+.create-contract-page{
+    display: flex;
+    justify-content: flex-start;
+    padding: 1px ;
+}
+
+.create-contract-card{
+    width:90%;
+    max-width:800px;
+    background:#fff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.create-contract-card h2{
+    margin-bottom:25px;
+    color:#0f172a;
+}
+
+.contract-section-title{
+    margin-bottom:15px;
+    font-size:20px;
+    font-weight:600;
+}
+
+/* -------------------- Contract Type -------------------- */
+
+.contract-type-container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.contract-type-card{
+    border:2px solid #dbe7ea;
+    border-radius:15px;
+    padding:22px;
+    cursor:pointer;
+    transition:.25s;
+    background:#fff;
+}
+
+.contract-type-card:hover{
+    border-color:#0d8b74;
+    transform:translateY(-2px);
+}
+
+.active-contract-type{
+    border-color:#0d8b74;
+    background:#eefaf7;
+}
+
+.contract-type-card h3{
+    margin-bottom:10px;
+}
+
+.contract-type-card p{
+    color:#64748b;
+    line-height:1.5;
+}
+
+/* -------------------- Inputs -------------------- */
+
+.contract-form{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.contract-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.contract-input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.contract-input-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+}
+
+.contract-input-group input,
+.contract-input-group select{
+    height:48px;
+    border:1px solid #d5dfe4;
+    border-radius:10px;
+    padding:0 15px;
+    font-size:15px;
+    outline:none;
+    transition:.25s;
+}
+
+.contract-input-group input:focus,
+.contract-input-group select:focus{
+    border-color:#0d8b74;
+}
+
+/* -------------------- Phase -------------------- */
+
+.phase-card{
+    border:1px solid #dbe4ea;
+    border-radius:15px;
+    padding:25px;
+    margin-top:10px;
+}
+
+.phase-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.phase-header h3{
+    margin:0;
+}
+
+.remove-phase-btn{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:#ef4444;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
+}
+
+.remove-phase-btn:hover{
+    background:#dc2626;
+}
+
+.phase-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+/* آخر حقل ياخد نصف سطر */
+
+.phase-grid .contract-input-group:last-child{
+    grid-column:1/2;
+}
+
+/* -------------------- Buttons -------------------- */
+
+.add-phase-btn{
+    margin-top:20px;
+    padding:12px 20px;
+    background:#0d8b74;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.add-phase-btn:hover{
+    background:#0b725f;
+}
+
+.contract-submit{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
+
+.create-contract-btn{
+    padding:13px 35px;
+    background:#0d8b74;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.create-contract-btn:hover{
+    background:#0b725f;
+}
+
+/* -------------------- Responsive -------------------- */
+
+@media(max-width:768px){
+
+    .contract-type-container{
+        grid-template-columns:1fr;
+    }
+
+    .contract-row{
+        grid-template-columns:1fr;
+    }
+
+    .phase-grid{
+        grid-template-columns:1fr;
+    }
+
+    .phase-grid .contract-input-group:last-child{
+        grid-column:auto;
+    }
+
+    .contract-submit{
+        justify-content:center;
+    }
+
+    .create-contract-btn{
+        width:100%;
+    }
+}
+.contract-errors{
+    margin:20px 0 30px;
+    padding:15px 18px;
+    border-radius:10px;
+    background:#fef2f2;
+    border:1px solid #fca5a5;
+}
+
+.contract-error-item{
+    color:#dc2626;
+    font-size:15px;
+    font-weight:500;
+    margin:6px 0;
+}
