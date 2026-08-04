@@ -45,6 +45,7 @@ import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
+import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 function App() {
   return (
     <BrowserRouter>
@@ -91,6 +92,7 @@ function App() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Freelancer */}
         <Route path='/freelancerlayout' element={<FreeLancerLayout />}>
+        <Route index element={<FreelancerHome/>} />
           <Route path="contractfree" element={<ContractFree />} />
           {/* project freelancer */}
           <Route path='projectfree' element={<ProjectFree />}>

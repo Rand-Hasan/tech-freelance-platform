@@ -98,7 +98,7 @@ else {
     <div className="create-account-content">
       {loading && <Loading />}
       <nav className="navbar">
-        <div className="logo">ProLink</div>
+        <div className="logo">FreeLink</div>
       </nav>
 
 

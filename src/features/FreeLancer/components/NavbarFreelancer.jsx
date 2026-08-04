@@ -6,9 +6,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, Badge, Menu, MenuItem } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/NavbarFreelancer.css"; 
-
+import axios from "axios";
+import { baseURL } from "../../../services/Api/api";
+import Cookies from "universal-cookie";
 export default function NavbarFreelancer() {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const token = cookies.get('token-freelancer');
   const [searchValue, setSearchValue] = useState("");
   
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,6 +36,14 @@ export default function NavbarFreelancer() {
     console.log("جاري البحث عن:", searchValue);
     
   };
+   const Logout =async ()=>{
+    try{
+      const res= await axios.post(`${baseURL}`,{},{headers:{Authorization:`Bearer ${token}`}})
+      navigate('/');
+    }catch(err){
+      console.log(err)
+    }
+   }
 
   return (
     <nav className="navbar-freelancer">
@@ -68,10 +80,8 @@ export default function NavbarFreelancer() {
     onChange={(e) => setSearchValue(e.target.value)}
   />
 
-  {/* 2. الخط الفاصل الرمادي */}
   <div className="search-divider"></div>
 
-  {/* 3. القائمة المنسدلة الخيارات */}
   <div className="search-select-wrapper">
     <select className="search-select-free">
       <option value="projects">Projects</option>
@@ -79,7 +89,6 @@ export default function NavbarFreelancer() {
     </select>
   </div>
 
-  {/* 4. حاوية الأيقونة الدائرية في أقصى اليمين */}
   <button type="submit" className="search-btn-submit-free">
     <SearchIcon className="search-icon-free" />
   </button>
@@ -122,7 +131,8 @@ export default function NavbarFreelancer() {
              Settings
           </MenuItem>
           <hr style={{ margin: '4px 0', border: 'none', borderTop: '1px solid #eee' }} />
-          <MenuItem onClick={handleMenuClose} style={{ fontSize: '14px', color: 'red', fontFamily: 'inherit' }}>
+          <MenuItem onClick={handleMenuClose} style={{ fontSize: '14px', color: 'red', fontFamily: 'inherit' }} 
+          onClick ={()=>Logout()}>
              Sign Out
           </MenuItem>
         </Menu>

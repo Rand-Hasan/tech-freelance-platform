@@ -1,32 +1,71 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import ClientSidebar from '../components/ClientSidebar';
-import ClientHeader from '../components/ClientHeader';
-import '../styles/ClientLayout.css';
+// import React, { useState } from 'react';
+// import { Outlet } from 'react-router-dom';
+// import ClientSidebar from '../components/ClientSidebar';
+// import ClientHeader from '../components/ClientHeader';
+// import '../styles/ClientLayout.css';
+
+// export default function ClientLayout() {
+//   const [sidebarOpen, setSidebarOpen] = useState(false);
+//   return (
+    
+//     <div className="dashboard-layout">
+
+//     <ClientSidebar
+//         sidebarOpen={sidebarOpen}
+//         setSidebarOpen={setSidebarOpen}
+//     />
+
+//     <div className="main-wrapper">
+
+//         <ClientHeader
+//             setSidebarOpen={setSidebarOpen}
+//         />
+
+//         <main className="page-content">
+//             <Outlet />
+//         </main>
+
+//     </div>
+
+// </div>
+//   );
+// }
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import ClientSidebar from "../components/ClientSidebar";
+import ClientHeader from "../components/ClientHeader";
+import "../styles/ClientLayout.css";
 
 export default function ClientLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
-    
+
     <div className="dashboard-layout">
 
-    <ClientSidebar
+      <ClientSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
-    />
+      />
 
-    <div className="main-wrapper">
+      <div
+        className={`main-wrapper ${
+          sidebarOpen ? "sidebar-open" : "sidebar-close"
+        }`}
+      >
 
         <ClientHeader
-            setSidebarOpen={setSidebarOpen}
+          setSidebarOpen={setSidebarOpen}
         />
 
         <main className="page-content">
-            <Outlet />
+          <Outlet />
         </main>
+
+      </div>
 
     </div>
 
-</div>
   );
 }

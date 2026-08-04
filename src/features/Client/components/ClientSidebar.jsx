@@ -4,12 +4,18 @@ import "../styles/ClientSidebar.css";
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <>
-      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+     <aside className={`sidebar ${sidebarOpen ? "" : "closed"}`}>
+      <button
+    className="ssssss"
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+>
+    {sidebarOpen ? "◀" : "▶"}
+</button>
         {/* Logo */}
         <div className="sidebar-logo">
           <div className="sidebar-logo-txt">
             {" "}
-            pro <em>Link</em>
+            Free <em>Link</em>
           </div>
           <div className="sidebar-logo-sub">Client Portal</div>
         </div>

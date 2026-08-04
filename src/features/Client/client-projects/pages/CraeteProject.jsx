@@ -5,13 +5,13 @@ import Cookies from "universal-cookie";
 import { baseURL } from '../../../../services/Api/api';
 import { CreateProjectapi, GetClientProjectById, GetSkills, UpdateProject } from '../services/api_project';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 export default function CreateProject() {
    const cookies = new Cookies();
    const { id } = useParams();
    const isEditMode = Boolean(id);
    const token = cookies.get('token-client');
-
+   const navigate = useNavigate();
    console.log('tokenis222:', token);
 
    const [data, setData] = useState({
@@ -109,6 +109,7 @@ export default function CreateProject() {
          // console.log(token);
          console.log("SUCCESS RESPONSE:", res.data.message);
          alert(isEditMode ? "Project updated successfully!" : "Project published successfully!");
+         navigate('/clientlayout/projects');
       } catch (err) {
          console.log("ERROR:", err.response?.data);
          const msg =
