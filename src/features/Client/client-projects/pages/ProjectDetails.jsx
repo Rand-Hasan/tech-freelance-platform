@@ -47,7 +47,7 @@ export default function ProjectDetails() {
         </NavLink>
 
         <NavLink to="offer-project" className="tab-link">
-           Submitted Proposal 
+          ☑️ Submitted Proposal 
         </NavLink>
       </div>
 

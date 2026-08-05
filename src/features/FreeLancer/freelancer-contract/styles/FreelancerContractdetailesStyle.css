@@ -1,0 +1,209 @@
+.DadOfEveryThing {
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: #f8faf9;
+  font-family: Arial, sans-serif;
+}
+
+/* Back button */
+.BacktoContract {
+  background-color: white;
+  color: #09664d;
+  border-radius: 10px;
+  width: 170px;
+  height: 36px;
+  border: 1px solid #09664d;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.BacktoContract:hover {
+  background-color: #e6f5f1;
+}
+
+/* Contract info card */
+.ContractInfo {
+  width: 100%;
+  background-color: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.StatusAndPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.StatusAndPrice .Status {
+  background-color: #fff8ec;
+  color: #9a6b13;
+  border: 1px solid #f0dfba;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.StatusAndPrice .Price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #09664d;
+}
+
+.ContractTitleAndDiscription h1 {
+  font-size: 22px;
+  margin: 0 0 8px 0;
+  color: #222;
+}
+
+.ContractTitleAndDiscription span {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* "Phases(2)" label */
+.DadOfEveryThing > span {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+/* Each phase card */
+.PhaseInfor {
+  width: 100%;
+  background-color: white;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.TitleAndStatus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.TitleAndStatus .Title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+}
+
+.TitleAndStatus .Status {
+  background-color: #fff8ec;
+  color: #9a6b13;
+  border: 1px solid #f0dfba;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.SubInfoAboutPhase {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 15px;
+}
+.AmmountAndDuration{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.Ammount{
+    width: 100%;
+    background-color: #F1F5F3;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+.duration{
+    width: 100%;
+    background-color: #F1F5F3;
+    border-radius: 10px;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.DedLineAndRevision{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.DeadLine{
+    width: 100%;
+    background-color:#F1F5F3;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+.Revision{
+    width: 100%;
+    background-color:#F1F5F3;
+     height: 50px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+.Buttons{
+  display: flex;
+  justify-content: space-around;
+}
+.Acceptbtn{
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #09664d;
+  color: #09664d;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+.Acceptbtn:hover{
+  background-color: #09664d;
+  color: white;
+}
+.Rejectbtn{
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid red;
+  color: red;
+  font-weight: bold;
+  cursor: pointer; 
+  transition: all 0.3s ease-in;
+}
+
+.Rejectbtn:hover{
+  background-color: red;
+  color: white;
+}
+@media (max-width: 600px) {
+  .SubInfoAboutPhase {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .AmmountAndDuration,
+  .DedLineAndRevision {
+    justify-content: space-between;
+    gap: 0;
+  }
+}
