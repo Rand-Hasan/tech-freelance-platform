@@ -149,7 +149,7 @@ export default function SignIn() {
     <div className="FatherDiv">
       {loading && <Loading />}
       <div className="LikeNavBar">
-        <h3 className="TileOnNav">CodeLance</h3>
+        <h3 className="TileOnNav">FreeLink</h3>
         <h3 className="BackToHomeNav">
           <a className="BackToHomeNavA" href="/">
             ⬅BackToHome

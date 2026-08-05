@@ -8,7 +8,7 @@ export default function NavbarLanding() {
     <div className='navbar-landing-wrapper'>
     <nav className="navbar-landing">
      
-      <span className="logo">ProLink</span>
+      <span className="logo">FreeLink</span>
       
       <ul className="nav-links">
         <li>Browse Projects</li>

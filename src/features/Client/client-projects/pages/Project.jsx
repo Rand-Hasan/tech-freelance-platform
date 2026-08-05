@@ -1,23 +1,27 @@
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { data, Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../../../services/Api/api";
 import { DeleteProject, GetClientProjects } from "../services/api_project";
 import Cookies from "universal-cookie";
 import EditIcon from "@mui/icons-material/Edit";
-import { IconButton } from "@mui/material";
+import { DeleteForever } from "@mui/icons-material";
 import "../styles/Project.css";
-import { Delete, DeleteForever } from "@mui/icons-material";
 import axios from "axios";
+
 export default function Projects() {
+
   const navigate = useNavigate();
+
   const [Allprojects, setAllprojects] = useState([]);
   const [filterproject, setfilterproject] = useState([]);
-  const [activeTab, setactiveTab] = useState("all");
+  const [activeTabbb, setactiveTabbb] = useState("all");
+
   const cookies = new Cookies();
   const token = cookies.get("token-client");
 
+
   useEffect(() => {
+
     fetch(`${baseURL}${GetClientProjects}`, {
       method: "GET",
       headers: {
@@ -28,54 +32,80 @@ export default function Projects() {
       .then((response) => response.json())
       .then((data) => {
         setAllprojects(data.projects);
-        console.log(data.projects);
         setfilterproject(data.projects);
       });
+
   }, []);
 
+
+
   useEffect(() => {
-    if (activeTab == "all") {
+
+    if (activeTabbb === "all") {
+
       setfilterproject(Allprojects);
+
     } else {
-      // if (!Allprojects[0]?.status) {
-      //     setfilterproject(Allprojects);
-      //     return;
-      // }
 
       const result = Allprojects.filter(
-        (project) => project.status === activeTab,
+        (project) => project.status === activeTabbb
       );
 
       setfilterproject(result);
+
     }
-  }, [activeTab, Allprojects]);
+
+  }, [activeTabbb, Allprojects]);
+
+
+
 
   async function handleDelete(id) {
+
     if (!window.confirm("هل أنت متأكد من حذف هذا المشروع؟")) return;
+
+
     try {
-      const res = await axios.post(
+
+      await axios.post(
         `${baseURL}${DeleteProject}${id}`,
         {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
-      console.log("Deleted:", res.data);
 
-      setAllprojects((prev) => prev.filter((p) => p.id !== id));
+
+      setAllprojects((prev) =>
+        prev.filter((p) => p.id !== id)
+      );
+
+
     } catch (error) {
-      console.error("خطأ أثناء الحذف:", error.response?.data || error);
-      alert("فشل حذف المشروع");
+
+      console.error(error);
+      alert("Failed delete project");
+
     }
+
   }
 
+
+
+
   function getInitial(name) {
+
     if (!name) return "?";
 
     return name.charAt(0).toUpperCase();
+
   }
+
+
+
+
   const colors = [
     "#2A9D8F",
     "#4361EE",
@@ -87,127 +117,290 @@ export default function Projects() {
     "#27AE60",
     "#C0392B",
   ];
+
+
+
   function stringToColor(str) {
+
     let hash = 0;
 
     for (let i = 0; i < str.length; i++) {
+
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+
     }
 
+
     return colors[Math.abs(hash) % colors.length];
+
   }
+
+
+
   return (
-    <div className="page-view-project">
-      <div className="filter-bar">
+
+    <div className="client-project-page">
+
+
+      <div className="client-project-filter-bar">
+
+
         <button
-          onClick={() => setactiveTab("all")}
-          className={activeTab === "all" ? "tab-btn active" : "tab-btn"}
+          onClick={() => setactiveTabbb("all")}
+          className={
+            activeTabbb === "all"
+              ? "client-project-tab-btn client-project-active"
+              : "client-project-tab-btn"
+          }
         >
           All
         </button>
 
+
+
         <button
-          onClick={() => setactiveTab("in_progress")}
-          className={activeTab === "in_progress" ? "tab-btn active" : "tab-btn"}
+          onClick={() => setactiveTabbb("in_progress")}
+          className={
+            activeTabbb === "in_progress"
+              ? "client-project-tab-btn client-project-active"
+              : "client-project-tab-btn"
+          }
         >
           In Progress
         </button>
 
+
+
         <button
-          onClick={() => setactiveTab("in_review")}
-          className={activeTab === "in_review" ? "tab-btn active" : "tab-btn"}
+          onClick={() => setactiveTabbb("in_review")}
+          className={
+            activeTabbb === "in_review"
+              ? "client-project-tab-btn client-project-active"
+              : "client-project-tab-btn"
+          }
         >
           In Review
         </button>
 
+
+
+
         <button
-          onClick={() => setactiveTab("open")}
-          className={activeTab === "open" ? "tab-btn active" : "tab-btn"}
+          onClick={() => setactiveTabbb("open")}
+          className={
+            activeTabbb === "open"
+              ? "client-project-tab-btn client-project-active"
+              : "client-project-tab-btn"
+          }
         >
           Open
         </button>
 
+
+
+
         <button
-          onClick={() => setactiveTab("completed")}
-          className={activeTab === "completed" ? "tab-btn active" : "tab-btn"}
+          onClick={() => setactiveTabbb("completed")}
+          className={
+            activeTabbb === "completed"
+              ? "client-project-tab-btn client-project-active"
+              : "client-project-tab-btn"
+          }
         >
           Completed
         </button>
+
+
+
+
         <div style={{ flex: 1 }}></div>
+
+
+
         <button
-          className="tobar-btn"
-          onClick={() => navigate("/clientlayout/createproject")}
+          className="client-project-post-btn"
+          onClick={() =>
+            navigate("/clientlayout/createproject")
+          }
         >
-          + post project
+          + Post Project
         </button>
+
+
       </div>
 
-      <div className="card-project">
-        {filterproject?.map((project) => (
-          <div key={project.id} className="project-item">
-            {/* أيقونة المشروع */}
+
+
+
+
+      <div className="client-project-card">
+
+
+        {
+          filterproject?.map((project)=>(
+
+
             <div
-              className="project-icon"
-              style={{
-                backgroundColor: stringToColor(project.project_name),
-              }}
+              key={project.id}
+              className="client-project-item"
             >
-              {getInitial(project.project_name)}
-            </div>
 
-            {/* تعديل من مجد */}
-            <div
-              className="project-details"
-              onClick={() => {
-                navigate(`/clientlayout/projectdetails/${project.id}`);
-              }}
-            >
-              {/* انتهى تعديل مجد */}
-              <h3 className="project-name">{project.project_name}</h3>
 
-              <p className="project-freelancer">
-                {project.freelancer
-                  ? `Freelancer: ${project.freelancer}`
-                  : "Open for bids"}
-              </p>
-            </div>
 
-            <div className="project-meta">
-              <span className="project-price">
-                {/* 💰 */}${project.price}
-              </span>
-
-              <span className={`status-badge ${project.status}`}>
-                📌{project.status || "Open"}
-              </span>
-            </div>
-
-            <div className="project-actions">
               <div
-                className="action-btn"
-                style={{ color: "#5ea0cc" }}
+                className="client-project-icon"
+                style={{
+                  backgroundColor:
+                    stringToColor(project.project_name)
+                }}
+              >
+
+                {getInitial(project.project_name)}
+
+              </div>
+
+
+
+
+
+              <div
+                className="client-project-details"
                 onClick={() =>
-                  navigate(`/clientlayout/editproject/${project.id}`)
+                  navigate(
+                    `/clientlayout/projectdetails/${project.id}`
+                  )
                 }
               >
-                <EditIcon fontSize="small" />
+
+
+                <h3 className="client-project-name">
+
+                  {project.project_name}
+
+                </h3>
+
+
+
+
+                <p className="client-project-freelancer">
+
+                  {
+                    project.freelancer
+                    ?
+                    `Freelancer: ${project.freelancer}`
+                    :
+                    "Open for bids"
+                  }
+
+                </p>
+
+
+
               </div>
 
-              <div
-                className="action-btn"
-                style={{ color: "red" }}
-                onClick={() => handleDelete(project.id)}
-              >
-                <DeleteForever fontSize="small" />
+
+
+
+
+              <div className="client-project-meta">
+
+
+                <span className="client-project-price">
+
+                  ${project.price}
+
+                </span>
+
+
+
+                <span
+                  className={
+                    `client-project-status ${project.status}`
+                  }
+                >
+
+                  📌 {project.status || "Open"}
+
+                </span>
+
+
+
               </div>
+
+
+
+
+
+              <div className="client-project-actions">
+
+
+                <div
+                  className="client-project-action-btn"
+                  style={{
+                    color:"#5ea0cc"
+                  }}
+                  onClick={() =>
+                    navigate(
+                      `/clientlayout/editproject/${project.id}`
+                    )
+                  }
+                >
+
+                  <EditIcon fontSize="small"/>
+
+                </div>
+
+
+
+
+
+                <div
+                  className="client-project-action-btn"
+                  style={{
+                    color:"red"
+                  }}
+                  onClick={() =>
+                    handleDelete(project.id)
+                  }
+                >
+
+                  <DeleteForever fontSize="small"/>
+
+                </div>
+
+
+              </div>
+
+
+
             </div>
-          </div>
-        ))}
 
-        {filterproject?.length === 0 && (
-          <p className="no-projects-text">No projects found in this section.</p>
-        )}
+
+          ))
+        }
+
+
+
+
+
+        {
+          filterproject?.length === 0 &&
+
+          <p className="client-project-empty">
+
+            No projects found in this section.
+
+          </p>
+
+        }
+
+
       </div>
+
+
+
     </div>
+
   );
+
 }

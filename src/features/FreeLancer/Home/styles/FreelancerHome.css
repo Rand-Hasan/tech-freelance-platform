@@ -1,0 +1,34 @@
+.freelancer-welcome-card{
+    width:100%;
+    min-height:570px;
+
+    background:#fff;
+
+    border:1px solid #edf1f4;
+    border-radius:18px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.04);
+}
+
+.freelancer-welcome-card h1{
+    font-size:48px;
+    font-weight:700;
+    color:#1f2937;
+    margin-bottom:18px;
+}
+
+.freelancer-welcome-card p{
+    max-width:650px;
+    font-size:18px;
+    line-height:1.8;
+    color:#6b7280;
+}

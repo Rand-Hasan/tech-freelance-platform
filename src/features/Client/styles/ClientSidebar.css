@@ -9,7 +9,78 @@
     left: 0;
     bottom: 0;
     z-index: 200;
-    overflow: hidden;
+    /* overflow: hidden; */
+      overflow:visible;
+     /* width:240px; */
+
+    transition:width .35s ease;
+}
+.sidebar.closed{
+
+    width:80px;
+
+}
+
+
+.ssssss{
+    position:absolute;
+    top:35px;
+    right:5px;
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ffffff!important;
+    color:#234743!important;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+    border:2px solid #e8eeee;
+
+    transition:.25s;
+
+    z-index:1000;
+}
+.sidebar.closed .sidebar-logo-txt,
+.sidebar.closed .sidebar-logo-sub,
+.sidebar.closed .sidebar-user-name,
+.sidebar.closed .sidebar-user-level,
+.sidebar.closed .nav-text,
+.sidebar.closed .nav-group-title,
+.sidebar.closed .nav-badge,
+.sidebar.closed .nav-txt{
+
+    display:none;
+
+}
+
+.sidebar.closed .nav-item{
+
+    justify-content:center;
+
+}
+
+.sidebar.closed .sidebar-user{
+
+    justify-content:center;
+
+}
+
+.sidebar.closed .sidebar-footer{
+
+    justify-content:center;
+
 }
 .sidebar-logo{
     padding: 22px 24px 18px;

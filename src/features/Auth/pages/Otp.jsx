@@ -157,7 +157,7 @@ const formatTime = (seconds) => {
       {loading && <Loading />}
 
       <nav className="navbar">
-        <div className="logo">ProLink</div>
+        <div className="logo">FreeLink</div>
        <div className="back-link" onClick={() => navigate("/CreateAccount")}>
   ← Back
 </div>

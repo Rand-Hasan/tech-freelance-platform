@@ -56,12 +56,7 @@
   color: #52B788 !important;
 }
 
-.header-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-end;
-}
+
 
 /* .status-pill {
   background: #52B7881F;
@@ -373,4 +368,67 @@
 .back-btn:hover {
   border-color: #2A9D8F;
   color: #2A9D8F;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+
+.draft-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 42px;
+}
+
+
+.editcontract {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: #2A9D8F;
+  color: #fff;
+  border: 1px solid #2A9D8F;
+  transition: all 0.3s ease;
+}
+
+.editcontract:hover {
+  background: #21867A;
+  border-color: #21867A;
+}
+
+.deletecontract {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: #fff;
+  color: #E05252;
+  border: 1px solid #F2CACA;
+  transition: all 0.3s ease;
+}
+
+.deletecontract:hover {
+  background: #E05252;
+  color: #fff;
+  border-color: #E05252;
 }

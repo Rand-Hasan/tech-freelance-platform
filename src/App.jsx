@@ -44,10 +44,16 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
+
 import AdminLayout from './features/Admin/Layout/AdminLayout';
 import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
 import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
 import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
+
+import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
+import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
+import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
+
 function App() {
   return (
     <BrowserRouter>
@@ -78,14 +84,15 @@ function App() {
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
             <Route path='offer-project' element={<ShowOfferProject/>}/>
-
           </Route>
           <Route path="createproject" element={<CreateProject />} />
           <Route path="editproject/:id" element={< CreateProject />} />
+          <Route path='createcontract' element={<CreateContractt/>} />
+          <Route path='editcontract/:id' element={<CreateContractt/>}/>
           <Route path="FindFreelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
 
-          <Route path="ContractDetails" element={<ContractDetails />} />
+          <Route path="ContractDetails/:id" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
           <Route path="setting" element={<Settings />} />
           <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
@@ -93,7 +100,9 @@ function App() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Freelancer */}
         <Route path='/freelancerlayout' element={<FreeLancerLayout />}>
+        <Route index element={<FreelancerHome/>} />
           <Route path="contractfree" element={<ContractFree />} />
+          <Route path="FreelancerContractDetailes/:id" element={<FreelancerContractDetailes/>}/>
           {/* project freelancer */}
           <Route path='projectfree' element={<ProjectFree />}>
             <Route path='projectproposal' element={<ProjectProposal />} />

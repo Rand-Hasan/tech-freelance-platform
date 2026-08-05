@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
-import { useParams } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { baseURL } from "../../../../services/Api/api";
 import {
   getMyConversations,
@@ -11,6 +11,15 @@ import "../../../Client/client- messages/styles/MessageClient.css";
 import EmojiPicker from "emoji-picker-react";
 import socket from "./socket";
 export default function MessageClient() {
+
+  // const { id: freelancerId } = useParams();
+
+
+const { state } = useLocation();
+
+const projectId = state?.projectId; // ✅
+
+const navigate = useNavigate();
 const cookies = new Cookies();
 const [myId, setMyId] = useState(null);
   const [conversations, setConversations] = useState([]);
@@ -239,7 +248,12 @@ console.log(text);
   return (
     
     <div className="messagess-page">
-     
+     <button onClick={()=>navigate("/clientlayout/createcontract", {
+    state: {
+        projectId,
+        freelancerId:freelancer_id,
+    },
+})}>Create contract</button>
       <h1>Messages</h1>
       <p>Your inbox and Freelancer conversations</p>
 
