@@ -47,6 +47,7 @@ export default function ShowOfferProjectDetails({ onClose, refreshOffers, offerd
                 reposed: reposed
             }, { headers: { Authorization: `Bearer ${token}` } })
             navigate(`/clientlayout/messageClient/${offerdetails.freelancer_id}`)
+           
             //     onClose();              
             // refreshOffers();   
         } catch (err) {

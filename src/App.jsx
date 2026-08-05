@@ -44,6 +44,10 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
+import AdminLayout from './features/Admin/Layout/AdminLayout';
+import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
+import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
+import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
 function App() {
   return (
     <BrowserRouter>
@@ -111,6 +115,16 @@ function App() {
             <Route path='showportofoliodetails' element={<Showportofoliodetails />} />
           </Route>
         </Route>
+        ///////////////Admin//////////
+               <Route path="/AdminLayout" element={<AdminLayout />}>
+  <Route index element={<Navigate to="dashboard" replace />} />
+
+  <Route path="dashboard" element={<Dashboard />} />
+
+  <Route  path="RolesPermissions" element={<RolesPermissions />}/>
+    <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
+    <Route  path="AddQuestion" element={<AddQuestion />}/>
+</Route>
       </Routes>
     </BrowserRouter>
   );

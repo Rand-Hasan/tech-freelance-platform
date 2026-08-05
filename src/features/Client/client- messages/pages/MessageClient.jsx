@@ -134,7 +134,6 @@ async function createConversation(freelancerId) {
    
     handleGetMessages(newConversation.id);
 
-
   } catch(err){
     console.log(err.response?.data || err);
   }
