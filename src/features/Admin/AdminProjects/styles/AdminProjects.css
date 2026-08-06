@@ -1,0 +1,183 @@
+.projects-card{
+    background:#fff;
+    border-radius:16px;
+    padding:14px;
+    border:1px solid #e6efef;
+    overflow-x:auto;
+}
+
+
+.projects-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+
+.projects-table thead{
+    background:#eef8f8;
+}
+
+
+.projects-table th{
+    text-align:left;
+    padding:10px 12px;
+    color:#4b7484;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+
+.projects-table td{
+    padding:12px;
+    height:45px;
+    border-bottom:1px solid #edf2f5;
+    color:#4d6775;
+    font-size:13px;
+}
+
+
+.projects-table tr:last-child td{
+    border:none;
+}
+
+
+.project-name{
+    color:#102638;
+    font-size:14px;
+    font-weight:600;
+}
+
+
+.budget{
+    color:#129b92;
+    font-weight:700;
+}
+
+
+
+/* Progress */
+
+.progress-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+
+.progress-line{
+    width:90px;
+    height:6px;
+    background:#e8eeee;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+
+.progress-line span{
+    display:block;
+    height:100%;
+    background:#129b92;
+    border-radius:10px;
+}
+
+
+.progress-box small{
+    font-size:11px;
+    color:#64748b;
+}
+
+
+
+/* Project Status */
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 10px;
+    border-radius:15px;
+    font-size:11px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+
+.project-active{
+    background:#edf8f2;
+    color:#39a66d;
+}
+
+
+.project-progress{
+    background:#fff5e7;
+    color:#b97a00;
+}
+
+
+.project-completed{
+    background:#e9f8f6;
+    color:#118d86;
+}
+
+
+.project-pending{
+    background:#f2f2f2;
+    color:#64748b;
+}
+
+
+
+/* Actions */
+
+.actions{
+    display:flex;
+    gap:6px;
+}
+
+
+.actions button{
+    width:27px;
+    height:27px;
+    border:none;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+
+.view{
+    background:#eaf7f6;
+}
+
+
+.delete{
+    background:#fdeff1;
+}
+
+
+
+.projects-table tbody tr:hover{
+    background:#fafdfd;
+}
+
+
+
+@media(max-width:900px){
+
+    .projects-table{
+        min-width:850px;
+    }
+
+
+    .projects-table td{
+        font-size:12px;
+    }
+
+
+    .project-name,
+    .budget{
+        font-size:13px;
+    }
+
+}

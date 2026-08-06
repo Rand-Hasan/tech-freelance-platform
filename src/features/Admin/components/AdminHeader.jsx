@@ -8,13 +8,13 @@ export default function AdminHeader({ setSidebarOpen }) {
   const location = useLocation();
   const navigate = useNavigate();
   const pagetitle ={
-    "/dashboard": "overview",
-    "/AdminLayout/Projects" : "Projects",
+    "/AdminLayout/Users": " All Users",
+    "/AdminLayout/AdminProjects" : "Projects",
     "/AdminLayout/Statistics" : "Statistics" ,
     "/AdminLayout/Reports"   : "Reports" ,
     "/AdminLayout/RolesPermissions" : "Roles & Permissions",
-    "/AdminLayout/contracts" :"Contracts",
-    "/AdminLayout/Fines & Commission"  :"Fines & Commission",
+    "/AdminLayout/AdminContracts" :"Contracts",
+    "/AdminLayout/FinesCommission"  :"Fines & Commission",
     "/AdminLayout/setting" : "Settings",
     "/AdminLayout/AssessmentQuestions"  :"Assessment Questions",
       "/AdminLayout/AddQuestion" : "AddQuestion",

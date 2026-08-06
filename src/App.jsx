@@ -45,11 +45,14 @@ import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
 
+import AdminContracts from './features/Admin/Contracts/pages/AdminContracts';
+import AdminProjects from './features/Admin/AdminProjects/pages/AdminProjects';
 import AdminLayout from './features/Admin/Layout/AdminLayout';
 import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
 import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
 import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
-
+import FinesCommission from './features/Admin/FinesCommission/pages/FinesCommission';
+import Users from './features/Admin/Users/pages/Users';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
@@ -126,13 +129,16 @@ function App() {
         </Route>
         ///////////////Admin//////////
                <Route path="/AdminLayout" element={<AdminLayout />}>
-  <Route index element={<Navigate to="dashboard" replace />} />
+  <Route index element={<Navigate to="Users" replace />} />
 
-  <Route path="dashboard" element={<Dashboard />} />
+  <Route path="Users" element={<Users />} />
 
   <Route  path="RolesPermissions" element={<RolesPermissions />}/>
     <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
     <Route  path="AddQuestion" element={<AddQuestion />}/>
+      <Route  path="FinesCommission" element={<FinesCommission />}/>
+         <Route  path="AdminContracts" element={<AdminContracts />}/>
+           <Route  path="AdminProjects" element={<AdminProjects />}/>
 </Route>
       </Routes>
     </BrowserRouter>
