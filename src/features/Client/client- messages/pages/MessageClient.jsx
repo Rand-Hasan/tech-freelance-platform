@@ -5,7 +5,7 @@ import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom"
 import { baseURL } from "../../../../services/Api/api";
 import {
   getMyConversations,
-  getMessages,startClientConversation,
+  getMessages,startClientConversation,GetNomberOfMesseageNotRead
 } from "../services/MessageClientapi";
 import "../../../Client/client- messages/styles/MessageClient.css";
 import EmojiPicker from "emoji-picker-react";
@@ -34,11 +34,8 @@ const [text, setText] = useState("");
   setText((prev) => prev + emojiData.emoji);
 };
 useEffect(() => {
-  if (!freelancer_id || createdRef.current) return;
-
-  createdRef.current = true;
-  createConversation(freelancer_id);
-}, [freelancer_id]);
+  getConversations();
+}, []);
   useEffect(() => {
   getConversations();
 
@@ -58,13 +55,25 @@ socket.on("receive_message", (message) => {
 
     return [...prev, message];
   });
+ if (selectedConversation !== message.conversationId) {
+    setConversations((prev) =>
+      prev.map((chat) =>
+        chat.id === message.conversationId
+          ? {
+              ...chat,
+              unread: (chat.unread || 0) + 1,
+            }
+          : chat
+      )
+    );
+  }
 
-
-  if (selectedConversation === message.conversationId) {
+   if (selectedConversationRef.current === message.conversationId) {
     socket.emit("mark_as_read", {
       messageId: message.id,
       conversationId: message.conversationId,
     });
+    
   }
 });
 socket.on("all_messages_read_confirm", (data) => {
@@ -75,6 +84,14 @@ socket.on("all_messages_read_confirm", (data) => {
       ...msg,
       isRead: true,
     }))
+  );
+
+  setConversations(prev =>
+    prev.map(c =>
+      c.id === data.conversationId
+        ? {...c, unread:0}
+        : c
+    )
   );
 });
 socket.on("message_read_confirm", (message) => {
@@ -97,8 +114,28 @@ socket.on("message_read_confirm", (message) => {
 
   
 }, []);
+async function getUnreadMessages(conversationId) {
+  try {
+    const token = cookies.get("token-client");
 
+    const url = `${baseURL}${GetNomberOfMesseageNotRead}${conversationId}`;
 
+    console.log("URL =", url);
+
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("Response =", res.data);
+
+    return res.data.number;
+  } catch (err) {
+    console.log(err.response?.data || err);
+    return 0;
+  }
+}
 
 /////الانشاء/////////////
 async function createConversation(freelancerId) {
@@ -142,13 +179,12 @@ async function createConversation(freelancerId) {
 
    
     handleGetMessages(newConversation.id);
-
-  } catch(err){
+    } catch(err){
     console.log(err.response?.data || err);
   }
 }
 ///////////////////
-  async function getConversations() {
+  async function getConversations(conversationId) {
     try {
       const token = cookies.get("token-client");
 console.log(cookies.get("token-client"));
@@ -157,15 +193,27 @@ console.log(cookies.get("token-client"));
           Authorization: `Bearer ${token}`,
         },
       });
+console.log("Unread:", conversationId, res.data);
 
       console.log("Conversations:", res.data);
 console.log(
   "Conversations:",
   JSON.stringify(res.data.conversations, null, 2)
 );
-      setConversations(res.data.conversations || []);
+      const conversationsWithUnread = await Promise.all(
+  res.data.conversations.map(async (conv) => {
+    const unread = await getUnreadMessages(conv.id);
+
+    return {
+      ...conv,
+      unread,
+    };
+  })
+);
+
+setConversations(conversationsWithUnread);
     } catch (err) {
-      console.log(err.response?.data || err);
+      console.log(err.response?.data ||  err);
     }
   }
 
@@ -185,10 +233,10 @@ console.log(
 
   console.log("Current token:", token);
       const res = await axios.get(
-        `${baseURL}${getMessages}${conversationId}`,
+       ` ${baseURL}${getMessages}${conversationId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization:` Bearer ${token}`,
           },
         }
       );
@@ -205,6 +253,13 @@ socket.emit("join_conversation", conversationId);
 socket.emit("mark_all_as_read", {
   conversationId,
 });
+setConversations(prev =>
+  prev.map(c =>
+    c.id === conversationId
+      ? { ...c, unread: 0 }
+      : c
+  )
+);
         const conversation = conversations.find(
   (c) => c.id === conversationId
 );
@@ -248,15 +303,25 @@ console.log(text);
   return (
     
     <div className="messagess-page">
-     <button onClick={()=>navigate("/clientlayout/createcontract", {
-    state: {
-        projectId,
-        freelancerId:freelancer_id,
-    },
-})}>Create contract</button>
-      <h1>Messages</h1>
-      <p>Your inbox and Freelancer conversations</p>
 
+     <div className="messages-header">
+  <div>
+    <h1>Messages</h1>
+    <p>Your inbox and Freelancer conversations</p>
+  </div>
+
+  <button 
+    className="create-contract-btn"
+    onClick={()=>navigate("/clientlayout/createcontract", {
+      state: {
+        projectId,
+        freelancerId: freelancer_id,
+      },
+    })}
+  >
+    Create contract
+  </button>
+</div>
       <div className="chat-container">
         <div className="sidebarr">
           <input
@@ -274,10 +339,19 @@ console.log(text);
             >
               <div className="avatar green">C</div>
 
-              <div className="chat-info">
-                <h4>Conversation #{chat.id}</h4>
-            <p>Freelancer ID: {chat.freelancerId}</p>
-              </div>
+      <div className="chat-info">
+  <h4>Conversation #{chat.id}</h4>
+  <p>Freelancer ID: {chat.freelancerId}</p>
+</div>
+
+<div className="chat-right">
+  {chat.unread > 0 && (
+    <span className="unread-badge">
+      {chat.unread}
+    </span>
+  )}
+
+</div>
 
               <span>
                 {new Date(chat.updatedAt).toLocaleDateString()}
@@ -289,7 +363,6 @@ console.log(text);
         <div className="chat-section">
           <div className="chat-header">
             <div className="avatar green">C</div>
-
             <div>
               <h3>
                 {selectedConversation
@@ -327,7 +400,7 @@ console.log(text);
         {msg.senderId === myId && (
           <small>
             <div className="message-status">
-    {msg.isRead ? "✔✔ Read" : "✔ Sent"}
+    {msg.isRead ? "✔️✔️ Read" : "✔️ Sent"}
   </div>
           </small>
         )}
