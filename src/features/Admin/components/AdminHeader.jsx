@@ -1,23 +1,24 @@
 import React from "react";
 import { Button, IconButton } from "@mui/material";
-import "../styles/ClientHeader.css";
+import "../Styles/AdminHeader.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'; 
 import MenuIcon from "@mui/icons-material/Menu";
-export default function ClientHeader({ setSidebarOpen }) {
+export default function AdminHeader({ setSidebarOpen }) {
   const location = useLocation();
   const navigate = useNavigate();
   const pagetitle ={
     "/dashboard": "overview",
-    "/clientlayout/projects" : "My Projects",
-    "/clientlayout/messageClient" : "Messages" ,
-    "/clientlayout/wallet"   : "Wallet" ,
-    "/clientlayout/find-freelancers" : "Find Freelancers",
-    "/clientlayout/contracts" :"Contracts",
-    "/clientlayout/profile"  :"My Profile",
-    "/clientlayout/setting" : "Settings",
-    "/clientlayout/createproject" : "Post a New Project",
-    "/clientlayout/editproject/:1" : "Edit Project"
+    "/AdminLayout/Projects" : "Projects",
+    "/AdminLayout/Statistics" : "Statistics" ,
+    "/AdminLayout/Reports"   : "Reports" ,
+    "/AdminLayout/RolesPermissions" : "Roles & Permissions",
+    "/AdminLayout/contracts" :"Contracts",
+    "/AdminLayout/Fines & Commission"  :"Fines & Commission",
+    "/AdminLayout/setting" : "Settings",
+    "/AdminLayout/AssessmentQuestions"  :"Assessment Questions",
+      "/AdminLayout/AddQuestion" : "AddQuestion",
+   
   }
    const backButtonRoutes = ["/createproject","/editproject"];
    const currentTitle = pagetitle[location.pathname] || "overview";
@@ -53,19 +54,19 @@ export default function ClientHeader({ setSidebarOpen }) {
       </div>
 
       <div className="topbar-actions">
-        <div className="topbar-search">
+        {/* <div className="topbar-search">
           <span style={{ color: "#5a7a76", fontSize: "0.85rem" }}>🔍</span>
           <input type="text" placeholder="Search freelancer, project..." className="clean-input" />
-        </div>
+        </div> */}
 
-        <Button className="topbar-btn">+ Post a Project</Button>
+        {/* <Button className="topbar-btn">+ Post a Project</Button> */}
 
-        <div className="notif-wrapper">
+        {/* <div className="notif-wrapper">
           <IconButton className="notif-btn">🔔</IconButton>
           <span className="notif-dot"></span>
         </div>
 
-        <div className="sidebar-avatar">KM</div>
+        <div className="sidebar-avatar">KM</div> */}
       </div>
 
     </div>
