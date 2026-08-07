@@ -9,7 +9,6 @@ import NavbarLanding from './features/landing-page/pages/navbarlanding';
 import MessageClient from './features/Client/client- messages/pages/MessageClient';
 import Dashboard from './features/Client/client-dashboard/pages/Dashboard';
 import FindFreelancers from './features/Client/client-findfreelancer/pages/FindFreelancers';
-import Wallet from './features/Client/client-wallet/pages/Wallet';
 import Projects from './features/Client/client-projects/pages/Project';
 import Contracts from './features/Client/client-contracts/pages/Contracts';
 import Profile from './features/Client/client-profile/pages/Profile';
@@ -46,6 +45,10 @@ import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersF
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
+import WalletClient from './features/Client/client-wallet/pages/Wallet';
+import PaymentSuccess from './features/Client/client-wallet/pages/PaymentSuccess';
+import PaymentPage from './features/Client/client-wallet/pages/PaymentPage';
+import PhasesProject from './features/FreeLancer/myproject/pages/PhaseProject';
 function App() {
   return (
     <BrowserRouter>
@@ -66,7 +69,13 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
          <Route path="messageClient" element={<MessageClient/>} />
           <Route path="messageClient/:freelancer_id" element={<MessageClient/>} />
-          <Route path="wallet" element={<Wallet />} />
+         <Route path="wallet" element={<WalletClient />} />
+         <Route path="wallet/:contractId" element={<WalletClient />} />    
+          <Route path="payment/:contractId" element={<PaymentPage/>}/>
+          <Route
+    path="payment-success"
+    element={<PaymentSuccess />}
+/>
           <Route path="projects" element={<Projects />} />
           <Route path='invaitations' element={<Invaitations/>}/>
           {/* project detail client */}
@@ -101,6 +110,7 @@ function App() {
             <Route path='freelancerrequest' element={<ShowInvationFree />} />
             <Route path='myoffers' element ={<ShowOffersFreelancer/>}/>
             <Route path='myproject' element={<Myproject />}/> 
+            <Route path='phaseproject/:id' element={<PhasesProject/>}/>
           </Route>
 
          <Route path='messagefree/:clientId' element={<MessageFree />} />

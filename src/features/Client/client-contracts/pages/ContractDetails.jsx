@@ -167,18 +167,25 @@ export default function ContractDetails() {
               <button className="deletecontract" >
                 Delete
               </button>
-
+            {/* <button onClick={()=>navigate(`/clientlayout/wallet/${contract.id}`)}>
+              PAY
+            </button> */}
+            
             </div>
 
           ) : (
-
+             <div>
             <button
               className="cancel-btn"
               onClick={() => setShowModal(true)}
             >
               Cancel Contract
             </button>
-
+            <button onClick={()=>navigate(`/clientlayout/wallet/${contract.id}`)}>
+              PAY
+            </button>
+            
+</div>
           )}
 
         </div>
