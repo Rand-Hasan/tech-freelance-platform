@@ -195,6 +195,36 @@
   background-color: red;
   color: white;
 }
+.Cancelbtn{
+ width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid red;
+  color: red;
+  font-weight: bold;
+  cursor: pointer; 
+  transition: all 0.3s ease-in;
+}
+
+.Cancelbtn:hover{
+  background-color: red;
+  color: white;
+}
+.WithdrowMonybtn{
+ width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #09664d;
+  color: #09664d;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.WithdrowMonybtn:hover{
+  background-color: #09664d;
+  color: white;
+}
 @media (max-width: 600px) {
   .SubInfoAboutPhase {
     flex-direction: column;

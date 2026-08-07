@@ -53,6 +53,7 @@ import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion'
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
+import StageAndTasksDetailes from './features/Client/StagesAndTasks/pages/StageAndTasksDetailes';
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
+            <Route path=":phaseId" element={<StageAndTasksDetailes />} />
             <Route path="matched-freelancers" element={<MatchedFreelancers />} />
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
