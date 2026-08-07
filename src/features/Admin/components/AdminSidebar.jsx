@@ -51,12 +51,12 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               Main
             </span>
 
-            <NavLink to="dashboard" className="navr-item">
+            <NavLink to="Users" className="navr-item">
               <span className="navr-icon">
                 <FiHome />
               </span>
               <span className="navr-text">
-                Dashboard
+                Users
               </span>
             </NavLink>
 
@@ -78,7 +78,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="contracts" className="navr-item">
+            <NavLink to="AdminContracts" className="navr-item">
               <span className="navr-icon">
                 <FiFile />
               </span>
@@ -105,7 +105,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="wallet" className="navr-item">
+            <NavLink to="FinesCommission" className="navr-item">
               <span className="navr-icon">
                 <FiDollarSign />
               </span>
@@ -114,7 +114,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="invaitations" className="navr-item">
+            <NavLink to="AdminProjects" className="navr-item">
               <span className="navr-icon">
                 <FiFolder />
               </span>
