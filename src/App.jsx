@@ -44,7 +44,7 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
-
+import AssessmentQuestionsf from './features/FreeLancer/Questions/pages/AssessmentQuestionsf';
 import AdminContracts from './features/Admin/Contracts/pages/AdminContracts';
 import AdminProjects from './features/Admin/AdminProjects/pages/AdminProjects';
 import AdminLayout from './features/Admin/Layout/AdminLayout';
@@ -55,6 +55,8 @@ import FinesCommission from './features/Admin/FinesCommission/pages/FinesCommiss
 import Users from './features/Admin/Users/pages/Users';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
+import AssessmentLevel from './features/FreeLancer/Questions/pages/AssessmentLevel';
+
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
 
 function App() {
@@ -70,6 +72,8 @@ function App() {
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path='CreateCv' element={<CreateCv />} />
         <Route path="/CreateProfile" element={<CreateProfilee />} />
+         <Route path='AssessmentLevel' element={<AssessmentLevel />} />
+             <Route path='AssessmentQuestionsf' element={<AssessmentQuestionsf />} />
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
@@ -125,6 +129,7 @@ function App() {
             <Route path='portfolio' element={<ShowPortfolio />} />
             <Route path='cv' element={<ShowCv />} />
             <Route path='showportofoliodetails' element={<Showportofoliodetails />} />
+          
           </Route>
         </Route>
         ///////////////Admin//////////
