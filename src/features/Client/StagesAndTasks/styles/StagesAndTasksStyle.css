@@ -72,3 +72,65 @@
     color:white;
     cursor: pointer;
 }
+.AcceptPhaseButton{
+ width: 100%;
+    height: 30px;
+    background-color: white;
+    border: 1px #006F59 solid;
+    color: #006F59;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+.AcceptPhaseButton:hover{
+ background-color: #006F59;
+    color:white;
+    cursor: pointer;
+}
+.NumberAddedAndAddbtn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+    /* background-color: red; */
+}
+.NumberInput{
+    width: 30%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.ExtraDaysBtn{
+    width: 70%;
+     height: 30px;
+    background-color: white;
+    border: 1px #006F59 solid;
+    color: #006F59;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+.ExtraDaysBtn:hover{
+     background-color: #006F59;
+    color:white;
+    cursor: pointer;
+}
+.RejectPhaseOverDue{
+     width: 100%;
+     height: 30px;
+    background-color: white;
+    border: 1px red solid;
+    color: red;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+.RejectPhaseOverDue:hover{
+    background-color: red;
+    color:white;
+    cursor: pointer;
+}

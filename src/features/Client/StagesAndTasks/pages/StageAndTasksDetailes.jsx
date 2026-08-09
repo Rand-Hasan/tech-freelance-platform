@@ -2,8 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { baseURL } from "../../../../services/Api/api";
-import { GetPhaseTask, GetPhaseFiles } from "../services/StageAndTaskApi.jsx";
+import {
+  GetPhaseTask,
+  GetPhaseFiles,
+  DownloadFile,
+} from "../services/StageAndTaskApi.jsx";
 import "../styles/StageAndTasksDetailesStyle.css";
+import axios from "axios";
 export default function StageAndTasksDetailes() {
   const { phaseId } = useParams();
   const navigate = useNavigate();
@@ -58,6 +63,35 @@ export default function StageAndTasksDetailes() {
       });
   }, [phaseId]);
 
+  function handleDownloadFile(fileName) {
+    fetch(`${baseURL}${DownloadFile}/${fileName}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        console.log("Trueee");
+        const blobUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(blobUrl);
+      })
+      .catch((error) => {
+        console.log("Download Error:", error);
+      });
+  }
+
   return (
     <div>
       <button
@@ -78,7 +112,10 @@ export default function StageAndTasksDetailes() {
         ) : (
           task.map((taskItem, index) => (
             <div className="TheTask" key={taskItem.id || index}>
-              <div className="name_of_task"> Task_name : <span>{taskItem?.task_name}</span></div>
+              <div className="name_of_task">
+                {" "}
+                Task_name : <span>{taskItem?.task_name}</span>
+              </div>
               <div className="Checking">
                 <div className="IsChecked">is Checked ? </div>
                 <div
@@ -143,7 +180,7 @@ export default function StageAndTasksDetailes() {
                   <button
                     className="download-rar-btn"
                     onClick={() => {
-                      alert("download .rar");
+                      handleDownloadFile(fileName);
                     }}
                   >
                     Download .rar
