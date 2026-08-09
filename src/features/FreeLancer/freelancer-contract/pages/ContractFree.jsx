@@ -87,7 +87,7 @@ export default function ContractFree() {
                   </div>
 
                   <div>
-                    <span>Freelancer</span>
+                    <span>Client</span>
                     <strong>{contracts.client_name}</strong>
                   </div>
                   <button className="ViewButton"
