@@ -43,12 +43,24 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
+import AdminContracts from './features/Admin/Contracts/pages/AdminContracts';
+import AdminProjects from './features/Admin/AdminProjects/pages/AdminProjects';
+import AdminLayout from './features/Admin/Layout/AdminLayout';
+import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
+import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
+import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
+import FinesCommission from './features/Admin/FinesCommission/pages/FinesCommission';
+import Users from './features/Admin/Users/pages/Users';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 import WalletClient from './features/Client/client-wallet/pages/Wallet';
 import PaymentSuccess from './features/Client/client-wallet/pages/PaymentSuccess';
 import PaymentPage from './features/Client/client-wallet/pages/PaymentPage';
 import PhasesProject from './features/FreeLancer/myproject/pages/PhaseProject';
+import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
+import StageAndTasksDetailes from './features/Client/StagesAndTasks/pages/StageAndTasksDetailes';
+import PhaseDetails from './features/FreeLancer/myproject/pages/PhaseDetails';
+
 function App() {
   return (
     <BrowserRouter>
@@ -81,6 +93,7 @@ function App() {
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
+            <Route path=":phaseId" element={<StageAndTasksDetailes />} />
             <Route path="matched-freelancers" element={<MatchedFreelancers />} />
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
@@ -103,6 +116,7 @@ function App() {
         <Route path='/freelancerlayout' element={<FreeLancerLayout />}>
         <Route index element={<FreelancerHome/>} />
           <Route path="contractfree" element={<ContractFree />} />
+          <Route path="FreelancerContractDetailes/:id" element={<FreelancerContractDetailes/>}/>
           {/* project freelancer */}
           <Route path='projectfree' element={<ProjectFree />}>
             <Route path='projectproposal' element={<ProjectProposal />} />
@@ -111,6 +125,7 @@ function App() {
             <Route path='myoffers' element ={<ShowOffersFreelancer/>}/>
             <Route path='myproject' element={<Myproject />}/> 
             <Route path='phaseproject/:id' element={<PhasesProject/>}/>
+            <Route path='phasedetails/:id' element={<PhaseDetails/>}/>
           </Route>
 
          <Route path='messagefree/:clientId' element={<MessageFree />} />
@@ -125,6 +140,19 @@ function App() {
             <Route path='showportofoliodetails' element={<Showportofoliodetails />} />
           </Route>
         </Route>
+        ///////////////Admin//////////
+               <Route path="/AdminLayout" element={<AdminLayout />}>
+  <Route index element={<Navigate to="Users" replace />} />
+
+  <Route path="Users" element={<Users />} />
+
+  <Route  path="RolesPermissions" element={<RolesPermissions />}/>
+    <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
+    <Route  path="AddQuestion" element={<AddQuestion />}/>
+      <Route  path="FinesCommission" element={<FinesCommission />}/>
+         <Route  path="AdminContracts" element={<AdminContracts />}/>
+           <Route  path="AdminProjects" element={<AdminProjects />}/>
+</Route>
       </Routes>
     </BrowserRouter>
   );

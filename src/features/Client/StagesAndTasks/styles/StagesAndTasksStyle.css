@@ -1,0 +1,74 @@
+.dadOfEveryPhases{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.Phase{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 1px 1px gray;
+    transition: all 0.3s ease;
+}
+.Phase:hover{
+     box-shadow: 2px 2px gray;
+    
+}
+.title_desc_duration_editings{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    gap: 10px;
+   
+}
+
+.status_Ammount_deadline{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    
+   
+    gap: 10px;
+}
+
+.titleOfPhase{
+    background-color: #006F59;
+    width: 40%;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+.statusOfPhase{
+     background-color: #f8edd9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ShowTaskbtn{
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border: 1px #006F59 solid;
+    color: #006F59;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+.ShowTaskbtn:hover{
+    background-color: #006F59;
+    color:white;
+    cursor: pointer;
+}

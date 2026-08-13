@@ -10,7 +10,7 @@ export default function ClientHeader({ setSidebarOpen }) {
   const pagetitle ={
     "/dashboard": "overview",
     "/clientlayout/projects" : "My Projects",
-    "/clientlayout/messages" : "Messages" ,
+    "/clientlayout/messageClient" : "Messages" ,
     "/clientlayout/wallet"   : "Wallet" ,
     "/clientlayout/find-freelancers" : "Find Freelancers",
     "/clientlayout/contracts" :"Contracts",

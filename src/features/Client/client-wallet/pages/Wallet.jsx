@@ -31,7 +31,7 @@ export default function WalletClient() {
 
             setWallet(res.data.wallet);
         } catch (err) {
-            console.error(err);
+            console.error(err.response?.data);
         } finally {
             setLoading(false);
         }
@@ -56,7 +56,7 @@ export default function WalletClient() {
                 }
             );
         } catch (err) {
-            console.log(err);
+            console.log(err.response?.data);
         }
     };
 

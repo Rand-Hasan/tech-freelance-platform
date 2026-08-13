@@ -73,7 +73,7 @@ const [skills, setSkills] = useState([]);
 
         <div className="skills-list">
 
-            {skills.map((skill) => (
+            {skills?.map((skill) => (
                 <span
                     key={skill.id}
                     className="skill-tag"
@@ -112,7 +112,7 @@ const [skills, setSkills] = useState([]);
         </NavLink>
 
         <NavLink to="offer-project" className="tab-link">
-           Submitted Proposal 
+          ☑️ Submitted Proposal 
         </NavLink>
       </div>
 

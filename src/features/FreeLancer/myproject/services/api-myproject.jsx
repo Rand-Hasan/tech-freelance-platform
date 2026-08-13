@@ -1,2 +1,10 @@
 export const GetProjectHasContracts= 'GetProjectHasContracts/';
 export const GetProjectPhases= 'GetProjectPhases/';
+export const AddTask='AddTask/';
+export const DeleteTask='DeleteTask/';
+export const GetPhaseTask='GetPhaseTask/';
+export const CheckTask='CheckTask/';
+export const UploadProjectsFile='UploadProjectsFile/';
+export const GetPhaseFiles='GetPhaseFiles/';
+export const DeleteUrl='DeleteUrl/';
+export const DeleteFiles='DeleteFiles/';

@@ -5,7 +5,7 @@ import { baseURL } from "../../../../services/Api/api";
 import { useParams } from "react-router-dom";
 import {
   getMyConversations,
-  getMessages,startFreelancerConversation
+  getMessages,startFreelancerConversation ,GetNomberOfMesseageNotRead
 } from "../../../FreeLancer/freelancer-message/services/freelancer-messages";
 import "../../../FreeLancer/freelancer-message/styles/MessageFree.css";
 import socket from "../../../FreeLancer/freelancer-message/pages/socket";
@@ -50,13 +50,25 @@ socket.on("receive_message", (message) => {
 
     return [...prev, message];
   });
+ if (selectedConversation !== message.conversationId) {
+    setConversations((prev) =>
+      prev.map((chat) =>
+        chat.id === message.conversationId
+          ? {
+              ...chat,
+              unread: (chat.unread || 0) + 1,
+            }
+          : chat
+      )
+    );
+  }
 
-
-  if (selectedConversation === message.conversationId) {
+   if (selectedConversationRef.current === message.conversationId) {
     socket.emit("mark_as_read", {
       messageId: message.id,
       conversationId: message.conversationId,
     });
+    
   }
 });
 socket.on("all_messages_read_confirm", (data) => {
@@ -67,6 +79,14 @@ socket.on("all_messages_read_confirm", (data) => {
       ...msg,
       isRead: true,
     }))
+  );
+  
+  setConversations(prev =>
+    prev.map(c =>
+      c.id === data.conversationId
+        ? {...c, unread:0}
+        : c
+    )
   );
 });
 socket.on("message_read_confirm", (message) => {
@@ -89,6 +109,37 @@ socket.on("message_read_confirm", (message) => {
 
   
 }, []);
+/////////////////////////////////
+
+async function getUnreadMessages(conversationId) {
+  try {
+    const token = cookies.get("token-client");
+
+    const url = `${baseURL}${GetNomberOfMesseageNotRead}${conversationId}`;
+
+    console.log("URL =", url);
+
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("Response =", res.data);
+
+    return res.data.number;
+  } catch (err) {
+    console.log(err.response?.data || err);
+    return 0;
+  }
+}
+
+
+
+
+
+
+
 //////////////الانشاء//////////////
 async function createConversation(clientId) {
   try {
@@ -120,7 +171,7 @@ await handleGetMessages(newConversation.id);
   }
 }
 /////////////////////
-  async function getConversations() {
+  async function getConversations(conversationId) {
     try {
       const token = cookies.get("token-freelancer");
 
@@ -129,13 +180,27 @@ await handleGetMessages(newConversation.id);
           Authorization: `Bearer ${token}`,
         },
       });
-console.log("Create Conversation:", clientId, );
+console.log("Unread:", conversationId, res.data);
+
       console.log("Conversations:", res.data);
-      console.log(res.data.conversations[0]);
-console.log(cookies.get("token-freelancer"));
-      setConversations(res.data.conversations || []);
+console.log(
+  "Conversations:",
+  JSON.stringify(res.data.conversations, null, 2)
+);
+      const conversationsWithUnread = await Promise.all(
+  res.data.conversations.map(async (conv) => {
+    const unread = await getUnreadMessages(conv.id);
+
+    return {
+      ...conv,
+      unread,
+    };
+  })
+);
+
+setConversations(conversationsWithUnread);
     } catch (err) {
-      console.log(err.response?.data || err);
+      console.log(err.response?.data ||  err);
     }
   }
 
@@ -170,7 +235,13 @@ socket.emit("join_conversation", conversationId);
 socket.emit("mark_all_as_read", {
   conversationId,
 });
-       
+       setConversations(prev =>
+  prev.map(c =>
+    c.id === conversationId
+      ? { ...c, unread: 0 }
+      : c
+  )
+);
   const conversation = conversations.find(
   (c) => c.id === conversationId
 );
@@ -236,7 +307,14 @@ if (conversation) {
                 <h4>Conversation #{chat.id}</h4>
                 <p>Client ID: {chat.clientId}</p>
               </div>
+<div className="chat-right">
+  {chat.unread > 0 && (
+    <span className="unread-badge">
+      {chat.unread}
+    </span>
+  )}
 
+</div>
               <span>
                 {new Date(chat.updatedAt).toLocaleDateString()}
               </span>

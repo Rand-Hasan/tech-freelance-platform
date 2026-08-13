@@ -29,7 +29,7 @@ export default function MatchedFreelancers() {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  }, [projectId,token]);
   return (
     <div>
       <div className="SubTitleAbovCardContainer">
@@ -37,14 +37,19 @@ export default function MatchedFreelancers() {
         <h4>Based on skills required for this project</h4>
       </div>
 
-    
-
-        <div className="ContainerOfFreelancerCards">
-          {freelancers?.map((item) => (
+      <div className="ContainerOfFreelancerCards">
+      
+        {freelancers.length === 0 ? (
+          <div className="NoFreelancersMessage" style={{ textAlign: "center", margin: "20px" }}>
+            <h3>There are no Matched Freelancers</h3>
+          </div>
+        ) : (
+          freelancers.map((item) => (
             <FindFreeLancerCard key={item.id} item={item} />
-          ))}
-        
+          ))
+        )}
       </div>
     </div>
   );
+  
 }

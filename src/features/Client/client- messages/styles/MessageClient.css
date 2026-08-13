@@ -9,6 +9,7 @@ body{
     background:#f5f7f9;
 }
 
+
 /* الصفحة */
 .messagess-page{
     width:85%;
@@ -41,12 +42,13 @@ body{
 }
 
 
-/* القائمة اليسار */
+/* القائمة */
 .sidebarr{
     width:320px;
     border-right:1px solid #eee;
     background:#fff;
 }
+
 
 .search{
     width:90%;
@@ -68,9 +70,11 @@ body{
     transition:.2s;
 }
 
+
 .chat-item:hover{
     background:#f7f7f7;
 }
+
 
 .chat-item.active{
     background:#e7f7f2;
@@ -91,154 +95,338 @@ body{
     flex-shrink:0;
 }
 
+
 .green{
     background:#2AA198;
 }
 
 
+/* معلومات المحادثة */
 .chat-info{
     flex:1;
 }
+
 
 .chat-info h4{
     font-size:15px;
     margin-bottom:4px;
 }
 
+
 .chat-info p{
     font-size:13px;
     color:#777;
 }
 
-.chat-item span{
+
+/* عنوان المحادثة + العداد */
+.chat-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+
+/* عداد الرسائل */
+.unread-badge{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:22px;
+    height:22px;
+
+    padding:0 6px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:white;
+
     font-size:12px;
+
+    font-weight:bold;
+
+    line-height:1;
+
+}
+
+
+/* التاريخ */
+.chat-date{
+
+    font-size:12px;
+
     color:#999;
+
+    margin-left:auto;
+
+}
+
+
+/* لا تؤثر على العداد */
+.chat-item > span{
+
+    font-size:12px;
+
+    color:#999;
+
 }
 
 
 /* القسم اليمين */
 .chat-section{
+
     flex:1;
+
     display:flex;
+
     flex-direction:column;
+
     min-height:0;
+
 }
+
 
 
 /* الهيدر */
 .chat-header{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     padding:18px 22px;
+
     border-bottom:1px solid #eee;
+
     flex-shrink:0;
+
 }
+
 
 .chat-header h3{
+
     font-size:18px;
+
 }
 
+
 .chat-header p{
+
     font-size:13px;
+
     color:#777;
+
 }
+
 
 
 /* الرسائل */
 .chat-body{
+
     flex:1;
+
     padding:25px;
+
     background:#fff;
+
     overflow-y:auto;
+
     min-height:0;
+
     display:flex;
+
     flex-direction:column;
+
 }
+
 
 
 .message{
+
     max-width:60%;
+
     padding:10px 15px;
+
     border-radius:15px;
+
     margin:8px;
+
     font-size:14px;
+
     line-height:1.6;
+
 }
+
 
 
 .my-message{
+
     align-self:flex-end;
+
     background:#2AA198;
+
     color:white;
+
 }
+
 
 
 .other-message{
+
     align-self:flex-start;
+
     background:#e5e5e5;
+
     color:black;
+
 }
+
 
 
 .message small{
+
     display:block;
+
     margin-top:5px;
+
     font-size:11px;
+
 }
 
 
-/* مكان الكتابة */
+
+.message-status{
+
+    font-size:11px;
+
+    align-self:flex-end;
+
+    margin-top:5px;
+
+    opacity:.8;
+
+}
+
+
+
+/* الكتابة */
 .chat-input{
+
     display:flex;
+
     gap:10px;
+
     padding:16px 20px;
+
     border-top:1px solid #eee;
+
     background:white;
+
     flex-shrink:0;
+
 }
+
 
 
 .chat-input input{
+
     flex:1;
+
     height:46px;
+
     border:1px solid #ddd;
+
     border-radius:12px;
+
     padding:0 15px;
+
     outline:none;
+
     font-size:14px;
+
 }
+
 
 
 .chat-input input:focus{
+
     border-color:#2AA198;
+
 }
 
 
+
 .chat-input button{
+
     width:50px;
+
     height:46px;
+
     border:none;
+
     border-radius:12px;
+
     background:#2AA198;
+
     color:white;
+
     cursor:pointer;
+
     font-size:18px;
+
 }
 
 
 .chat-input button:hover{
-    opacity:.9;
-}
-/* .message{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-} */
 
-.message-status{
-    font-size: 11px;
-    align-self: flex-end;
-    margin-top: 5px;
-    opacity: 0.8;
+    opacity:.9;
+
+}
+.unread-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2AA198;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: auto; /* يدفعه للطرف */
+
+
+}
+
+
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+
+.create-contract-btn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.create-contract-btn:hover {
+  background: #15803d;
+  transform: translateY(-2px);
 }
