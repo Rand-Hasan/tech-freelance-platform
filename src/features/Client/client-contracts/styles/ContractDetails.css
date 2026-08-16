@@ -432,3 +432,310 @@
   color: #fff;
   border-color: #E05252;
 }
+/* =========================
+   RATE FREELANCER BOX
+========================= */
+
+.rate-freelancer-box {
+  margin-top: 25px;
+  padding: 24px 22px;
+  border: 1px solid #48b99a;
+  border-radius: 18px;
+  background: #eff9f6;
+}
+
+.rate-freelancer-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #163b3a;
+  font-size: 16px;
+}
+
+.completed-check {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #16b51c;
+  color: white;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.rate-freelancer-box p {
+  margin: 18px 0 14px;
+  color: #557b7c;
+  font-size: 14px;
+}
+
+.rate-freelancer-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 13px 30px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(
+    135deg,
+    #2fae9b,
+    #49b88f
+  );
+
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(47, 174, 155, 0.18);
+}
+
+.rate-freelancer-btn svg {
+  color: #ffe04b;
+}
+
+.rate-freelancer-btn:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   RATING MODAL
+========================= */
+
+.rating-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(8, 30, 29, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 9999;
+}
+
+.rating-modal {
+  width: 100%;
+  max-width: 440px;
+
+  background: white;
+  border-radius: 20px;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+
+/* HEADER */
+
+.rating-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.rating-modal-header h2 {
+  margin: 0 0 7px;
+
+  color: #142f2e;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.rating-modal-header p {
+  margin: 0;
+
+  color: #658181;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rating-close-btn {
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  background: transparent;
+
+  color: #718686;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+/* STARS */
+
+.rating-section {
+  margin-bottom: 25px;
+}
+
+.rating-section label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #183534;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stars-container {
+  display: flex;
+  gap: 8px;
+}
+
+.star-btn {
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #dceeee;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+.star-btn:hover,
+.active-star {
+  color: #f5c542;
+}
+
+.rating-text {
+  display: block;
+
+  margin-top: 8px;
+
+  color: #3a9e8d;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* FEEDBACK */
+
+.feedback-section {
+  margin-bottom: 22px;
+}
+
+.feedback-section label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #183534;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feedback-section label span {
+  color: #839696;
+  font-weight: 400;
+}
+
+.feedback-section textarea {
+  width: 100%;
+  min-height: 110px;
+
+  padding: 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d4e2e1;
+  border-radius: 10px;
+
+  background: #f8fbfb;
+
+  color: #294443;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  resize: vertical;
+
+  outline: none;
+}
+
+.feedback-section textarea:focus {
+  border-color: #40ae9b;
+}
+
+
+/* ACTIONS */
+
+.rating-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rating-cancel-btn,
+.submit-rating-btn {
+  height: 44px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.rating-cancel-btn {
+  flex: 1;
+
+  border: 1px solid #d4e1e0;
+
+  background: white;
+
+  color: #55706f;
+}
+
+.submit-rating-btn {
+  flex: 2;
+
+  border: none;
+
+  background: linear-gradient(
+    135deg,
+    #2fae9b,
+    #49b88f
+  );
+
+  color: white;
+
+  box-shadow: 0 8px 18px rgba(47, 174, 155, 0.18);
+}
+
+.submit-rating-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

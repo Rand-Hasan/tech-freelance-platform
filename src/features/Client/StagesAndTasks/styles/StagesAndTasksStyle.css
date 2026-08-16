@@ -15,10 +15,11 @@
     padding: 20px;
     box-shadow: 1px 1px gray;
     transition: all 0.3s ease;
+    position: relative;
 }
 .Phase:hover{
      box-shadow: 2px 2px gray;
-    
+    cursor: pointer;
 }
 .title_desc_duration_editings{
     width: 40%;
@@ -28,13 +29,10 @@
     gap: 10px;
    
 }
-
 .status_Ammount_deadline{
     display: flex;
     flex-direction: column;
-    width: 20%;
-    
-   
+    width: 100%;  
     gap: 10px;
 }
 
@@ -55,6 +53,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 30px;
+    margin-top: 10px;
 }
 .ShowTaskbtn{
     width: 100%;
@@ -133,4 +133,95 @@
     background-color: red;
     color:white;
     cursor: pointer;
+}
+.statusAndDelete{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 26%;        
+    flex-shrink: 0;     
+}
+.DeletePhaseBtn{
+    height: 30px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid red;
+    color:red;
+    /* margin-top: 50px; */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+.DeletePhaseBtn:hover
+{
+    background-color: red;
+    color:white;
+    cursor: pointer;
+}
+.AddPhase{
+    width: 50px;
+    height: 50px;
+    background-color: #006F59;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    align-self: flex-end;
+    margin-top: 10px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+.AddPhase:hover{
+    cursor: pointer;
+    font-size: 30px;
+}
+.options_menu_container {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.dots_btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.dots_btn:hover {
+    color: #000;
+}
+
+.dropdown_menu {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 5px;
+    z-index: 10;
+    border: 1px solid #eee;
+}
+
+.dropdown_menu button {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.dropdown_menu button:hover {
+    background-color: #f5f5f5;
+    color: #006F59;
 }

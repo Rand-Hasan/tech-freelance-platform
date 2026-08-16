@@ -18,6 +18,8 @@ export default function ShowInvationFree() {
     const [limit] = useState(4);
     const [loading, setLoading] = useState(false);
     const [selectedInvitation, setSelectedInvitation] = useState(null);
+     const [filterStatus, setFilterStatus] = useState("all");
+    
     useEffect(() => {
         showInvitation(page);
     }, [page])
@@ -34,13 +36,13 @@ export default function ShowInvationFree() {
                 }
             );
 
-            const filteredInvitations = res.data.invitations.filter(
-                (invitation) =>
-                    invitation.status === "pending" ||
-                    invitation.status === "canceled"
-            );
+            // const filteredInvitations = res.data.invitations.filter(
+            //     (invitation) =>
+            //         invitation.status === "pending" ||
+            //         invitation.status === "canceled"
+            // );
 
-            setInvitations(filteredInvitations);
+            setInvitations(res.data.invitations);
 
         } catch (err) {
             console.error(err);
@@ -79,14 +81,50 @@ export default function ShowInvationFree() {
             console.log('hfujfdjjfiojdoiskdksdssklklsdksljdjf')
         }
     }
-
+  const filteredInvation =
+        filterStatus === "all"
+            ? Invitations
+            : Invitations.filter(
+                (inv) => inv.status === filterStatus
+            );
     return (
         <div>
+             <div className="offers-filters">
+
+                <button
+                    className={filterStatus === "all" ? "active-filter" : ""}
+                    onClick={() => setFilterStatus("all")}
+                >
+                    All
+                </button>
+
+                <button
+                    className={filterStatus === "pending" ? "active-filter" : ""}
+                    onClick={() => setFilterStatus("pending")}
+                >
+                    pending
+                </button>
+
+                <button
+                    className={filterStatus === "accepted" ? "active-filter" : ""}
+                    onClick={() => setFilterStatus("accepted")}
+                >
+                    Accepted
+                </button>
+
+                <button
+                    className={filterStatus === "rejected" ? "active-filter" : ""}
+                    onClick={() => setFilterStatus("rejected")}
+                >
+                    Rejected
+                </button>
+
+            </div>
             {loading ? (
                 <p style={{ textAlign: 'center' }}>Loading invitations...</p>
-            ) : Invitations.length > 0 ? (
+            ) : filteredInvation.length > 0 ? (
                 <div className="invitations-list">
-                    {Invitations.map((invit) => (
+                    {filteredInvation.map((invit) => (
                         <CardInvation
                             key={invit.id}
                             Invation={invit}
@@ -166,7 +204,8 @@ export default function ShowInvationFree() {
                         <p className="modal-description">
                             {selectedInvitation.project.description}
                         </p>
-
+                         
+                         {selectedInvitation.status=== "pending" && (
                         <div className="modal-actions">
 
                             <button className="accept-request-btn"
@@ -183,7 +222,7 @@ export default function ShowInvationFree() {
                             </button>
 
                         </div>
-
+                     ) }
                     </div>
 
                 </div>

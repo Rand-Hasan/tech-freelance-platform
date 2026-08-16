@@ -237,3 +237,807 @@
     gap: 0;
   }
 }
+
+
+/* =========================================
+   PHASE INFO CARD
+========================================= */
+
+.phase-info-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #dce6e3;
+  border-radius: 14px;
+
+  padding: 24px;
+
+  margin-bottom: 18px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 2px 8px rgba(16, 47, 70, 0.035);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.phase-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 22px;
+}
+
+.phase-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phase-title {
+  margin: 0;
+
+  color: #173c53;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.phase-status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: capitalize;
+
+  background: #eef3f2;
+  color: #61727c;
+}
+
+.phase-status-new_phase {
+  background: #fff6df;
+  color: #a56a00;
+}
+
+
+/* =========================================
+   PHASE INFORMATION
+========================================= */
+
+.phase-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+
+  padding: 18px 0;
+
+  border-top: 1px solid #edf1f0;
+  border-bottom: 1px solid #edf1f0;
+}
+
+.phase-info-item {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.phase-info-label {
+  color: #89979e;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.phase-info-value {
+  color: #294353;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   CLIENT REQUEST
+========================================= */
+
+.phase-client-request {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-top: 20px;
+
+  padding: 16px;
+
+  background: #f5faf8;
+
+  border: 1px solid #dceee9;
+
+  border-radius: 10px;
+}
+
+
+/* Request Content */
+
+.phase-request-content {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.phase-request-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #e3f4ef;
+
+  font-size: 17px;
+}
+
+.phase-request-title {
+  margin-bottom: 4px;
+
+  color: #173c53;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.phase-request-description {
+  color: #6e7f87;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.phase-request-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+
+/* Reject */
+
+.phase-reject-btn {
+  height: 38px;
+
+  padding: 0 16px;
+
+  border: 1px solid #e0b9b4;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #c64a3d;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.phase-reject-btn:hover {
+  background: #fff4f2;
+  border-color: #d99b94;
+}
+
+
+/* Accept */
+
+.phase-accept-btn {
+  height: 38px;
+
+  padding: 0 17px;
+
+  border: 1px solid #008c78;
+  border-radius: 8px;
+
+  background: #008c78;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.phase-accept-btn:hover {
+  background: #007b6b;
+  border-color: #007b6b;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+
+  .phase-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .phase-client-request {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .phase-request-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .phase-info-card {
+    padding: 18px;
+  }
+
+  .phase-info-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .phase-title-wrapper {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .phase-request-actions {
+    width: 100%;
+  }
+
+  .phase-reject-btn,
+  .phase-accept-btn {
+    flex: 1;
+  }
+}
+
+
+
+
+
+/* =========================================
+   CLIENT REQUEST
+========================================= */
+
+.phase-client-request {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-top: 20px;
+  padding: 16px 18px;
+
+  background: #f5faf8;
+
+  border: 1px solid #dceee9;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   REQUEST CONTENT
+========================================= */
+
+.phase-request-content {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.phase-request-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e3f4ef;
+  border-radius: 9px;
+
+  font-size: 17px;
+}
+
+.phase-request-text {
+  min-width: 0;
+}
+
+.phase-request-title {
+  margin-bottom: 4px;
+
+  color: #173c53;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.phase-request-description {
+  color: #6e7f87;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   REQUEST ACTIONS
+========================================= */
+
+.phase-request-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+
+/* Reject Button */
+
+.phase-reject-btn {
+  height: 38px;
+
+  padding: 0 17px;
+
+  border: 1px solid #e0b9b4;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #c64a3d;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.phase-reject-btn:hover {
+  background: #fff4f2;
+  border-color: #d99b94;
+}
+
+
+/* Accept Button */
+
+.phase-accept-btn {
+  height: 38px;
+
+  padding: 0 18px;
+
+  border: 1px solid #008c78;
+  border-radius: 8px;
+
+  background: #008c78;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.phase-accept-btn:hover {
+  background: #007b6b;
+  border-color: #007b6b;
+}
+
+
+/* =========================================
+   REJECT MODAL OVERLAY
+========================================= */
+
+.reject-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(20, 35, 42, 0.45);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.reject-modal {
+  width: 100%;
+  max-width: 480px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e9e7;
+  border-radius: 14px;
+
+  box-shadow:
+    0 20px 50px rgba(16, 47, 70, 0.15),
+    0 4px 12px rgba(16, 47, 70, 0.05);
+
+  overflow: hidden;
+
+  animation: rejectModalAppear 0.2s ease-out;
+}
+
+@keyframes rejectModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.reject-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 24px;
+
+  border-bottom: 1px solid #edf1f0;
+}
+
+.reject-modal-header h3 {
+  margin: 0 0 6px;
+
+  color: #173c53;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.reject-modal-header p {
+  margin: 0;
+
+  color: #7a8990;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.reject-modal-close {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #8b989e;
+
+  font-size: 22px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.reject-modal-close:hover {
+  background: #f3f6f5;
+  color: #374c57;
+}
+
+
+/* =========================================
+   MODAL BODY
+========================================= */
+
+.reject-modal-body {
+  padding: 22px 24px;
+}
+
+.reject-modal-description {
+  margin: 0 0 10px;
+
+  color: #667780;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* Textarea */
+
+.reject-modal-body textarea {
+  width: 100%;
+  min-height: 120px;
+
+  display: block;
+
+  padding: 12px 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8e2df;
+  border-radius: 9px;
+
+  background: #fafcfc;
+
+  color: #294353;
+
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+
+  outline: none;
+
+  resize: vertical;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.reject-modal-body textarea::placeholder {
+  color: #a4afb4;
+}
+
+.reject-modal-body textarea:focus {
+  background: #ffffff;
+
+  border-color: #008c78;
+
+  box-shadow: 0 0 0 3px rgba(0, 140, 120, 0.08);
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.reject-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 16px 24px;
+
+  background: #fafcfc;
+
+  border-top: 1px solid #edf1f0;
+}
+
+
+/* Cancel */
+
+.reject-cancel-btn {
+  height: 38px;
+
+  padding: 0 18px;
+
+  border: 1px solid #d8e2df;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #536872;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.reject-cancel-btn:hover {
+  background: #f3f6f5;
+  border-color: #c8d4d1;
+}
+
+
+/* Confirm Reject */
+
+.reject-confirm-btn {
+  height: 38px;
+
+  padding: 0 18px;
+
+  border: 1px solid #d94b3d;
+  border-radius: 8px;
+
+  background: #d94b3d;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.reject-confirm-btn:hover:not(:disabled) {
+  background: #c83f32;
+  border-color: #c83f32;
+}
+
+.reject-confirm-btn:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .phase-client-request {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .phase-request-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .phase-client-request {
+    padding: 15px;
+  }
+
+  .phase-request-content {
+    align-items: flex-start;
+  }
+
+  .phase-request-actions {
+    width: 100%;
+  }
+
+  .phase-reject-btn,
+  .phase-accept-btn {
+    flex: 1;
+  }
+
+  .reject-modal-overlay {
+    padding: 14px;
+  }
+
+  .reject-modal-header,
+  .reject-modal-body {
+    padding: 18px;
+  }
+
+  .reject-modal-actions {
+    padding: 14px 18px;
+  }
+}
+.reject-success {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-bottom: 20px;
+  padding: 13px 16px;
+
+  border: 1px solid #ccebe2;
+  border-radius: 9px;
+
+  background: #eef9f5;
+  color: #177563;
+
+  font-size: 13px;
+  font-weight: 600;
+}

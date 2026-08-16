@@ -1,0 +1,97 @@
+.AddPhaseDetailesContainer {
+  width: 100%;
+  margin: 30px 0;
+  background: #fff;
+  border: 1px solid #e3e8e6;
+  border-radius: 16px;
+  padding: 28px 40px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.AddPhaseDetailesTitle {
+  margin: 0 0 22px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #12201c;
+}
+
+.FormGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.FormGroup label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #5b6a65;
+  margin-bottom: 6px;
+}
+
+.FormGroup input,
+.FormGroup textarea {
+  border: 1px solid #e3e8e6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #12201c;
+  outline: none;
+  background: #f7faf9;
+}
+
+.FormGroup textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.FormGroup input:focus,
+.FormGroup textarea:focus {
+  border-color: #008060;
+  background: #fff;
+}
+
+.FormRow {
+  display: flex;
+  gap: 16px;
+}
+
+.SubmitPhaseOfferBtn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #008060;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.SubmitPhaseOfferBtn:hover {
+  background: #00664d;
+}
+.ErrorsBox {
+  background: #fdecea;
+  border: 1px solid #f5b5ae;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.ErrorLine {
+  margin: 4px 0;
+  font-size: 13.5px;
+  color: #c0392b;
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .FormRow {
+    flex-direction: column;
+    gap: 0;
+  }
+}

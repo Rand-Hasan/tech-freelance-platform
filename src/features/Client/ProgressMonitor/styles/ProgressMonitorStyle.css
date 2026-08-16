@@ -1,0 +1,82 @@
+.ProgressMonitorContainer {
+  width: 100%;
+}
+
+/* Empty state */
+.NoRespondsBox {
+  width: 100%;
+  text-align: center;
+  padding: 40px 20px;
+  color: #5b6a65;
+  font-size: 14px;
+  font-weight: 600;
+  background: #fff;
+  border: 1.5px dashed #e3e8e6;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+/* Respond card */
+.RespondCard {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e3e8e6;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-top: 14px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.RespondText {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #12201c;
+}
+
+.RespondDate {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: #5b6a65;
+}
+
+/* Action buttons row */
+.RespondActionsRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.DeleteAnyWayBtn,
+.ReturnToDeleteBtn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.DeleteAnyWayBtn {
+  border: 1px solid #e05252;
+  color: #e05252;
+}
+
+.DeleteAnyWayBtn:hover {
+  background: #e05252;
+  color: #fff;
+}
+
+.ReturnToDeleteBtn {
+  border: 1px solid #008060;
+  color: #008060;
+}
+
+.ReturnToDeleteBtn:hover {
+  background: #008060;
+  color: #fff;
+}

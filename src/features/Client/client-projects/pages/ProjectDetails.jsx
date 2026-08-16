@@ -11,7 +11,7 @@ export default function ProjectDetails() {
   const navigate = useNavigate();
   const { id: ProjectId } = useParams();
   const [project, setdetailsProject] = useState(null);
-const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
    const cookies= new Cookies();
    const token = cookies.get('token-client');
    useEffect(()=>{
@@ -73,7 +73,7 @@ const [skills, setSkills] = useState([]);
 
         <div className="skills-list">
 
-            {skills.map((skill) => (
+            {skills?.map((skill) => (
                 <span
                     key={skill.id}
                     className="skill-tag"
@@ -100,7 +100,7 @@ const [skills, setSkills] = useState([]);
         </NavLink>
 
         <NavLink to="progress-monitor" className="tab-link">
-          📈 progress monitor
+          🗑️ FreeLancer Response 
         </NavLink>
 
         <NavLink to="WorkAndCodeReview" className="tab-link">

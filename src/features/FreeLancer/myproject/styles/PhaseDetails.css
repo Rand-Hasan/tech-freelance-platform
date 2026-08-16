@@ -1,0 +1,166 @@
+/* =========================================
+   PHASE PAGE CONTAINER
+========================================= */
+
+.phase-page {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background: #f5f8f7;
+  padding: 12px 24px 40px;
+  box-sizing: border-box;
+}
+
+.phase-details-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.phase-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  padding: 4px 2px;
+  margin-bottom: 12px;
+  color: #102f46;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.phase-back-button svg {
+  width: 16px;
+  height: 16px;
+  color: #008c78;
+  transition: transform 0.2s ease;
+}
+
+.phase-back-button:hover {
+  color: #007c6c;
+}
+
+.phase-back-button:hover svg {
+  transform: translateX(-3px);
+}
+
+/* =========================================
+   TABS CONTAINER
+========================================= */
+
+.phase-tabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dce6e3;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(16, 47, 70, 0.04);
+  box-sizing: border-box;
+}
+
+/* =========================================
+   TAB ITEMS
+========================================= */
+
+.phase-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 20px;
+  color: #61727c;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover: أخضر شفاف فاتح مائل للون المنصة */
+.phase-tab:hover {
+  color: #007d6d;
+  background: rgba(0, 125, 109, 0.06); 
+}
+
+/* Active Tab: أخضر شفاف أغمق درجة بسيطة ليبرز التاب المفتوح */
+.phase-tab-active {
+  color: #007d6d !important;
+  background: rgba(0, 125, 109, 0.12) !important;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(0, 125, 109, 0.2); /* إطار ناعم بنفس درجة اللون */
+}
+
+.phase-tab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* =========================================
+   CONTENT AREA
+========================================= */
+
+.phase-content {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #dce6e3;
+  border-radius: 14px;
+  min-height: 420px;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(16, 47, 70, 0.035);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+  .phase-page {
+    padding: 10px 14px 30px;
+  }
+
+  .phase-tabs {
+    flex-direction: column;
+    padding: 4px;
+  }
+
+  .phase-tab {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .phase-content {
+    padding: 18px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .phase-page {
+    padding: 8px 10px 20px;
+  }
+
+  .phase-tab {
+    font-size: 13px;
+    min-height: 40px;
+  }
+
+  .phase-content {
+    padding: 14px;
+  }
+}

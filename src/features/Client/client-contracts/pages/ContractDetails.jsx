@@ -3,9 +3,10 @@ import "../../client-contracts/styles/ContractDetails.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
-import { GetContractById } from "../services/api_contract";
+import { CancelContract, GetContractById, ReviewsCreateReview } from "../services/api_contract";
 import Cookies from "universal-cookie";
-import '../styles/ContractDetails.css'
+import '../styles/ContractDetails.css';
+import { FaStar } from "react-icons/fa";
 
 export default function ContractDetails() {
 
@@ -19,6 +20,9 @@ export default function ContractDetails() {
   const [showModal, setShowModal] = useState(false);
 
   const [contract, setContract] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
 
 
@@ -55,8 +59,31 @@ export default function ContractDetails() {
 
   };
 
-
-
+ const submitRating=async (rating,feedback)=>{
+  try{
+    const res = await axios.post(`${baseURL}${ReviewsCreateReview}${contract.id}`,{
+      rating:rating,
+      comment:comment,
+    },{headers:{Authorization:`Bearer ${token}`}})
+              setShowRatingModal(false);
+             setRating(0);
+                  setComment("");
+    console.log(res.data)
+    console.log('lll',contract.id)
+  }catch(err){
+    console.log(err.response?.data);
+  }
+ }
+const cancelcontract =async(id)=>{
+  try{
+    const res = await axios.post(`${baseURL}${CancelContract}${id}`,{},{
+      headers:{Authorization:`Bearer ${token}`}
+    })
+    console.log(res.data)
+  }catch(err){
+    console.log(err.response?.data)
+  }
+}
   if (!contract) {
 
     return <p>Loading...</p>
@@ -167,18 +194,25 @@ export default function ContractDetails() {
               <button className="deletecontract" >
                 Delete
               </button>
+              {/* <button onClick={()=>navigate(`/clientlayout/wallet/${contract.id}`)}>
+              PAY
+            </button> */}
 
             </div>
 
           ) : (
+            <div>
+              <button
+                className="cancel-btn"
+                onClick={() => setShowModal(true)}
+              >
+                Cancel Contract
+              </button>
+              <button onClick={() => navigate(`/clientlayout/wallet/${contract.id}`)}>
+                PAY
+              </button>
 
-            <button
-              className="cancel-btn"
-              onClick={() => setShowModal(true)}
-            >
-              Cancel Contract
-            </button>
-
+            </div>
           )}
 
         </div>
@@ -339,7 +373,142 @@ export default function ContractDetails() {
 
       </div>
 
+      {contract.status === "completed" && (
+        <div className="rate-freelancer-box">
 
+          <div className="rate-freelancer-title">
+            <span className="completed-check">✓</span>
+
+            <strong>
+              All Phases completed — Rate this freelancer
+            </strong>
+          </div>
+
+          <p>
+            Once you approve the final task, you'll be asked to rate
+            the freelancer's performance on this project.
+          </p>
+
+          <button
+            className="rate-freelancer-btn"
+            onClick={() => setShowRatingModal(true)}
+          >
+            <FaStar />
+            Rate Freelancer
+          </button>
+
+        </div>
+      )}
+      {showRatingModal && (
+        <div className="rating-modal-overlay">
+
+          <div className="rating-modal">
+
+            {/* HEADER */}
+
+            <div className="rating-modal-header">
+
+              <div>
+                <h2>Rate {contract.freelancer?.name || "Freelancer"}'s Work</h2>
+
+                <p>
+                  Rate your experience working with this freelancer
+                  from 1 to 5 stars.
+                </p>
+              </div>
+
+
+            </div>
+
+
+            {/* STARS */}
+
+            <div className="rating-section">
+
+              <label>Your Rating</label>
+
+              <div className="stars-container">
+
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    className={`star-btn ${star <= rating ? "active-star" : ""
+                      }`}
+                    onClick={() => setRating(star)}
+                  >
+                    <FaStar />
+                  </button>
+                ))}
+
+              </div>
+
+              {rating > 0 && (
+                <span className="rating-text">
+                  {rating} out of 5
+                </span>
+              )}
+
+            </div>
+
+
+            {/* FEEDBACK */}
+
+            <div className="feedback-section">
+
+              <label>
+                Additional feedback
+                <span> (optional)</span>
+              </label>
+
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Share more about working with this freelancer..."
+                rows={5}
+              />
+
+            </div>
+
+
+            {/* ACTIONS */}
+
+            <div className="rating-modal-actions">
+
+              <button
+                className="rating-cancel-btn"
+                type="button"
+                onClick={() => {
+                  setShowRatingModal(false);
+                  setRating(0);
+                  setComment("");
+                }}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="submit-rating-btn"
+                type="button"
+                disabled={rating === 0}
+                onClick={() => {
+                  console.log("Rating:", rating);
+                  console.log("Feedback:", comment);
+
+                  // هون بعدين منحط API تبع إرسال التقييم
+                    submitRating(rating,comment)
+                  setShowRatingModal(false);
+                }}
+              >
+                Submit Rating →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
       {showModal && (
         <div className="modal-overlay">
 
@@ -392,20 +561,14 @@ export default function ContractDetails() {
             </div>
 
 
-
-
-
-            <label>
+            {/* <label>
               Reason for cancellation
             </label>
 
 
             <textarea
               placeholder="Explain why you're cancelling this contract..."
-            />
-
-
-
+            /> */}
 
 
             <div className="accept-box">
@@ -435,6 +598,7 @@ export default function ContractDetails() {
 
               <button
                 className="confirm-btn"
+                onClick={()=>cancelcontract(contract.id)}
               >
                 Cancel Contract
               </button>
