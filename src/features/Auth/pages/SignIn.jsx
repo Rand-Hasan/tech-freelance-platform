@@ -94,6 +94,14 @@ export default function SignIn() {
           });
           navigate("/clientlayout");
         }
+        else if (message.includes("employee")) {
+    cookies.set("token-employee", res.data.token, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    navigate("/AdminLayout");
+  }
       })
       .catch((err) => {
         const { errors, message } = err.response?.data || {};

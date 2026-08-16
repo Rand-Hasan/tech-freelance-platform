@@ -1,0 +1,181 @@
+
+/* =========================
+   Employee Details Page
+========================= */
+
+.employee-details-page {
+  width: 100%;
+}
+
+/* =========================
+   Back Button
+========================= */
+
+.back-btn {
+  border: none;
+  background: transparent;
+  color: #2fae9b;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  opacity: 0.75;
+}
+
+/* =========================
+   Header
+========================= */
+
+.employee-details-header {
+  margin-bottom: 20px;
+}
+
+.employee-details-header h1 {
+  margin: 0;
+  color: #202124;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.employee-details-header p {
+  margin: 6px 0 0;
+  color: #7c8794;
+  font-size: 14px;
+}
+
+/* =========================
+   Main Card
+========================= */
+
+.employee-details-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================
+   Profile
+========================= */
+
+.employee-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.employee-large-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #2fae9b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.employee-profile-info {
+  flex: 1;
+}
+
+.employee-profile-info h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.employee-profile-info p {
+  margin: 5px 0 0;
+  color: #7c8794;
+  font-size: 14px;
+}
+
+/* =========================
+   Information Grid
+========================= */
+
+.employee-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-top: 25px;
+}
+
+.employee-info-item {
+  padding: 18px;
+  border: 1px solid #edf2f7;
+  border-radius: 14px;
+  background: #fafcfd;
+}
+
+.employee-info-item.full {
+  grid-column: 1 / -1;
+}
+
+.employee-info-item span {
+  display: block;
+  margin-bottom: 8px;
+  color: #7c8794;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.employee-info-item strong {
+  color: #202124;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.employee-info-item p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+  .employee-details-card {
+    padding: 18px;
+  }
+
+  .employee-profile {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .employee-profile-status {
+    width: 100%;
+  }
+
+  .employee-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .employee-info-item.full {
+    grid-column: auto;
+  }
+
+  .employee-details-header h1 {
+    font-size: 23px;
+  }
+
+}
+

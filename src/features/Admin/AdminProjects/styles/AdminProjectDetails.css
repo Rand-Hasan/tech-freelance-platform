@@ -1,0 +1,357 @@
+/* ================================
+   ADMIN PROJECT DETAILS
+================================ */
+
+.admin-project-details-page {
+    width: 100%;
+}
+
+
+/* ================================
+   TOP
+================================ */
+
+.admin-project-details-top {
+    margin-bottom: 16px;
+}
+
+.admin-project-details-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: transparent;
+
+    color: #4b7484;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-project-details-back-btn:hover {
+    color: #118d86;
+}
+
+
+/* ================================
+   CARD
+================================ */
+
+.admin-project-details-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e6efef;
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.admin-project-details-header {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #edf2f5;
+}
+
+.admin-project-details-header-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eaf7f6;
+    color: #118d86;
+
+    font-size: 21px;
+}
+
+.admin-project-details-header-content {
+    flex: 1;
+}
+
+.admin-project-details-header-content h1 {
+    margin: 0;
+
+    color: #102638;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.admin-project-details-header-content p {
+    margin: 5px 0 0;
+
+    color: #82939d;
+
+    font-size: 12px;
+}
+
+
+/* ================================
+   LEVEL BADGE
+================================ */
+
+.admin-project-details-level-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 13px;
+
+    border-radius: 15px;
+
+    background: #e9f8f6;
+    color: #118d86;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   SECTION
+================================ */
+
+.admin-project-details-section {
+    padding: 24px 0;
+
+    border-bottom: 1px solid #edf2f5;
+}
+
+.admin-project-details-section-heading {
+    margin-bottom: 15px;
+}
+
+.admin-project-details-section-heading h2 {
+    margin: 0;
+
+    color: #102638;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.admin-project-details-section-heading span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #82939d;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.admin-project-details-description {
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #f8fbfb;
+
+    color: #4d6775;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* ================================
+   INFORMATION GRID
+================================ */
+
+.admin-project-details-info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* ================================
+   INFO ITEM
+================================ */
+
+.admin-project-details-info-item {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 70px;
+
+    padding: 12px;
+
+    border: 1px solid #edf2f5;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+.admin-project-details-info-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eef8f8;
+
+    color: #118d86;
+
+    font-size: 13px;
+}
+
+.admin-project-details-info-content {
+    min-width: 0;
+}
+
+.admin-project-details-info-content span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #82939d;
+
+    font-size: 10px;
+}
+
+.admin-project-details-info-content strong {
+    display: block;
+
+    color: #102638;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-project-details-price {
+    color: #129b92 !important;
+}
+
+
+/* ================================
+   PROJECT LINK
+================================ */
+
+.admin-project-details-link-box {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 45px;
+
+    padding: 0 13px;
+
+    border: 1px solid #edf2f5;
+
+    border-radius: 9px;
+
+    color: #82939d;
+
+    font-size: 12px;
+}
+
+.admin-project-details-link-box svg {
+    color: #118d86;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.admin-project-details-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 18px;
+}
+
+.admin-project-details-footer span {
+    color: #9aa8af;
+
+    font-size: 10px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .admin-project-details-card {
+        padding: 18px;
+    }
+
+    .admin-project-details-info-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-project-details-header {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .admin-project-details-header-content {
+        width: calc(100% - 66px);
+    }
+
+    .admin-project-details-header-content h1 {
+        font-size: 18px;
+    }
+
+    .admin-project-details-level-badge {
+        margin-left: 66px;
+    }
+
+    .admin-project-details-info-grid {
+        grid-template-columns: 1fr;
+    }
+}

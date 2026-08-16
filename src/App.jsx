@@ -51,12 +51,22 @@ import AdminLayout from './features/Admin/Layout/AdminLayout';
 import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
 import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
 import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
-import FinesCommission from './features/Admin/FinesCommission/pages/FinesCommission';
-import Users from './features/Admin/Users/pages/Users';
+import Financial from './features/Admin/FinesCommission/pages/Financial';
+import Statistics from './features/Admin/Statistics/pages/Statistics';
+import Employees from './features/Admin/Employees/pages/Employees';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 import AssessmentLevel from './features/FreeLancer/Questions/pages/AssessmentLevel';
-
+import EmployeeDetails from './features/Admin/Employees/pages/EmployeeDetails';
+import UsersManagement from './features/Admin/UsersManagement/pages/UsersManagement';
+import UserDetails from './features/Admin/UsersManagement/pages/UserDetails';
+import EditQuestion from './features/Admin/AssessmentQuestions/pages/EditQuestion';
+import AdminOffers from './features/Admin/AdminOffers/pages/AdminOffers';
+import AuditLog from './features/Admin/AuditLog/pages/AuditLog';
+import AdminReviews from './features/Admin/Reviews/pages/AdminReviews';
+import AdminOfferDetails from './features/Admin/AdminOffers/pages/AdminOfferDetails';
+import AdminContractDetails from './features/Admin/Contracts/pages/AdminContractDetails';
+import AdminProjectDetails from './features/Admin/AdminProjects/pages/AdminProjectDetails';
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
 import StageAndTasksDetailes from './features/Client/StagesAndTasks/pages/StageAndTasksDetailes';
 
@@ -136,16 +146,32 @@ function App() {
         </Route>
         ///////////////Admin//////////
                <Route path="/AdminLayout" element={<AdminLayout />}>
-  <Route index element={<Navigate to="Users" replace />} />
+  <Route index element={<Navigate to="Employees" replace />} />
 
-  <Route path="Users" element={<Users />} />
+ 
+<Route path="Employees" element={<Employees />} />
+  <Route
+    path="employees/:employeeId"
+    element={<EmployeeDetails />}
+  />
 
   <Route  path="RolesPermissions" element={<RolesPermissions />}/>
     <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
     <Route  path="AddQuestion" element={<AddQuestion />}/>
-      <Route  path="FinesCommission" element={<FinesCommission />}/>
+    <Route path="EditQuestion/:id" element={<EditQuestion />}
+/>
+      <Route  path="Financial" element={<Financial />}/>
+          <Route  path="Statistics" element={<Statistics />}/>
          <Route  path="AdminContracts" element={<AdminContracts />}/>
            <Route  path="AdminProjects" element={<AdminProjects />}/>
+              <Route  path="UsersManagement" element={<UsersManagement />}/>
+               <Route  path="UsersManagement/:userId"   element={<UserDetails />} />
+                <Route  path="AuditLog"   element={<AuditLog />} />
+                  <Route  path="AdminOffers" element={<AdminOffers />}/>
+                   <Route  path="AdminReviews" element={<AdminReviews />}/>
+                  <Route path="AdminContractDetails/:contractId"element={<AdminContractDetails />}/>
+                  <Route path="AdminProjectDetails/:projectId" element={<AdminProjectDetails />}/>
+                  <Route  path="AdminOfferDetails/:offerId"  element={<AdminOfferDetails />}/>
 </Route>
       </Routes>
     </BrowserRouter>

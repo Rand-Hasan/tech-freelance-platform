@@ -1,20 +1,22 @@
-
-import "../../../Admin/AssessmentQuestions/styles/AddQuestion.css";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "../../AssessmentQuestions/styles/EditQuestion.css";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "cookie-universal";
 import { baseURL } from "../../../../services/Api/api";
-import { AddQuestions } from "../../AssessmentQuestions/services/Questionapi";
-import {  GetSkills, } from '../../../Client/client-projects/services/api_project';
 import Loading from "../../../../components/Loading/Loading";
+import {
+  GetQuestionById,
+  UpdateQuestion,
+} from "../../AssessmentQuestions/services/Questionapi";
 
-export default function AddQuestion() {
+export default function EditQuestion() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const cookies = Cookies();
-const [skills, setSkills] = useState([]);
+
   const [data, setData] = useState({
-    level: "junior",
+    level: "",
     skill_id: "",
     question_text: "",
     option_a: "",
@@ -34,13 +36,15 @@ const [skills, setSkills] = useState([]);
     });
   }
 
-  useEffect(() => {
-  async function getSkills() {
+  async function getQuestion() {
     try {
+      setLoading(true);
+      setError("");
+
       const token = cookies.get("token-employee");
 
       const response = await axios.get(
-        `${baseURL}${GetSkills}`,
+        `${baseURL}${GetQuestionById}/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,24 +52,35 @@ const [skills, setSkills] = useState([]);
         }
       );
 
-      console.log("SKILLS:", response.data);
+      console.log("QUESTION:", response.data);
 
-      setSkills(response.data.skills || []);
+      const question = response.data.question;
+
+      setData({
+        level: question.level || "",
+        skill_id: question.skill_id || "",
+        question_text: question.question_text || "",
+        option_a: question.option_a || "",
+        option_b: question.option_b || "",
+        option_c: question.option_c || "",
+        option_d: question.option_d || "",
+        correct_option: question.correct_option || "A",
+      });
     } catch (err) {
-      console.log("SKILLS ERROR:", err.response?.data);
+      console.log("FULL ERROR:", err.response?.data);
 
       const msg =
         err.response?.data?.errors?.[0]?.message ||
         err.response?.data?.message ||
-        "Failed to load skills";
+        "Server Error";
 
       setError(msg);
+    } finally {
+      setLoading(false);
     }
   }
 
-  getSkills();
-}, []);
-  async function handleSave() {
+  async function handleUpdate() {
     try {
       setLoading(true);
       setError("");
@@ -84,7 +99,7 @@ const [skills, setSkills] = useState([]);
       body.append("correct_option", data.correct_option);
 
       const response = await axios.post(
-       `${baseURL}${AddQuestions}`,
+        `${baseURL}${UpdateQuestion}/${id}`,
         body,
         {
           headers: {
@@ -93,7 +108,7 @@ const [skills, setSkills] = useState([]);
         }
       );
 
-      console.log("QUESTION CREATED:", response.data);
+      console.log("UPDATE RESPONSE:", response.data);
 
       navigate(-1);
     } catch (err) {
@@ -110,21 +125,28 @@ const [skills, setSkills] = useState([]);
     }
   }
 
+  useEffect(() => {
+    getQuestion();
+  }, [id]);
+
   return (
-    <div className="add-question-page">
+    <div className="edit-question-page">
+
       {loading && <Loading />}
 
-      <div className="add-question-card">
+      <div className="edit-question-card">
 
-        <div className="page-header">
+        <div className="edit-question-header">
+
           <button
-            className="back-btn"
+            className="back-btnn"
             onClick={() => navigate(-1)}
           >
             ←
           </button>
 
-          <h2>Add Assessment Question</h2>
+          <h2>Edit Assessment Question</h2>
+
         </div>
 
         {error && (
@@ -133,9 +155,9 @@ const [skills, setSkills] = useState([]);
           </div>
         )}
 
-        <div className="form-row">
+        <div className="edit-form-row">
 
-          <div>
+          <div className="edit-form-group">
             <label>Assessment Level</label>
 
             <select
@@ -143,31 +165,23 @@ const [skills, setSkills] = useState([]);
               value={data.level}
               onChange={handleChange}
             >
+              <option value="">Select Level</option>
               <option value="junior">Junior</option>
               <option value="middle">Mid-Level</option>
               <option value="expert">Expert</option>
             </select>
           </div>
 
-          <div>
-            <label>Specialization</label>
+          <div className="edit-form-group">
+            <label>Skill ID</label>
 
-          <select
-  name="skill_id"
-  value={data.skill_id}
-  onChange={handleChange}
->
-  <option value="">Select Specialization</option>
-
-  {skills.map((skill) => (
-    <option
-      key={skill.id}
-      value={skill.id}
-    >
-      {skill.skill_name}
-    </option>
-  ))}
-</select>
+            <input
+              type="number"
+              name="skill_id"
+              value={data.skill_id}
+              onChange={handleChange}
+              placeholder="Enter skill id"
+            />
           </div>
 
         </div>
@@ -182,10 +196,11 @@ const [skills, setSkills] = useState([]);
           placeholder="Write your question..."
         />
 
-        <div className="answers-grid">
+        <div className="edit-answers-grid">
 
-          <div className="answer-field">
+          <div className="edit-answer-field">
             <label>Option A</label>
+
             <input
               type="text"
               name="option_a"
@@ -195,8 +210,9 @@ const [skills, setSkills] = useState([]);
             />
           </div>
 
-          <div className="answer-field">
+          <div className="edit-answer-field">
             <label>Option B</label>
+
             <input
               type="text"
               name="option_b"
@@ -206,8 +222,9 @@ const [skills, setSkills] = useState([]);
             />
           </div>
 
-          <div className="answer-field">
+          <div className="edit-answer-field">
             <label>Option C</label>
+
             <input
               type="text"
               name="option_c"
@@ -217,8 +234,9 @@ const [skills, setSkills] = useState([]);
             />
           </div>
 
-          <div className="answer-field">
+          <div className="edit-answer-field">
             <label>Option D</label>
+
             <input
               type="text"
               name="option_d"
@@ -243,14 +261,14 @@ const [skills, setSkills] = useState([]);
           <option value="D">Option D</option>
         </select>
 
-        <div className="buttons">
+        <div className="edit-buttons">
 
           <button
-            className="save-btn"
-            onClick={handleSave}
+            className="update-btn"
+            onClick={handleUpdate}
             disabled={loading}
           >
-            {loading ? "Adding..." : "Add Question"}
+            {loading ? "Updating..." : "Update Question"}
           </button>
 
           <button
@@ -263,6 +281,7 @@ const [skills, setSkills] = useState([]);
         </div>
 
       </div>
+
     </div>
   );
 }
