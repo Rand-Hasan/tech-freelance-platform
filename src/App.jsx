@@ -145,21 +145,14 @@ function App() {
           </Route>
         </Route>
         ///////////////Admin//////////
-               <Route path="/AdminLayout" element={<AdminLayout />}>
+ <Route path="/AdminLayout" element={<AdminLayout />}>
   <Route index element={<Navigate to="Employees" replace />} />
-
- 
 <Route path="Employees" element={<Employees />} />
-  <Route
-    path="employees/:employeeId"
-    element={<EmployeeDetails />}
-  />
-
+  <Route path="employees/:employeeId" element={<EmployeeDetails />} />
   <Route  path="RolesPermissions" element={<RolesPermissions />}/>
     <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
     <Route  path="AddQuestion" element={<AddQuestion />}/>
-    <Route path="EditQuestion/:id" element={<EditQuestion />}
-/>
+    <Route path="EditQuestion/:id" element={<EditQuestion />}/>
       <Route  path="Financial" element={<Financial />}/>
           <Route  path="Statistics" element={<Statistics />}/>
          <Route  path="AdminContracts" element={<AdminContracts />}/>
