@@ -1,0 +1,591 @@
+/* =========================================
+   Finance Page
+========================================= */
+
+.finance-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 42px 40px;
+
+  box-sizing: border-box;
+
+  background: #eef9f7;
+}
+
+
+/* =========================================
+   Statistics
+========================================= */
+
+.finance-stats {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+
+  margin-bottom: 26px;
+}
+
+
+/* =========================================
+   Statistic Card
+========================================= */
+
+.finance-stat-card {
+  position: relative;
+
+  min-height: 142px;
+
+  padding: 25px 30px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4efed;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   Statistic Content
+========================================= */
+
+.finance-stat-content {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+
+.finance-stat-label {
+  font-size: 14px;
+
+  color: #52737a;
+
+  font-weight: 500;
+}
+
+
+.finance-stat-value {
+  margin-top: 1px;
+
+  font-size: 34px;
+
+  line-height: 1.1;
+
+  color: #0b2430;
+
+  font-weight: 700;
+
+  letter-spacing: -0.8px;
+}
+
+
+.finance-stat-description {
+  margin-top: 1px;
+
+  font-size: 13px;
+
+  color: #6d858a;
+}
+
+
+/* =========================================
+   Card Decoration
+========================================= */
+
+.stat-decoration {
+  position: absolute;
+
+  width: 145px;
+
+  height: 145px;
+
+  right: -45px;
+
+  top: -45px;
+
+  border-radius: 50%;
+
+  background: #eff8f6;
+}
+
+
+.failed-card .stat-decoration {
+  background: #fff0f2;
+}
+
+
+/* =========================================
+   Finance Tabs
+========================================= */
+
+.finance-tabs {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 21px;
+
+  flex-wrap: wrap;
+}
+
+
+.finance-tab {
+  height: 40px;
+
+  padding: 0 21px;
+
+  border: 1px solid #e7eeee;
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #41636a;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.finance-tab:hover {
+  transform: translateY(-1px);
+
+  border-color: #9dd8d0;
+}
+
+
+.finance-tab.active {
+  background: #eaf8f6;
+
+  border-color: #2fae9b;
+
+  color: #169b8a;
+}
+
+
+/* =========================================
+   Table Card
+========================================= */
+
+.finance-table-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e3eeec;
+
+  border-radius: 18px;
+
+  padding: 29px 30px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   Table Wrapper
+========================================= */
+
+.finance-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+
+/* =========================================
+   Table
+========================================= */
+
+.finance-table {
+  width: 100%;
+
+  min-width: 900px;
+
+  border-collapse: collapse;
+
+  table-layout: auto;
+}
+
+
+/* =========================================
+   Table Header
+========================================= */
+
+.finance-table thead tr {
+  background: #e8f4f2;
+}
+
+
+.finance-table th {
+  height: 35px;
+
+  padding: 0 12px;
+
+  text-align: left;
+
+  color: #4d737a;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  white-space: nowrap;
+}
+
+
+.finance-table th:first-child {
+  padding-left: 0;
+}
+
+
+.finance-table th:last-child {
+  padding-right: 0;
+}
+
+
+/* =========================================
+   Table Body
+========================================= */
+
+.finance-table tbody tr {
+  border-bottom: 1px solid #edf2f2;
+
+  transition: background 0.15s ease;
+}
+
+
+.finance-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+
+.finance-table tbody tr:hover {
+  background: #fbfdfd;
+}
+
+
+.finance-table td {
+  height: 58px;
+
+  padding: 0 12px;
+
+  color: #4d737a;
+
+  font-size: 14px;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+}
+
+
+.finance-table td:first-child {
+  padding-left: 0;
+}
+
+
+.finance-table td:last-child {
+  padding-right: 0;
+}
+
+
+/* =========================================
+   Description
+========================================= */
+
+.transaction-description {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.transaction-description strong {
+  color: #0b2430;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.transaction-description span {
+  color: #8a9da1;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   Wallet / Transaction
+========================================= */
+
+.transaction-wallet {
+  color: #5b7c82;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   Type Pills
+========================================= */
+
+.transaction-type {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 75px;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  box-sizing: border-box;
+}
+
+
+/* Escrow */
+
+.transaction-type.escrow_hold {
+  background: #eaf7f5;
+
+  color: #19a398;
+}
+
+
+/* Deposit */
+
+.transaction-type.deposit {
+  background: #eaf8ee;
+
+  color: #32ad70;
+}
+
+
+/* Withdrawal */
+
+.transaction-type.withdrawal {
+  background: #edf1f2;
+
+  color: #607980;
+}
+
+
+/* Commission */
+
+.transaction-type.platform_fee {
+  background: #fff4df;
+
+  color: #c58912;
+}
+
+
+/* Release */
+
+.transaction-type.escrow_release {
+  background: #edf6ff;
+
+  color: #4386b9;
+}
+
+
+/* Refund */
+
+.transaction-type.refund {
+  background: #f5ecff;
+
+  color: #8b5cc7;
+}
+
+
+/* =========================================
+   Amount
+========================================= */
+
+.transaction-amount {
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.transaction-amount.completed {
+  color: #14a38e;
+}
+
+
+.transaction-amount.failed {
+  color: #f04444;
+}
+
+
+/* =========================================
+   Status
+========================================= */
+
+.transaction-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 11px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+
+.transaction-status.completed {
+  background: #eaf7f1;
+
+  color: #2eaf7a;
+}
+
+
+.transaction-status.failed {
+  background: #fcefee;
+
+  color: #e45151;
+}
+
+
+.transaction-status svg {
+  font-size: 10px;
+}
+
+
+/* =========================================
+   Date
+========================================= */
+
+.transaction-date {
+  color: #5e7e84;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   Empty State
+========================================= */
+
+.finance-empty {
+  height: 180px !important;
+
+  text-align: center !important;
+
+  color: #8aa0a4 !important;
+
+  font-size: 14px !important;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 1100px) {
+  .finance-page {
+    padding: 30px 25px;
+  }
+
+  .finance-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .finance-stat-card:last-child {
+    grid-column: span 2;
+  }
+}
+
+
+@media (max-width: 750px) {
+  .finance-page {
+    padding: 20px 16px;
+  }
+
+  .finance-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-stat-card:last-child {
+    grid-column: auto;
+  }
+
+  .finance-stat-card {
+    min-height: 125px;
+
+    padding: 22px;
+  }
+
+  .finance-stat-value {
+    font-size: 30px;
+  }
+
+  .finance-table-card {
+    padding: 20px;
+  }
+
+  .finance-tabs {
+    gap: 8px;
+  }
+
+  .finance-tab {
+    padding: 0 15px;
+  }
+}

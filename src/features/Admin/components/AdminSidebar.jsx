@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
-  FiHome,
+  FiUsers,
   FiBarChart2,
   FiFileText,
   FiFile,
@@ -9,7 +9,7 @@ import {
   FiFolder,
   FiUser,
   FiSettings,
-  FiLogOut,
+  FiLogOut,FiStar
 } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 
@@ -51,16 +51,16 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               Main
             </span>
 
-            <NavLink to="Users" className="navr-item">
+            <NavLink to="Employees" className="navr-item">
               <span className="navr-icon">
-                <FiHome />
+               <FiUsers />
               </span>
               <span className="navr-text">
-                Users
+               Employees
               </span>
             </NavLink>
 
-            <NavLink to="projects" className="navr-item">
+            <NavLink to="Statistics" className="navr-item">
               <span className="navr-icon">
                 <FiBarChart2 />
               </span>
@@ -69,12 +69,12 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="FindFreelancers" className="navr-item">
+            <NavLink to="UsersManagement" className="navr-item">
               <span className="navr-icon">
-                <FiFileText />
+                <FiUsers />
               </span>
               <span className="navr-text">
-                Reports
+                Users
               </span>
             </NavLink>
 
@@ -105,12 +105,12 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="FinesCommission" className="navr-item">
+            <NavLink to="Financial" className="navr-item">
               <span className="navr-icon">
                 <FiDollarSign />
               </span>
               <span className="navr-text">
-                Fines & Commission
+               Financial
               </span>
             </NavLink>
 
@@ -137,25 +137,33 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
           {/* ACCOUNT */}
           <div className="navr-group">
 
-            <span className="navr-group-title">
+            {/* <span className="navr-group-title">
               Account
-            </span>
+            </span> */}
 
-            <NavLink to="profile" className="navr-item">
+            <NavLink to="AdminOffers" className="navr-item">
               <span className="navr-icon">
-                <FiUser />
+               <FiFileText />
               </span>
               <span className="navr-text">
-                My Profile
+           Offers
               </span>
             </NavLink>
 
-            <NavLink to="setting" className="navr-item">
+            <NavLink to="AdminReviews" className="navr-item">
+              <span className="navr-icon">
+               <FiStar />
+              </span>
+              <span className="navr-text">
+           Reviews
+              </span>
+            </NavLink>
+            <NavLink to="AuditLog" className="navr-item">
               <span className="navr-icon">
                 <FiSettings />
               </span>
               <span className="navr-text">
-                Settings
+                AuditLog
               </span>
             </NavLink>
 

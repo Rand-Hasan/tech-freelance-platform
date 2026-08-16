@@ -68,7 +68,74 @@
 .add-question-btn:hover{
     background:#379978;
 }
+/* ================= Pagination ================= */
 
+.pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid #e8eeee;
+}
+
+.pagination button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:90px;
+    padding:9px 16px;
+    border:1px solid #dbe9e8;
+    border-radius:10px;
+    background:#fff;
+    color:#4d646a;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.pagination button:hover:not(:disabled){
+    background:#eef8f7;
+    color:#24a08c;
+    border-color:#24a08c;
+}
+
+.pagination button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    background:#f5f7f7;
+}
+
+.pagination span{
+    min-width:75px;
+    text-align:center;
+    color:#556;
+    font-size:13px;
+    font-weight:600;
+}
+.actions button:first-child {
+  color: #249f8d;
+  background: #eaf8f5;
+  border-color: #ccece6;
+}
+
+.actions button:first-child:hover {
+  background: #d5f3ed;
+  transform: translateY(-1px);
+}
+
+.actions button:last-child {
+  color: #d94b4b;
+  background: #fff0f0;
+  border-color: #f3d0d0;
+}
+
+.actions button:last-child:hover {
+  background: #ffe1e1;
+  transform: translateY(-1px);
+}
 /* ================= Questions ================= */
 
 .questions-wrapper{

@@ -50,8 +50,9 @@ import AdminLayout from './features/Admin/Layout/AdminLayout';
 import RolesPermissions from './features/Admin/RolesPermissions/pages/RolesPermissions';
 import AssessmentQuestions from './features/Admin/AssessmentQuestions/pages/AssessmentQuestions';
 import AddQuestion from './features/Admin/AssessmentQuestions/pages/AddQuestion';
-import FinesCommission from './features/Admin/FinesCommission/pages/FinesCommission';
-import Users from './features/Admin/Users/pages/Users';
+import Financial from './features/Admin/FinesCommission/pages/Financial';
+import Statistics from './features/Admin/Statistics/pages/Statistics';
+import Employees from './features/Admin/Employees/pages/Employees';
 import CreateContractt from './features/Client/client-contracts/pages/CreateContract';
 import FreelancerHome from './features/FreeLancer/Home/pages/FreelancerHome';
 import WalletClient from './features/Client/client-wallet/pages/Wallet';
@@ -59,6 +60,19 @@ import PaymentSuccess from './features/Client/client-wallet/pages/PaymentSuccess
 import PaymentPage from './features/Client/client-wallet/pages/PaymentPage';
 import PhasesProject from './features/FreeLancer/myproject/pages/PhaseProject';
 import AssessmentLevel from './features/FreeLancer/Questions/pages/AssessmentLevel';
+<<<<<<< HEAD
+=======
+import EmployeeDetails from './features/Admin/Employees/pages/EmployeeDetails';
+import UsersManagement from './features/Admin/UsersManagement/pages/UsersManagement';
+import UserDetails from './features/Admin/UsersManagement/pages/UserDetails';
+import EditQuestion from './features/Admin/AssessmentQuestions/pages/EditQuestion';
+import AdminOffers from './features/Admin/AdminOffers/pages/AdminOffers';
+import AuditLog from './features/Admin/AuditLog/pages/AuditLog';
+import AdminReviews from './features/Admin/Reviews/pages/AdminReviews';
+import AdminOfferDetails from './features/Admin/AdminOffers/pages/AdminOfferDetails';
+import AdminContractDetails from './features/Admin/Contracts/pages/AdminContractDetails';
+import AdminProjectDetails from './features/Admin/AdminProjects/pages/AdminProjectDetails';
+>>>>>>> 89da150a72635accc0e66d5c5d5ab226e2703971
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
 import StageAndTasksDetailes from './features/Client/StagesAndTasks/pages/StageAndTasksDetailes';
 import PhaseDetails from './features/FreeLancer/myproject/pages/PhaseDetails';
@@ -156,6 +170,7 @@ function App() {
           </Route>
         </Route>
         ///////////////Admin//////////
+<<<<<<< HEAD
         <Route path="/AdminLayout" element={<AdminLayout />}>
           <Route index element={<Navigate to="Users" replace />} />
 
@@ -168,6 +183,29 @@ function App() {
           <Route path="AdminContracts" element={<AdminContracts />} />
           <Route path="AdminProjects" element={<AdminProjects />} />
         </Route>
+=======
+ <Route path="/AdminLayout" element={<AdminLayout />}>
+  <Route index element={<Navigate to="Employees" replace />} />
+<Route path="Employees" element={<Employees />} />
+  <Route path="employees/:employeeId" element={<EmployeeDetails />} />
+  <Route  path="RolesPermissions" element={<RolesPermissions />}/>
+    <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
+    <Route  path="AddQuestion" element={<AddQuestion />}/>
+    <Route path="EditQuestion/:id" element={<EditQuestion />}/>
+      <Route  path="Financial" element={<Financial />}/>
+          <Route  path="Statistics" element={<Statistics />}/>
+         <Route  path="AdminContracts" element={<AdminContracts />}/>
+           <Route  path="AdminProjects" element={<AdminProjects />}/>
+              <Route  path="UsersManagement" element={<UsersManagement />}/>
+               <Route  path="UsersManagement/:userId"   element={<UserDetails />} />
+                <Route  path="AuditLog"   element={<AuditLog />} />
+                  <Route  path="AdminOffers" element={<AdminOffers />}/>
+                   <Route  path="AdminReviews" element={<AdminReviews />}/>
+                  <Route path="AdminContractDetails/:contractId"element={<AdminContractDetails />}/>
+                  <Route path="AdminProjectDetails/:projectId" element={<AdminProjectDetails />}/>
+                  <Route  path="AdminOfferDetails/:offerId"  element={<AdminOfferDetails />}/>
+</Route>
+>>>>>>> 89da150a72635accc0e66d5c5d5ab226e2703971
       </Routes>
     </BrowserRouter>
   );

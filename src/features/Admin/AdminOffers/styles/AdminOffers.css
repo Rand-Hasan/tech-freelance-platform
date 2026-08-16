@@ -1,0 +1,638 @@
+/* =========================================
+   Admin Offers Page
+========================================= */
+
+.admin-offers-page {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   Card
+========================================= */
+
+.admin-offers-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e6efef;
+    border-radius: 16px;
+    padding: 14px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   Error
+========================================= */
+
+.admin-offers-error {
+    margin-bottom: 15px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fdebec;
+    color: #d9363e;
+    border: 1px solid #f5c7ca;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   Table Container
+========================================= */
+
+.admin-offers-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================================
+   Table
+========================================= */
+
+.admin-offers-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+
+/* =========================================
+   Table Header
+========================================= */
+
+.admin-offers-table thead {
+    background: #eef8f8;
+}
+
+
+.admin-offers-table th {
+    text-align: left;
+    padding: 11px 12px;
+
+    color: #4b7484;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   Table Body
+========================================= */
+
+.admin-offers-table td {
+    padding: 13px 12px;
+
+    border-bottom: 1px solid #edf2f5;
+
+    color: #4d6775;
+
+    font-size: 13px;
+
+    height: 45px;
+
+    vertical-align: middle;
+}
+
+
+.admin-offers-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   Hover
+========================================= */
+
+.admin-offers-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+
+.admin-offers-table tbody tr:hover {
+    background: #fafdfd;
+}
+
+
+/* =========================================
+   User IDs
+========================================= */
+
+.admin-offers-user-id {
+    color: #304f60;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   Project ID
+========================================= */
+
+.admin-offers-project-id {
+    color: #557887;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   Price
+========================================= */
+
+.admin-offers-price {
+    color: #129b92 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   Status Badge
+========================================= */
+
+.admin-offers-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 5px 11px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   Pending
+========================================= */
+
+.admin-offers-status-pending {
+    background: #fff4df;
+
+    color: #d18b00;
+}
+
+
+.admin-offers-status-pending::before {
+    content: "•";
+
+    margin-right: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   Accepted
+========================================= */
+
+.admin-offers-status-accepted {
+    background: #e8f8ee;
+
+    color: #22a06b;
+}
+
+
+.admin-offers-status-accepted::before {
+    content: "✓";
+
+    margin-right: 5px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   Cancelled
+========================================= */
+
+.admin-offers-status-cancelled {
+    background: #fdebec;
+
+    color: #e5484d;
+}
+
+
+.admin-offers-status-cancelled::before {
+    content: "✕";
+
+    margin-right: 5px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   Rejected
+========================================= */
+
+.admin-offers-status-rejected {
+    background: #fdebec;
+
+    color: #d9363e;
+}
+
+
+.admin-offers-status-rejected::before {
+    content: "✕";
+
+    margin-right: 5px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   Default Status
+========================================= */
+
+.admin-offers-status-default {
+    background: #f2f2f2;
+
+    color: #4c7083;
+}
+
+
+/* =========================================
+   Cancel Button
+========================================= */
+
+.admin-offers-cancel-btn {
+    border: none;
+
+    background: #fdebec;
+
+    color: #e5484d;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.admin-offers-cancel-btn:hover {
+    background: #f9d7d9;
+
+    transform: translateY(-1px);
+}
+
+
+.admin-offers-cancel-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================
+   No Action
+========================================= */
+
+.admin-offers-no-action {
+    color: #9aabb4;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   Empty
+========================================= */
+
+.admin-offers-empty {
+    text-align: center;
+
+    padding: 35px !important;
+
+    color: #8a9ba5 !important;
+
+    font-size: 13px !important;
+}
+
+
+/* =========================================
+   Pagination
+========================================= */
+
+.admin-offers-pagination {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 18px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #edf2f5;
+}
+
+
+/* =========================================
+   Pagination Button
+========================================= */
+
+.admin-offers-pagination-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 105px;
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dce9eb;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #416b7b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.admin-offers-pagination-btn:hover:not(:disabled) {
+    background: #eef8f8;
+
+    border-color: #c7e2e1;
+
+    transform: translateY(-1px);
+}
+
+
+.admin-offers-pagination-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   Current Page
+========================================= */
+
+.admin-offers-pagination-current {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    height: 36px;
+
+    padding: 0 13px;
+
+    border-radius: 9px;
+
+    background: #eef8f8;
+
+    color: #4b7484;
+
+    font-size: 12px;
+}
+
+
+.admin-offers-pagination-current span {
+    font-weight: 500;
+}
+
+
+.admin-offers-pagination-current strong {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 24px;
+
+    height: 24px;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #129b92;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   Access Denied
+========================================= */
+
+.admin-offers-access-denied {
+    min-height: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+
+.admin-offers-access-icon {
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fdebec;
+
+    font-size: 28px;
+
+    margin-bottom: 18px;
+}
+
+
+.admin-offers-access-denied h1 {
+    margin: 0 0 10px;
+
+    color: #0f2438;
+
+    font-size: 24px;
+}
+
+
+.admin-offers-access-denied p {
+    margin: 0 0 8px;
+
+    color: #4d6775;
+
+    font-size: 14px;
+}
+
+
+.admin-offers-access-denied span {
+    color: #8a9ba5;
+
+    font-size: 12px;
+}
+/* =========================================
+   OFFER LINK
+========================================= */
+
+.admin-offers-offer-link {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #0f8f86;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.admin-offers-offer-link:hover {
+    color: #08756f;
+
+    text-decoration: underline;
+}
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 900px) {
+
+    .admin-offers-page {
+        padding: 12px;
+    }
+
+
+    .admin-offers-card {
+        padding: 10px;
+    }
+
+
+    .admin-offers-table {
+        min-width: 700px;
+    }
+
+
+    .admin-offers-table th {
+        font-size: 10px;
+
+        padding: 9px 10px;
+    }
+
+
+    .admin-offers-table td {
+        font-size: 12px;
+
+        padding: 11px 10px;
+    }
+
+
+    .admin-offers-pagination {
+        gap: 8px;
+    }
+
+
+    .admin-offers-pagination-btn {
+        min-width: 90px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================
+   Small Mobile
+========================================= */
+
+@media (max-width: 500px) {
+
+    .admin-offers-pagination-btn {
+        min-width: auto;
+
+        padding: 0 10px;
+    }
+
+
+    .admin-offers-pagination-current {
+        padding: 0 9px;
+    }
+
+}

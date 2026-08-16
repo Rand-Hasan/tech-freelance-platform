@@ -1,5 +1,5 @@
-import "../../Contracts/styles/Contracts.css";
-import { useNavigate } from "react-router-dom";
+import "../../Reviews/styles/AdminReviews.css";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
@@ -8,23 +8,29 @@ import { baseURL } from "../../../../services/Api/api";
 import Loading from "../../../../components/Loading/Loading";
 
 import {
-  GetAllContracts,
-} from "../../Contracts/services/AdminContractsapi";
+  GetAllReviews,
+  DeleteReview,
+} from "../../Reviews/services/AdminReviewsapi";
+
+import {
+  FaStar,
+  FaTrash,
+} from "react-icons/fa";
 
 
 const LIMIT = 10;
 
 
-export default function AdminContracts() {
-const navigate = useNavigate();
+export default function AdminReviews() {
+
   const cookies = Cookies();
 
 
   // =========================
-  // Contracts
+  // Reviews
   // =========================
 
-  const [contracts, setContracts] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
 
   // =========================
@@ -42,6 +48,14 @@ const navigate = useNavigate();
 
 
   // =========================
+  // Action Loading
+  // =========================
+
+  const [actionLoading, setActionLoading] =
+    useState(null);
+
+
+  // =========================
   // Error
   // =========================
 
@@ -52,11 +66,12 @@ const navigate = useNavigate();
   // Access Denied
   // =========================
 
-  const [accessDenied, setAccessDenied] = useState(false);
+  const [accessDenied, setAccessDenied] =
+    useState(false);
 
 
   // =========================
-  // Check Permission Error
+  // Permission Error
   // =========================
 
   function isPermissionError(error) {
@@ -68,14 +83,10 @@ const navigate = useNavigate();
       error.response?.data?.message;
 
 
-    // Backend 403
-
     if (status === 403) {
       return true;
     }
 
-
-    // Backend message
 
     if (
       typeof backendMessage === "string"
@@ -83,7 +94,6 @@ const navigate = useNavigate();
 
       const message =
         backendMessage.toLowerCase();
-
 
       return (
         message.includes("forbidden") ||
@@ -93,8 +103,6 @@ const navigate = useNavigate();
       );
     }
 
-
-    // Backend object message
 
     if (
       backendMessage &&
@@ -112,7 +120,6 @@ const navigate = useNavigate();
         const message =
           objectMessage.toLowerCase();
 
-
         return (
           message.includes("forbidden") ||
           message.includes("missing permission") ||
@@ -128,7 +135,7 @@ const navigate = useNavigate();
 
 
   // =========================
-  // Get Backend Error
+  // Backend Error
   // =========================
 
   function getErrorMessage(
@@ -180,10 +187,32 @@ const navigate = useNavigate();
 
 
   // =========================
-  // Get Contracts
+  // Format Date
   // =========================
 
-  async function getContracts() {
+  function formatDate(date) {
+
+    if (!date) {
+      return "—";
+    }
+
+
+    return new Date(date).toLocaleDateString(
+      "en-US",
+      {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      }
+    );
+  }
+
+
+  // =========================
+  // Get Reviews
+  // =========================
+
+  async function getReviews() {
 
     try {
 
@@ -195,32 +224,31 @@ const navigate = useNavigate();
         cookies.get("token-employee");
 
 
-      const response = await axios.get(
+      const response =
+        await axios.get(
 
-        `${baseURL}${GetAllContracts}/${page}/${LIMIT}`,
+          `${baseURL}${GetAllReviews}/${page}/${LIMIT}`,
 
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
+          {
+            headers: {
+              Authorization:
+                `Bearer ${token}`,
+            },
+          }
 
-      );
+        );
 
 
       console.log(
-        "CONTRACTS:",
+        "REVIEWS:",
         response.data
       );
 
 
-      setContracts(
-        response.data.contracts || []
+      setReviews(
+        response.data.reviews || []
       );
 
-
-      // Request succeeded
 
       setAccessDenied(false);
 
@@ -228,33 +256,25 @@ const navigate = useNavigate();
     } catch (err) {
 
       console.log(
-        "CONTRACTS ERROR:",
+        "REVIEWS ERROR:",
         err.response?.data || err
       );
 
-
-      // =========================
-      // Permission Error
-      // =========================
 
       if (isPermissionError(err)) {
 
         setAccessDenied(true);
 
-        setContracts([]);
+        setReviews([]);
 
         return;
       }
 
 
-      // =========================
-      // Normal Error
-      // =========================
-
       setError(
         getErrorMessage(
           err,
-          "Unable to load contracts."
+          "Unable to load reviews."
         )
       );
 
@@ -268,94 +288,140 @@ const navigate = useNavigate();
 
 
   // =========================
-  // Load Contracts
+  // Load Reviews
   // =========================
 
   useEffect(() => {
 
-    getContracts();
+    getReviews();
 
   }, [page]);
 
 
   // =========================
-  // Format Status
+  // Delete Review
   // =========================
 
-  function formatStatus(status) {
+  async function handleDeleteReview(
+    reviewId
+  ) {
 
-    if (!status) {
-      return "—";
+    const confirmed =
+      window.confirm(
+        "Are you sure you want to delete this review?"
+      );
+
+
+    if (!confirmed) {
+      return;
     }
 
 
-    const statusMap = {
+    try {
 
-      active: "Active",
-
-      cancelled: "Cancelled",
-
-      completed: "Completed",
-
-      draft: "Draft",
-
-      accepted_pending_fund:
-        "Pending Fund",
-
-      in_review:
-        "In Review",
-
-      pending:
-        "Pending",
-
-    };
+      setActionLoading(reviewId);
+      setError("");
 
 
-    return (
-      statusMap[status] ||
-      status
-        .replaceAll("_", " ")
-        .replace(
-          /\b\w/g,
-          (letter) =>
-            letter.toUpperCase()
+      const token =
+        cookies.get("token-employee");
+
+
+      const response =
+     axios.post(
+  `${baseURL}${DeleteReview}/${reviewId}`,
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
+      console.log(
+        "DELETE REVIEW RESPONSE:",
+        response.data
+      );
+
+
+      setReviews((prev) =>
+        prev.filter(
+          (review) =>
+            review.id !== reviewId
         )
-    );
+      );
+
+
+    } catch (err) {
+
+      console.log(
+        "DELETE REVIEW ERROR:",
+        err.response?.data || err
+      );
+
+
+      if (isPermissionError(err)) {
+
+        setAccessDenied(true);
+
+        setReviews([]);
+
+        return;
+      }
+
+
+      setError(
+        getErrorMessage(
+          err,
+          "Unable to delete review."
+        )
+      );
+
+
+    } finally {
+
+      setActionLoading(null);
+
+    }
   }
 
 
   // =========================
-  // Status Class
+  // Render Stars
   // =========================
 
-  function getStatusClass(status) {
+  function renderRating(rating) {
 
-    switch (status) {
+    const value =
+      Number(rating) || 0;
 
-      case "active":
-        return "admin-contracts-status-active";
 
-      case "completed":
-        return "admin-contracts-status-completed";
+    return (
 
-      case "cancelled":
-        return "admin-contracts-status-cancelled";
+      <div className="admin-reviews-rating">
 
-      case "in_review":
-        return "admin-contracts-status-review";
+        {[1, 2, 3, 4, 5].map(
+          (star) => (
 
-      case "accepted_pending_fund":
-        return "admin-contracts-status-review";
+            <FaStar
+              key={star}
+              className={
+                star <= value
+                  ? "admin-reviews-star-filled"
+                  : "admin-reviews-star-empty"
+              }
+            />
 
-      case "pending":
-        return "admin-contracts-status-review";
+          )
+        )}
 
-      case "draft":
-        return "admin-contracts-status-draft";
+        <span>
+          {value}/5
+        </span>
 
-      default:
-        return "admin-contracts-status-draft";
-    }
+      </div>
+
+    );
   }
 
 
@@ -370,7 +436,7 @@ const navigate = useNavigate();
 
     return (
 
-      <div className="admin-contracts-page">
+      <div className="admin-reviews-page">
 
         <Loading />
 
@@ -388,11 +454,11 @@ const navigate = useNavigate();
 
     return (
 
-      <div className="admin-contracts-page">
+      <div className="admin-reviews-page">
 
-        <div className="admin-contracts-access-denied">
+        <div className="admin-reviews-access-denied">
 
-          <div className="admin-contracts-access-icon">
+          <div className="admin-reviews-access-icon">
             🔒
           </div>
 
@@ -427,13 +493,13 @@ const navigate = useNavigate();
 
   return (
 
-    <div className="admin-contracts-page">
+    <div className="admin-reviews-page">
 
 
       {loading && <Loading />}
 
 
-      <div className="admin-contracts-card">
+      <div className="admin-reviews-card">
 
 
         {/* =========================
@@ -442,7 +508,7 @@ const navigate = useNavigate();
 
         {error && (
 
-          <div className="admin-contracts-error">
+          <div className="admin-reviews-error">
 
             {error}
 
@@ -455,9 +521,9 @@ const navigate = useNavigate();
             Table
         ========================= */}
 
-        <div className="admin-contracts-table-container">
+        <div className="admin-reviews-table-container">
 
-          <table className="admin-contracts-table">
+          <table className="admin-reviews-table">
 
 
             <thead>
@@ -465,7 +531,7 @@ const navigate = useNavigate();
               <tr>
 
                 <th>
-                  Contract
+                  Rating
                 </th>
 
                 <th>
@@ -477,11 +543,13 @@ const navigate = useNavigate();
                 </th>
 
                 <th>
-                  Value
+                  Comment
                 </th>
 
+               
+
                 <th>
-                  Status
+                  Action
                 </th>
 
               </tr>
@@ -493,16 +561,16 @@ const navigate = useNavigate();
 
 
               {!loading &&
-              contracts.length === 0 ? (
+              reviews.length === 0 ? (
 
                 <tr>
 
                   <td
-                    colSpan="5"
-                    className="admin-contracts-empty"
+                    colSpan="6"
+                    className="admin-reviews-empty"
                   >
 
-                    No contracts found.
+                    No reviews found.
 
                   </td>
 
@@ -510,91 +578,100 @@ const navigate = useNavigate();
 
               ) : (
 
-                contracts.map(
-                  (item) => (
+                reviews.map(
+                  (review) => {
 
-                    <tr
-                      key={item.id}
-                    >
-
-
-                      {/* Contract */}
-
-                      <td className="admin-contracts-name">
-
-  <button
-    type="button"
-    className="admin-contracts-contract-link"
-    onClick={() =>
-    navigate(
-    `/AdminLayout/AdminContractDetails/${item.id}`
-)
-    }
-  >
-    {item.title}
-  </button>
-
-</td>
+                    const isActionLoading =
+                      actionLoading ===
+                      review.id;
 
 
-                      {/* Client */}
+                    return (
 
-                      <td>
-
-                        Client #{item.client_id}
-
-                      </td>
+                      <tr
+                        key={review.id}
+                      >
 
 
-                      {/* Freelancer */}
+                        {/* Rating */}
 
-                      <td>
+                        <td>
 
-                        Freelancer #{item.freelancer_id}
-
-                      </td>
-
-
-                      {/* Value */}
-
-                      <td className="admin-contracts-price">
-
-                        $
-                        {Number(
-                          item.total_budget
-                        ).toLocaleString(
-                          "en-US",
-                          {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          }
-                        )}
-
-                      </td>
-
-
-                      {/* Status */}
-
-                      <td>
-
-                        <span
-                          className={`admin-contracts-badge ${getStatusClass(
-                            item.status
-                          )}`}
-                        >
-
-                          {formatStatus(
-                            item.status
+                          {renderRating(
+                            review.rating
                           )}
 
-                        </span>
-
-                      </td>
+                        </td>
 
 
-                    </tr>
+                        {/* Client */}
 
-                  )
+                        <td>
+
+                          Client #
+                          {review.client_id}
+
+                        </td>
+
+
+                        {/* Freelancer */}
+
+                        <td>
+
+                          Freelancer #
+                          {review.freelancer_id}
+
+                        </td>
+
+
+                        {/* Comment */}
+
+                        <td className="admin-reviews-comment">
+
+                          {review.comment ||
+                            "No comment"}
+
+                        </td>
+
+
+                        {/* Date */}
+
+                      
+
+
+                        {/* Action */}
+
+                        <td>
+
+                          <button
+                            type="button"
+                            className="admin-reviews-delete-btn"
+                            disabled={
+                              isActionLoading
+                            }
+                            onClick={() =>
+                              handleDeleteReview(
+                                review.id
+                              )
+                            }
+                          >
+
+                            <FaTrash />
+
+                            {isActionLoading
+                              ? "..."
+                              : "Delete"}
+
+                          </button>
+
+                        </td>
+
+
+                      </tr>
+
+                    );
+
+                  }
                 )
 
               )}
@@ -611,12 +688,12 @@ const navigate = useNavigate();
             Pagination
         ========================= */}
 
-        <div className="admin-contracts-pagination">
+        <div className="admin-reviews-pagination">
 
 
           <button
             type="button"
-            className="admin-contracts-pagination-btn"
+            className="admin-reviews-pagination-btn"
             disabled={
               page === 1 ||
               loading
@@ -634,7 +711,7 @@ const navigate = useNavigate();
           </button>
 
 
-          <div className="admin-contracts-pagination-current">
+          <div className="admin-reviews-pagination-current">
 
             <span>
               Page
@@ -649,9 +726,9 @@ const navigate = useNavigate();
 
           <button
             type="button"
-            className="admin-contracts-pagination-btn"
+            className="admin-reviews-pagination-btn"
             disabled={
-              contracts.length <
+              reviews.length <
                 LIMIT ||
               loading
             }
