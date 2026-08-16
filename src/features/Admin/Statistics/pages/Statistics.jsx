@@ -1084,68 +1084,6 @@ const mostRequestedSkills =
           </div>
 
         </div>
-{/* =========================
-    MOST REQUESTED SKILLS
-========================= */}
-
-<div className="dashboard-panel dashboard-skills-panel">
-
-  <div className="dashboard-panel-header">
-
-    <div>
-
-      <h2>
-        Most Requested Skills
-      </h2>
-
-      <p>
-        Skills requested most frequently in projects
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div className="requested-skills">
-{mostRequestedSkills.map((skill, index) => (
-
-  <div
-    className="requested-skill-item"
-    key={skill.skill_id || index}
-  >
-
-    <div className="requested-skill-left">
-
-      <span className="requested-skill-rank">
-        {index + 1}
-      </span>
-
-      <div className="requested-skill-info">
-
-        <strong>
-          {skill.skill_name || "Unknown Skill"}
-        </strong>
-
-        <span>
-          {skill.usage_count || 0} requests
-        </span>
-
-      </div>
-
-    </div>
-
-    <strong className="requested-skill-count">
-      {skill.usage_count || 0}
-    </strong>
-
-  </div>
-
-))}
-
-  </div>
-
-</div>
         {/* SYSTEM */}
 
         <div className="dashboard-panel">
@@ -1228,6 +1166,69 @@ const mostRequestedSkills =
           </div>
 
         </div>
+{/* =========================
+    MOST REQUESTED SKILLS
+========================= */}
+
+<div className="dashboard-panel dashboard-skills-panel">
+
+  <div className="dashboard-panel-header">
+
+    <div>
+
+      <h2>
+        Most Requested Skills
+      </h2>
+
+      <p>
+        Skills requested most frequently in projects
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div className="requested-skills">
+{mostRequestedSkills.map((skill, index) => (
+
+  <div
+    className="requested-skill-item"
+    key={skill.skill_id || index}
+  >
+
+    <div className="requested-skill-left">
+
+      <span className="requested-skill-rank">
+        {index + 1}
+      </span>
+
+      <div className="requested-skill-info">
+
+        <strong>
+          {skill.skill_name || "Unknown Skill"}
+        </strong>
+
+        <span>
+          {skill.usage_count || 0} requests
+        </span>
+
+      </div>
+
+    </div>
+
+    <strong className="requested-skill-count">
+      {skill.usage_count || 0}
+    </strong>
+
+  </div>
+
+))}
+
+  </div>
+
+</div>
+        
 
       </div>
 

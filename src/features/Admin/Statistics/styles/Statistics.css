@@ -1205,135 +1205,247 @@
    MOST REQUESTED SKILLS
 ========================================= */
 
+/* =========================================================
+   MOST REQUESTED SKILLS
+========================================================= */
+
 .dashboard-skills-panel {
-    min-height: 300px;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
 }
 
+
+/* =========================================================
+   SKILLS GRID
+========================================================= */
 
 .requested-skills {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
+
+/* =========================================================
+   SKILL CARD
+========================================================= */
 
 .requested-skill-item {
-    min-height: 58px;
+  min-width: 0;
+  min-height: 105px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 16px 17px;
 
-    border-bottom: 1px solid #e9f1f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e3efed;
+  border-radius: 15px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.requested-skill-item:hover {
+  transform: translateY(-2px);
+
+  border-color: #c8e4df;
+
+  box-shadow:
+    0 8px 22px rgba(20, 90, 82, 0.06);
 }
 
 
-.requested-skill-item:last-child {
-    border-bottom: none;
-}
-
+/* =========================================================
+   TOP
+========================================================= */
 
 .requested-skill-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
 }
 
+
+/* =========================================================
+   RANK
+========================================================= */
 
 .requested-skill-rank {
-    width: 30px;
-    height: 30px;
+  width: 32px;
+  height: 32px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex-shrink: 0;
 
-    border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #edf8f6;
-    color: #279e91;
+  border-radius: 10px;
 
-    font-size: 12px;
-    font-weight: 700;
+  background: #edf8f6;
+  color: #279e91;
+
+  font-size: 12px;
+  font-weight: 700;
 }
 
 
+/* =========================================================
+   SKILL INFO
+========================================================= */
+
 .requested-skill-info {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
 }
 
 
 .requested-skill-info strong {
-    color: #092b31;
-    font-size: 14px;
-    font-weight: 600;
+  display: block;
+
+  max-width: 100%;
+
+  color: #092b31;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
 .requested-skill-info span {
-    color: #83989d;
-    font-size: 11px;
+  color: #83989d;
+
+  font-size: 11px;
 }
 
+
+/* =========================================================
+   BOTTOM COUNT
+========================================================= */
 
 .requested-skill-count {
-    color: #092b31;
-    font-size: 16px;
+  margin-top: 13px;
+
+  color: #092b31;
+
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 
-/* =========================================
-   EMPTY SKILLS
-========================================= */
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .requested-skills-empty {
-    min-height: 210px;
+  min-height: 180px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-    text-align: center;
+  text-align: center;
 }
 
 
 .requested-skills-empty-icon {
-    width: 52px;
-    height: 52px;
+  width: 52px;
+  height: 52px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border-radius: 14px;
+  border-radius: 14px;
 
-    background: #edf8f6;
-    color: #279e91;
+  background: #edf8f6;
+  color: #279e91;
 
-    font-size: 22px;
-    font-weight: 600;
+  font-size: 22px;
+  font-weight: 600;
 
-    margin-bottom: 14px;
+  margin-bottom: 14px;
 }
 
 
 .requested-skills-empty strong {
-    color: #092b31;
-    font-size: 14px;
+  color: #092b31;
+  font-size: 14px;
 
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
 
 .requested-skills-empty span {
-    max-width: 260px;
+  max-width: 300px;
 
-    color: #83989d;
-    font-size: 12px;
-    line-height: 1.5;
+  color: #83989d;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .requested-skills {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 850px) {
+
+  .requested-skills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .requested-skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 450px) {
+
+  .requested-skills {
+    grid-template-columns: 1fr;
+  }
+
 }
 /* =========================================================
    RESPONSIVE
