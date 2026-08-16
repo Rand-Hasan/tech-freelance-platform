@@ -10,7 +10,7 @@ export default function FindFreeLancerCard() {
     <Card
       className="FindFreeLancerCard"
       onClick={() => {
-        navigate("/FreeLanceInfo");
+        alert("Freelancer Info")
       }}
     >
       <CardContent className="CardContent">
@@ -34,7 +34,7 @@ export default function FindFreeLancerCard() {
         <div className="RightSide">
           <div className="monyInHour">$45 / hr</div>
           <div className="RaitingOfFreeLancer">* 4.9 Expert</div>
-          <button className="InviteButton">Invite</button>
+          {/* <button className="InviteButton">Invite</button> */}
         </div>
       </CardContent>
     </Card>

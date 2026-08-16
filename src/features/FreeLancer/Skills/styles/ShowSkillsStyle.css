@@ -1,0 +1,42 @@
+.show-skills-wrapper{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.skill-chip{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#EDF7F4;
+    border:1px solid #d7efea;
+    border-radius:20px;
+
+    padding:8px 16px;
+    font-size:14px;
+    font-weight:500;
+    color:#1f2937;
+
+    white-space:nowrap;
+}
+
+.no-skills{
+    font-size:14px;
+    color:#6b7280;
+}
+.add-skill-btn{
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid #006F59;
+    color: #006F59;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.add-skill-btn:hover{
+    background-color: #006F59;
+    color:white;
+    cursor: pointer;
+}

@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
-import SkillCategory from "../components/SkillCategory";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
-import { AddFreelancerSkills, GetFreelancerSkills } from "../services/api_skill";
+import { AddFreelancerSkills } from "../services/api_skill";
 import Cookies from "universal-cookie";
 import { GetSkills } from "../../../Client/client-projects/services/api_project";
 import '../styles/CreateSkillis.css';
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 export default function CreateSkill() {
     const currentStep = 3;
     const totalSteps = 4;
     const cookies = new Cookies();
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+      const location = useLocation();
+       const isEditing = location.state?.isEditing || false;
+    const preSelectedIds = location.state?.selectedSkillIds || [];
     const token = cookies.get('token-freelancer');
-    console.log('coooooooooo:', token);
+
     const [allSkill, setallSkill] = useState([]);
-    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [selectedSkills, setSelectedSkills] = useState(preSelectedIds);
+
     useEffect(() => {
         axios.get(`${baseURL}${GetSkills}`, {
             headers: {
@@ -26,17 +28,11 @@ export default function CreateSkill() {
         })
             .then((res) => {
                 setallSkill(res.data.skills);
-                console.log("dataaaaa:", res.data.skills);
             })
             .catch((err) => {
                 console.error("حدث خطأ أثناء جلب البيانات:", err);
             })
     }, []);
-
-    const frontSkill = allSkill.slice(0, 4);
-    const backSkill = allSkill.slice(4, 5);
-    const dataSkill = allSkill.slice(5, 7);
-
 
     const handleSkillChange = (id, isChecked) => {
         if (isChecked) {
@@ -46,26 +42,22 @@ export default function CreateSkill() {
         }
     };
 
-
-    function handleSubmit()  {
-        
+    function handleSubmit() {
         const dataToSend = {
-            skill_id:  selectedSkills
+            skill_id: selectedSkills
         };
-        console.log(selectedSkills)
-        
+
         axios.post(`${baseURL}${AddFreelancerSkills}`, dataToSend, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        
-        .then((res) => {
-            console.log("تم حفظ المهارات بنجاح:", res.data);
-            navigate("/CreateProfile");
+        .then(() => {
+            navigate(isEditing ? "/freelancerlayout/showprofile/skills" : "/CreateProfile");
         })
         .catch((err) => {
             console.error("خطأ أثناء إرسال المهارات:", err);
         });
-    };
+    }
+
     return (
         <div className="Skill-page">
             <div className="Skill-card">
@@ -86,11 +78,10 @@ export default function CreateSkill() {
                     </div>
 
                     <span className="section-name">skill</span>
-
                 </div>
+
                 <div className="Skill-header">
                     <h1>Add your skills</h1>
-
                     <p>
                         List your technical skills. These are used to match you with the
                         right,<br /> projects on the platform.
@@ -100,7 +91,6 @@ export default function CreateSkill() {
                 <div className="github-box">
                     <div className="github-header">
                         <GitHubIcon className="github-icon" />
-
                         <div>
                             <strong>Skills auto-detected from your GitHub</strong>
                             <p>Pre-selected below – uncheck any that don't apply.</p>
@@ -108,40 +98,34 @@ export default function CreateSkill() {
                     </div>
                 </div>
 
-
-                <div className="skills-wrapper">
-                    <SkillCategory 
-                        title={"frontend"} 
-                        skills={frontSkill} 
-                        onSkillChange={handleSkillChange}
-                        selectedSkills={selectedSkills}
-                    />
-                    <SkillCategory 
-                        title={"backend"} 
-                        skills={backSkill} 
-                        onSkillChange={handleSkillChange}
-                        selectedSkills={selectedSkills}
-                    />
-                    <SkillCategory 
-                        title={"database"} 
-                        skills={dataSkill} 
-                        onSkillChange={handleSkillChange}
-                        selectedSkills={selectedSkills}
-                    />
+                <div className="skills-grid">
+                    {allSkill.map((skill) => {
+                        const isChecked = selectedSkills.includes(skill.id);
+                        return (
+                            <label
+                                key={skill.id}
+                                className={`checkbox-card ${isChecked ? "checked" : ""}`}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    onChange={(e) => handleSkillChange(skill.id, e.target.checked)}
+                                    hidden
+                                />
+                                <span className="box-icon"></span>
+                                <span>{skill.skill_name}</span>
+                            </label>
+                        );
+                    })}
                 </div>
 
                 <button
                     className="primary-btn"
-                   
                     onClick={handleSubmit}
                 >
                     Next → profile
                 </button>
             </div>
-
-
         </div>
-
-
     );
 }
