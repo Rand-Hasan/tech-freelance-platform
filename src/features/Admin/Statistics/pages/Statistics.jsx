@@ -373,7 +373,7 @@ export default function Statistics() {
   // Offers
   // =========================
 
-  const offerStatuses = [
+ const offerStatuses = [
   {
     key: "pending",
     label: "Pending",
@@ -383,6 +383,11 @@ export default function Statistics() {
     key: "accepted",
     label: "Accepted",
     value: offers.by_status?.accepted || 0,
+  },
+  {
+    key: "rejected",
+    label: "Rejected",
+    value: offers.by_status?.rejected || 0,
   },
   {
     key: "canceled",
@@ -1103,64 +1108,40 @@ const mostRequestedSkills =
 
 
   <div className="requested-skills">
+{mostRequestedSkills.map((skill, index) => (
 
-    {mostRequestedSkills.length === 0 ? (
+  <div
+    className="requested-skill-item"
+    key={skill.skill_id || index}
+  >
 
-      <div className="requested-skills-empty">
+    <div className="requested-skill-left">
 
-        <div className="requested-skills-empty-icon">
-          —
-        </div>
+      <span className="requested-skill-rank">
+        {index + 1}
+      </span>
+
+      <div className="requested-skill-info">
 
         <strong>
-          No skills data available
+          {skill.skill_name || "Unknown Skill"}
         </strong>
 
         <span>
-          Most requested skills will appear here
-          once data is available.
+          {skill.usage_count || 0} requests
         </span>
 
       </div>
 
-    ) : (
+    </div>
 
-      mostRequestedSkills.map((skill, index) => (
+    <strong className="requested-skill-count">
+      {skill.usage_count || 0}
+    </strong>
 
-        <div
-          className="requested-skill-item"
-          key={skill.id || skill.name || index}
-        >
+  </div>
 
-          <div className="requested-skill-left">
-
-            <span className="requested-skill-rank">
-              {index + 1}
-            </span>
-
-            <div className="requested-skill-info">
-
-              <strong>
-                {skill.name || skill.skill || "Unknown Skill"}
-              </strong>
-
-              <span>
-                {skill.count || skill.requests || 0} requests
-              </span>
-
-            </div>
-
-          </div>
-
-          <strong className="requested-skill-count">
-            {skill.count || skill.requests || 0}
-          </strong>
-
-        </div>
-
-      ))
-
-    )}
+))}
 
   </div>
 

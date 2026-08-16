@@ -89,6 +89,7 @@ import AuditLog from "./features/Admin/AuditLog/pages/AuditLog";
 import AdminOffers from "./features/Admin/AdminOffers/pages/AdminOffers";
 import AdminOfferDetails from "./features/Admin/AdminOffers/pages/AdminOfferDetails";
 import AdminReviews from "./features/Admin/Reviews/pages/AdminReviews";
+import AdminWallet from "./features/Admin/Wallet/pages/AdminWallet";
 
 function App() {
   return (
@@ -204,6 +205,7 @@ function App() {
           <Route path="UsersManagement/:userId" element={<UserDetails />} />
 
           <Route path="AuditLog" element={<AuditLog />} />
+          <Route path="AdminWallet" element={<AdminWallet />} />
           <Route path="AdminOffers" element={<AdminOffers />} />
           <Route path="AdminOfferDetails/:offerId" element={<AdminOfferDetails />} />
           <Route path="AdminReviews" element={<AdminReviews />} />

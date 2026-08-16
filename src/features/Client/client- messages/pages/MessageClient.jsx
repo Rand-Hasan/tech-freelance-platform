@@ -663,6 +663,13 @@ export default function MessageClient() {
   // =========================================================
   // UI
   // =========================================================
+  function getFirstLetter(name) {
+  if (!name) {
+    return "?";
+  }
+
+  return name.trim().charAt(0).toUpperCase();
+}
   return (
     <div className="messagess-page">
 
@@ -741,9 +748,11 @@ export default function MessageClient() {
                 }
               >
 
-                <div className="avatar green">
-                  F
-                </div>
+              <div className="avatar green">
+  {getFirstLetter(
+    chat.freelancer_name
+  )}
+</div>
 
                 <div className="chat-info">
 

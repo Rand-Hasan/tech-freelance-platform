@@ -472,6 +472,13 @@ export default function MessageFree() {
   // ================================================== 
   // UI 
   // ================================================== 
+  function getFirstLetter(name) {
+  if (!name) {
+    return "?";
+  }
+
+  return name.trim().charAt(0).toUpperCase();
+}
   return ( 
     <div className="messages-page"> 
  
@@ -513,10 +520,13 @@ export default function MessageFree() {
               } 
             > 
  
-              <div className="avatar green"> 
+              {/* <div className="avatar green"> 
                 C 
               </div> 
- 
+  */}
+  <div className="avatar green">
+  {getFirstLetter(chat.client_name)}
+</div>
               <div className="chat-info"> 
  
                 {/* CLIENT NAME ONLY */} 
@@ -560,9 +570,9 @@ export default function MessageFree() {
  
           <div className="chat-header"> 
  
-            <div className="avatar green"> 
-              C 
-            </div> 
+          <div className="avatar green">
+  {getFirstLetter(selectedClientName)}
+</div>
  
             <div> 
  

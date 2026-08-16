@@ -22,7 +22,7 @@ import {
   GetPositions,
   CreatePosition,
   CreatePermission,
-  CreateEmployee,
+  CreateEmployee, UpdatePositionPermissions,
 } from "../../RolesPermissions/services/RolesPermissionsapi";
 
 import Loading from "../../../../components/Loading/Loading";
