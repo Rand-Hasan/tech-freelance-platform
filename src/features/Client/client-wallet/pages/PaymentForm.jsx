@@ -52,87 +52,150 @@
 // }
 
 
-import {
-    PaymentElement,
-    useStripe,
-    useElements,
-} from "@stripe/react-stripe-js";
+// import {
+//     PaymentElement,
+//     useStripe,
+//     useElements,
+// } from "@stripe/react-stripe-js";
 
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function PaymentForm({ amount }) {
+// export default function PaymentForm({ amount }) {
 
-    const stripe = useStripe();
-    const elements = useElements();
+//     const stripe = useStripe();
+//     const elements = useElements();
 
-    const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+//     const [loading, setLoading] = useState(false);
+//     const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubmit = async (e) => {
+//     const handleSubmit = async (e) => {
 
-        e.preventDefault();
+//         e.preventDefault();
 
-        if (!stripe || !elements) return;
+//         if (!stripe || !elements) return;
 
-        setLoading(true);
-        setErrorMessage("");
+//         setLoading(true);
+//         setErrorMessage("");
 
-        const { error } = await stripe.confirmPayment({
+//         const { error } = await stripe.confirmPayment({
 
-            elements,
+//             elements,
 
-            confirmParams: {
+//             confirmParams: {
 
-                return_url:
-                    window.location.origin +
-                    "/clientlayout/payment-success",
+//                 return_url:
+//                     window.location.origin +
+//                     "/clientlayout/payment-success",
 
-            },
+//             },
 
-        });
+//         });
 
-        if (error) {
+//         if (error) {
 
-            setErrorMessage(error.message);
-            setLoading(false);
+//             setErrorMessage(error.message);
+//             setLoading(false);
 
-        }
+//         }
 
-    };
+//     };
 
-    return (
+//     return (
 
-        <form
-            className="payment-form"
-            onSubmit={handleSubmit}
-        >
+//         <form
+//             className="payment-form"
+//             onSubmit={handleSubmit}
+//         >
 
-            <PaymentElement />
+//             <PaymentElement />
 
-            {
-                errorMessage &&
+//             {
+//                 errorMessage &&
 
-                <p className="payment-error">
-                    {errorMessage}
-                </p>
-            }
+//                 <p className="payment-error">
+//                     {errorMessage}
+//                 </p>
+//             }
 
-            <button
-                className="pay-btn"
-                type="submit"
-                disabled={!stripe || loading}
-            >
+//             <button
+//                 className="pay-btn"
+//                 type="submit"
+//                 disabled={!stripe || loading}
+//             >
 
-                {
-                    loading
-                        ? "Processing..."
-                        : `Pay $${amount}`
-                }
+//                 {
+//                     loading
+//                         ? "Processing..."
+//                         : `Pay $${amount}`
+//                 }
 
-            </button>
+//             </button>
 
-        </form>
+//         </form>
 
-    );
+//     );
 
-}
+// }
+
+// import {
+//     PaymentElement,
+//     useStripe,
+//     useElements,
+// } from "@stripe/react-stripe-js";
+// import { useState } from "react";
+
+// export default function PaymentForm({ amount, clientSecret, contractId }) {
+//     const stripe = useStripe();
+//     const elements = useElements();
+
+//     const [loading, setLoading] = useState(false);
+//     const [errorMessage, setErrorMessage] = useState("");
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!stripe || !elements) return;
+
+//     setLoading(true);
+//     setErrorMessage("");
+
+//     // 1. الخطوة المفقودة: استدعاء elements.submit() أولاً للتحقق من المدخلات
+//     const { error: submitError } = await elements.submit();
+//     if (submitError) {
+//         setErrorMessage(submitError.message);
+//         setLoading(false);
+//         return; // الإيقاف في حال وجود خطأ في إدخال بيانات البطاقة
+//     }
+
+//     // 2. الآن يتم استدعاء confirmPayment بعد تأكيد الـ submit
+//     const { error } = await stripe.confirmPayment({
+//         elements,
+//         clientSecret, // يتم تمريره من الـ props
+//         confirmParams: {
+//             return_url: `${window.location.origin}/clientlayout/payment-success?contract_id=${contractId}`,
+//         },
+//     });
+
+//     if (error) {
+//         setErrorMessage(error.message);
+//         setLoading(false);
+//     }
+// };
+//     return (
+//         <form className="payment-form" onSubmit={handleSubmit}>
+//             <PaymentElement />
+
+//             {errorMessage && (
+//                 <p className="payment-error">{errorMessage}</p>
+//             )}
+
+//             <button
+//                 className="pay-btn"
+//                 type="submit"
+//                 disabled={!stripe || loading}
+//             >
+//                 {loading ? "Processing..." : `Pay $${amount}`}
+//             </button>
+//         </form>
+//     );
+// }

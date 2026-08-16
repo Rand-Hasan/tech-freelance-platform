@@ -43,6 +43,7 @@ import WorkAndCodeReview from "./features/Client/WorkAndCodeReview/pages/WorkAnd
 import Invaitations from "./features/Client/Invaitations/pages/Invaitations";
 import ShowOffersFreelancer from './features/FreeLancer/offers/pages/ShowOffersFreelancer';
 import ShowOfferProject from './features/Client/offer-project/pages/ShowOfferProject';
+import AssessmentQuestionsf from './features/FreeLancer/Questions/pages/AssessmentQuestionsf';
 import AdminContracts from './features/Admin/Contracts/pages/AdminContracts';
 import AdminProjects from './features/Admin/AdminProjects/pages/AdminProjects';
 import AdminLayout from './features/Admin/Layout/AdminLayout';
@@ -57,9 +58,12 @@ import WalletClient from './features/Client/client-wallet/pages/Wallet';
 import PaymentSuccess from './features/Client/client-wallet/pages/PaymentSuccess';
 import PaymentPage from './features/Client/client-wallet/pages/PaymentPage';
 import PhasesProject from './features/FreeLancer/myproject/pages/PhaseProject';
+import AssessmentLevel from './features/FreeLancer/Questions/pages/AssessmentLevel';
 import FreelancerContractDetailes from './features/FreeLancer/freelancer-contract/pages/FreelancerContractDetailes';
 import StageAndTasksDetailes from './features/Client/StagesAndTasks/pages/StageAndTasksDetailes';
 import PhaseDetails from './features/FreeLancer/myproject/pages/PhaseDetails';
+import TasksandFiles from './features/FreeLancer/myproject/pages/TasksandFiles';
+import ClientRespond from './features/FreeLancer/myproject/pages/ClientResponds';
 
 function App() {
   return (
@@ -74,22 +78,28 @@ function App() {
         <Route path="/CreatePortifolio" element={<CreatePortifolio />} />
         <Route path='CreateCv' element={<CreateCv />} />
         <Route path="/CreateProfile" element={<CreateProfilee />} />
+        <Route path='AssessmentLevel' element={<AssessmentLevel />} />
+        <Route path='AssessmentQuestionsf' element={<AssessmentQuestionsf />} />
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Client */}
         <Route path="/clientlayout" element={<ClientLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-         <Route path="messageClient" element={<MessageClient/>} />
-          <Route path="messageClient/:freelancer_id" element={<MessageClient/>} />
-         <Route path="wallet" element={<WalletClient />} />
-         <Route path="wallet/:contractId" element={<WalletClient />} />    
-          <Route path="payment/:contractId" element={<PaymentPage/>}/>
+          <Route path="messageClient" element={<MessageClient />} />
+          <Route path="messageClient/:freelancer_id" element={<MessageClient />} />
+          <Route path="wallet" element={<WalletClient />} />
+          {/* <Route path="wallet/:contractId" element={<WalletClient />} />    
+          <Route path="payment/:contractId" element={<PaymentPage/>}/> */}
           <Route
-    path="payment-success"
-    element={<PaymentSuccess />}
-/>
+            path="wallet/:contractId"
+            element={<WalletClient />}
+          />
+
+          <Route path="payment" element={<PaymentPage />}/>
+         <Route path="payment-success" element={<PaymentSuccess />}
+          />
           <Route path="projects" element={<Projects />} />
-          <Route path='invaitations' element={<Invaitations/>}/>
+          <Route path='invaitations' element={<Invaitations />} />
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
             <Route index element={<StagesAndTasks />} />
@@ -97,12 +107,12 @@ function App() {
             <Route path="matched-freelancers" element={<MatchedFreelancers />} />
             <Route path="progress-monitor" element={<ProgressMonitor />} />
             <Route path="WorkAndCodeReview" element={<WorkAndCodeReview />} />
-            <Route path='offer-project' element={<ShowOfferProject/>}/>
+            <Route path='offer-project' element={<ShowOfferProject />} />
           </Route>
           <Route path="createproject" element={<CreateProject />} />
           <Route path="editproject/:id" element={< CreateProject />} />
-          <Route path='createcontract' element={<CreateContractt/>} />
-          <Route path='editcontract/:id' element={<CreateContractt/>}/>
+          <Route path='createcontract' element={<CreateContractt />} />
+          <Route path='editcontract/:id' element={<CreateContractt />} />
           <Route path="FindFreelancers" element={<FindFreelancers />} />
           <Route path="contracts" element={<Contracts />} />
 
@@ -114,22 +124,26 @@ function App() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {/* Freelancer */}
         <Route path='/freelancerlayout' element={<FreeLancerLayout />}>
-        <Route index element={<FreelancerHome/>} />
+          <Route index element={<FreelancerHome />} />
           <Route path="contractfree" element={<ContractFree />} />
-          <Route path="FreelancerContractDetailes/:id" element={<FreelancerContractDetailes/>}/>
+          <Route path="FreelancerContractDetailes/:id" element={<FreelancerContractDetailes />} />
           {/* project freelancer */}
           <Route path='projectfree' element={<ProjectFree />}>
             <Route path='projectproposal' element={<ProjectProposal />} />
             <Route path='projectproposaldetails/:id' element={<ProjectProposalDetails />} />
             <Route path='freelancerrequest' element={<ShowInvationFree />} />
-            <Route path='myoffers' element ={<ShowOffersFreelancer/>}/>
-            <Route path='myproject' element={<Myproject />}/> 
-            <Route path='phaseproject/:id' element={<PhasesProject/>}/>
-            <Route path='phasedetails/:id' element={<PhaseDetails/>}/>
+            <Route path='myoffers' element={<ShowOffersFreelancer />} />
+            <Route path='myproject' element={<Myproject />} />
+            <Route path='phaseproject/:id' element={<PhasesProject />} />
+            <Route path='phasedetails/:id' element={<PhaseDetails />}>
+              <Route index element={<TasksandFiles />} />
+              <Route path='clientrespond' element={<ClientRespond />} />
+
+            </Route>
           </Route>
 
-         <Route path='messagefree/:clientId' element={<MessageFree />} />
-         <Route path='messagefree' element={<MessageFree />} />
+          <Route path='messagefree/:clientId' element={<MessageFree />} />
+          <Route path='messagefree' element={<MessageFree />} />
           <Route path='walletfree' element={<WalletFree />} />
           {/* Show Profile */}
           <Route path='showprofile' element={<ShowProfile />}>
@@ -138,21 +152,22 @@ function App() {
             <Route path='portfolio' element={<ShowPortfolio />} />
             <Route path='cv' element={<ShowCv />} />
             <Route path='showportofoliodetails' element={<Showportofoliodetails />} />
+
           </Route>
         </Route>
         ///////////////Admin//////////
-               <Route path="/AdminLayout" element={<AdminLayout />}>
-  <Route index element={<Navigate to="Users" replace />} />
+        <Route path="/AdminLayout" element={<AdminLayout />}>
+          <Route index element={<Navigate to="Users" replace />} />
 
-  <Route path="Users" element={<Users />} />
+          <Route path="Users" element={<Users />} />
 
-  <Route  path="RolesPermissions" element={<RolesPermissions />}/>
-    <Route path="AssessmentQuestions" element={<AssessmentQuestions />}/>
-    <Route  path="AddQuestion" element={<AddQuestion />}/>
-      <Route  path="FinesCommission" element={<FinesCommission />}/>
-         <Route  path="AdminContracts" element={<AdminContracts />}/>
-           <Route  path="AdminProjects" element={<AdminProjects />}/>
-</Route>
+          <Route path="RolesPermissions" element={<RolesPermissions />} />
+          <Route path="AssessmentQuestions" element={<AssessmentQuestions />} />
+          <Route path="AddQuestion" element={<AddQuestion />} />
+          <Route path="FinesCommission" element={<FinesCommission />} />
+          <Route path="AdminContracts" element={<AdminContracts />} />
+          <Route path="AdminProjects" element={<AdminProjects />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
