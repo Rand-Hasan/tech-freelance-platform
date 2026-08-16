@@ -1,183 +1,382 @@
-.projects-card{
-    background:#fff;
-    border-radius:16px;
-    padding:14px;
-    border:1px solid #e6efef;
-    overflow-x:auto;
+/* ================================
+   ADMIN PROJECTS
+================================ */
+
+.admin-projects-wrapper {
+    width: 100%;
 }
 
 
-.projects-table{
-    width:100%;
-    border-collapse:collapse;
+/* ================================
+   CARD
+================================ */
+
+.admin-projects-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e6efef;
+    border-radius: 16px;
+    padding: 18px;
+    box-sizing: border-box;
 }
 
 
-.projects-table thead{
-    background:#eef8f8;
+/* ================================
+   HEADER
+================================ */
+
+.admin-projects-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.admin-projects-title {
+    margin: 0;
+    color: #102638;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.admin-projects-subtitle {
+    margin: 5px 0 0;
+    color: #82939d;
+    font-size: 12px;
 }
 
 
-.projects-table th{
-    text-align:left;
-    padding:10px 12px;
-    color:#4b7484;
-    font-size:11px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.7px;
+/* ================================
+   TABLE CONTAINER
+================================ */
+
+.admin-projects-table-container {
+    width: 100%;
+    overflow-x: auto;
 }
 
 
-.projects-table td{
-    padding:12px;
-    height:45px;
-    border-bottom:1px solid #edf2f5;
-    color:#4d6775;
-    font-size:13px;
+/* ================================
+   TABLE
+================================ */
+
+.admin-projects-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+}
+
+.admin-projects-table thead {
+    background: #eef8f8;
+}
+
+.admin-projects-table th {
+    padding: 11px 12px;
+    text-align: left;
+    color: #4b7484;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+.admin-projects-table td {
+    padding: 13px 12px;
+    height: 45px;
+    border-bottom: 1px solid #edf2f5;
+    color: #4d6775;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.admin-projects-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-projects-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.admin-projects-table tbody tr:hover {
+    background: #fafdfd;
 }
 
 
-.projects-table tr:last-child td{
-    border:none;
+/* ================================
+   ID
+================================ */
+
+.admin-projects-id {
+    color: #8a9aa3 !important;
+    font-size: 12px !important;
+    font-weight: 600;
 }
 
 
-.project-name{
-    color:#102638;
-    font-size:14px;
-    font-weight:600;
+/* ================================
+   PROJECT NAME
+================================ */
+
+.admin-projects-name {
+    color: #102638 !important;
+    font-size: 14px !important;
+    font-weight: 600;
 }
 
 
-.budget{
-    color:#129b92;
-    font-weight:700;
+/* ================================
+   CLIENT
+================================ */
+
+.admin-projects-client {
+    color: #4d6775;
 }
 
 
+/* ================================
+   PRICE
+================================ */
 
-/* Progress */
-
-.progress-box{
-    display:flex;
-    align-items:center;
-    gap:8px;
+.admin-projects-price {
+    color: #129b92 !important;
+    font-weight: 700;
 }
 
 
-.progress-line{
-    width:90px;
-    height:6px;
-    background:#e8eeee;
-    border-radius:10px;
-    overflow:hidden;
+/* ================================
+   LEVEL
+================================ */
+
+.admin-projects-level {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 62px;
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.admin-projects-level-junior {
+    background: #f2f2f2;
+    color: #64748b;
+}
+
+.admin-projects-level-middle {
+    background: #fff5e7;
+    color: #b97a00;
+}
+
+.admin-projects-level-expert {
+    background: #e9f8f6;
+    color: #118d86;
 }
 
 
-.progress-line span{
-    display:block;
-    height:100%;
-    background:#129b92;
-    border-radius:10px;
+/* ================================
+   DATE
+================================ */
+
+.admin-projects-date {
+    color: #71838e !important;
+    font-size: 12px !important;
 }
 
 
-.progress-box small{
-    font-size:11px;
-    color:#64748b;
+/* ================================
+   ACTIONS
+================================ */
+
+.admin-projects-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 
+/* ================================
+   ACTION BUTTON
+================================ */
 
-/* Project Status */
-
-.status{
-    display:inline-flex;
-    align-items:center;
-    padding:4px 10px;
-    border-radius:15px;
-    font-size:11px;
-    font-weight:600;
-    white-space:nowrap;
+.admin-projects-action {
+    height: 30px;
+    padding: 0 11px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
 
 
-.project-active{
-    background:#edf8f2;
-    color:#39a66d;
+/* ================================
+   VIEW
+================================ */
+
+.admin-projects-view {
+    background: #eaf7f6;
+    color: #118d86;
+}
+
+.admin-projects-view:hover {
+    background: #d9f1ef;
 }
 
 
-.project-progress{
-    background:#fff5e7;
-    color:#b97a00;
+/* ================================
+   SUSPEND
+================================ */
+
+.admin-projects-suspend {
+    background: #fff6e8;
+    color: #ad7500;
+}
+
+.admin-projects-suspend:hover {
+    background: #ffedcf;
 }
 
 
-.project-completed{
-    background:#e9f8f6;
-    color:#118d86;
+/* ================================
+   DELETE
+================================ */
+
+.admin-projects-delete {
+    background: #fdeff1;
+    color: #c5485b;
+}
+
+.admin-projects-delete:hover {
+    background: #fbe0e4;
+}
+/* ================================
+   ERROR
+================================ */
+
+.admin-projects-error {
+    margin-bottom: 14px;
+    padding: 10px 13px;
+    border-radius: 8px;
+    background: #fdeff1;
+    color: #c5485b;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 
-.project-pending{
-    background:#f2f2f2;
-    color:#64748b;
+/* ================================
+   LOADING / EMPTY
+================================ */
+
+.admin-projects-loading,
+.admin-projects-empty {
+    text-align: center !important;
+    padding: 35px 12px !important;
+    color: #82939d !important;
 }
 
 
+/* ================================
+   DISABLED ACTION
+================================ */
 
-/* Actions */
-
-.actions{
-    display:flex;
-    gap:6px;
+.admin-projects-action:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
 }
 
 
-.actions button{
-    width:27px;
-    height:27px;
-    border:none;
-    border-radius:7px;
-    cursor:pointer;
-    font-size:13px;
+/* ================================
+   PAGINATION
+================================ */
+
+.admin-projects-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
 }
 
-
-.view{
-    background:#eaf7f6;
+.admin-projects-page-btn {
+    height: 32px;
+    padding: 0 13px;
+    border: 1px solid #dce8e8;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #4b7484;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-
-.delete{
-    background:#fdeff1;
+.admin-projects-page-btn:hover:not(:disabled) {
+    background: #eef8f8;
+    border-color: #cce2e1;
 }
 
-
-
-.projects-table tbody tr:hover{
-    background:#fafdfd;
+.admin-projects-page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
+.admin-projects-page-number {
+    min-width: 65px;
+    text-align: center;
+    color: #4d6775;
+    font-size: 12px;
+    font-weight: 600;
+}
+/* ================================
+   PROJECT NAME LINK
+================================ */
 
+.admin-projects-project-link {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: #102638;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
 
-@media(max-width:900px){
+.admin-projects-project-link:hover {
+    color: #118d86;
+}
+/* ================================
+   RESPONSIVE
+================================ */
 
-    .projects-table{
-        min-width:850px;
+@media (max-width: 900px) {
+
+    .admin-projects-card {
+        padding: 14px;
     }
 
-
-    .projects-table td{
-        font-size:12px;
+    .admin-projects-table {
+        min-width: 850px;
     }
 
-
-    .project-name,
-    .budget{
-        font-size:13px;
+    .admin-projects-table td {
+        font-size: 12px;
     }
 
+    .admin-projects-name {
+        font-size: 13px !important;
+    }
 }

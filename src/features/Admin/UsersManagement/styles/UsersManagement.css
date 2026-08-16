@@ -1,0 +1,599 @@
+/* =========================================
+   Users Page
+========================================= */
+
+.users-page {
+  width: 100%;
+  min-height: 100%;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  background: #f8f9f8;
+}
+
+
+/* =========================================
+   Header
+========================================= */
+
+.users-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.users-header h1 {
+  margin: 0;
+
+  color: #252525;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.users-header p {
+  margin: 7px 0 0;
+
+  color: #858585;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   Main Card
+========================================= */
+
+.users-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e4ebe8;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.035);
+}
+
+
+/* =========================================
+   Table
+========================================= */
+
+.users-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background: #f7faf9;
+}
+
+.users-table th {
+  padding: 15px 20px;
+
+  text-align: left;
+
+  color: #7f8985;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+
+  border-bottom: 1px solid #e5ebe9;
+}
+
+.users-table td {
+  padding: 17px 20px;
+
+  border-bottom: 1px solid #edf1ef;
+
+  color: #353535;
+
+  font-size: 14px;
+}
+
+.users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tbody tr {
+  transition:
+    background 0.2s ease;
+}
+
+.users-table tbody tr:hover {
+  background: #f9fbfa;
+}
+
+
+/* =========================================
+   User Cell
+========================================= */
+
+.users-user-cell {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.users-user-avatar {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #e7f5f2;
+
+  color: #2fae9b;
+
+  font-size: 14px;
+}
+
+.users-user-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.users-user-info strong {
+  color: #292929;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.users-user-info span {
+  color: #a09b94;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   Email
+========================================= */
+
+.users-email-text {
+  color: #6f6b66;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   Role
+========================================= */
+
+.users-role-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.users-role-freelancer {
+  background: #eaf6f3;
+
+  color: #248f7f;
+}
+
+.users-role-client {
+  background: #f1f7f5;
+
+  color: #47786f;
+}
+
+.users-role-unknown {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+
+/* =========================================
+   Status
+========================================= */
+
+.users-status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.users-status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+.users-status-active {
+  color: #2b8f80;
+}
+
+.users-status-active
+.users-status-dot {
+  background: #2fae9b;
+}
+
+.users-status-suspended {
+  color: red;
+}
+
+.users-status-suspended
+.users-status-dot {
+  background: red;
+}
+
+
+/* =========================================
+   Verified
+========================================= */
+
+.users-verified {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #2d9585;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.users-verified svg {
+  font-size: 10px;
+}
+
+.users-not-verified {
+  color: #a09b94;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   View Button
+========================================= */
+
+.users-view-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border: 1px solid #d8e9e5;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #2f8f80;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.users-view-btn:hover {
+  background: #eaf7f4;
+
+  border-color: #bde2da;
+
+  color: #238a79;
+
+  transform: translateY(-1px);
+}
+
+.users-view-btn svg {
+  font-size: 11px;
+}
+
+
+/* =========================================
+   Empty State
+========================================= */
+
+.users-empty-state {
+  padding: 45px 20px !important;
+
+  text-align: center;
+
+  color: #99948d !important;
+
+  font-size: 13px !important;
+}
+
+
+/* =========================================
+   Error
+========================================= */
+
+.users-error {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-bottom: 18px;
+
+  padding: 12px 15px;
+
+  border: 1px solid #ecd2cb;
+
+  border-radius: 9px;
+
+  background: #fff5f3;
+
+  color: #976c62;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   Access Denied
+========================================= */
+
+.users-access-denied {
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+.users-access-denied-icon {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 24px;
+
+  border-radius: 50%;
+
+  background: #fff1f2;
+
+  font-size: 36px;
+}
+
+.users-access-denied h1 {
+  margin: 0 0 12px;
+
+  color: #1f2937;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.users-access-denied p {
+  margin: 0 0 8px;
+
+  color: #4b5563;
+
+  font-size: 16px;
+}
+
+.users-access-denied span {
+  color: #9ca3af;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   Pagination
+========================================= */
+
+.users-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 15px;
+
+  padding: 18px 20px;
+}
+
+.users-pagination button {
+  padding: 9px 15px;
+
+  border: 1px solid #dbe4e1;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.users-pagination button:hover:not(:disabled) {
+  background: #f5f8f7;
+
+  border-color: #c5dcd7;
+
+  color: #238a79;
+}
+
+.users-pagination button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+.users-pagination span {
+  color: #7c8794;
+
+  font-size: 13px;
+}
+
+.users-pagination strong {
+  color: #202124;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 768px) {
+
+  .users-page {
+    padding: 18px;
+  }
+
+  .users-header h1 {
+    font-size: 24px;
+  }
+
+  .users-table {
+    min-width: 800px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 14px 15px;
+  }
+
+  .users-user-avatar {
+    width: 36px;
+    height: 36px;
+
+    font-size: 13px;
+  }
+
+  .users-user-info strong {
+    font-size: 13px;
+  }
+
+  .users-user-info span {
+    font-size: 10px;
+  }
+
+  .users-role-badge {
+    padding: 5px 9px;
+
+    font-size: 10px;
+  }
+
+  .users-status-badge {
+    font-size: 11px;
+  }
+
+  .users-pagination {
+    justify-content: center;
+
+    padding: 16px;
+  }
+
+}
+
+
+/* =========================================
+   Small Mobile
+========================================= */
+
+@media (max-width: 480px) {
+
+  .users-page {
+    padding: 12px;
+  }
+
+  .users-header {
+    margin-bottom: 18px;
+  }
+
+  .users-header h1 {
+    font-size: 22px;
+  }
+
+  .users-header p {
+    font-size: 12px;
+  }
+
+  .users-card {
+    border-radius: 11px;
+  }
+
+  .users-pagination {
+    gap: 10px;
+  }
+
+  .users-pagination button {
+    padding: 8px 11px;
+
+    font-size: 11px;
+  }
+
+}

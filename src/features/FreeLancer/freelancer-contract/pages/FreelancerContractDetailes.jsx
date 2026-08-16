@@ -7,14 +7,21 @@ import {
   GetContractById,
   AcceptContract,
   RejectContract,
+  AcceptAddPhase,
+  RejectAddPhase,
+  CancelContract,
 } from "../services/FreelancerContractsApi";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 export default function FreelancerContractDetailes() {
   const [contractdetailes, setcontractdetailes] = useState(null);
-  const {id } = useParams();
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [rejectReason, setRejectReason] = useState("");
+  const [rejectSuccess, setRejectSuccess] = useState(null); 
+  const { id } = useParams();
   const navigate = useNavigate();
   const cookies = Cookies();
+  const [showModal, setShowModal] = useState(false);
   const token = cookies.get("token-freelancer");
   useEffect(() => {
     fetch(`${baseURL}${GetContractById}/${id}`, {
@@ -64,6 +71,42 @@ export default function FreelancerContractDetailes() {
         alert(backendMessage);
       });
   }
+  const acceptaddphase = async (id) => {
+    try {
+      const res = await axios.post(`${baseURL}${AcceptAddPhase}${id}`, {}, {
+        headers: { Authorization: `Bearer: ${token}` }
+      })
+      console.log(res.data)
+    } catch (err) {
+      console.log(err.data.message)
+    }
+  }
+  const rejectPhase = async (id, content) => {
+    try {
+      const res = await axios.post(`${baseURL}${RejectAddPhase}${id}`, { content: content }, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      console.log(res.data)
+      setRejectSuccess(id);
+
+      setTimeout(() => {
+        setRejectSuccess(null);
+      }, 6000);
+
+    } catch (err) {
+      console.log(err.response?.data);
+    }
+  }
+  const cancelcontract =async(id)=>{
+  try{
+    const res = await axios.post(`${baseURL}${CancelContract}${id}`,{},{
+      headers:{Authorization:`Bearer ${token}`}
+    })
+    console.log(res.data)
+  }catch(err){
+    console.log(err.response?.data)
+  }
+}
   return (
     <div className="DadOfEveryThing">
       <button
@@ -88,7 +131,13 @@ export default function FreelancerContractDetailes() {
       <span>Phases ({contractdetailes?.phases?.length || 0})</span>
 
       {contractdetailes?.phases?.map((phase) => (
+
         <div className="PhaseInfor" key={phase?.id}>
+          {rejectSuccess === phase?.id && (
+            <div className="reject-success">
+              ✓ Rejection sent successfully. Please wait for the client's response.
+            </div>
+          )}
           <div className="TitleAndStatus">
             <div className="Title">{phase?.title}</div>
             <div className="Status">{phase?.status}</div>
@@ -109,8 +158,137 @@ export default function FreelancerContractDetailes() {
               </div>
             </div>
           </div>
+
+          {/* إضافة رند */}
+          {phase?.status === "new_phase" && (
+
+            <div className="phase-client-request">
+
+              <div className="phase-request-content">
+
+                <div className="phase-request-icon">
+                  💬
+                </div>
+
+                <div className="phase-request-text">
+
+                  <div className="phase-request-title">
+                    New Client Request
+                  </div>
+
+                  <div className="phase-request-description">
+                    The client has requested to add this phase to the project.
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div className="phase-request-actions">
+
+                <button
+                  type="button"
+                  className="phase-reject-btn"
+                  onClick={() => setShowRejectModal(true)}
+                >
+                  Reject
+                </button>
+
+
+                <button
+                  type="button"
+                  className="phase-accept-btn"
+                  onClick={() => acceptaddphase(phase.id)}
+                >
+                  ✓ Accept Request
+                </button>
+
+              </div>
+
+
+              {showRejectModal && (
+                <div className="reject-modal-overlay">
+
+                  <div className="reject-modal">
+
+                    <div className="reject-modal-header">
+
+                      <div>
+                        <h3>Reject Client Request</h3>
+
+                        <p>
+                          Why are you rejecting this request?
+                        </p>
+                      </div>
+
+                    </div>
+
+                    <div className="reject-modal-body">
+
+                      <p className="reject-modal-description">
+                        Please provide a reason so the client understands
+                        your decision.
+                      </p>
+
+                      <textarea
+                        value={rejectReason}
+                        onChange={(e) => setRejectReason(e.target.value)}
+                        placeholder="Enter your reason..."
+                        rows={5}
+                      />
+
+                    </div>
+
+
+                    {/* Actions */}
+                    <div className="reject-modal-actions">
+
+                      <button
+                        type="button"
+                        className="reject-cancel-btn"
+                        onClick={() => {
+                          setShowRejectModal(false);
+                          setRejectReason("");
+                        }}
+                      >
+                        Cancel
+                      </button>
+
+                      <button
+                        type="button"
+                        className="reject-confirm-btn"
+                        disabled={!rejectReason.trim()}
+                        onClick={() => {
+
+                          // هون استدعي API الرفض
+                          rejectPhase(phase.id, rejectReason);
+
+                          setShowRejectModal(false);
+                          setRejectReason("");
+                        }}
+                      >
+                        Reject
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              )}
+
+            </div>
+          )}
+
+
         </div>
       ))}
+
+
+
+
+
       {contractdetailes?.status === "draft" ? (
         <div className="Buttons">
           <button
@@ -129,17 +307,132 @@ export default function FreelancerContractDetailes() {
       ) : (
         <div className="Buttons">
           <button
-            onClick={() =>alert("Cancle btn")}
+             onClick={() => setShowModal(true)}
             className="Cancelbtn"
           >
             Cancel Contract
           </button>
           <button
-            onClick={() =>alert("mony btn")}
+            onClick={() => alert("mony btn")}
             className="WithdrowMonybtn"
           >
             Withdrow Money
           </button>
+        </div>
+      )}
+
+      {showModal && (
+        <div className="modal-overlay">
+
+          <div className="cancel-modal">
+
+
+            <div className="modal-header">
+
+              <h2>
+                Cancel Contract
+              </h2>
+
+
+              <button
+                className="close-btn"
+                onClick={() => setShowModal(false)}
+              >
+                ✕
+              </button>
+
+            </div>
+
+
+
+
+            <p className="modal-description">
+
+              This will end the contract:
+              {" "}
+              <strong>
+                {contractdetailes.title}
+              </strong>
+
+              <br />
+
+              This action cannot be undone.
+
+            </p>
+
+
+
+
+
+            <div className="warning-box">
+
+              ⚠ Cancelling this contract may apply a cancellation fee
+              according to the platform policy, and may affect both
+              parties' ratings.
+
+            </div>
+
+
+            {/* <label>
+              Reason for cancellation
+            </label>
+
+
+            <textarea
+              placeholder="Explain why you're cancelling this contract..."
+            /> */}
+
+
+            <div className="accept-box">
+
+              <input type="checkbox" />
+
+
+              <span>
+
+                I understand and accept the
+
+                <strong>
+                  {" "} cancellation policy
+                </strong>
+
+              </span>
+
+
+            </div>
+
+
+
+
+
+            <div className="modal-actions">
+
+
+              <button
+                className="confirm-btn"
+                onClick={()=>cancelcontract(contractdetailes.id)}
+              >
+                Cancel Contract
+              </button>
+
+
+
+
+              <button
+                className="back-btn"
+                onClick={() => setShowModal(false)}
+              >
+                Go Back
+              </button>
+
+
+            </div>
+
+
+
+          </div>
+
+
         </div>
       )}
     </div>

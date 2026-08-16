@@ -1,0 +1,333 @@
+.freelancer-wallet-page {
+    min-height: 100vh;
+    padding: 35px;
+    background: #f7f9f9;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Header
+========================= */
+
+.wallet-header {
+    max-width: 1150px;
+    margin: 0 auto 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.wallet-header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #09263b;
+}
+
+.wallet-header p {
+    margin: 7px 0 0;
+    font-size: 14px;
+    color: #71868b;
+}
+
+.currency-badge {
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #dfe8e7;
+    color: #087f68;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* =========================
+   Main Layout
+========================= */
+
+.wallet-layout {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* =========================
+   Withdraw Card (Green Theme)
+========================= */
+
+.withdraw-card {
+    background: #087f68;
+    border: none;
+    border-radius: 18px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(8, 127, 104, 0.18);
+}
+
+.withdraw-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-label {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.available-balance {
+    margin: 8px 0 0;
+    color: #ffffff !important;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+/* Divider */
+
+.withdraw-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 28px 0;
+}
+
+/* =========================
+   Withdraw Form
+========================= */
+
+.withdraw-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.withdraw-form label {
+    margin-bottom: 9px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Amount Input Wrapper */
+
+.amount-input-wrapper {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: none !important;
+    border-radius: 10px;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.amount-input-wrapper:focus-within {
+    outline: none !important;
+    border: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35) !important;
+}
+
+.amount-input-wrapper span {
+    padding-left: 15px;
+    color: #087f68;
+    font-size: 16px;
+    font-weight: 700;
+    user-select: none;
+}
+
+.amount-input-wrapper input {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 13px 0 8px;
+    background: transparent;
+    color: #09263b;
+    font-size: 16px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.amount-input-wrapper input:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.amount-input-wrapper input::placeholder {
+    color: #a1afb2;
+}
+
+/* Remove number arrows */
+
+.amount-input-wrapper input::-webkit-outer-spin-button,
+.amount-input-wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.amount-input-wrapper input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* =========================
+   Withdraw Button
+========================= */
+
+.withdraw-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #055c4b;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.withdraw-btn:hover:not(:disabled) {
+    background: #034437;
+    transform: translateY(-1px);
+}
+
+.withdraw-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.withdraw-btn:disabled {
+    background: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.55);
+    cursor: not-allowed;
+}
+
+/* =========================
+   Wallet Overview
+========================= */
+
+.overview-card {
+    background: #ffffff;
+    border: 1px solid #e2eaea;
+    border-radius: 18px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 25px rgba(20, 55, 60, 0.04);
+}
+
+.overview-card h3 {
+    margin: 0 0 25px;
+    color: #09263b;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Overview Item */
+
+.overview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 0;
+    border-bottom: 1px solid #edf1f1;
+}
+
+.overview-item:first-of-type {
+    padding-top: 0;
+}
+
+.overview-item:last-child {
+    border-bottom: none;
+}
+
+.overview-item span {
+    color: #72878c;
+    font-size: 14px;
+}
+
+.overview-item strong {
+    color: #09263b;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* =========================
+   Withdraw Security Note
+========================= */
+
+.withdraw-note {
+    max-width: 1150px;
+    margin: 22px auto 0;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #e2eaea;
+    border-radius: 12px;
+    color: #71868b;
+    font-size: 13px;
+}
+
+.withdraw-note span {
+    font-size: 15px;
+}
+
+.withdraw-note p {
+    margin: 0;
+}
+
+/* =========================
+   Loading / Error
+========================= */
+
+.wallet-loading,
+.wallet-error {
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #71868b;
+    font-size: 15px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 850px) {
+    .freelancer-wallet-page {
+        padding: 25px 18px;
+    }
+
+    .wallet-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .wallet-header {
+        align-items: flex-start;
+    }
+
+    .wallet-header h1 {
+        font-size: 25px;
+    }
+
+    .currency-badge {
+        padding: 7px 11px;
+    }
+
+    .withdraw-card,
+    .overview-card {
+        padding: 22px;
+    }
+
+    .available-balance {
+        font-size: 34px;
+    }
+}

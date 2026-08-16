@@ -8,16 +8,19 @@ export default function AdminHeader({ setSidebarOpen }) {
   const location = useLocation();
   const navigate = useNavigate();
   const pagetitle ={
-    "/AdminLayout/Users": " All Users",
+    "/AdminLayout/Employees": " All Employees",
     "/AdminLayout/AdminProjects" : "Projects",
     "/AdminLayout/Statistics" : "Statistics" ,
-    "/AdminLayout/Reports"   : "Reports" ,
+    "/AdminLayout/UsersManagement"   : "UsersManagement" ,
+    "/AdminLayout/UsersManagement/:userId"   : "UserDetails" ,
     "/AdminLayout/RolesPermissions" : "Roles & Permissions",
     "/AdminLayout/AdminContracts" :"Contracts",
-    "/AdminLayout/FinesCommission"  :"Fines & Commission",
-    "/AdminLayout/setting" : "Settings",
+    "/AdminLayout/Financial"  :"Financial",
+       "/AdminLayout/AddQuestion" : "AddQuestion",
     "/AdminLayout/AssessmentQuestions"  :"Assessment Questions",
-      "/AdminLayout/AddQuestion" : "AddQuestion",
+      "/AdminLayout/AdminOffers" : "Offers",
+            "/AdminLayout/AuditLog" : "AuditLog",
+             "/AdminLayout/AdminReviews" : "Reviews",
    
   }
    const backButtonRoutes = ["/createproject","/editproject"];

@@ -11,7 +11,7 @@ export default function ProjectDetails() {
   const navigate = useNavigate();
   const { id: ProjectId } = useParams();
   const [project, setdetailsProject] = useState(null);
-const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
    const cookies= new Cookies();
    const token = cookies.get('token-client');
    useEffect(()=>{

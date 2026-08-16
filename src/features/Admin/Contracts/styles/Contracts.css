@@ -1,175 +1,550 @@
-.contracts-card{
-    background:#fff;
-    border-radius:16px;
-    padding:14px;
-    border:1px solid #e6efef;
-    overflow-x:auto;
+/* =========================================
+   ADMIN CONTRACTS
+========================================= */
+
+.admin-contracts-page {
+    width: 100%;
 }
 
 
-.contracts-table{
-    width:100%;
-    border-collapse:collapse;
+/* =========================================
+   CARD
+========================================= */
+
+.admin-contracts-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e6efef;
+    border-radius: 16px;
+    padding: 14px;
+    overflow: hidden;
 }
 
 
-.contracts-table thead{
-    background:#eef8f8;
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.admin-contracts-table-container {
+    width: 100%;
+    overflow-x: auto;
 }
 
 
-.contracts-table th{
-    text-align:left;
-    padding:10px 12px;
-    color:#4b7484;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.7px;
-    text-transform:uppercase;
+/* =========================================
+   TABLE
+========================================= */
+
+.admin-contracts-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
 }
 
 
-.contracts-table td{
-    padding:12px;
-    border-bottom:1px solid #edf2f5;
-    color:#4d6775;
-    font-size:13px;
-    height:45px;
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.admin-contracts-table thead {
+    background: #eef8f8;
 }
 
 
-.contracts-table tr:last-child td{
-    border:none;
+.admin-contracts-table th {
+    text-align: left;
+    padding: 11px 14px;
+
+    color: #4b7484;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+
+    white-space: nowrap;
 }
 
 
-.contract-name{
-    color:#0f2438;
-    font-size:14px;
-    font-weight:600;
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.admin-contracts-table td {
+    padding: 13px 14px;
+
+    border-bottom: 1px solid #edf2f5;
+
+    color: #4d6775;
+
+    font-size: 13px;
+
+    height: 48px;
 }
 
 
-.price{
-    color:#129b92;
-    font-weight:700;
-    font-size:14px;
+.admin-contracts-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
 
-
-/* badges */
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:4px 10px;
-    border-radius:15px;
-    font-size:11px;
-    font-weight:600;
-    white-space:nowrap;
+.admin-contracts-table tbody tr {
+    transition: background 0.2s ease;
 }
 
 
-
-/* Type */
-
-.type-stage{
-    background:#eaf7f6;
-    color:#13988d;
+.admin-contracts-table tbody tr:hover {
+    background: #fafdfd;
 }
 
 
-.type-instant{
-    background:#f2f2f2;
-    color:#4c7083;
+/* =========================================
+   CONTRACT NAME
+========================================= */
+
+.admin-contracts-name {
+    color: #0f2438 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600;
 }
 
 
+/* =========================================
+   PRICE
+========================================= */
 
-/* Contract Status */
+.admin-contracts-price {
+    color: #129b92 !important;
 
-.contract-active{
-    background:#e8f8ee;
-    color:#22a06b;
-}
+    font-size: 14px !important;
 
-.contract-active::before{
-    content:"•";
-    margin-right:4px;
-    font-size:14px;
-}
-
-
-.contract-review{
-    background:#fff4df;
-    color:#d18b00;
-}
-
-.contract-review::before{
-    content:"•";
-    margin-right:4px;
-    font-size:14px;
+    font-weight: 700;
 }
 
 
-.contract-completed{
-    background:#e6f7f5;
-    color:#0f8f86;
-}
+/* =========================================
+   STATUS BADGE
+========================================= */
 
-.contract-completed::before{
-    content:"✓";
-    margin-right:4px;
-    font-size:11px;
-}
+.admin-contracts-badge {
+    display: inline-flex;
 
+    align-items: center;
+    justify-content: center;
 
-.contract-cancelled{
-    background:#fdebec;
-    color:#e5484d;
-}
+    padding: 5px 11px;
 
-.contract-cancelled::before{
-    content:"✕";
-    margin-right:4px;
-    font-size:11px;
-}
+    border-radius: 15px;
 
+    font-size: 11px;
 
+    font-weight: 600;
 
-/* hover */
-
-.contracts-table tbody tr:hover{
-    background:#fafdfd;
+    white-space: nowrap;
 }
 
 
+/* =========================================
+   ACTIVE
+========================================= */
 
-/* mobile */
+.admin-contracts-status-active {
+    background: #e8f8ee;
+    color: #22a06b;
+}
 
-@media(max-width:900px){
 
-    .contracts-table{
-        min-width:750px;
+.admin-contracts-status-active::before {
+    content: "•";
+
+    margin-right: 4px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   COMPLETED
+========================================= */
+
+.admin-contracts-status-completed {
+    background: #e6f7f5;
+    color: #0f8f86;
+}
+
+
+.admin-contracts-status-completed::before {
+    content: "✓";
+
+    margin-right: 4px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CANCELLED
+========================================= */
+
+.admin-contracts-status-cancelled {
+    background: #fdebec;
+    color: #e5484d;
+}
+
+
+.admin-contracts-status-cancelled::before {
+    content: "✕";
+
+    margin-right: 4px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   REVIEW / PENDING
+========================================= */
+
+.admin-contracts-status-review {
+    background: #fff4df;
+    color: #d18b00;
+}
+
+
+.admin-contracts-status-review::before {
+    content: "•";
+
+    margin-right: 4px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   DRAFT
+========================================= */
+
+.admin-contracts-status-draft {
+    background: #f2f2f2;
+    color: #4c7083;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.admin-contracts-error {
+    width: 100%;
+
+    margin-bottom: 14px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: #fdebec;
+
+    border: 1px solid #f5c8ca;
+
+    color: #d63d42;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.admin-contracts-empty {
+    text-align: center !important;
+
+    padding: 45px 20px !important;
+
+    color: #78909c !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.admin-contracts-pagination {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 18px;
+
+    padding: 4px 0;
+}
+
+
+/* =========================================
+   PAGINATION BUTTON
+========================================= */
+
+.admin-contracts-pagination-btn {
+    min-width: 105px;
+
+    height: 38px;
+
+    padding: 0 16px;
+
+    border: 1px solid #dce8e9;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #315f70;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.admin-contracts-pagination-btn:hover:not(:disabled) {
+    background: #eef8f8;
+
+    border-color: #b9dedd;
+
+    color: #128f87;
+
+    transform: translateY(-1px);
+}
+
+
+.admin-contracts-pagination-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    background: #f7f9f9;
+}
+
+
+/* =========================================
+   CURRENT PAGE
+========================================= */
+
+.admin-contracts-pagination-current {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-width: 75px;
+
+    justify-content: center;
+
+    color: #718895;
+
+    font-size: 12px;
+}
+
+
+.admin-contracts-pagination-current strong {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 8px;
+
+    background: #eaf7f6;
+
+    color: #129b92;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   ACCESS DENIED
+========================================= */
+
+.admin-contracts-access-denied {
+    min-height: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+
+.admin-contracts-access-icon {
+    width: 70px;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff4df;
+
+    font-size: 30px;
+
+    margin-bottom: 18px;
+}
+
+
+.admin-contracts-access-denied h1 {
+    margin: 0 0 10px;
+
+    color: #0f2438;
+
+    font-size: 24px;
+}
+
+
+.admin-contracts-access-denied p {
+    margin: 0 0 6px;
+
+    color: #4d6775;
+
+    font-size: 14px;
+}
+
+
+.admin-contracts-access-denied span {
+    color: #78909c;
+
+    font-size: 12px;
+}
+
+/* =========================================
+   CONTRACT LINK
+========================================= */
+
+.admin-contracts-contract-link {
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #0f2438;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-contracts-contract-link:hover {
+    color: #129b92;
+}
+
+.admin-contracts-contract-link:focus {
+    outline: none;
+}
+
+.admin-contracts-contract-link:focus-visible {
+    outline: 2px solid #b9dedd;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .admin-contracts-card {
+        padding: 10px;
     }
 
 
-    .contracts-table td{
-        font-size:12px;
+    .admin-contracts-table {
+        min-width: 720px;
     }
 
 
-    .contract-name,
-    .price{
-        font-size:13px;
+    .admin-contracts-table th {
+        font-size: 10px;
+
+        padding: 10px;
     }
 
 
-    .badge{
-        font-size:10px;
-        padding:3px 8px;
+    .admin-contracts-table td {
+        font-size: 12px;
+
+        padding: 11px 10px;
+    }
+
+
+    .admin-contracts-name,
+    .admin-contracts-price {
+        font-size: 13px !important;
+    }
+
+
+    .admin-contracts-badge {
+        font-size: 10px;
+
+        padding: 4px 8px;
+    }
+
+
+    .admin-contracts-pagination {
+        gap: 10px;
+    }
+
+
+    .admin-contracts-pagination-btn {
+        min-width: 95px;
+
+        height: 36px;
+
+        padding: 0 10px;
+
+        font-size: 11px;
     }
 
 }
