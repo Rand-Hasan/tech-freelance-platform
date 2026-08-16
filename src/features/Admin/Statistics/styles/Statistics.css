@@ -1,3 +1,7 @@
+/* =========================================================
+   DASHBOARD PAGE
+========================================================= */
+
 .dashboard-page {
   width: 100%;
   padding: 10px 0 40px;
@@ -12,86 +16,91 @@
 
 .dashboard-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   margin-bottom: 24px;
 }
 
-
 .dashboard-stat-card {
   position: relative;
   min-height: 145px;
+  padding: 25px 26px;
+  box-sizing: border-box;
+
   background: #ffffff;
   border: 1px solid #e0efed;
   border-radius: 20px;
-  padding: 25px 26px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
 
+  overflow: hidden;
+}
 
 .dashboard-stat-card::after {
   content: "";
   position: absolute;
+
   width: 145px;
   height: 145px;
+
   right: -50px;
   top: -50px;
+
   border-radius: 50%;
   background: #eef8f6;
 }
-
 
 .dashboard-stat-card.failed-card::after {
   background: #fff1f1;
 }
 
-
 .dashboard-stat-content {
   position: relative;
   z-index: 2;
+
   display: flex;
   flex-direction: column;
 }
 
-
 .dashboard-stat-label {
-  font-size: 14px;
-  color: #66848a;
   margin-bottom: 9px;
-}
 
+  color: #66848a;
+  font-size: 14px;
+}
 
 .dashboard-stat-value {
+  margin-bottom: 10px;
+
+  color: #082b31;
   font-size: 32px;
   line-height: 1;
-  color: #082b31;
-  margin-bottom: 10px;
 }
-
 
 .dashboard-stat-description {
-  font-size: 13px;
   color: #6e898e;
+  font-size: 13px;
 }
-
 
 .dashboard-stat-icon {
   position: absolute;
   z-index: 3;
+
   right: 22px;
   bottom: 20px;
+
   width: 38px;
   height: 38px;
-  border-radius: 11px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 11px;
+
   background: #eaf7f4;
   color: #269e91;
+
   font-size: 17px;
 }
-
 
 .failed-card .dashboard-stat-icon {
   background: #fff0f0;
@@ -100,22 +109,36 @@
 
 
 /* =========================================================
-   GRID
+   MAIN GRIDS
 ========================================================= */
 
 .dashboard-grid-two {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
-  margin-bottom: 20px;
-}
 
+  margin-bottom: 20px;
+
+  align-items: start;
+}
 
 .dashboard-grid-three {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 0.95fr)
+    minmax(0, 1.05fr);
+
   gap: 20px;
+
   margin-bottom: 20px;
+
+  /*
+    مهم جدًا:
+    يمنع Reviews و System Overview من التمدد
+    لنفس ارتفاع Wallet
+  */
+  align-items: start;
 }
 
 
@@ -124,49 +147,56 @@
 ========================================================= */
 
 .dashboard-panel {
+  width: 100%;
+  min-width: 0;
+
+  padding: 26px 28px;
+  box-sizing: border-box;
+
   background: #ffffff;
   border: 1px solid #e0efed;
   border-radius: 20px;
-  padding: 26px 28px;
-  box-sizing: border-box;
 }
-
 
 .dashboard-panel-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
   margin-bottom: 25px;
 }
 
-
 .dashboard-panel-header h2 {
   margin: 0 0 7px;
+
+  color: #092b31;
+
   font-size: 18px;
   font-weight: 600;
-  color: #092b31;
 }
-
 
 .dashboard-panel-header p {
   margin: 0;
+
   color: #779196;
   font-size: 13px;
 }
 
-
 .panel-icon {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
-  background: #edf8f6;
-  color: #269e91;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 12px;
+
+  background: #edf8f6;
+  color: #269e91;
+
   font-size: 17px;
 }
-
 
 .panel-icon.warning {
   background: #fff5e7;
@@ -175,605 +205,17 @@
 
 
 /* =========================================================
-   USERS
-========================================================= */
-
-.users-overview {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-
-.user-overview-item {
-  min-height: 58px;
-  border-bottom: 1px solid #e9f1f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.user-overview-item:last-child {
-  border-bottom: none;
-}
-
-
-.user-overview-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #51757b;
-  font-size: 14px;
-}
-
-
-.user-overview-item strong {
-  font-size: 16px;
-  color: #092b31;
-}
-
-
-.user-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.user-icon.freelancer {
-  background: #edf8f6;
-  color: #279f92;
-}
-
-
-.user-icon.client {
-  background: #fff5e5;
-  color: #e6a029;
-}
-
-
-.user-icon.employee {
-  background: #eef2ff;
-  color: #6877c9;
-}
-
-
-.user-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 18px;
-  padding-top: 17px;
-  border-top: 1px solid #e8f0ef;
-}
-
-
-.user-summary div {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-
-.user-summary span {
-  font-size: 12px;
-  color: #789095;
-}
-
-
-.user-summary strong {
-  font-size: 18px;
-  color: #092b31;
-}
-
-
-.success-text {
-  color: #2ba67f !important;
-}
-
-
-.danger-text {
-  color: #ef4b4b !important;
-}
-
-
-/* =========================================================
-   PROJECT LEVELS
-========================================================= */
-
-.project-levels {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-
-.level-row {
-  position: relative;
-}
-
-
-.level-row-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 9px;
-}
-
-
-.level-name {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #4d7379;
-  font-size: 14px;
-}
-
-
-.level-name strong {
-  color: #092b31;
-}
-
-
-.level-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.level-icon.junior {
-  background: #fff3df;
-  color: #e79b2d;
-}
-
-
-.level-icon.middle {
-  background: #eaf7f5;
-  color: #289f92;
-}
-
-
-.level-icon.expert {
-  background: #edf8f2;
-  color: #4eb68b;
-}
-
-
-.level-row-top strong {
-  color: #092b31;
-  font-size: 16px;
-}
-
-
-.progress-track {
-  height: 7px;
-  background: #e5f2f0;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-
-.progress-fill {
-  height: 100%;
-  border-radius: 20px;
-}
-
-
-.progress-fill.junior {
-  background: #e89b31;
-}
-
-
-.progress-fill.middle {
-  background: #289d91;
-}
-
-
-.progress-fill.expert {
-  background: #4eb68b;
-}
-
-
-.level-percentage {
-  display: block;
-  text-align: right;
-  margin-top: 5px;
-  color: #83989d;
-  font-size: 11px;
-}
-
-
-/* =========================================================
-   CONTRACTS
-========================================================= */
-
-.status-list {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.status-item {
-  min-height: 48px;
-  border-bottom: 1px solid #e9f1f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.status-item:last-child {
-  border-bottom: none;
-}
-
-
-.status-item-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #55777c;
-  font-size: 13px;
-}
-
-
-.status-item > strong {
-  font-size: 16px;
-  color: #092b31;
-}
-
-
-.status-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.status-icon.draft {
-  background: #f0f3f4;
-  color: #789095;
-}
-
-
-.status-icon.accepted_pending_fund {
-  background: #fff5e5;
-  color: #e5a02c;
-}
-
-
-.status-icon.active {
-  background: #eaf7f5;
-  color: #279e91;
-}
-
-
-.status-icon.completed {
-  background: #eaf8f1;
-  color: #2eab7d;
-}
-
-
-.status-icon.cancelled {
-  background: #fff0f0;
-  color: #ef4b4b;
-}
-
-
-/* =========================================================
-   OFFERS
-========================================================= */
-
-.offer-main {
-  background: #edf8f6;
-  border-radius: 14px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 17px;
-}
-
-
-.offer-main strong {
-  font-size: 31px;
-  line-height: 1;
-  color: #0b363d;
-  margin-bottom: 6px;
-}
-
-
-.offer-main span {
-  font-size: 13px;
-  color: #66848a;
-}
-
-
-.offer-items {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.offer-item {
-  min-height: 43px;
-  border-bottom: 1px solid #e9f1f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.offer-item:last-child {
-  border-bottom: none;
-}
-
-
-.offer-item-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: #59777c;
-}
-
-
-.offer-item > strong {
-  color: #092b31;
-  font-size: 15px;
-}
-
-
-.offer-icon {
-  width: 27px;
-  height: 27px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.offer-icon.pending {
-  background: #fff5e5;
-  color: #e6a02e;
-}
-
-
-.offer-icon.accepted {
-  background: #eaf8f1;
-  color: #2daa7e;
-}
-
-
-.offer-icon.rejected {
-  background: #fff0f0;
-  color: #ef4b4b;
-}
-
-
-/* =========================================================
-   WALLET
-========================================================= */
-
-.wallet-card {
-  min-height: 150px;
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    #edf9f6,
-    #f8fcfb
-  );
-  border: 1px solid #dfeeea;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  box-sizing: border-box;
-}
-
-
-.wallet-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: #ffffff;
-  color: #279e91;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 21px;
-  box-shadow: 0 5px 15px rgba(37, 120, 110, 0.07);
-}
-
-
-.wallet-info {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.wallet-info span {
-  color: #66848a;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-
-.wallet-info strong {
-  color: #092b31;
-  font-size: 27px;
-  margin-bottom: 4px;
-}
-
-
-.wallet-info small {
-  color: #799197;
-  font-size: 12px;
-}
-
-
-/* =========================================================
-   REVIEWS
-========================================================= */
-
-.review-content {
-  min-height: 150px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-
-.review-big-number {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: #edf8f6;
-  color: #269e91;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  font-weight: 700;
-}
-
-
-.review-details {
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-}
-
-
-.review-details > span {
-  color: #66848a;
-  font-size: 13px;
-}
-
-
-.rating {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: #e6a02e;
-}
-
-
-.rating strong {
-  color: #092b31;
-  font-size: 17px;
-}
-
-
-/* =========================================================
-   SYSTEM ATTENTION
-========================================================= */
-
-.attention-content {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.attention-item {
-  min-height: 55px;
-  border-bottom: 1px solid #e9f1f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.attention-item:last-child {
-  border-bottom: none;
-}
-
-
-.attention-left {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-
-
-.attention-left > div {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-
-.attention-left strong {
-  font-size: 13px;
-  color: #092b31;
-}
-
-
-.attention-left span {
-  font-size: 11px;
-  color: #81969a;
-}
-
-
-.attention-icon {
-  width: 31px;
-  height: 31px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.attention-icon.reports {
-  background: #fff5e5;
-  color: #e6a02e;
-}
-
-
-.attention-icon.suspended {
-  background: #edf8f6;
-  color: #269e91;
-}
-
-
-.attention-icon.projects {
-  background: #eef2ff;
-  color: #6d7ac7;
-}
-
-
-.danger-number {
-  color: #ef4b4b;
-  font-size: 17px;
-}
-
-
-.success-number {
-  color: #2da77e;
-  font-size: 17px;
-}
-
-/* =========================================================
-   STATISTICS CHARTS
+   USERS CHART
 ========================================================= */
 
 .statistics-chart-section {
+  min-height: 230px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 55px;
-  min-height: 230px;
 }
 
 
@@ -783,17 +225,22 @@
 
 .donut-chart {
   position: relative;
+
   width: 175px;
   height: 175px;
-  border-radius: 50%;
+
   flex-shrink: 0;
+
+  border-radius: 50%;
 }
 
 .donut-chart::before,
 .contract-donut::before {
   content: "";
+
   position: absolute;
   inset: 25px;
+
   background: #ffffff;
   border-radius: 50%;
 }
@@ -806,23 +253,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex-direction: column;
 }
 
 .donut-center strong {
-  font-size: 30px;
   color: #092b31;
+
+  font-size: 30px;
   line-height: 1;
 }
 
 .donut-center span {
   margin-top: 6px;
-  font-size: 12px;
+
   color: #789095;
+  font-size: 12px;
 }
-
-
-/* USERS DONUT */
 
 .users-chart {
   background:
@@ -841,21 +288,26 @@
 .chart-legend {
   display: flex;
   flex-direction: column;
+
   gap: 17px;
 }
 
 .legend-item {
+  min-width: 120px;
+
   display: flex;
   align-items: center;
+
   gap: 10px;
-  min-width: 120px;
 }
 
 .legend-dot {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
+
   flex-shrink: 0;
+
+  border-radius: 50%;
 }
 
 .legend-dot.freelancer {
@@ -888,11 +340,54 @@
 
 
 /* =========================================================
+   USER SUMMARY
+========================================================= */
+
+.user-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 18px;
+  padding-top: 17px;
+
+  border-top: 1px solid #e8f0ef;
+}
+
+.user-summary div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.user-summary span {
+  color: #789095;
+  font-size: 12px;
+}
+
+.user-summary strong {
+  color: #092b31;
+  font-size: 18px;
+}
+
+.success-text {
+  color: #2ba67f !important;
+}
+
+.danger-text {
+  color: #ef4b4b !important;
+}
+
+
+/* =========================================================
    PROJECT CHART
 ========================================================= */
 
 .project-chart {
   min-height: 230px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -916,17 +411,16 @@
 }
 
 .project-total strong {
-  font-size: 28px;
   color: #092b31;
+  font-size: 28px;
 }
-
 
 .project-bars {
   display: flex;
   flex-direction: column;
+
   gap: 22px;
 }
-
 
 .project-bar-item {
   width: 100%;
@@ -936,6 +430,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 8px;
 }
 
@@ -951,10 +446,47 @@
 
 .project-bar-item small {
   display: block;
-  text-align: right;
+
   margin-top: 5px;
+
+  text-align: right;
+
   color: #83989d;
   font-size: 11px;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-track {
+  width: 100%;
+  height: 7px;
+
+  background: #e5f2f0;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+}
+
+.progress-fill.junior {
+  background: #e89b31;
+}
+
+.progress-fill.middle {
+  background: #289d91;
+}
+
+.progress-fill.expert {
+  background: #4eb68b;
 }
 
 
@@ -1026,11 +558,12 @@
 ========================================================= */
 
 .offers-chart {
+  min-height: 245px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  min-height: 245px;
   gap: 27px;
 }
 
@@ -1058,9 +591,10 @@
 
 .offer-chart-item small {
   display: block;
-  text-align: right;
 
   margin-top: 5px;
+
+  text-align: right;
 
   color: #83989d;
   font-size: 11px;
@@ -1078,93 +612,167 @@
   background: #ef4b4b;
 }
 
+.progress-fill.offer-canceled {
+  background: #9aabb0;
+}
+
 
 /* =========================================================
-   BOTTOM PANELS
+   WALLET
 ========================================================= */
 
-.dashboard-grid-three {
+.wallet-summary-grid {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-top: 4px;
 }
 
+.wallet-summary-item {
+  min-width: 0;
+  min-height: 125px;
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+  padding: 20px;
 
-@media (max-width: 1100px) {
-
-  .statistics-chart-section {
-    gap: 30px;
-  }
-
-  .contract-chart {
-    gap: 25px;
-  }
-
-  .dashboard-grid-three {
-    grid-template-columns: 1fr 1fr;
-  }
-
-}
-
-
-@media (max-width: 850px) {
-
-  .dashboard-grid-two {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-grid-three {
-    grid-template-columns: 1fr;
-  }
-
-  .statistics-chart-section {
-    justify-content: flex-start;
-  }
-
-}
-
-
-@media (max-width: 550px) {
-
-  .statistics-chart-section {
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .contract-chart {
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .donut-chart,
-  .contract-donut {
-    width: 150px;
-    height: 150px;
-  }
-
-}
-.access-denied {
-  min-height: 70vh;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
+  background: #f8fcfb;
+  border: 1px solid #e2efed;
+  border-radius: 16px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.wallet-summary-item:hover {
+  transform: translateY(-2px);
+
+  border-color: #cfe7e3;
+
+  box-shadow:
+    0 8px 22px rgba(20, 90, 82, 0.06);
+}
+
+.wallet-summary-top {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+}
+
+.wallet-summary-top span {
+  color: #66848a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.wallet-summary-icon {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  text-align: center;
+  border-radius: 9px;
 
-  padding: 40px;
+  background: #edf8f6;
+  color: #279e91;
+
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.access-denied-icon {
-  width: 80px;
-  height: 80px;
+.wallet-summary-item > strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #092b31;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  line-height: 1.15;
+}
+
+.wallet-summary-item small {
+  display: block;
+
+  color: #83989d;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.wallet-summary-item.deposit {
+  background: #f8fcfb;
+}
+
+.wallet-summary-item.deposit .wallet-summary-icon {
+  background: #edf8f6;
+  color: #279e91;
+}
+
+.wallet-summary-item.escrow {
+  background: #f1faf8;
+}
+
+.wallet-summary-item.escrow .wallet-summary-icon {
+  background: #e3f5f1;
+  color: #279e91;
+}
+
+.wallet-summary-item.release {
+  background: #f7fbf9;
+}
+
+.wallet-summary-item.release .wallet-summary-icon {
+  background: #eaf8f1;
+  color: #2eab7d;
+}
+
+.wallet-summary-item.fee {
+  background: #fffaf0;
+}
+
+.wallet-summary-item.fee .wallet-summary-icon {
+  background: #fff3dc;
+  color: #e5a02c;
+}
+
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+.review-content {
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+.review-big-number {
+  width: 110px;
+  height: 110px;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -1172,80 +780,173 @@
 
   border-radius: 50%;
 
-  background: #fff1f2;
+  background: #edf8f6;
+  color: #269e91;
 
-  font-size: 36px;
-
-  margin-bottom: 24px;
-}
-
-.access-denied h1 {
-  margin: 0 0 12px;
-
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 700;
-
-  color: #1f2937;
 }
 
-.access-denied p {
-  margin: 0 0 8px;
+.review-details {
+  display: flex;
+  flex-direction: column;
 
-  font-size: 16px;
-
-  color: #4b5563;
+  gap: 13px;
 }
 
-.access-denied span {
-  font-size: 14px;
-
-  color: #9ca3af;
+.review-details > span {
+  color: #66848a;
+  font-size: 13px;
 }
-/* =========================================
-   MOST REQUESTED SKILLS
-========================================= */
+
+.rating {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #e6a02e;
+}
+
+.rating strong {
+  color: #092b31;
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   SYSTEM OVERVIEW
+========================================================= */
+
+.attention-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.attention-item {
+  min-height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #e9f1f0;
+}
+
+.attention-item:last-child {
+  border-bottom: none;
+}
+
+.attention-left {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.attention-left > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.attention-left strong {
+  color: #092b31;
+  font-size: 13px;
+}
+
+.attention-left span {
+  color: #81969a;
+  font-size: 11px;
+}
+
+.attention-icon {
+  width: 31px;
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+}
+
+.attention-icon.reports {
+  background: #fff5e5;
+  color: #e6a02e;
+}
+
+.attention-icon.suspended {
+  background: #edf8f6;
+  color: #269e91;
+}
+
+.attention-icon.projects {
+  background: #eef2ff;
+  color: #6d7ac7;
+}
+
+.danger-number {
+  color: #ef4b4b;
+  font-size: 17px;
+}
+
+.success-number {
+  color: #2da77e;
+  font-size: 17px;
+}
+
 
 /* =========================================================
    MOST REQUESTED SKILLS
 ========================================================= */
 
 .dashboard-skills-panel {
-  grid-column: 1 / -1;
   width: 100%;
   min-width: 0;
+
+  margin-bottom: 20px;
+
+  /*
+    مستقل عن dashboard-grid-three
+    ويأخذ العرض كامل
+  */
+  display: block;
 }
 
-
-/* =========================================================
-   SKILLS GRID
-========================================================= */
+.dashboard-skills-panel .dashboard-panel-header {
+  margin-bottom: 22px;
+}
 
 .requested-skills {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
   gap: 14px;
 }
 
-
-/* =========================================================
-   SKILL CARD
-========================================================= */
-
 .requested-skill-item {
   min-width: 0;
-  min-height: 105px;
+  min-height: 118px;
 
-  padding: 16px 17px;
+  padding: 17px;
+
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  box-sizing: border-box;
+  background: #fbfefd;
 
-  background: #ffffff;
-
-  border: 1px solid #e3efed;
+  border: 1px solid #e2efed;
   border-radius: 15px;
 
   transition:
@@ -1257,30 +958,21 @@
 .requested-skill-item:hover {
   transform: translateY(-2px);
 
-  border-color: #c8e4df;
+  border-color: #bfe1db;
 
   box-shadow:
-    0 8px 22px rgba(20, 90, 82, 0.06);
+    0 8px 22px rgba(20, 90, 82, 0.07);
 }
-
-
-/* =========================================================
-   TOP
-========================================================= */
 
 .requested-skill-left {
   width: 100%;
+  min-width: 0;
 
   display: flex;
   align-items: center;
 
   gap: 11px;
 }
-
-
-/* =========================================================
-   RANK
-========================================================= */
 
 .requested-skill-rank {
   width: 32px;
@@ -1301,11 +993,6 @@
   font-weight: 700;
 }
 
-
-/* =========================================================
-   SKILL INFO
-========================================================= */
-
 .requested-skill-info {
   min-width: 0;
 
@@ -1315,11 +1002,12 @@
   gap: 4px;
 }
 
-
 .requested-skill-info strong {
   display: block;
 
   max-width: 100%;
+
+  overflow: hidden;
 
   color: #092b31;
 
@@ -1327,38 +1015,33 @@
   font-weight: 600;
 
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
 .requested-skill-info span {
   color: #83989d;
-
   font-size: 11px;
 }
-
-
-/* =========================================================
-   BOTTOM COUNT
-========================================================= */
 
 .requested-skill-count {
   margin-top: 13px;
 
   color: #092b31;
 
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 700;
+
   line-height: 1;
 }
 
 
 /* =========================================================
-   EMPTY
+   EMPTY SKILLS
 ========================================================= */
 
 .requested-skills-empty {
+  grid-column: 1 / -1;
+
   min-height: 180px;
 
   display: flex;
@@ -1370,7 +1053,6 @@
   text-align: center;
 }
 
-
 .requested-skills-empty-icon {
   width: 52px;
   height: 52px;
@@ -1379,6 +1061,8 @@
   align-items: center;
   justify-content: center;
 
+  margin-bottom: 14px;
+
   border-radius: 14px;
 
   background: #edf8f6;
@@ -1386,18 +1070,14 @@
 
   font-size: 22px;
   font-weight: 600;
-
-  margin-bottom: 14px;
 }
-
 
 .requested-skills-empty strong {
+  margin-bottom: 6px;
+
   color: #092b31;
   font-size: 14px;
-
-  margin-bottom: 6px;
 }
-
 
 .requested-skills-empty span {
   max-width: 300px;
@@ -1410,59 +1090,142 @@
 
 
 /* =========================================================
-   RESPONSIVE
+   ACCESS DENIED
 ========================================================= */
 
-@media (max-width: 1100px) {
+.access-denied {
+  min-height: 70vh;
 
-  .requested-skills {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+  display: flex;
+  flex-direction: column;
 
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  text-align: center;
+}
+
+.access-denied-icon {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 24px;
+
+  border-radius: 50%;
+
+  background: #fff1f2;
+
+  font-size: 36px;
+}
+
+.access-denied h1 {
+  margin: 0 0 12px;
+
+  color: #1f2937;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.access-denied p {
+  margin: 0 0 8px;
+
+  color: #4b5563;
+
+  font-size: 16px;
+}
+
+.access-denied span {
+  color: #9ca3af;
+  font-size: 14px;
 }
 
 
-@media (max-width: 850px) {
-
-  .requested-skills {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 650px) {
-
-  .requested-skills {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 450px) {
-
-  .requested-skills {
-    grid-template-columns: 1fr;
-  }
-
-}
 /* =========================================================
-   RESPONSIVE
+   ERROR
+========================================================= */
+
+.error-message {
+  width: 100%;
+
+  margin-bottom: 20px;
+  padding: 14px 18px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ffd7d7;
+  border-radius: 12px;
+
+  background: #fff6f6;
+  color: #d64545;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1200
 ========================================================= */
 
 @media (max-width: 1200px) {
 
   .dashboard-stats {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .dashboard-grid-three {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-skills-panel {
+    grid-column: 1 / -1;
+  }
+
+  .requested-skills {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+  .statistics-chart-section {
+    gap: 30px;
+  }
+
+  .contract-chart {
+    gap: 25px;
   }
 
 }
 
+
+/* =========================================================
+   RESPONSIVE — 950
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .requested-skills {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .dashboard-grid-three {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 850
+========================================================= */
 
 @media (max-width: 850px) {
 
@@ -1472,13 +1235,69 @@
   }
 
   .dashboard-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .statistics-chart-section {
+    justify-content: flex-start;
+  }
+
+  .dashboard-skills-panel {
+    grid-column: auto;
   }
 
 }
 
 
-@media (max-width: 600px) {
+/* =========================================================
+   RESPONSIVE — 650
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .requested-skills {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .statistics-chart-section {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .contract-chart {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .donut-chart,
+  .contract-donut {
+    width: 150px;
+    height: 150px;
+  }
+
+  .user-summary {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .review-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 550
+========================================================= */
+
+@media (max-width: 550px) {
 
   .dashboard-page {
     padding: 5px 0 30px;
@@ -1493,14 +1312,48 @@
     padding: 21px;
   }
 
-  .user-summary {
+  .wallet-summary-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
 
-  .review-content {
-    flex-direction: column;
-    align-items: flex-start;
+  .wallet-summary-item {
+    min-height: 110px;
+  }
+
+  .requested-skills {
+    grid-template-columns: 1fr;
+  }
+
+  .requested-skill-item {
+    min-height: 105px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .dashboard-panel-header h2 {
+    font-size: 17px;
+  }
+
+  .dashboard-panel-header p {
+    font-size: 12px;
+  }
+
+  .wallet-summary-item > strong {
+    font-size: 24px;
+  }
+
+  .review-big-number {
+    width: 95px;
+    height: 95px;
+
+    font-size: 30px;
   }
 
 }

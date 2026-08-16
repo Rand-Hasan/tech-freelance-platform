@@ -335,70 +335,115 @@ export default function Statistics() {
   // Contracts
   // =========================
 
-  const contractStatuses = [
-    {
-      key: "draft",
-      label: "Draft",
-      value:
-        contracts.by_status?.draft || 0,
-    },
-    {
-      key: "accepted_pending_fund",
-      label: "Pending Fund",
-      value:
-        contracts.by_status
-          ?.accepted_pending_fund || 0,
-    },
-    {
-      key: "active",
-      label: "Active",
-      value:
-        contracts.by_status?.active || 0,
-    },
-    {
-      key: "completed",
-      label: "Completed",
-      value:
-        contracts.by_status?.completed || 0,
-    },
-    {
-      key: "cancelled",
-      label: "Cancelled",
-      value:
-        contracts.by_status?.cancelled || 0,
-    },
-  ];
+ const contractStatuses = [
+  {
+    key: "draft",
+    label: "Draft",
+    value: contracts.by_status?.draft || 0,
+  },
+  {
+    key: "accepted_pending_fund",
+    label: "Pending Fund",
+    value: contracts.by_status?.accepted_pending_fund || 0,
+  },
+  {
+    key: "active",
+    label: "Active",
+    value: contracts.by_status?.active || 0,
+  },
+  {
+    key: "completed",
+    label: "Completed",
+    value: contracts.by_status?.completed || 0,
+  },
+  {
+    key: "cancelled",
+    label: "Cancelled",
+    value: contracts.by_status?.cancelled || 0,
+  },
+  {
+    key: "disputed",
+    label: "Disputed",
+    value: contracts.by_status?.disputed || 0,
+  },
+];
 
   // =========================
   // Offers
   // =========================
 
- const offerStatuses = [
-  {
-    key: "pending",
-    label: "Pending",
-    value: offers.by_status?.pending || 0,
-  },
-  {
-    key: "accepted",
-    label: "Accepted",
-    value: offers.by_status?.accepted || 0,
-  },
-  {
-    key: "rejected",
-    label: "Rejected",
-    value: offers.by_status?.rejected || 0,
-  },
-  {
-    key: "canceled",
-    label: "Canceled",
-    value: offers.by_status?.canceled || 0,
-  },
-];
-/////skilees////
-const mostRequestedSkills =
-  overview?.most_requested_skills || [];
-/////
+  const offerStatuses = [
+    {
+      key: "pending",
+      label: "Pending",
+      value: offers.by_status?.pending || 0,
+    },
+    {
+      key: "accepted",
+      label: "Accepted",
+      value: offers.by_status?.accepted || 0,
+    },
+    {
+      key: "rejected",
+      label: "Rejected",
+      value: offers.by_status?.rejected || 0,
+    },
+    {
+      key: "canceled",
+      label: "Canceled",
+      value: offers.by_status?.canceled || 0,
+    },
+  ];
+
+  // =========================
+  // Most Requested Skills
+  // =========================
+
+  const mostRequestedSkills =
+    overview?.most_requested_skills || [];
+
+  // =========================
+  // Wallet Summary
+  // =========================
+
+  const walletItems = [
+    {
+      key: "deposit",
+      label: "Deposits",
+      value:
+        walletSummary?.deposit?.total || 0,
+      count:
+        walletSummary?.deposit?.count || 0,
+      className: "deposit",
+    },
+    {
+      key: "escrow_hold",
+      label: "Escrow Hold",
+      value:
+        walletSummary?.escrow_hold?.total || 0,
+      count:
+        walletSummary?.escrow_hold?.count || 0,
+      className: "escrow",
+    },
+    {
+      key: "escrow_release",
+      label: "Escrow Release",
+      value:
+        walletSummary?.escrow_release?.total || 0,
+      count:
+        walletSummary?.escrow_release?.count || 0,
+      className: "release",
+    },
+    {
+      key: "platform_fee",
+      label: "Platform Fee",
+      value:
+        walletSummary?.platform_fee?.total || 0,
+      count:
+        walletSummary?.platform_fee?.count || 0,
+      className: "fee",
+    },
+  ];
 
   // =========================
   // Render
@@ -989,44 +1034,50 @@ const mostRequestedSkills =
               </h2>
 
               <p>
-                Escrow balance
+                Wallet transactions summary
               </p>
 
             </div>
 
           </div>
 
-          <div className="wallet-card">
+          <div className="wallet-summary-grid">
 
-            <div className="wallet-icon">
-              $
-            </div>
+            {walletItems.map(
+              (item) => (
+                <div
+                  className={`wallet-summary-item ${item.className}`}
+                  key={item.key}
+                >
 
-            <div className="wallet-info">
+                  <div className="wallet-summary-top">
 
-              <span>
-                Escrow Hold
-              </span>
+                    <div className="wallet-summary-icon">
+                      $
+                    </div>
 
-              <strong>
-                $
-                {Number(
-                  walletSummary
-                    ?.escrow_hold
-                    ?.total || 0
-                ).toLocaleString(
-                  "en-US"
-                )}
-              </strong>
+                    <span>
+                      {item.label}
+                    </span>
 
-              <small>
-                {walletSummary
-                  ?.escrow_hold
-                  ?.count || 0}{" "}
-                transactions
-              </small>
+                  </div>
 
-            </div>
+                  <strong>
+                    $
+                    {Number(
+                      item.value
+                    ).toLocaleString(
+                      "en-US"
+                    )}
+                  </strong>
+
+                  <small>
+                    {item.count} transactions
+                  </small>
+
+                </div>
+              )
+            )}
 
           </div>
 
@@ -1084,6 +1135,7 @@ const mostRequestedSkills =
           </div>
 
         </div>
+
         {/* SYSTEM */}
 
         <div className="dashboard-panel">
@@ -1105,8 +1157,27 @@ const mostRequestedSkills =
           </div>
 
           <div className="attention-content">
+<div className="attention-item">
+  <div className="attention-left">
+    <div className="attention-icon reports">
+      !
+    </div>
 
+    <div>
+      <strong>
+        Pending Reports
+      </strong>
 
+      <span>
+        Reports awaiting review
+      </span>
+    </div>
+  </div>
+
+  <strong className="danger-number">
+    {reports.pending || 0}
+  </strong>
+</div>
             <div className="attention-item">
 
               <div className="attention-left">
@@ -1166,69 +1237,94 @@ const mostRequestedSkills =
           </div>
 
         </div>
-{/* =========================
-    MOST REQUESTED SKILLS
-========================= */}
-
-<div className="dashboard-panel dashboard-skills-panel">
-
-  <div className="dashboard-panel-header">
-
-    <div>
-
-      <h2>
-        Most Requested Skills
-      </h2>
-
-      <p>
-        Skills requested most frequently in projects
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div className="requested-skills">
-{mostRequestedSkills.map((skill, index) => (
-
-  <div
-    className="requested-skill-item"
-    key={skill.skill_id || index}
-  >
-
-    <div className="requested-skill-left">
-
-      <span className="requested-skill-rank">
-        {index + 1}
-      </span>
-
-      <div className="requested-skill-info">
-
-        <strong>
-          {skill.skill_name || "Unknown Skill"}
-        </strong>
-
-        <span>
-          {skill.usage_count || 0} requests
-        </span>
 
       </div>
 
-    </div>
+      {/* =========================
+          MOST REQUESTED SKILLS
+      ========================= */}
 
-    <strong className="requested-skill-count">
-      {skill.usage_count || 0}
-    </strong>
+      <div className="dashboard-panel dashboard-skills-panel">
 
-  </div>
+        <div className="dashboard-panel-header">
 
-))}
+          <div>
 
-  </div>
+            <h2>
+              Most Requested Skills
+            </h2>
 
-</div>
-        
+            <p>
+              Skills requested most frequently in projects
+            </p>
+
+          </div>
+
+        </div>
+
+        <div className="requested-skills">
+
+          {mostRequestedSkills.length > 0 ? (
+
+            mostRequestedSkills.map(
+              (skill, index) => (
+
+                <div
+                  className="requested-skill-item"
+                  key={skill.skill_id || index}
+                >
+
+                  <div className="requested-skill-left">
+
+                    <span className="requested-skill-rank">
+                      {index + 1}
+                    </span>
+
+                    <div className="requested-skill-info">
+
+                      <strong>
+                        {skill.skill_name ||
+                          "Unknown Skill"}
+                      </strong>
+
+                      <span>
+                        {skill.usage_count || 0} requests
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <strong className="requested-skill-count">
+                    {skill.usage_count || 0}
+                  </strong>
+
+                </div>
+
+              )
+            )
+
+          ) : (
+
+            <div className="requested-skills-empty">
+
+              <div className="requested-skills-empty-icon">
+                —
+              </div>
+
+              <strong>
+                No requested skills yet
+              </strong>
+
+              <span>
+                There are no skill requests available at the moment.
+              </span>
+
+            </div>
+
+          )}
+
+        </div>
 
       </div>
 
