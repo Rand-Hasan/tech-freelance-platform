@@ -1295,9 +1295,9 @@ export default function Statistics() {
 
                   </div>
 
-                  <strong className="requested-skill-count">
+                  {/* <strong className="requested-skill-count">
                     {skill.usage_count || 0}
-                  </strong>
+                  </strong> */}
 
                 </div>
 
