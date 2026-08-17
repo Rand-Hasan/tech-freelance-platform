@@ -322,31 +322,24 @@ export default function AdminOffers() {
   // =========================
   // Status Class
   // =========================
+function getStatusClass(status) {
+  switch (status) {
+    case "pending":
+      return "admin-offers-status-pending";
 
-  function getStatusClass(status) {
+    case "accepted":
+      return "admin-offers-status-accepted";
 
-    switch (status) {
+    case "canceled":
+      return "admin-offers-status-cancelled";
 
-      case "pending":
-        return "admin-offers-status-pending";
+    case "rejected":
+      return "admin-offers-status-rejected";
 
-
-      case "accepted":
-        return "admin-offers-status-accepted";
-
-
-      case "cancelled":
-        return "admin-offers-status-cancelled";
-
-
-      case "rejected":
-        return "admin-offers-status-rejected";
-
-
-      default:
-        return "admin-offers-status-default";
-    }
+    default:
+      return "admin-offers-status-default";
   }
+}
 
 
   // =========================
@@ -406,8 +399,7 @@ export default function AdminOffers() {
           offer.id === offerId
             ? {
                 ...offer,
-                offerStatus:
-                  "cancelled",
+                  offerStatus: "canceled",
               }
             : offer
         )
@@ -718,8 +710,7 @@ export default function AdminOffers() {
 
                         <td>
 
-                          {offer.offerStatus ===
-                          "cancelled" ? (
+                          {offer.offerStatus === "canceled" ? (
 
                             <span className="admin-offers-no-action">
 

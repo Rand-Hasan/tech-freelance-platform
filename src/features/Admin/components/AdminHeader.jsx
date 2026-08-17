@@ -9,6 +9,7 @@ export default function AdminHeader({ setSidebarOpen }) {
   const navigate = useNavigate();
   const pagetitle ={
     "/AdminLayout/Employees": " All Employees",
+        "/AdminLayout/AdminWallet": " Platform Wallet",
     "/AdminLayout/AdminProjects" : "Projects",
     "/AdminLayout/Statistics" : "Statistics" ,
     "/AdminLayout/UsersManagement"   : "UsersManagement" ,

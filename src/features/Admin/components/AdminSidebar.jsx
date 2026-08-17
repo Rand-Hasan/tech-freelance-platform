@@ -78,15 +78,16 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               </span>
             </NavLink>
 
-            <NavLink to="AdminContracts" className="navr-item">
-              <span className="navr-icon">
-                <FiFile />
-              </span>
-              <span className="navr-text">
-                Contracts
-              </span>
-            </NavLink>
+          
+<NavLink to="AdminWallet" className="navr-item">
+  <span className="navr-icon">
+    <FiDollarSign />
+  </span>
 
+  <span className="navr-text">
+    Platform Wallet
+  </span>
+</NavLink>
           </div>
 
           {/* WORKSPACE */}
@@ -122,7 +123,14 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
                 Projects
               </span>
             </NavLink>
-
+  <NavLink to="AdminContracts" className="navr-item">
+              <span className="navr-icon">
+                <FiFile />
+              </span>
+              <span className="navr-text">
+                Contracts
+              </span>
+            </NavLink>
              <NavLink to="AssessmentQuestions" className="navr-item">
               <span className="navr-icon assessment-icon">
                 <BsQuestionLg/> 

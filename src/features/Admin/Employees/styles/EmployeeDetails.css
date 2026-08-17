@@ -11,18 +11,18 @@
    Back Button
 ========================= */
 
-.back-btn {
-  border: none;
-  background: transparent;
-  color: #2fae9b;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 20px;
+.back-btnnn {
+  border: none!important;
+  background: transparent!important;
+  color: #2fae9b!important;
+  font-size: 5px!important;
+  font-weight: 300!important;
+  cursor: pointer!important;
+  padding: 0!important;
+  margin-bottom: 20px!important;
 }
 
-.back-btn:hover {
+.back-btnnn:hover {
   opacity: 0.75;
 }
 
