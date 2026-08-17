@@ -64,7 +64,37 @@ export default function RolesPermissions() {
   // =========================
 
   const [showModal, setShowModal] = useState(false);
+const [editingPosition, setEditingPosition] = useState(null);
+const [positionPermissionKeys, setPositionPermissionKeys] = useState([]);
+const openPositionPermissions = (role) => {
+  setEditingPosition(role);
+  setModalType("position-permissions");
+  setModalError("");
+  setModalSuccess("");
 
+  const currentPermissionKeys =
+    (role.permissions || []).map(
+      (permission) => permission.key
+    );
+
+  setPositionPermissionKeys(
+    currentPermissionKeys
+  );
+
+  setShowModal(true);
+};
+const handlePositionPermissionChange = (permissionKey) => {
+  setPositionPermissionKeys((prev) => {
+    if (prev.includes(permissionKey)) {
+      return prev.filter((key) => key !== permissionKey);
+    }
+
+    return [...prev, permissionKey];
+  });
+
+  setModalError("");
+  setModalSuccess("");
+};
   // role | permission
   const [modalType, setModalType] = useState("role");
 
@@ -351,7 +381,110 @@ export default function RolesPermissions() {
       setLoading(false);
     }
   };
+const updatePositionPermissions = async (e) => {
+  e.preventDefault();
 
+  if (!editingPosition?.id) {
+    setModalError("Position ID is missing.");
+    return;
+  }
+
+  setModalError("");
+  setModalSuccess("");
+
+  try {
+    setSaving(true);
+
+    const payload = {
+      permission_keys: positionPermissionKeys,
+    };
+
+    const response = await axios.post(
+      `${baseURL}${UpdatePositionPermissions}/${editingPosition.id}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log(
+      "Update Position Permissions Response:",
+      response.data
+    );
+
+    // إعادة تحميل الـ Positions
+    const positionsResponse = await axios.get(
+      `${baseURL}${GetPositions}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const positionsData =
+      positionsResponse.data;
+
+    const updatedRoles =
+      positionsData?.positions ||
+      positionsData?.data ||
+      [];
+
+    setRoles(updatedRoles);
+
+    // تحديث الـ Position المفتوح أيضاً
+    const updatedPosition =
+      updatedRoles.find(
+        (position) =>
+          position.id === editingPosition.id
+      );
+
+    if (updatedPosition) {
+      setEditingPosition(updatedPosition);
+
+      setPositionPermissionKeys(
+        (updatedPosition.permissions || []).map(
+          (permission) => permission.key
+        )
+      );
+    }
+
+    setModalSuccess(
+      response.data?.message ||
+        "Position permissions updated successfully"
+    );
+
+    setTimeout(() => {
+      setShowModal(false);
+      setEditingPosition(null);
+      setPositionPermissionKeys([]);
+      setModalSuccess("");
+    }, 1500);
+
+  } catch (error) {
+    console.error(
+      "Update Position Permissions Error:",
+      error
+    );
+
+    if (isPermissionError(error)) {
+      setModalError(
+        "You don't have permission to update position permissions."
+      );
+    } else {
+      setModalError(
+        getErrorMessage(
+          error,
+          "Failed to update position permissions."
+        )
+      );
+    }
+  } finally {
+    setSaving(false);
+  }
+};
   // =========================
   // Icons
   // =========================
@@ -955,10 +1088,12 @@ export default function RolesPermissions() {
           </div>
         ) : (
           roles.map((role) => (
-            <div
-              className="role-item"
-              key={role.id}
-            >
+           <div
+  className="role-item"
+  key={role.id}
+  onClick={() => openPositionPermissions(role)}
+  style={{ cursor: "pointer" }}
+>
 
               <div className="role-left">
 
@@ -1584,7 +1719,104 @@ export default function RolesPermissions() {
 
               </form>
             )}
+{modalType === "position-permissions" && (
+  <form
+    onSubmit={updatePositionPermissions}
+    className="modal-form"
+  >
+    <div className="permissions-header">
+      <div>
+        <label>
+          Edit Permissions
+        </label>
 
+        <small>
+          {editingPosition?.display_name ||
+            editingPosition?.name}
+        </small>
+      </div>
+    </div>
+
+    <div className="permissions-list">
+      {permissions.length === 0 ? (
+        <div className="no-permissions">
+          No permissions found.
+        </div>
+      ) : (
+        permissions.map((permission) => {
+          const permissionKey = permission.key;
+
+          const checked =
+            positionPermissionKeys.includes(
+              permissionKey
+            );
+
+          return (
+            <label
+              className={`permission-item ${
+                checked ? "selected" : ""
+              }`}
+              key={
+                permission.id ||
+                permission.key
+              }
+            >
+              <input
+                type="checkbox"
+                checked={checked}
+                onChange={() =>
+                  handlePositionPermissionChange(
+                    permissionKey
+                  )
+                }
+                disabled={saving}
+              />
+
+              <div>
+                <strong>
+                  {permission.key}
+                </strong>
+
+                <span>
+                  {permission.description ||
+                    "No description"}
+                </span>
+              </div>
+            </label>
+          );
+        })
+      )}
+    </div>
+
+    <div className="modal-actions">
+      <button
+        type="button"
+        className="cancel-btn"
+        onClick={closeModal}
+        disabled={saving}
+      >
+        Cancel
+      </button>
+
+      <button
+        type="submit"
+        className={`save-btn ${
+          saving ? "loading-btn" : ""
+        }`}
+        disabled={saving}
+      >
+        {saving ? (
+          <>
+            <span className="button-spinner" />
+            Saving...
+          </>
+        ) : (
+          "Save Permissions"
+        )}
+      </button>
+    </div>
+  </form>
+)}
           </div>
 
         </div>
