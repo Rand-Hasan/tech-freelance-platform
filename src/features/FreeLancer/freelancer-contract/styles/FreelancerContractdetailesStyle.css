@@ -195,7 +195,7 @@
   background-color: red;
   color: white;
 }
-.Cancelbtn{
+.Cancelbtncontract{
  width: 40%;
   height: 50px;
   border-radius: 10px;
@@ -206,7 +206,7 @@
   transition: all 0.3s ease-in;
 }
 
-.Cancelbtn:hover{
+.Cancelbtncontract:hover{
   background-color: red;
   color: white;
 }
@@ -1040,4 +1040,174 @@
 
   font-size: 13px;
   font-weight: 600;
+}
+/* =========================================
+   Cancellation Request Card
+========================================= */
+
+.cancel-request-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 18px 0;
+
+    padding: 18px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9e7;
+
+    border-radius: 14px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Header */
+
+.cancel-request-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 13px;
+
+    border-bottom: 1px solid #eef1ef;
+}
+
+
+.cancel-request-header h3 {
+    margin: 0 0 4px 0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #102b2b;
+}
+
+
+.cancel-request-header span {
+    font-size: 12px;
+
+    color: #7a8987;
+}
+
+
+/* Pending badge */
+
+.cancel-request-badge {
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px !important;
+    font-weight: 600;
+
+    color: #8a6500 !important;
+
+    background: #fff7df;
+
+    border: 1px solid #f1dfaa;
+}
+
+
+/* Activity */
+
+.cancel-request-activity {
+    padding: 14px 0;
+}
+
+
+.cancel-request-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #6d7c79;
+}
+
+
+.cancel-request-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.cancel-request-item {
+    padding: 9px 12px;
+
+    background: #f4f7f6;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    color: #263c3a;
+}
+
+
+/* Buttons */
+
+.cancel-request-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #eef1ef;
+}
+
+
+.cancel-request-actions button {
+    height: 34px;
+
+    padding: 0 16px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* Accept */
+
+.cancel-request-accept {
+    border: 1px solid #07866f;
+
+    background: #07866f;
+
+    color: white;
+}
+
+
+.cancel-request-accept:hover {
+    background: #067762;
+}
+
+
+/* Reject */
+
+.cancel-request-reject {
+    border: 1px solid #e3b7b7;
+
+    background: #fff5f5;
+
+    color: #c64a4a;
+}
+
+
+.cancel-request-reject:hover {
+    background: #ffeaea;
 }

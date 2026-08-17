@@ -1,0 +1,210 @@
+/* =========================================
+   MY PROJECTS - FREELANCER
+========================================= */
+
+.my-projects-freelancer {
+    width: 100%;
+    padding: 28px 0 40px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.page-title-freelancer {
+    margin: 0 0 18px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #102a2f;
+}
+
+
+/* =========================================
+   PROJECTS LIST
+========================================= */
+
+.projects-list-freelancer {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+}
+
+
+/* =========================================
+   PROJECT CARD
+========================================= */
+
+.project-card-freelancer {
+    width: 100%;
+    min-height: 100px;
+
+    padding: 24px 30px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5e3;
+    border-radius: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.035);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* Hover */
+
+.project-card-freelancer:hover {
+    /* transform: translateY(-2px); */
+
+    border-color: #c9d9d5;
+
+    box-shadow:
+        0 6px 18px rgba(0, 122, 90, 0.12);
+}
+
+
+/* =========================================
+   PROJECT INFO
+========================================= */
+
+.project-info-freelancer {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+
+.project-info-freelancer h3 {
+    margin: 0;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #102a2f;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
+
+.view-btn-freelancer {
+    min-width: 110px;
+
+    padding: 9px 18px;
+
+    background: #ffffff;
+
+    color: #007a5a;
+
+    border: 1px solid #00866a;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.view-btn-freelancer:hover {
+    background: #007a5a;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.offers-pagination-freelancer {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 38px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .my-projects-freelancer {
+        padding: 22px 0 30px;
+    }
+
+
+    .page-title-freelancer {
+        font-size: 23px;
+        margin-bottom: 16px;
+    }
+
+
+    .projects-list-freelancer {
+        gap: 16px;
+    }
+
+
+    .project-card-freelancer {
+        min-height: 90px;
+
+        padding: 20px;
+
+        border-radius: 14px;
+    }
+
+
+    .project-info-freelancer h3 {
+        font-size: 17px;
+    }
+
+
+    .view-btn-freelancer {
+        min-width: auto;
+
+        padding: 8px 13px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .project-card-freelancer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+
+    .view-btn-freelancer {
+        width: 100%;
+    }
+
+}

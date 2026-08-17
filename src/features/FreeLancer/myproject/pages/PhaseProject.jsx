@@ -38,7 +38,7 @@ export default function PhasesProject(){
             <span>Back to My Projects</span>
         </Link>
 
-        <h2 className="page-title">Project Phases</h2>
+        <h2 className="page-title-phase">Project Phases</h2>
 
         <div className="phases-grid">
 

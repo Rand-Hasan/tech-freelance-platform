@@ -5,3 +5,6 @@ export const DownloadFile="DownloadFile";
 export const AcceptPhase='AcceptPhase';
 export const AddExtraExpires="AddExtraExpires";
 export const RejectPhaseOverDue="RejectPhaseOverDue"
+export const DeletePhase="DeletePhase";
+export const AddPhaseOffer="AddPhaseOffer";
+export const UpdatePhaseOffer="UpdatePhaseOffer"

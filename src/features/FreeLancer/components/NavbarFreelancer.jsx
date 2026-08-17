@@ -9,6 +9,7 @@ import "../styles/NavbarFreelancer.css";
 import axios from "axios";
 import { baseURL } from "../../../services/Api/api";
 import Cookies from "universal-cookie";
+import { SearchProposedProject } from "../services/api-search";
 export default function NavbarFreelancer() {
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -31,11 +32,33 @@ export default function NavbarFreelancer() {
     navigate("/freelancerlayout/showprofile"); 
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log("جاري البحث عن:", searchValue);
-    
-  };
+const handleSearchSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!searchValue.trim()) return;
+
+  try {
+    const res = await axios.get(
+      `${baseURL}${SearchProposedProject}${2}/${3}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          level: "expert",
+          search: searchValue.trim(),
+        },
+      }
+    );
+
+    console.log("jjjjjjjj",res.data.proposed_projects);
+  } catch (error) {
+    console.error(
+      "خطأ أثناء جلب نتائج البحث:",
+      error.response?.data || error.message
+    );
+  }
+};
    const Logout =async ()=>{
     try{
       const res= await axios.post(`${baseURL}`,{},{headers:{Authorization:`Bearer ${token}`}})
@@ -60,16 +83,7 @@ export default function NavbarFreelancer() {
      
       <div className="rightfree">
         
-        {/* <form onSubmit={handleSearchSubmit} className="search-form-free">
-          <SearchIcon className="search-icon-free" />
-          <input 
-            type="text" 
-            placeholder="Search..." 
-            className="search-input-free" 
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-        </form> */}
+      
          <form onSubmit={handleSearchSubmit} className="search-form-free">
   {/* 1. حقل الإدخال النصي */}
   <input 

@@ -92,6 +92,9 @@ export default function TasksandFiles() {
         }
     };
     const AddFile = async () => {
+         if (files.length > 0 || url) {
+        return;
+    }
 
         try {
 
@@ -255,14 +258,14 @@ export default function TasksandFiles() {
 
                     <h2>Project Files</h2>
 
-                    <button
-                        className="add-btn"
-                        onClick={() => setShowFileModal(true)}
-                    >
-                        <FaPlus />
-                        Add File
-                    </button>
-
+                  <button
+    className="add-btn"
+    onClick={() => setShowFileModal(true)}
+    disabled={files.length > 0}
+>
+    <FaPlus />
+    Add File
+</button>
                 </div>
 
 

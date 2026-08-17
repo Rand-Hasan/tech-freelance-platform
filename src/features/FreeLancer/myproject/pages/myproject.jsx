@@ -4,8 +4,9 @@ import { baseURL } from "../../../../services/Api/api";
 import { GetProjectHasContracts } from "../services/api-myproject";
 import Cookies from "universal-cookie";
 import { Pagination } from "@mui/material";
-import '../styles/myproject.css'
+import "../styles/myproject.css";
 import { useNavigate } from "react-router-dom";
+
 export default function MyProject() {
 
     const cookies = new Cookies();
@@ -15,15 +16,19 @@ export default function MyProject() {
     const [totalPage, setTotalPage] = useState(6);
     const [limit] = useState(4);
     const [projects, setProjects] = useState([]);
+
     const navigate = useNavigate();
+
     const handlePageChange = (event, value) => {
         setPage(value);
-    }
+    };
+
     useEffect(() => {
         ShowMyProject(page);
     }, [page]);
 
     const ShowMyProject = async (currentPage) => {
+
         try {
 
             const res = await axios.get(
@@ -35,34 +40,58 @@ export default function MyProject() {
                 }
             );
 
-            setProjects(res.data.projects);
+            setProjects(res.data.projects || []);
 
         } catch (err) {
+
             console.log(err);
+
         }
     };
 
     return (
-        <div className="my-projects">
 
-            <h2 className="page-title">My Projects</h2>
+        <div className="my-projects-freelancer">
 
-            <div className="projects-grid">
+            <h2 className="page-title-freelancer">
+                My Projects
+            </h2>
+
+            <div className="projects-list-freelancer">
 
                 {projects.map((item) => (
-                    <div className="project-card" key={item.id}>
 
-                        <h3>{item.project_name}</h3>
+                    <div
+                        className="project-card-freelancer"
+                        key={item.id}
+                    >
 
-                        <button className="view-btn" onClick={() => navigate(`/freelancerlayout/projectfree/phaseproject/${item.id}`)}>
+                        <div className="project-info-freelancer">
+
+                            <h3>
+                                {item.project_name}
+                            </h3>
+
+                        </div>
+
+                        <button
+                            className="view-btn-freelancer"
+                            onClick={() =>
+                                navigate(
+                                    `/freelancerlayout/projectfree/phaseproject/${item.id}`
+                                )
+                            }
+                        >
                             View Phases
                         </button>
 
                     </div>
+
                 ))}
 
             </div>
-            <div className="offers-pagination">
+
+            <div className="offers-pagination-freelancer">
 
                 <Pagination
                     count={totalPage}
@@ -78,8 +107,6 @@ export default function MyProject() {
                 />
 
             </div>
-
-
 
         </div>
     );

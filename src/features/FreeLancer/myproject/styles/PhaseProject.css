@@ -261,19 +261,66 @@
 }
 
 
+/* Pending - Orange */
 .status.pending {
     background: #fff4d6;
     color: #d97706;
 }
 
+
+/* Completed - Green */
 .status.completed {
     background: #dcfce7;
     color: #15803d;
 }
 
+
+/* In Progress - Blue */
 .status.in_progress {
     background: #dbeafe;
     color: #2563eb;
+}
+
+
+/* In Review - Purple */
+.status.in_review {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+
+/* Approved - Teal */
+.status.approved {
+    background: #ccfbf1;
+    color: #0f766e;
+}
+
+
+/* Overdue - Red */
+.status.overdue {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* New Phase - Cyan */
+.status.new_phase {
+    background: #cffafe;
+    color: #0891b2;
+}
+
+
+/* Failed - Dark Red */
+.status.faild {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+
+/* Paid - Green */
+.status.paid {
+    background: #d1fae5;
+    color: #047857;
 }
 
 /* =========================

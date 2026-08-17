@@ -100,7 +100,7 @@ export default function ProjectDetails() {
         </NavLink>
 
         <NavLink to="progress-monitor" className="tab-link">
-          📈 progress monitor
+          🗑️ FreeLancer Response 
         </NavLink>
 
         <NavLink to="WorkAndCodeReview" className="tab-link">
