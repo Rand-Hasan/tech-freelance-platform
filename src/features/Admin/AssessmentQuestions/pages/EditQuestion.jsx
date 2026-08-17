@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Autocomplete, TextField } from "@mui/material";
 import "../../AssessmentQuestions/styles/EditQuestion.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -7,7 +8,7 @@ import { baseURL } from "../../../../services/Api/api";
 import Loading from "../../../../components/Loading/Loading";
 import {
   GetQuestionById,
-  UpdateQuestion,
+  UpdateQuestion,GetSkills
 } from "../../AssessmentQuestions/services/Questionapi";
 
 export default function EditQuestion() {
@@ -28,6 +29,7 @@ export default function EditQuestion() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+const [skills, setSkills] = useState([]);
 
   function handleChange(e) {
     setData({
@@ -56,16 +58,17 @@ export default function EditQuestion() {
 
       const question = response.data.question;
 
-      setData({
-        level: question.level || "",
-        skill_id: question.skill_id || "",
-        question_text: question.question_text || "",
-        option_a: question.option_a || "",
-        option_b: question.option_b || "",
-        option_c: question.option_c || "",
-        option_d: question.option_d || "",
-        correct_option: question.correct_option || "A",
-      });
+    setData({ 
+  level: question.level || "", 
+  skill_id: question.skill_id || "", 
+  question_text: question.question_text || "", 
+  option_a: question.option_a || "", 
+  option_b: question.option_b || "", 
+  option_c: question.option_c || "", 
+  option_d: question.option_d || "", 
+  correct_option:
+    question.correct_option?.toUpperCase() || "A",
+});
     } catch (err) {
       console.log("FULL ERROR:", err.response?.data);
 
@@ -79,7 +82,29 @@ export default function EditQuestion() {
       setLoading(false);
     }
   }
+async function getSkills() {
+  try {
+    const token = cookies.get("token-employee");
 
+    const response = await axios.get(
+      `${baseURL}${GetSkills}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("SKILLS:", response.data);
+
+    setSkills(response.data.skills || []);
+  } catch (err) {
+    console.log(
+      "SKILLS ERROR:",
+      err.response?.data
+    );
+  }
+}
   async function handleUpdate() {
     try {
       setLoading(true);
@@ -125,9 +150,15 @@ export default function EditQuestion() {
     }
   }
 
-  useEffect(() => {
-    getQuestion();
-  }, [id]);
+ useEffect(() => {
+  getSkills();
+  getQuestion();
+}, [id]);
+const selectedSkill =
+  skills.find(
+    (skill) =>
+      Number(skill.id) === Number(data.skill_id)
+  ) || null;
 
   return (
     <div className="edit-question-page">
@@ -172,17 +203,34 @@ export default function EditQuestion() {
             </select>
           </div>
 
-          <div className="edit-form-group">
-            <label>Skill ID</label>
+         <div className="edit-form-group">
+  <label>Skill</label>
 
-            <input
-              type="number"
-              name="skill_id"
-              value={data.skill_id}
-              onChange={handleChange}
-              placeholder="Enter skill id"
-            />
-          </div>
+<Autocomplete
+  options={skills}
+  value={selectedSkill}
+  getOptionLabel={(option) =>
+    option.skill_name || ""
+  }
+  isOptionEqualToValue={(option, value) =>
+    Number(option.id) === Number(value.id)
+  }
+  onChange={(event, newValue) => {
+    setData((prev) => ({
+      ...prev,
+      skill_id: newValue
+        ? newValue.id
+        : "",
+    }));
+  }}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      placeholder="Select Skill"
+    />
+  )}
+/>
+</div>
 
         </div>
 
