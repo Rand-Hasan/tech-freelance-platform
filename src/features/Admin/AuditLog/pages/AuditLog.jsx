@@ -2,14 +2,6 @@ import "../../AuditLog/styles/AuditLog.css";
 
 import {
   FaHistory,
-  FaUserSlash,
-  FaTimesCircle,
-  FaPauseCircle,
-  FaPlayCircle,
-  FaUserShield,
-  FaUser,
-  FaProjectDiagram,
-  FaFileContract,
   FaChevronLeft,
   FaChevronRight,
   FaSyncAlt,
@@ -89,10 +81,8 @@ export default function AuditLog() {
     // Backend string message
 
     if (
-      typeof backendMessage ===
-      "string"
+      typeof backendMessage === "string"
     ) {
-
       const message =
         backendMessage.toLowerCase();
 
@@ -100,6 +90,8 @@ export default function AuditLog() {
         message.includes("forbidden") ||
         message.includes("missing permission") ||
         message.includes("permission denied") ||
+        message.includes("permission key") ||
+        message.includes("not configured") ||
         message.includes("access denied")
       );
     }
@@ -108,16 +100,14 @@ export default function AuditLog() {
 
     if (
       backendMessage &&
-      typeof backendMessage ===
-      "object"
+      typeof backendMessage === "object"
     ) {
 
       const objectMessage =
         backendMessage.message;
 
       if (
-        typeof objectMessage ===
-        "string"
+        typeof objectMessage === "string"
       ) {
 
         const message =
@@ -224,15 +214,24 @@ export default function AuditLog() {
             },
           }
         );
-console.log("AUDIT LOGS RESPONSE:", response.data);
-console.log(
-  "LOGS COUNT:",
-  response.data?.logs?.length
-);
-console.log(
-  "LOG IDS:",
-  response.data?.logs?.map((log) => log.id)
-);
+
+      console.log(
+        "AUDIT LOGS RESPONSE:",
+        response.data
+      );
+
+      console.log(
+        "LOGS COUNT:",
+        response.data?.logs?.length
+      );
+
+      console.log(
+        "LOG IDS:",
+        response.data?.logs?.map(
+          (log) => log.id
+        )
+      );
+
       console.log(
         "AUDIT LOGS RESPONSE:",
         response.data
@@ -308,126 +307,25 @@ console.log(
   }, [page]);
 
   // =========================================
-  // Action Config
+  // Parse Metadata
   // =========================================
 
-  const getActionConfig = (
-    action
+  const parseMetadata = (
+    metadata
   ) => {
 
-    switch (action) {
-
-      case "user.ban":
-
-        return {
-          title: "User Banned",
-          icon: <FaUserSlash />,
-          className:
-            "audit-action-danger",
-          label: "BAN",
-        };
-
-      case "user.unban":
-
-        return {
-          title: "User Activated",
-          icon: <FaUser />,
-          className:
-            "audit-action-success",
-          label: "UNBAN",
-        };
-
-      case "offer.cancel":
-
-        return {
-          title: "Offer Canceled",
-          icon: <FaTimesCircle />,
-          className:
-            "audit-action-warning",
-          label: "CANCEL",
-        };
-
-      case "project.suspend":
-
-        return {
-          title: "Project Suspended",
-          icon: <FaPauseCircle />,
-          className:
-            "audit-action-warning",
-          label: "SUSPEND",
-        };
-
-      case "project.unsuspend":
-
-        return {
-          title: "Project Activated",
-          icon: <FaPlayCircle />,
-          className:
-            "audit-action-success",
-          label: "UNSUSPEND",
-        };
-
-      default:
-
-        return {
-          title: action,
-          icon: <FaHistory />,
-          className:
-            "audit-action-default",
-          label: action,
-        };
-    }
-  };
-
-  // =========================================
-  // Actor
-  // =========================================
-
-  const getActorName = (
-    position,
-    id
-  ) => {
-
-    if (
-      position ===
-      "super_admin"
-    ) {
-
-      return `Super Admin #${id}`;
+    if (!metadata) {
+      return null;
     }
 
-    if (
-      position ===
-      "support_officer"
-    ) {
+    try {
 
-      return `Support Officer #${id}`;
+      return JSON.parse(metadata);
+
+    } catch {
+
+      return null;
     }
-
-    return `Admin #${id}`;
-  };
-
-  // =========================================
-  // Target Icon
-  // =========================================
-
-  const getTargetIcon = (
-    type
-  ) => {
-
-    if (type === "User") {
-      return <FaUser />;
-    }
-
-    if (type === "Project") {
-      return <FaProjectDiagram />;
-    }
-
-    if (type === "Offer") {
-      return <FaFileContract />;
-    }
-
-    return <FaHistory />;
   };
 
   // =========================================
@@ -673,9 +571,9 @@ console.log(
             logs.map(
               (log, index) => {
 
-                const action =
-                  getActionConfig(
-                    log.action
+                const metadata =
+                  parseMetadata(
+                    log.metadata
                   );
 
                 return (
@@ -692,9 +590,9 @@ console.log(
                     <div className="audit-timeline-column">
 
                       <div
-                        className={`audit-event-dot ${action.className}`}
+                        className="audit-event-dot audit-action-default"
                       >
-                        {action.icon}
+                        <FaHistory />
                       </div>
 
                       {index !==
@@ -715,7 +613,7 @@ console.log(
                         <div>
 
                           <h3>
-                            {action.title}
+                            {log.action}
                           </h3>
 
                           <p>
@@ -723,11 +621,16 @@ console.log(
                             Performed by{" "}
 
                             <strong>
-                              {getActorName(
-                                log.actor_position,
-                                log.actor_id
-                              )}
+                              {log.actor_position}
                             </strong>
+
+                            {log.actor_id !== null &&
+                              log.actor_id !== undefined && (
+                                <>
+                                  {" "}
+                                  (ID: {log.actor_id})
+                                </>
+                              )}
 
                           </p>
 
@@ -761,9 +664,7 @@ console.log(
 
                           <span className="audit-target-icon">
 
-                            {getTargetIcon(
-                              log.target_type
-                            )}
+                            <FaHistory />
 
                           </span>
 
@@ -783,12 +684,47 @@ console.log(
                         </div>
 
                         <div
-                          className={`audit-action-badge ${action.className}`}
+                          className="audit-action-badge audit-action-default"
                         >
-                          {action.label}
+                          {log.action}
                         </div>
 
                       </div>
+
+                      {/* =================================
+                          Metadata
+                      ================================= */}
+
+                      {metadata && (
+                        <div className="audit-metadata">
+
+                          {Object.entries(
+                            metadata
+                          ).map(
+                            ([key, value]) => (
+
+                              <div
+                                key={key}
+                                className="audit-metadata-item"
+                              >
+
+                                <span>
+                                  {key}
+                                </span>
+
+                                <strong>
+                                  {Array.isArray(value)
+                                    ? value.join(", ")
+                                    : String(value)}
+                                </strong>
+
+                              </div>
+
+                            )
+                          )}
+
+                        </div>
+                      )}
 
                     </div>
 
