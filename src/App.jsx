@@ -51,7 +51,7 @@ import ProjectFree from "./features/FreeLancer/freelancer-project/pages/ProjectF
 import MessageFree from "./features/FreeLancer/freelancer-message/pages/MessageFree";
 import WalletFree from "./features/FreeLancer/freelancer-wallet/pages/WalletFree";
 import ShowProfile from "./features/FreeLancer/Profile/pages/ShowProfile";
-import PersonalInfo from "./features/FreeLancer/Profile/pages/PersonalInfo";
+
 import ShowSkills from "./features/FreeLancer/Skills/pages/ShowSkills";
 import ShowPortfolio from "./features/FreeLancer/Portifolio/Pages/ShowPortfolio";
 import Showportofoliodetails from "./features/FreeLancer/Portifolio/Pages/Showportofoliodetails";
@@ -90,6 +90,7 @@ import AdminOfferDetails from "./features/Admin/AdminOffers/pages/AdminOfferDeta
 import AdminReviews from "./features/Admin/Reviews/pages/AdminReviews";
 import FreeLanceInfo from "./features/Client/MatchedFreelancers/pages/FreelancerInfo";
 import AdminWallet from "./features/Admin/Wallet/pages/AdminWallet";
+import PersonalInfo from "./features/FreeLancer/Profile/pages/PersonalInfo";
 
 function App() {
   return (
@@ -174,7 +175,7 @@ function App() {
           <Route path="walletfree" element={<WalletFree />} />
 
           <Route path="showprofile" element={<ShowProfile />}>
-            <Route path="personal" element={<PersonalInfo />} />
+            <Route index element={<PersonalInfo />} />
             <Route path="skills" element={<ShowSkills />} />
             <Route path="portfolio" element={<ShowPortfolio />} />
             <Route path="cv" element={<ShowCv />} />

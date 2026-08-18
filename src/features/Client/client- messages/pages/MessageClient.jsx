@@ -689,23 +689,7 @@ export default function MessageClient() {
           </p>
         </div>
 
-        <button
-          className="create-contract-btn"
-          onClick={() =>
-            navigate(
-              "/clientlayout/createcontract",
-              {
-                state: {
-                  projectId,
-                  freelancerId:
-                    freelancer_id,
-                },
-              }
-            )
-          }
-        >
-          Create contract
-        </button>
+        
 
       </div>
 
@@ -761,7 +745,7 @@ export default function MessageClient() {
                     {chat.freelancer_name ||
                       `Freelancer #${chat.freelancerId}`}
                   </h4>
-
+               
                 </div>
 
                 {/* =================================================
@@ -821,7 +805,23 @@ export default function MessageClient() {
                   ? selectedChat.freelancer_name
                   : "Select Conversation"}
               </h3>
-
+               <button
+          className="create-contract-btn"
+          onClick={() =>
+            navigate(
+              "/clientlayout/createcontract",
+              {
+                state: {
+                  projectId,
+                  freelancerId:
+                    freelancer_id,
+                },
+              }
+            )
+          }
+        >
+          Create contract
+        </button>
               <p>
                 {selectedChat
                   ? "Messages"

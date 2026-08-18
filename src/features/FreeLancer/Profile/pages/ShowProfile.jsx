@@ -81,7 +81,8 @@ export default function ShowProfile() {
 
         <div className="profile-tabs-bar">
           <NavLink
-            to="personal"
+            to=""
+            end
             className={({ isActive }) =>
               `profile-tab-btn ${isActive ? "active" : ""}`
             }

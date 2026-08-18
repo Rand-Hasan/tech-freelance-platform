@@ -29,7 +29,7 @@ export default function Projects() {
       .then((response) => response.json())
       .then((data) => {
         setAllprojects(data.projects);
-        setfilterproject(data.projects);
+        
       });
 
   }, []);
