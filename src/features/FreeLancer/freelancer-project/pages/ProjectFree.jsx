@@ -10,7 +10,7 @@ export default function ProjectFree(){
             </div>
             </div>
             <div className="project-tabs">
-                <NavLink to="">🔍 Available Projects</NavLink>
+                <NavLink to="" end>🔍 Available Projects</NavLink>
                 <NavLink to="freelancerrequest">📩 Client Requests</NavLink>
                  <NavLink to="myproject">💼 My Projects</NavLink>
                  <NavLink to="myoffers">📤 My Offers</NavLink>

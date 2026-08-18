@@ -89,11 +89,8 @@ import AuditLog from "./features/Admin/AuditLog/pages/AuditLog";
 import AdminOffers from "./features/Admin/AdminOffers/pages/AdminOffers";
 import AdminOfferDetails from "./features/Admin/AdminOffers/pages/AdminOfferDetails";
 import AdminReviews from "./features/Admin/Reviews/pages/AdminReviews";
-<<<<<<< HEAD
 import FreeLanceInfo from "./features/Client/MatchedFreelancers/pages/FreelancerInfo";
-=======
 import AdminWallet from "./features/Admin/Wallet/pages/AdminWallet";
->>>>>>> ad699fda93e9d8de2db8393a5d4fe1f85862c8a7
 
 function App() {
   return (

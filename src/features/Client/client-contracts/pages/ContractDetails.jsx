@@ -818,11 +818,11 @@ export default function ContractDetails() {
 
   useEffect(() => {
 
-    const savedCancelRequest = localStorage.getItem(
-      `cancel-request-${id}`
+    const savedCancelRequestClient = localStorage.getItem(
+      `client-cancel-request-${id}`
     );
 
-    if (savedCancelRequest === "true") {
+    if (savedCancelRequestClient === "true") {
 
       setCancelRequested(true);
 
@@ -985,8 +985,11 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
-
+      )
+       .then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
       console.log(res.data);
 
     } catch (err) {
@@ -1014,9 +1017,10 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
-
-      console.log(res.data);
+      ).then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
     } catch (err) {
 
