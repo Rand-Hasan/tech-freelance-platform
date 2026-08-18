@@ -749,6 +749,9 @@ export default function MessageClient() {
           </p>
         </div>
 
+
+        
+
       </div>
 
       {/* =====================================================
@@ -803,7 +806,7 @@ export default function MessageClient() {
                     {chat.freelancer_name ||
                       `Freelancer #${chat.freelancerId}`}
                   </h4>
-
+               
                 </div>
 
                 {/* =================================================
