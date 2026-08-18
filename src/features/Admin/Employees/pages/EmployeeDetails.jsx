@@ -439,7 +439,7 @@ const [roles, setRoles] = useState([]);
       <div className="employee-details-page">
 
         <button
-          className="back-btnnn"
+          className="backk-btnnn"
           onClick={() =>
             navigate(-1)
           }
@@ -477,7 +477,7 @@ const [roles, setRoles] = useState([]);
       ========================= */}
 
       <button
-        className="back-btn"
+      className="backk-btnnn"
         onClick={() =>
           navigate(-1)
         }
