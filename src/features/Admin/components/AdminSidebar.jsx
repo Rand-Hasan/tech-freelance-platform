@@ -32,11 +32,11 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
 
         {/* ================= User ================= */}
         <div className="sidebarrr-user">
-          <div className="sidebarrr-avatar">NB</div>
+          <div className="sidebarrr-avatar">AE</div>
 
           <div>
             <div className="sidebarrr-user-name">
-              Nermin Bshara
+              Admin & Employee
             </div>
           </div>
         </div>
