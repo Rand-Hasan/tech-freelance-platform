@@ -216,6 +216,13 @@ body{
 }
 
 
+.chat-header > div{
+
+    min-width:0;
+
+}
+
+
 .chat-header p{
 
     font-size:13px;
@@ -429,4 +436,73 @@ body{
 .create-contract-btn:hover {
   background: #15803d;
   transform: translateY(-2px);
+}
+
+/* =====================================================
+   CREATE CONTRACT BUTTON (inside chat header)
+===================================================== */
+
+.contract-create-wrap {
+  position: relative;
+  margin-left: auto;
+}
+
+.chat-contract-btn {
+  background-color: white;
+  color:#2AA198;
+  border: 1px solid #2AA198;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 40px;
+  font-weight: bold;
+}
+
+.chat-contract-btn:hover {
+  background-color: #2AA198;
+  color:white;
+}
+
+.contract-project-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  width: 260px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  padding: 6px 0;
+}
+
+.dropdown-title {
+  font-size: 12px;
+  color: #777;
+  padding: 8px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 4px;
+}
+
+.dropdown-project-item {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #222;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.dropdown-project-item:hover {
+  background: #e7f7f2;
+}
+
+.dropdown-empty {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #999;
 }

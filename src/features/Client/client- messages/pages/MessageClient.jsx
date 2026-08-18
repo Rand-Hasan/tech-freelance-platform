@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Cookies from "cookie-universal";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { baseURL } from "../../../../services/Api/api";
 
@@ -12,6 +12,8 @@ import {
   GetNomberOfMesseageNotRead,
 } from "../services/MessageClientapi";
 
+import { GetClientProjects } from "../../client-projects/services/api_project";
+
 import "../../../Client/client- messages/styles/MessageClient.css";
 import EmojiPicker from "emoji-picker-react";
 import socket from "./socket";
@@ -20,10 +22,6 @@ export default function MessageClient() {
   // =========================
   // Router
   // =========================
-  const { state } = useLocation();
-
-  const projectId = state?.projectId;
-
   const navigate = useNavigate();
 
   const { freelancer_id } = useParams();
@@ -51,6 +49,16 @@ export default function MessageClient() {
   const [text, setText] = useState("");
 
   const [showEmoji, setShowEmoji] = useState(false);
+
+  // =========================================================
+  // CREATE CONTRACT (project dropdown)
+  // =========================================================
+  const [clientProjects, setClientProjects] = useState([]);
+
+  const [projectsLoading, setProjectsLoading] = useState(false);
+
+  const [projectDropdownFor, setProjectDropdownFor] =
+    useState(null);
 
   // =========================
   // Refs
@@ -611,6 +619,58 @@ export default function MessageClient() {
   // =========================================================
   // SEND MESSAGE
   // =========================================================
+  // CREATE CONTRACT ===> fetch client projects on demand
+  // =========================================================
+  async function toggleProjectDropdown(chat) {
+    const conversationId = chat.conversationsId;
+
+    if (projectDropdownFor === conversationId) {
+      setProjectDropdownFor(null);
+      return;
+    }
+
+    setProjectDropdownFor(conversationId);
+
+    if (clientProjects.length > 0) return;
+
+    setProjectsLoading(true);
+
+    try {
+      const token = cookies.get("token-client");
+
+      const res = await axios.get(
+        `${baseURL}${GetClientProjects}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setClientProjects(res.data.projects || []);
+    } catch (err) {
+      console.log(
+        "Get projects error:",
+        err.response?.data || err
+      );
+    } finally {
+      setProjectsLoading(false);
+    }
+  }
+
+  function handleSelectProject(project, chat) {
+    navigate("/clientlayout/createcontract", {
+      state: {
+        projectId: project.id,
+        freelancerId: chat.freelancerId,
+      },
+    });
+    console.log("project id : "+project.id+"freelancer id "+chat.freelancerId)
+  }
+
+  // =========================================================
+  // SEND MESSAGE
+  // =========================================================
   function sendMessage() {
     if (!selectedConversation) {
       alert(
@@ -688,24 +748,6 @@ export default function MessageClient() {
             Your inbox and Freelancer conversations
           </p>
         </div>
-
-        <button
-          className="create-contract-btn"
-          onClick={() =>
-            navigate(
-              "/clientlayout/createcontract",
-              {
-                state: {
-                  projectId,
-                  freelancerId:
-                    freelancer_id,
-                },
-              }
-            )
-          }
-        >
-          Create contract
-        </button>
 
       </div>
 
@@ -829,6 +871,71 @@ export default function MessageClient() {
               </p>
 
             </div>
+
+            {/* =============================================
+                CREATE CONTRACT (only when chat selected)
+            ============================================== */}
+
+            {selectedChat && (
+              <div className="contract-create-wrap">
+
+                <button
+                  className="chat-contract-btn"
+                  onClick={() =>
+                    toggleProjectDropdown(selectedChat)
+                  }
+                >
+                  📄 Create Contract
+                </button>
+
+                {projectDropdownFor ===
+                  selectedChat.conversationsId && (
+                  <div
+                    className="contract-project-dropdown"
+                    onClick={(e) =>
+                      e.stopPropagation()
+                    }
+                  >
+                    <p className="dropdown-title">
+                      Select a project for this
+                      contract
+                    </p>
+
+                    {projectsLoading && (
+                      <p className="dropdown-empty">
+                        Loading projects...
+                      </p>
+                    )}
+
+                    {!projectsLoading &&
+                      clientProjects.map(
+                        (project) => (
+                          <div
+                            key={project.id}
+                            className="dropdown-project-item"
+                            onClick={() =>
+                              handleSelectProject(
+                                project,
+                                selectedChat
+                              )
+                            }
+                          >
+                            {project.project_name}
+                          </div>
+                        )
+                      )}
+
+                    {!projectsLoading &&
+                      clientProjects.length === 0 && (
+                        <p className="dropdown-empty">
+                          No projects available
+                        </p>
+                      )}
+                  </div>
+                )}
+
+              </div>
+            )}
 
           </div>
 

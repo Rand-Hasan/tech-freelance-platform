@@ -1,7 +1,7 @@
 import { duration } from "@mui/material";
 import { useState } from "react";
 import Cookies from "universal-cookie";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
 import { CreateContract, UpdateContract } from "../services/api_contract";
@@ -13,6 +13,7 @@ export default function CreateContractt() {
     const { id } = useParams();
     const isEditMode = Boolean(id);
     const { state } = useLocation();
+    const navigate = useNavigate();
     const projectId = state?.projectId;
     const freelancerId = state?.freelancerId;
     // console.log(projectId);
@@ -33,6 +34,7 @@ export default function CreateContractt() {
     const [data, setData] = useState({
         title: "",
         total_budget: "",
+        deadline: "",
     });
     const handleChange = (e) => {
         setData({
@@ -74,12 +76,19 @@ const removePhase = (index) => {
         
         try {
             const url = isEditMode ? `${baseURL}${UpdateContract}${projectId}` : `${baseURL}${CreateContract}${projectId}`
-            const res = await axios.post(url, {
+            const body = {
                 ...data,
                 freelancer_id: freelancerId,
                 type,
-                phases,
-            }, { headers: { Authorization: `Bearer ${token}` } })
+            };
+
+            if (type === "multi_phase") {
+                body.phases = phases;
+            }
+
+            const res = await axios.post(url, body, { headers: { Authorization: `Bearer ${token}` } });
+
+            navigate("/clientlayout/contracts");
         } catch (err) {
              console.log(err.response?.data);
 
@@ -189,9 +198,28 @@ const removePhase = (index) => {
 
                     </div>
 
+                    {type === "single_phase" && (
+
+                        <div className="contract-input-group">
+
+                            <label>
+                                Deadline
+                            </label>
+
+                            <input
+                                type="date"
+                                name="deadline"
+                                value={data.deadline}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+                    )}
+
                 </div>
 
-                {phases.map((phase, index) => (
+                {type === "multi_phase" && phases.map((phase, index) => (
 
                     <div className="phase-card" key={index}>
 
