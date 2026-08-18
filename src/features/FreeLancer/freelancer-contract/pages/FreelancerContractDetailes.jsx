@@ -241,7 +241,7 @@ export default function FreelancerContractDetailes() {
       if (contractdetailes?.status === "active") {
 
         localStorage.setItem(
-          `cancel-request-${id}`,
+          `freelancer-cancel-request-${id}`,
           "true"
         );
 
@@ -409,7 +409,7 @@ export default function FreelancerContractDetailes() {
       */
 
       localStorage.removeItem(
-        `cancel-request-${id}`
+        `freelancer-cancel-request-${id}`
       );
 
       setCancelRequested(false);
@@ -810,33 +810,31 @@ export default function FreelancerContractDetailes() {
 
         <div className="Buttons">
 
-          {contractdetailes?.status === "active" && cancelRequested ? (
+          <button
+            className="Cancelbtncontract"
+            onClick={() => setShowModal(true)}
+          >
+            Cancel Contract
+          </button>
+
+          {contractdetailes?.status === "active" && cancelRequested && (
 
             <button
               className="Cancelbtncontract"
               onClick={handleWithdrawRequest}
             >
-              Withdraw Request
-            </button>
-
-          ) : (
-
-            <button
-              className="Cancelbtncontract"
-              onClick={() => setShowModal(true)}
-            >
-              Cancel Contract
+              Return To cancle contract
             </button>
 
           )}
 
 
-          <button
+          {/* <button
             onClick={() => alert("mony btn")}
             className="WithdrowMonybtn"
           >
             Withdrow Money
-          </button>
+          </button> */}
 
         </div>
 

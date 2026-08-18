@@ -169,7 +169,7 @@ export default function ContractDetails() {
       if (contract?.status === "active") {
 
       localStorage.setItem(
-        `cancel-request-${id}`,
+        `client-cancel-request-${id}`,
         "true"
       );
 
@@ -503,7 +503,14 @@ export default function ContractDetails() {
 ) : (
   <div className="contract-actions-client">
 
-    {contract.status === "active" && cancelRequested ? (
+    <button
+      className="cancel-btn-client"
+      onClick={() => setShowModal(true)}
+    >
+      Cancel Contract
+    </button>
+
+    {contract.status === "active" && cancelRequested && (
       <button
         className="withdraw-btn-client"
         onClick={() =>
@@ -511,13 +518,6 @@ export default function ContractDetails() {
         }
       >
         Withdraw Request
-      </button>
-    ) : (
-      <button
-        className="cancel-btn-client"
-        onClick={() => setShowModal(true)}
-      >
-        Cancel Contract
       </button>
     )}
 

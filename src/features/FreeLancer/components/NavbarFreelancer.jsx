@@ -1,21 +1,16 @@
-import React, { useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import  { useState } from "react";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, Badge, Menu, MenuItem } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/NavbarFreelancer.css"; 
 import axios from "axios";
 import { baseURL } from "../../../services/Api/api";
 import Cookies from "universal-cookie";
-import { SearchProposedProject } from "../services/api-search";
 export default function NavbarFreelancer() {
   const navigate = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get('token-freelancer');
-  const [searchValue, setSearchValue] = useState("");
-  
+ 
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -32,42 +27,13 @@ export default function NavbarFreelancer() {
     navigate("/freelancerlayout/showprofile"); 
   };
 
-const handleSearchSubmit = async (e) => {
-  e.preventDefault();
+ const Logout = () => {
+  cookies.remove("token-freelancer", {
+    path: "/",
+  });
 
-  if (!searchValue.trim()) return;
-
-  try {
-    const res = await axios.get(
-      `${baseURL}${SearchProposedProject}${2}/${3}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          level: "expert",
-          search: searchValue.trim(),
-        },
-      }
-    );
-
-    console.log("jjjjjjjj",res.data.proposed_projects);
-  } catch (error) {
-    console.error(
-      "خطأ أثناء جلب نتائج البحث:",
-      error.response?.data || error.message
-    );
-  }
+  navigate("/");
 };
-   const Logout =async ()=>{
-    try{
-      const res= await axios.post(`${baseURL}`,{},{headers:{Authorization:`Bearer ${token}`}})
-      navigate('/');
-    }catch(err){
-      console.log(err)
-    }
-   }
-
   return (
     <nav className="navbar-freelancer">
      
@@ -84,29 +50,8 @@ const handleSearchSubmit = async (e) => {
       <div className="rightfree">
         
       
-         <form onSubmit={handleSearchSubmit} className="search-form-free">
-  {/* 1. حقل الإدخال النصي */}
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    className="search-input-free" 
-    value={searchValue}
-    onChange={(e) => setSearchValue(e.target.value)}
-  />
+         
 
-  <div className="search-divider"></div>
-
-  <div className="search-select-wrapper">
-    <select className="search-select-free">
-      <option value="projects">Projects</option>
-      <option value="clients">Clients</option>
-    </select>
-  </div>
-
-  <button type="submit" className="search-btn-submit-free">
-    <SearchIcon className="search-icon-free" />
-  </button>
-</form>
         <div className="notif-wrapper-free">
           <IconButton className="notif-btn-free" style={{ color: "#5a7a76" }}>
             <Badge color="error" variant="dot" invisible={false}>
