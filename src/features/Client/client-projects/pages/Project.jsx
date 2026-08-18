@@ -13,9 +13,6 @@ export default function Projects() {
   const navigate = useNavigate();
 
   const [Allprojects, setAllprojects] = useState([]);
-  const [filterproject, setfilterproject] = useState([]);
-  const [activeTabbb, setactiveTabbb] = useState("all");
-
   const cookies = new Cookies();
   const token = cookies.get("token-client");
 
@@ -38,28 +35,6 @@ export default function Projects() {
   }, []);
 
 
-
-  useEffect(() => {
-
-    if (activeTabbb === "all") {
-
-      setfilterproject(Allprojects);
-
-    } else {
-
-      const result = Allprojects.filter(
-        (project) => project.status === activeTabbb
-      );
-
-      setfilterproject(result);
-
-    }
-
-  }, [activeTabbb, Allprojects]);
-
-
-
-
   async function handleDelete(id) {
 
     if (!window.confirm("هل أنت متأكد من حذف هذا المشروع؟")) return;
@@ -75,7 +50,11 @@ export default function Projects() {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      )
+      .then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
 
       setAllprojects((prev) =>
@@ -145,74 +124,6 @@ export default function Projects() {
       <div className="client-project-filter-bar">
 
 
-        <button
-          onClick={() => setactiveTabbb("all")}
-          className={
-            activeTabbb === "all"
-              ? "client-project-tab-btn client-project-active"
-              : "client-project-tab-btn"
-          }
-        >
-          All
-        </button>
-
-
-
-        <button
-          onClick={() => setactiveTabbb("in_progress")}
-          className={
-            activeTabbb === "in_progress"
-              ? "client-project-tab-btn client-project-active"
-              : "client-project-tab-btn"
-          }
-        >
-          In Progress
-        </button>
-
-
-
-        <button
-          onClick={() => setactiveTabbb("in_review")}
-          className={
-            activeTabbb === "in_review"
-              ? "client-project-tab-btn client-project-active"
-              : "client-project-tab-btn"
-          }
-        >
-          In Review
-        </button>
-
-
-
-
-        <button
-          onClick={() => setactiveTabbb("open")}
-          className={
-            activeTabbb === "open"
-              ? "client-project-tab-btn client-project-active"
-              : "client-project-tab-btn"
-          }
-        >
-          Open
-        </button>
-
-
-
-
-        <button
-          onClick={() => setactiveTabbb("completed")}
-          className={
-            activeTabbb === "completed"
-              ? "client-project-tab-btn client-project-active"
-              : "client-project-tab-btn"
-          }
-        >
-          Completed
-        </button>
-
-
-
-
         <div style={{ flex: 1 }}></div>
 
 
@@ -237,7 +148,7 @@ export default function Projects() {
 
 
         {
-          filterproject?.map((project)=>(
+          Allprojects?.map((project)=>(
 
 
             <div
@@ -384,7 +295,7 @@ export default function Projects() {
 
 
         {
-          filterproject?.length === 0 &&
+          Allprojects?.length === 0 &&
 
           <p className="client-project-empty">
 

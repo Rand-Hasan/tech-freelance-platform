@@ -19,7 +19,6 @@ import NavbarLanding from "./features/landing-page/pages/navbarlanding";
 // Client
 import MessageClient from "./features/Client/client- messages/pages/MessageClient";
 import Dashboard from "./features/Client/client-dashboard/pages/Dashboard";
-import FindFreelancers from "./features/Client/client-findfreelancer/pages/FindFreelancers";
 import WalletClient from "./features/Client/client-wallet/pages/Wallet";
 import PaymentSuccess from "./features/Client/client-wallet/pages/PaymentSuccess";
 import PaymentPage from "./features/Client/client-wallet/pages/PaymentPage";
@@ -143,7 +142,7 @@ function App() {
           <Route path="createcontract" element={<CreateContractt />} />
           <Route path="editcontract/:id" element={<CreateContractt />} />
 
-          {/* <Route path="FindFreelancers" element={<FindFreelancers />} /> */}
+          
           <Route path="contracts" element={<Contracts />} />
           <Route path="ContractDetails/:id" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />

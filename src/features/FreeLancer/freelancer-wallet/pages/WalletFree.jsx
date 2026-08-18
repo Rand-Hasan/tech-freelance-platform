@@ -149,7 +149,10 @@ export default function WalletFree() {
             },{
                 headers:{Authorization:`Bearer ${token}`}
             })
-            console.log(res.data)
+            .then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
           }catch(err){
             console.log(err.message?.data)
           }

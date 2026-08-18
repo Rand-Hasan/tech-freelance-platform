@@ -67,11 +67,24 @@ export default function CreateProject() {
                      level_project: project.level_project || '',
                      project_deadline: project.project_deadline.substring(0, 10) || '',
                   });
-                  if (project.skills) {
-                     setSelectedSkills(project.skills);
-                  }
 
-               }
+
+                    if (res.data.skill?.length > 0) {
+
+                        setSelectedSkills(res.data.skill);
+
+                        // نضيف المهارات القديمة للـ options
+                        // حتى Autocomplete يعرفها
+                        setSuggestions(res.data.skill);
+
+                    } else {
+
+                        setSelectedSkills([]);
+
+                    }
+
+                
+                         }
             }
             catch (err) {
                setError("Failed to load project details.");
@@ -106,7 +119,6 @@ export default function CreateProject() {
             data: finalDataToSend,
             headers: { Authorization: `Bearer ${token}` }
          });
-         // console.log(token);
          console.log("SUCCESS RESPONSE:", res.data.message);
          alert(isEditMode ? "Project updated successfully!" : "Project published successfully!");
          navigate('/clientlayout/projects');
@@ -152,24 +164,41 @@ export default function CreateProject() {
                <div className="field full">
                   <label>Required skills</label>
 
-                  <Autocomplete
-                     multiple
-                     options={suggestions}
-                     getOptionLabel={(option) => option.skill_name}
-                     value={selectedSkills}
+               <Autocomplete
+    multiple
 
-                     onChange={(event, newValue) => {
-                        setSelectedSkills(newValue);
-                     }}
-                     onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                     }}
+    options={suggestions}
 
-                     renderInput={(params) => (
-                        <TextField {...params} placeholder="Type a skill and press Enter" />
-                     )}
-                  />
+    value={selectedSkills}
+
+    getOptionLabel={(option) =>
+        option?.skill_name || ""
+    }
+
+    isOptionEqualToValue={(option, value) =>
+        option.id === value.id
+    }
+
+    onChange={(event, newValue) => {
+        setSelectedSkills(newValue);
+    }}
+
+    onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+    }}
+
+    renderInput={(params) => (
+        <TextField
+            {...params}
+            placeholder="Type a skill and press Enter"
+        />
+    )}
+/>
+               
+               
+               
                </div>
+
                <div className='field'>
                   <label >Budget (USD)</label>
                   <input type='number' placeholder="e.g. 1500"
@@ -177,16 +206,7 @@ export default function CreateProject() {
                   ></input>
                   <div className='hint'>Must be greater than 0</div>
                </div>
-               {/* <div className='field'>
-                  <label>Estimated duration</label>
-                  <select name='project_deadline' value={data.project_deadline} onChange={handleChange}>
-                     <option>Less than 1 week</option>
-                     <option>1-4 week</option>
-                     <option>1-3 mounth </option>
-                     <option>3+ mounth </option>
-                     <option>1-3 mounth </option>
-                  </select>
-               </div> */}
+               
                <div className='field'>
                   <label>Project Deadline</label>
                   <input

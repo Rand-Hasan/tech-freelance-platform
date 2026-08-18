@@ -54,7 +54,12 @@ export default function ContractFree() {
           >
             All ({contracts.length})
           </button>
-
+          <button
+            className={filterStatus === "draft" ? "active-filter" : ""}
+            onClick={() => setFilterStatus("draft")}
+          >
+            Draft
+          </button>
           <button
             className={filterStatus === "active" ? "active-filter" : ""}
             onClick={() => setFilterStatus("active")}
@@ -63,18 +68,25 @@ export default function ContractFree() {
           </button>
 
           <button
-            className={filterStatus === "pending" ? "active-filter" : ""}
-            onClick={() => setFilterStatus("pending")}
-          >
-            Pending
-          </button>
+          className={filterStatus === "accepted_pending_fund" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("accepted_pending_fund")}
+        >
+            Accept&pending_Fund
+        </button>
+      
 
-          <button
-            className={filterStatus === "completed" ? "active-filter" : ""}
-            onClick={() => setFilterStatus("completed")}
-          >
-            Completed
-          </button>
+        <button
+          className={filterStatus === "completed" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("completed")}
+        >
+          Completed
+        </button>
+         <button
+          className={filterStatus === "disputed" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("disputed")}
+        >
+          Disputed
+        </button>
         </div>
         <div className="contracts-list">
           {filteredContracts.length > 0 ? (

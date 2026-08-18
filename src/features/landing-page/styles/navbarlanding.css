@@ -1,49 +1,88 @@
-.navbar-landing-wrapper{
+.navbar-landing-wrapper {
   min-height: 100vh;
 }
+
 .navbar-landing {
   position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-   width: 100%;
+  align-items: center;
+
+  width: 100%;
   max-width: 1440px;
+
   height: 68px;
+
   margin: 0 auto;
-  padding-right: 64px;
-  padding-left: 64px;
-    background: var(--bg-main);
+
+  padding: 0 64px;
+
+  background: var(--bg-main);
+
   border-bottom: 1px solid var(--border-subtle);
+
   backdrop-filter: blur(16px);
+
   z-index: 9999;
+
+  box-sizing: border-box;
 }
 
+
+/* =========================
+   LOGO
+========================= */
 
 .logo {
   font-size: 24px;
   font-weight: 800;
+
   color: var(--text-main);
+
   letter-spacing: -0.5px;
+
+  white-space: nowrap;
 }
 
+
+/* =========================
+   NAV LINKS
+========================= */
 
 .nav-links {
   display: flex;
-  list-style: none; 
+
+  list-style: none;
+
   gap: 36px;
+
   align-items: center;
+
+  margin: 0;
+  padding: 0;
 }
+
 .nav-links li {
   position: relative;
+
   font-size: 14px;
+
   font-weight: 500;
+
   color: var(--text-muted);
+
   cursor: pointer;
+
   transition: color 0.3s ease;
 }
+
 .nav-links li::after {
   content: "";
+
   position: absolute;
 
   left: 0;
@@ -55,94 +94,363 @@
   background: var(--primary);
 
   transition: width 0.3s ease;
+}
 
-}
 .nav-links li:hover {
-  color: var(--primary); 
+  color: var(--primary);
 }
+
 .nav-links li:hover::after {
   width: 100%;
 }
 
 
+/* =========================
+   ACTIONS
+========================= */
+
 .nav-actions {
   display: flex;
+
   align-items: center;
-  gap: 16px; 
+
+  gap: 12px;
 }
+
+
+/* جميع أزرار الـ navbar */
 
 .nav-actions button {
-  height: 36px;
+  height: 40px;
+
   border-radius: 8px;
+
   font-size: 14px;
+
   font-weight: 600;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition: all 0.25s ease;
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
+  white-space: nowrap;
 }
 
+
+/* =========================
+   LANGUAGE
+========================= */
+
 .btn-lang {
-  background: #EDF7F4; 
+  background: #EDF7F4;
+
   border: 1px solid var(--border-subtle);
-  padding: 6px 14px;
+
+  padding: 0 14px;
+
   color: var(--primary);
 }
 
 
+/* =========================
+   LOGIN
+========================= */
+
 .btn-login {
   background: transparent;
-  color: #495057; 
+
+  color: #495057;
+
   border: 1px solid #d7e5e2;
-  border-radius: 10px;
-  padding: 0 24px;
+
+  padding: 0 20px;
+
   height: 40px;
+
   font-weight: 500;
+
   transition: all 0.25s ease;
 }
 
 .btn-login:hover {
- color: var(--primary);
+  color: var(--primary);
 
   border-color: var(--primary);
 
   background: transparent;
 }
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
 .btn-started {
-  background-color: var(--primary) !important; 
+  background-color: var(--primary) !important;
+
   border: none;
+
   color: white;
-  padding: 0 24px; 
-  box-shadow: 0px 4px 10px rgba(42, 157, 143, 0.2);
+
+  padding: 0 20px;
+
+  height: 40px;
+
+  box-shadow:
+    0 4px 10px rgba(42, 157, 143, 0.2);
 }
 
 .btn-started:hover {
   background-color: var(--primary-hover) !important;
-}
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--text-main);
+
+  transform: translateY(-1px);
 }
 
+
+/* =====================================
+   MOBILE MENU BUTTON
+===================================== */
+
+.menu-btn {
+  display: none;
+
+  border: none;
+  background: transparent;
+
+  color: var(--text-main);
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  padding: 4px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =====================================
+   MOBILE MENU
+===================================== */
+
+.mobile-nav-menu {
+  display: none;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
 @media (max-width: 768px) {
-  .navbar {
-    padding-inline: 20px;
+
+  .navbar-landing {
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    height: 68px;
+
   }
+
+
+  /* إخفاء روابط الديسكتوب */
 
   .nav-links {
     display: none;
   }
 
+
+  /* الأزرار تظل ظاهرة */
+
   .nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+  }
+
+
+  /* اللغة فقط تختفي */
+
+  .btn-lang {
     display: none;
   }
 
-  .menu-btn {
-    display: block;
+
+  /* Login */
+
+  .btn-login {
+
+    display: inline-flex;
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    font-size: 13px;
+
   }
+
+
+  /* Get Started */
+
+  .btn-started {
+
+    display: inline-flex;
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    font-size: 13px;
+
+  }
+
+
+  /* 3 خطوط */
+
+  .menu-btn {
+
+    display: flex;
+
+    width: 38px;
+
+    height: 38px;
+
+  }
+
+
+  /* =================================
+     MOBILE DROPDOWN
+  ================================= */
+
+  .mobile-nav-menu {
+
+    position: absolute;
+
+    top: 68px;
+
+    left: 0;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 20px;
+
+    background: var(--bg-main);
+
+    border-top: 1px solid var(--border-subtle);
+
+    border-bottom: 1px solid var(--border-subtle);
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    z-index: 9998;
+
+  }
+
+
+  .mobile-nav-menu button {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text-main);
+
+    text-align: left;
+
+    padding: 13px 12px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+  }
+
+
+  .mobile-nav-menu button:hover {
+
+    background: #EDF7F4;
+
+    color: var(--primary);
+
+  }
+
+}
+
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 480px) {
+
+  .navbar-landing {
+
+    padding-left: 12px;
+    padding-right: 12px;
+
+  }
+
+
+  .logo {
+
+    font-size: 20px;
+
+  }
+
+
+  .nav-actions {
+
+    gap: 5px;
+
+  }
+
+
+  .btn-login,
+  .btn-started {
+
+    padding: 0 9px;
+
+    font-size: 12px;
+
+  }
+
+
+  .menu-btn {
+
+    width: 34px;
+
+    height: 34px;
+
+    font-size: 22px;
+
+  }
+
 }

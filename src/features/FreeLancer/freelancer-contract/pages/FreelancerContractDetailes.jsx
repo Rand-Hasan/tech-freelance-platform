@@ -335,7 +335,10 @@ export default function FreelancerContractDetailes() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      ).then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
       console.log(res.data);
 
@@ -366,9 +369,11 @@ export default function FreelancerContractDetailes() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      ).then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
-      console.log(res.data);
 
     } catch (err) {
 
@@ -379,11 +384,6 @@ export default function FreelancerContractDetailes() {
   };
 
 
-  /*
-  ============================================================
-  Withdraw Cancellation Request
-  ============================================================
-  */
 
   const handleWithdrawRequest = async () => {
 

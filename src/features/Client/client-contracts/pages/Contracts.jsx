@@ -1,52 +1,3 @@
-// import { useEffect, useState } from "react";
-// import "../../client-contracts/styles/Contracts.css";
-// import { NavLink } from "react-router-dom";
-// import axios from "axios";
-// import { baseURL } from "../../../../services/Api/api";
-// import { GetAllClientsContracts } from "../services/api_contract";
-// import Cookies from "universal-cookie";
-
-// export default function Contracts() {
-//   const cookies = new Cookies();
-//   const token = cookies.get('token-client');
-//   const[page,setPage]= useState(1);
-//   const [totalPage,setTotalPage]= useState(6);
-//   const [limit]= useState(3);
-//   const[Contract,setContract]= useState(null);
-//   const [filterStatus,setFilterStatus]= useState('all');
-
-//   useEffect(()=>{
-//     ShowContarct(page);
-//   },[page]);
-
-//   const ShowContarct= async(currentpage)=>{
-//     try{
-//       const res = await axios.get(`${baseURL}${GetAllClientsContracts}${currentpage}/${limit}`,{
-//         headers:{Authorization:`Bearer ${token}`}
-//       })
-//       setContract(res.data.contracts);
-
-//     }catch(err){
-//       console.log(err)
-//     }
-//   }
-
-//   const filtercontract = filterStatus==='all' ? Contract : Contract.filter((con)=>con.status===filterStatus)
-//   const handleChangePage = (event,value)=>{
-//     setPage(value);
-//   }
-//   return (
-//    <div>
-
-//     <h2>Contract</h2>
-//     <div>{Contract.title}</div>
-
-//      <h2>Freelancer Name</h2>
-//      <div>{Contract.freelancer_name}</div>
-//    </div>
-//   );
-// }
-
 import { useEffect, useState } from "react";
 import "../../client-contracts/styles/Contracts.css";
 import axios from "axios";
@@ -87,8 +38,6 @@ export default function Contracts() {
           }
         }
       );
-
-
       setContracts(res.data.contracts || []);
 
 
@@ -126,6 +75,12 @@ export default function Contracts() {
           All ({contracts.length})
         </button>
 
+           <button
+          className={filterStatus === "draft" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("draft")}
+        >
+          Draft
+        </button>
 
         <button
           className={filterStatus === "active" ? "active-filter" : ""}
@@ -134,14 +89,13 @@ export default function Contracts() {
           Active
         </button>
 
-
-        <button
-          className={filterStatus === "pending" ? "active-filter" : ""}
-          onClick={() => setFilterStatus("pending")}
+          <button
+          className={filterStatus === "accepted_pending_fund" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("accepted_pending_fund")}
         >
-          Pending
+            Accept&pending_Fund
         </button>
-
+      
 
         <button
           className={filterStatus === "completed" ? "active-filter" : ""}
@@ -149,7 +103,14 @@ export default function Contracts() {
         >
           Completed
         </button>
-
+         <button
+          className={filterStatus === "disputed" ? "active-filter" : ""}
+          onClick={() => setFilterStatus("disputed")}
+        >
+          Disputed
+        </button>
+         
+        
       </div>
 
 
