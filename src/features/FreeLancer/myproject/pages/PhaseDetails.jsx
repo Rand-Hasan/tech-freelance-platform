@@ -15,9 +15,6 @@ export default function PhaseDetails() {
   <div className="phase-page">
     <div className="phase-details-container">
 
-      {/* Back */}
-         {/* 
-
       {/* Phase Navigation */}
       <div className="phase-tabs">
 

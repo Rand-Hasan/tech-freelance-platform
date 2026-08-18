@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./styles/App.css";
 
@@ -27,7 +28,6 @@ import Contracts from "./features/Client/client-contracts/pages/Contracts";
 import Profile from "./features/Client/client-profile/pages/Profile";
 import Settings from "./features/Client/client-setting/pages/Setting";
 import ContractDetails from "./features/Client/client-contracts/pages/ContractDetails";
-import FreeLanceInfo from "./features/Client/client-findfreelancer/pages/FreeLanceInfo";
 import CreateProject from "./features/Client/client-projects/pages/CraeteProject";
 import CreateContractt from "./features/Client/client-contracts/pages/CreateContract";
 import ProjectDetails from "./features/Client/client-projects/pages/ProjectDetails";
@@ -89,6 +89,7 @@ import AuditLog from "./features/Admin/AuditLog/pages/AuditLog";
 import AdminOffers from "./features/Admin/AdminOffers/pages/AdminOffers";
 import AdminOfferDetails from "./features/Admin/AdminOffers/pages/AdminOfferDetails";
 import AdminReviews from "./features/Admin/Reviews/pages/AdminReviews";
+import FreeLanceInfo from "./features/Client/MatchedFreelancers/pages/FreelancerInfo";
 import AdminWallet from "./features/Admin/Wallet/pages/AdminWallet";
 
 function App() {
@@ -122,6 +123,7 @@ function App() {
 
           <Route path="projects" element={<Projects />} />
           <Route path="invaitations" element={<Invaitations />} />
+           <Route path="FreeLanceInfo/:id" element={<FreeLanceInfo/>} />
 
           {/* project detail client */}
           <Route path="projectdetails/:id" element={<ProjectDetails />}>
@@ -141,12 +143,12 @@ function App() {
           <Route path="createcontract" element={<CreateContractt />} />
           <Route path="editcontract/:id" element={<CreateContractt />} />
 
-          <Route path="FindFreelancers" element={<FindFreelancers />} />
+          {/* <Route path="FindFreelancers" element={<FindFreelancers />} /> */}
           <Route path="contracts" element={<Contracts />} />
           <Route path="ContractDetails/:id" element={<ContractDetails />} />
           <Route path="profile" element={<Profile />} />
           <Route path="setting" element={<Settings />} />
-          <Route path="FreeLanceInfo" element={<FreeLanceInfo />} />
+          
         </Route>
 
         {/* Freelancer */}
@@ -156,7 +158,7 @@ function App() {
           <Route path="FreelancerContractDetailes/:id" element={<FreelancerContractDetailes />} />
 
           <Route path="projectfree" element={<ProjectFree />}>
-            <Route path="projectproposal" element={<ProjectProposal />} />
+            <Route index element={<ProjectProposal />} />
             <Route path="projectproposaldetails/:id" element={<ProjectProposalDetails />} />
             <Route path="freelancerrequest" element={<ShowInvationFree />} />
             <Route path="myoffers" element={<ShowOffersFreelancer />} />

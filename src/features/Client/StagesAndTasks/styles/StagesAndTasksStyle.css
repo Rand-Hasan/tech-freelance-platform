@@ -36,14 +36,17 @@
     gap: 10px;
 }
 
-.titleOfPhase{
+.titleOfPhase {
     background-color: #006F59;
-    width: 40%;
-    height: 30px;
+    width: max-content;        
+    min-width: 40%;             
+    min-height: 30px;          
+    padding: 5px 15px;         
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;        
     color: white;
     font-weight: bold;
 }

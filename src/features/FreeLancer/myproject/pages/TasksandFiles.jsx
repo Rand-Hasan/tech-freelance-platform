@@ -21,42 +21,93 @@ export default function TasksandFiles() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [url, setUrl] = useState("");
     const [fileUrl, setFileUrl] = useState("");
+    const [taskError, setTaskError] = useState("");
+const [fileError, setFileError] = useState("");
     useEffect(() => {
         showtasks();
     }, [phaseId]);
     useEffect(() => {
         showfiles();
     }, [phaseId])
-    const showtasks = async () => {
-        try {
-            const res = await axios.get(`${baseURL}${GetPhaseTask}${phaseId}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            setTasks(res.data.tasks)
-        } catch (err) {
-            console.log(err)
-        }
+   const showtasks = async () => {
+    try {
+        setTaskError("");
+
+        const res = await axios.get(
+            `${baseURL}${GetPhaseTask}${phaseId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        setTasks(res.data.tasks || []);
+
+    } catch (err) {
+        console.log(err);
+
+        setTaskError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to load tasks."
+        );
     }
+};
     const UpdateTaskCheck = async (id) => {
-        try {
-            const res = await axios.post(`${baseURL}${CheckTask}${id}`, {}, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            showtasks();
-        } catch (err) {
-            console.log(err);
-        }
+    try {
+        setTaskError("");
+
+        await axios.post(
+            `${baseURL}${CheckTask}${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        showtasks();
+
+    } catch (err) {
+
+        console.log(err);
+
+        setTaskError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to update task."
+        );
     }
+};
     const DeleteTaskphase = async (id) => {
-        try {
-            const res = await axios.post(`${baseURL}${DeleteTask}${id}`, {}, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            showtasks();
-        } catch (err) {
-            console.log(err);
-        }
+    try {
+        setTaskError("");
+
+        await axios.post(
+            `${baseURL}${DeleteTask}${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        showtasks();
+
+    } catch (err) {
+
+        console.log(err);
+
+        setTaskError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to delete task."
+        );
     }
+};
 
     const AddTaskPhase = async () => {
 
@@ -91,23 +142,92 @@ export default function TasksandFiles() {
 
         }
     };
-    const AddFile = async () => {
+   const AddFile = async () => {
 
-        try {
+    if (files.length > 0 || url) {
+        setFileError("You can only add one file or one link.");
+        return;
+    }
 
-            const formData = new FormData();
+    try {
 
-            if (fileType === "upload") {
-                formData.append("File", selectedFile);
+        setFileError("");
+
+        const formData = new FormData();
+
+        if (fileType === "upload") {
+            formData.append("File", selectedFile);
+        }
+
+        if (fileType === "link") {
+            formData.append("url", fileUrl);
+        }
+
+        const res = await axios.post(
+            `${baseURL}${UploadProjectsFile}${phaseId}`,
+            formData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
+        );
 
-            if (fileType === "link") {
-                formData.append("url", fileUrl);
+        console.log(res.data);
+
+        await showfiles();
+
+        CloseFileModal();
+        setShowFileModal(false)
+
+    } catch (err) {
+     setShowFileModal(false);
+        setFileError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to add file."
+        );
+    }
+};
+
+    const showfiles = async () => {
+    try {
+        setFileError("");
+
+        const res = await axios.get(
+            `${baseURL}${GetPhaseFiles}${phaseId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
+        );
 
-            const res = await axios.post(
-                `${baseURL}${UploadProjectsFile}${phaseId}`,
-                formData,
+        setFiles(res.data.files || []);
+        setUrl(res.data.url || "");
+
+    } catch (err) {
+
+        console.log(err);
+
+        setFileError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to load files."
+        );
+    }
+};
+    const DeleteFile = async (type, id) => {
+
+    try {
+
+        setFileError("");
+
+        if (type === "file") {
+
+            await axios.post(
+                `${baseURL}${DeleteFiles}${id}`,
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -115,59 +235,32 @@ export default function TasksandFiles() {
                 }
             );
 
-            console.log(res.data);
-            showfiles();
-        } catch (err) {
+        } else if (type === "url") {
 
-            console.log(err);
-
+            await axios.post(
+                `${baseURL}${DeleteUrl}${phaseId}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
         }
-    };
 
-    const showfiles = async () => {
-        try {
-            const res = await axios.get(`${baseURL}${GetPhaseFiles}${phaseId}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            setFiles(res.data.files || []);
-            setUrl(res.data.url || "");
+        await showfiles();
 
-        } catch (err) {
-            console.log(err)
-        }
+    } catch (err) {
+
+        console.log(err);
+
+        setFileError(
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to delete file."
+        );
     }
-    const DeleteFile = async (type, id) => {
-        try {
-
-            if (type === "file") {
-
-                await axios.post(
-                    `${baseURL}${DeleteFiles}${id}`, {},
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }
-                );
-
-            } else if (type === "url") {
-
-                await axios.post(
-                    `${baseURL}${DeleteUrl}${phaseId}`, {},
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }
-                );
-            }
-
-            showfiles();
-
-        } catch (err) {
-            console.log(err);
-        }
-    };
+};
     const CloseFileModal = () => {
         setShowFileModal(false);
         setFileType(null);
@@ -192,149 +285,186 @@ export default function TasksandFiles() {
 
             {/* ================= TASKS ================= */}
 
-            <section className="details-section">
+           <section className="details-section">
 
-                <div className="section-header">
+    <div className="section-header">
 
-                    <h2>Tasks</h2>
+        <h2>Tasks</h2>
 
-                    <button
-                        className="add-btn"
-                        onClick={() => setShowTaskModal(true)}
-                    >
-                        <FaPlus />
-                        Add Task
-                    </button>
+        <button
+            className="add-btn"
+            onClick={() => {
+                setTaskError("");
+                setShowTaskModal(true);
+            }}
+        >
+            <FaPlus />
+            Add Task
+        </button>
 
-                </div>
+    </div>
 
 
+    {taskError && (
+        <div className="section-error task-error">
+            {taskError}
+        </div>
+    )}
 
-                <div className="items-card">
 
-                    {tasks.map((task) => (
+    <div className="items-card">
 
-                        <div className="task-row" key={task.id}>
+        {tasks.map((task) => (
 
-                            <span className={task.check ? "task-name completed" : "task-name"}>
-                                {task.task_name}
-                            </span>
+            <div className="task-row" key={task.id}>
 
-                            {task.check === false && (
+                <span
+                    className={
+                        task.check
+                            ? "task-name completed"
+                            : "task-name"
+                    }
+                >
+                    {task.task_name}
+                </span>
 
-                                <div className="task-actions">
+                {task.check === false && (
 
-                                    <button className="delete-btn" onClick={() => DeleteTaskphase(task.id)}>
-                                        <FaTrash />
-                                    </button>
+                    <div className="task-actions">
 
-                                    <input
-                                        type="checkbox"
-                                        checked={task.check}
-                                        onChange={() => UpdateTaskCheck(task.id)}
-                                    />
+                        <button
+                            className="delete-btn"
+                            onClick={() => DeleteTaskphase(task.id)}
+                        >
+                            <FaTrash />
+                        </button>
 
-                                </div>
+                        <input
+                            type="checkbox"
+                            checked={task.check}
+                            onChange={() => UpdateTaskCheck(task.id)}
+                        />
 
-                            )}
+                    </div>
 
-                        </div>
+                )}
 
-                    ))}
+            </div>
 
-                </div>
+        ))}
 
-            </section>
+    </div>
+
+</section>
 
 
             {/* ================= FILES ================= */}
 
             <section className="details-section">
 
-                <div className="section-header">
+    <div className="section-header">
 
-                    <h2>Project Files</h2>
+        <h2>Project Files</h2>
 
-                    <button
-                        className="add-btn"
-                        onClick={() => setShowFileModal(true)}
-                    >
-                        <FaPlus />
-                        Add File
-                    </button>
+        <button
+            className="add-btn"
+            onClick={() => {
+                setFileError("");
+                setShowFileModal(true);
+            }}
+            disabled={files.length > 0}
+        >
+            <FaPlus />
+            Add File
+        </button>
+
+    </div>
+
+
+    {fileError && (
+        <div className="section-error file-error">
+            {fileError}
+        </div>
+    )}
+
+
+    <div className="items-card">
+
+        {files.map((file) => (
+
+            <div className="file-row" key={file.id}>
+
+                <div className="file-info">
+
+                    <div className="file-icon">
+                        <FaFileArchive />
+                    </div>
+
+                    <div className="file-content">
+
+                        <div className="file-name">
+                            {file.file.split("/").pop()}
+                        </div>
+
+                        <div className="file-url">
+                            {file.file}
+                        </div>
+
+                    </div>
 
                 </div>
 
+                <button
+                    className="delete-btn"
+                    onClick={() => DeleteFile("file", file.id)}
+                >
+                    <FaTrash />
+                </button>
 
-                <div className="items-card">
+            </div>
 
-                    {/* Files */}
-                    {files.map((file) => (
-
-                        <div className="file-row" key={file.id}>
-
-                            <div className="file-info">
-
-                                <div className="file-icon">
-                                    <FaFileArchive />
-                                </div>
-
-                                <div className="file-content">
-                                    <div className="file-name">
-                                        {file.file.split("/").pop()}
-                                    </div>
-
-                                    <div className="file-url">
-                                        {file.file}
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button className="delete-btn" onClick={() => DeleteFile("file", phaseId)}>
-                                <FaTrash />
-                            </button>
-
-                        </div>
-
-                    ))}
+        ))}
 
 
-                    {/* URL */}
-                    {url && (
+        {url && (
 
-                        <div className="file-row">
+            <div className="file-row">
 
-                            <div className="file-info">
+                <div className="file-info">
 
-                                <div className="file-icon">
-                                    <FaLink />
-                                </div>
+                    <div className="file-icon">
+                        <FaLink />
+                    </div>
 
-                                <div className="file-content">
-                                    <a
-                                        href={url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="file-url"
-                                    >
-                                        {url}
-                                    </a>
-                                </div>
+                    <div className="file-content">
 
-                            </div>
+                        <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="file-url"
+                        >
+                            {url}
+                        </a>
 
-                            <button className="delete-btn" onClick={() => DeleteFile("url", phaseId)}>
-                                <FaTrash />
-                            </button>
-
-                        </div>
-
-                    )}
+                    </div>
 
                 </div>
 
-            </section>
+                <button
+                    className="delete-btn"
+                    onClick={() => DeleteFile("url", phaseId)}
+                >
+                    <FaTrash />
+                </button>
+
+            </div>
+
+        )}
+
+    </div>
+
+</section>
             {showFileModal && (
 
                 <div

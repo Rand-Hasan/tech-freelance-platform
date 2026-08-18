@@ -4,3 +4,7 @@ export const GetAllClientsContracts='GetAllClientsContracts/';
 export const GetContractById = 'GetContractById/';
 export const ReviewsCreateReview='Reviews/CreateReview/';
 export const CancelContract='CancelContract/';
+export const GetRespondByContract='GetRespondByContract/';
+export const AcceptCancelContract='AcceptCancelContract/';
+export const RejectCancelContract = 'RejectCancelContract/';
+export const ReturnToCancelContract='ReturnToCancelContract/';

@@ -56,7 +56,7 @@ export default function ClientRespond(){
       })
       console.log(res.data)
       setRejectSuccess(id);
-
+     await ShowResponds();
       setTimeout(() => {
         setRejectSuccess(null);
       }, 6000);
@@ -70,6 +70,7 @@ export default function ClientRespond(){
             const res = await axios.post(`${baseURL}${AcceptUpdateInPhase}${id}`,{},{
                 headers:{Authorization:`Bearer ${token}`}
             })
+            await ShowResponds();
         }catch(err){
             console.log(err.response?.data)
         }
@@ -81,7 +82,7 @@ export default function ClientRespond(){
       })
       console.log(res.data)
       setRejectSuccess(id);
-
+      await ShowResponds();
       setTimeout(() => {
         setRejectSuccess(null);
       }, 6000);

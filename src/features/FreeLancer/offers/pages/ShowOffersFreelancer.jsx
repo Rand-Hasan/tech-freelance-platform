@@ -142,7 +142,7 @@ export default function ShowOffersFreelancer() {
                     },
                 }
             );
-
+             
             setOffers(res.data.offers || []);
 
         } catch (err) {
@@ -156,13 +156,13 @@ export default function ShowOffersFreelancer() {
         setPage(value);
     };
 
-    const filteredOffers =
-        filterStatus === "all"
-            ? Offers
-            : Offers.filter(
-                (offer) => offer.offerStatus === filterStatus
-            );
-
+    const filteredOffers = Offers
+    .filter((offer) => offer.offerStatus !== "canceled")
+    .filter(
+        (offer) =>
+            filterStatus === "all" ||
+            offer.offerStatus === filterStatus
+    );
     return (
         <div className="offers-page">
 

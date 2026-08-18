@@ -185,3 +185,274 @@
   transform: scale(1.05); 
   box-shadow: 0 4px 12px rgba(244, 162, 97, 0.25);
 }
+/* ==========================================================================
+   RESPONSIVE NAVBAR - FREELANCER
+========================================================================== */
+
+
+/* =========================
+   Tablets
+========================= */
+
+@media (max-width: 1100px) {
+
+  .navbar-freelancer {
+    padding: 12px 24px;
+  }
+
+  .div-link-free {
+    gap: 24px;
+  }
+
+  .search-form-free {
+    width: 280px;
+  }
+
+  .rightfree {
+    gap: 12px;
+  }
+}
+
+
+/* =========================
+   Small Tablets
+========================= */
+
+@media (max-width: 900px) {
+
+  .navbar-freelancer {
+    padding: 12px 20px;
+    height: auto;
+    min-height: 70px;
+    gap: 18px;
+  }
+
+  .div-link-free {
+    gap: 18px;
+  }
+
+  .nav-link-free {
+    font-size: 14px;
+  }
+
+  .search-form-free {
+    width: 230px;
+  }
+
+  .rightfree {
+    gap: 10px;
+  }
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+  .navbar-freelancer {
+    height: auto;
+    min-height: 70px;
+
+    padding: 12px 16px;
+
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+
+  /* روابط النافبار */
+
+  .div-link-free {
+    order: 3;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    gap: 22px;
+
+    padding-top: 8px;
+    padding-bottom: 4px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .div-link-free::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .nav-link-free {
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+  }
+
+
+  /* القسم اليمين */
+
+  .rightfree {
+    margin-left: auto;
+
+    gap: 8px;
+  }
+
+
+  /* البحث */
+
+  .search-form-free {
+    width: 210px;
+    height: 36px;
+  }
+
+
+  .search-input-free {
+    font-size: 12.5px;
+  }
+
+
+  .search-select-free {
+    font-size: 12px;
+  }
+
+
+  .search-divider {
+    margin: 0 7px;
+  }
+
+
+  .search-btn-submit-free {
+    padding: 0 11px;
+  }
+
+
+  .search-icon-free {
+    font-size: 15px !important;
+  }
+
+
+  /* Avatar */
+
+  .avatar-free {
+    width: 36px;
+    height: 36px;
+
+    font-size: 12.5px;
+  }
+}
+
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+  .navbar-freelancer {
+    padding: 10px 14px;
+  }
+
+
+  .search-form-free {
+    width: 180px;
+  }
+
+
+  /*
+     نخلي البحث أبسط على الشاشات الصغيرة
+  */
+
+  .search-select-wrapper {
+    display: none;
+  }
+
+  .search-divider {
+    display: none;
+  }
+
+
+  .search-form-free {
+    padding-left: 12px;
+  }
+
+
+  .search-input-free {
+    font-size: 12px;
+  }
+
+
+  .search-btn-submit-free {
+    padding: 0 10px;
+  }
+
+
+  .div-link-free {
+    justify-content: flex-start;
+
+    gap: 20px;
+  }
+}
+
+
+/* =========================
+   Very Small Mobile
+========================= */
+
+@media (max-width: 430px) {
+
+  .navbar-freelancer {
+    padding: 10px 12px;
+
+    gap: 10px;
+  }
+
+
+  .rightfree {
+    width: 100%;
+
+    margin-left: 0;
+
+    justify-content: space-between;
+  }
+
+
+  .search-form-free {
+    flex: 1;
+
+    width: auto;
+
+    max-width: none;
+  }
+
+
+  .notif-wrapper-free {
+    flex-shrink: 0;
+  }
+
+
+  .avatar-free {
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+  }
+
+
+  .div-link-free {
+    gap: 18px;
+
+    padding-top: 6px;
+  }
+
+
+  .nav-link-free {
+    font-size: 12.5px;
+  }
+}

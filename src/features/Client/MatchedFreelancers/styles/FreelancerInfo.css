@@ -1,0 +1,232 @@
+.freelancer-profile-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================
+   Main Card
+========================= */
+
+.freelancer-details-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e6eeec;
+  border-radius: 16px;
+  padding: 28px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(9, 38, 59, 0.05);
+}
+
+/* =========================
+   Header
+========================= */
+
+.details-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #edf2f1;
+}
+
+.details-card-header h2 {
+  margin: 0;
+  color: #09263b;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.details-card-header p {
+  margin: 6px 0 0;
+  color: #7b8987;
+  font-size: 14px;
+}
+
+/* =========================
+   Github
+========================= */
+
+.github-button {
+  padding: 9px 17px;
+  border-radius: 8px;
+  background: #09263b;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.github-button:hover {
+  background: #087f68;
+}
+
+/* =========================
+   Portfolio Description
+========================= */
+
+.portfolio-description {
+  padding: 22px 0;
+}
+
+.portfolio-description h3 {
+  margin: 0 0 8px;
+  color: #09263b;
+  font-size: 19px;
+}
+
+.portfolio-description p {
+  max-width: 800px;
+  margin: 0;
+  color: #63726f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================
+   Projects
+========================= */
+
+.portfolio-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.portfolio-project {
+  min-height: 125px;
+  padding: 20px;
+  background: #f4f8f7;
+  border: 1px solid #e2ebe9;
+  border-radius: 12px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: 0.2s ease;
+}
+
+.portfolio-project:hover {
+  border-color: #087f68;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(8, 127, 104, 0.08);
+}
+
+.portfolio-project-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border-radius: 10px;
+
+  font-size: 18px;
+}
+
+.portfolio-project h4 {
+  margin: 14px 0 5px;
+  color: #09263b;
+  font-size: 15px;
+}
+
+.portfolio-project span {
+  color: #087f68;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================
+   Reviews
+========================= */
+
+.reviews-count {
+  padding: 7px 13px;
+  border-radius: 20px;
+  background: #f4f8f7;
+  color: #087f68;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.review-box {
+  padding: 22px 0 4px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-stars {
+  color: #edfd0f;
+  font-size: 21px;
+  letter-spacing: 2px;
+}
+
+.review-score {
+  color: #09263b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.review-text {
+  margin: 13px 0 10px;
+  color: #536562;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.review-date {
+  color: #8a9795;
+  font-size: 12px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+  .portfolio-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .freelancer-details-card {
+    padding: 20px;
+    border-radius: 13px;
+  }
+
+  .details-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .github-button {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .portfolio-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-card-header h2 {
+    font-size: 21px;
+  }
+
+  .review-stars {
+    font-size: 18px;
+  }
+}

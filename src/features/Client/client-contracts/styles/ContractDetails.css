@@ -739,3 +739,238 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.contract-response-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 25px auto;
+
+    padding: 28px;
+
+    background: #ffffff;
+    border: 1px solid #e4ecea;
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 8px 25px rgba(20, 55, 60, 0.05);
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.response-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf1f1;
+}
+
+.response-header h2 {
+    margin: 0;
+
+    color: #09263b;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.response-header p {
+    margin: 6px 0 0;
+
+    color: #7a8e92;
+    font-size: 13px;
+}
+
+
+/* Status */
+
+.response-status {
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #fff7df;
+    color: #9a7310;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   Request Message
+========================= */
+
+.response-message {
+    margin-top: 22px;
+
+    padding: 18px;
+
+    background: #f6faf9;
+
+    border: 1px solid #e3eeeb;
+    border-radius: 12px;
+}
+
+.response-message span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7a8e92;
+
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.response-message p {
+    margin: 0;
+
+    color: #09263b;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   Activity
+========================= */
+
+.activity-section {
+    margin-top: 25px;
+}
+
+.activity-section h3 {
+    margin: 0 0 13px;
+
+    color: #09263b;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-item {
+    padding: 14px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eceb;
+    border-left: 4px solid #087f68;
+
+    border-radius: 10px;
+
+    color: #4c6268;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Actions
+========================= */
+
+.response-actions {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1f1;
+}
+
+.response-btn {
+    min-width: 130px;
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* Accept */
+
+.accept-btn {
+    background: #087f68;
+    color: #ffffff;
+}
+
+.accept-btn:hover {
+    background: #066c59;
+    transform: translateY(-1px);
+}
+
+
+/* Reject */
+
+.reject-btn {
+    background: #fff1f1;
+    color: #c44b4b;
+
+    border: 1px solid #f0d2d2;
+}
+
+.reject-btn:hover {
+    background: #ffe5e5;
+}
+
+
+/* Withdraw */
+
+.withdraw-btn {
+    background: #f2f6f5;
+    color: #087f68;
+
+    border: 1px solid #d8e7e4;
+}
+
+.withdraw-btn:hover {
+    background: #e6f1ef;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+    .contract-response-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .response-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .response-actions {
+        flex-direction: column;
+    }
+
+    .response-btn {
+        width: 100%;
+    }
+
+}
