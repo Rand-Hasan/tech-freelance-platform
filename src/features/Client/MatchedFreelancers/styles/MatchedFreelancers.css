@@ -9,9 +9,92 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
     
     padding-left: 20px;
     padding-right: 20px;
     
+}
+
+/* ===== Level filter buttons ===== */
+.level-filter-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    border: 1px solid #d1d9dd;
+    background: #ffffff;
+    color: #1f2937;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: #f0f4f6;
+    border-color: #006f59;
+}
+
+.filter-btn.active {
+    background: #006f59;
+    color: #ffffff;
+    border-color: #006f59;
+}
+
+.filter-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== Options menu (3 dots + dropdown) ===== */
+.options_menu_container {
+    position: relative;
+}
+
+.dots_btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 10px;
+    line-height: 1;
+}
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background: #fff;
+    border: 1px solid #edf1f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+    min-width: 140px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.options_menu_container.active .dropdown_menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown_menu button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.dropdown_menu button:hover {
+    background: #f5f7fa;
 }
