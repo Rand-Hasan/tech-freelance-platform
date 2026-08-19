@@ -164,9 +164,11 @@ export default function FreelancerContractDetailes() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      ).then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
-      console.log(res.data);
 
     } catch (err) {
 
@@ -199,9 +201,13 @@ export default function FreelancerContractDetailes() {
         }
       );
 
-      console.log(res.data);
+      
 
       setRejectSuccess(id);
+      then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
       setTimeout(() => {
         setRejectSuccess(null);

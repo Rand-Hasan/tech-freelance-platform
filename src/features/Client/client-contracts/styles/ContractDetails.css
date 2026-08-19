@@ -999,7 +999,11 @@
   color: #ffffff;
   transform: translateY(-1px);
 }
-
+.header-actions > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 /* =========================
    PAY
@@ -1015,6 +1019,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  
 }
 
 .pay-btn-client:hover {

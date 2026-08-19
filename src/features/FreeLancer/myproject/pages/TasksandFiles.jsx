@@ -142,13 +142,8 @@ const [fileError, setFileError] = useState("");
 
         }
     };
+    
    const AddFile = async () => {
-
-    if (files.length > 0 || url) {
-        setFileError("You can only add one file or one link.");
-        return;
-    }
-
     try {
 
         setFileError("");
@@ -220,7 +215,6 @@ const [fileError, setFileError] = useState("");
     const DeleteFile = async (type, id) => {
 
     try {
-
         setFileError("");
 
         if (type === "file") {
@@ -372,7 +366,7 @@ const [fileError, setFileError] = useState("");
                 setFileError("");
                 setShowFileModal(true);
             }}
-            disabled={files.length > 0}
+           
         >
             <FaPlus />
             Add File
@@ -416,7 +410,7 @@ const [fileError, setFileError] = useState("");
 
                 <button
                     className="delete-btn"
-                    onClick={() => DeleteFile("file", file.id)}
+                    onClick={() => DeleteFile("file", phaseId)}
                 >
                     <FaTrash />
                 </button>
@@ -507,7 +501,9 @@ const [fileError, setFileError] = useState("");
 
                                 <button
                                     className="file-option"
+                                     disabled={files.length > 0}
                                     onClick={() => setFileType("upload")}
+
                                 >
 
                                     <div className="option-icon upload-icon">
