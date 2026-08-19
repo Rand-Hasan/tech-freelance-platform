@@ -25,6 +25,11 @@ export default function ContractDetails() {
 
   const token = cookies.get("token-client");
 
+
+  // =========================================
+  // STATES
+  // =========================================
+
   const [showModal, setShowModal] = useState(false);
 
   const [contract, setContract] = useState(null);
@@ -45,6 +50,9 @@ export default function ContractDetails() {
 
   // هل العميل عمل طلب إلغاء بنفسه؟
   const [cancelRequested, setCancelRequested] = useState(false);
+
+  // حذف العقد من الواجهة فقط
+  const [deletedFromUI, setDeletedFromUI] = useState(false);
 
 
   // =========================================
@@ -223,23 +231,28 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      )
 
-      console.log("Cancel response:", res.data);
+      .then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
 
+      // فقط active يعمل cancellation request
+      // ويظهر Withdraw بجانب Cancel
       if (contract?.status === "active") {
 
-      localStorage.setItem(
-        `client-cancel-request-${id}`,
-        "true"
-      );
+        localStorage.setItem(
+          `client-cancel-request-${id}`,
+          "true"
+        );
 
-      setCancelRequested(true);
+        setCancelRequested(true);
 
-    }
+      }
 
-    setShowModal(false);
+      setShowModal(false);
 
 
     } catch (err) {
@@ -268,7 +281,10 @@ export default function ContractDetails() {
         }
       );
 
-      console.log("Cancellation responses:", res.data.responds);
+      console.log(
+        "Cancellation responses:",
+        res.data.responds
+      );
 
       setResponse(res.data.responds || []);
 
@@ -297,12 +313,9 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      )
-       .then((response) => {
-        console.log("Trueeeeeeeeeeee", response.json);
-        window.location.reload();
-      })
-      console.log(res.data);
+      );
+
+      window.location.reload();
 
     } catch (err) {
 
@@ -329,10 +342,11 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      ).then((response) => {
-        console.log("Trueeeeeeeeeeee", response.json);
-        window.location.reload();
-      })
+      );
+
+      console.log(res.data);
+
+      window.location.reload();
 
     } catch (err) {
 
@@ -364,18 +378,10 @@ export default function ContractDetails() {
       console.log("Withdraw response:", res.data);
 
 
-      /*
-        حذف حالة الطلب من localStorage
-      */
-
       localStorage.removeItem(
         `client-cancel-request-${id}`
       );
 
-
-      /*
-        رجع الزر إلى Cancel Contract
-      */
 
       setCancelRequested(false);
 
@@ -384,6 +390,17 @@ export default function ContractDetails() {
       console.log(err.response?.data);
 
     }
+
+  };
+
+
+  // =========================================
+  // DELETE FROM UI ONLY
+  // =========================================
+
+  const handleDeleteFromUI = () => {
+
+    setDeletedFromUI(true);
 
   };
 
@@ -400,16 +417,82 @@ export default function ContractDetails() {
 
 
   // =========================================
+  // DELETE FROM UI
+  // =========================================
+
+  if (deletedFromUI) {
+
+    return (
+      <div className="contract-details-page">
+
+        <div className="card">
+
+          <h2>
+            Contract removed
+          </h2>
+
+          <p>
+            This contract has been removed from your view.
+          </p>
+
+          <button
+            onClick={() =>
+              navigate("/clientlayout/contracts")
+            }
+          >
+            Back to Contracts
+          </button>
+
+        </div>
+
+      </div>
+    );
+
+  }
+
+
+  // =========================================
   // CANCELLATION REQUEST
   // =========================================
 
   const cancellationRequest = responsefree?.find(
-    (res) => res?.respond === "want to delete contract"
+    (res) =>
+      res?.respond === "want to delete contract"
   );
 
 
   const isRequester =
     cancellationRequest?.freelancer_id !== null;
+
+
+  // =========================================
+  // CONTRACT TYPE
+  // =========================================
+
+  const isMultiPhase =
+    contract.type === "multi_phase";
+
+
+  // =========================================
+  // PAY BUTTON LOGIC
+  // =========================================
+
+  /*
+    SINGLE PHASE:
+    accepted_pending_fund -> PAY
+    active -> NO PAY
+
+    MULTI PHASE:
+    accepted_pending_fund -> PAY
+    active -> PAY
+  */
+
+  const showPayButton =
+    contract.status === "accepted_pending_fund" ||
+    (
+      contract.status === "active" &&
+      isMultiPhase
+    );
 
 
   return (
@@ -432,7 +515,8 @@ export default function ContractDetails() {
 
           <p>
 
-            {contract.description || "No description available."}
+            {contract.description ||
+              "No description available."}
 
             <br />
 
@@ -442,7 +526,9 @@ export default function ContractDetails() {
 
             Created:
             {" "}
-            {new Date(contract.createdAt).toLocaleDateString()}
+            {new Date(
+              contract.createdAt
+            ).toLocaleDateString()}
 
           </p>
 
@@ -493,7 +579,8 @@ export default function ContractDetails() {
                 {
                   contract.phases?.reduce(
                     (total, phase) =>
-                      total + phase.duration_in_days,
+                      total +
+                      phase.duration_in_days,
                     0
                   )
                 }
@@ -538,62 +625,111 @@ export default function ContractDetails() {
 
 
             {/* =====================================
-                CANCEL / WITHDRAW
+                DRAFT
+                EDIT ONLY
             ===================================== */}
-{contract.status === "draft" ? (
-  <div className="draft-actions-client">
 
-    <button
-      className="editcontract-client"
-      onClick={() =>
-        navigate(`/clientlayout/editcontract/${contract.id}`)
-      }
-    >
-      Edit Contract
-    </button>
+            {contract.status === "draft" && (
 
-    <button
-      className="deletecontract-client"
-      onClick={() => {
-        setContract(null);
-      }}
-    >
-      Delete
-    </button>
+              <button
+                className="editcontract-client"
+                onClick={() =>
+                  navigate(
+                    `/clientlayout/editcontract/${contract.id}`
+                  )
+                }
+              >
+                Edit Contract
+              </button>
 
-  </div>
-) : (
-  <div className="contract-actions-client">
+            )}
 
-    <button
-      className="cancel-btn-client"
-      onClick={() => setShowModal(true)}
-    >
-      Cancel Contract
-    </button>
 
-    {contract.status === "active" && cancelRequested && (
-      <button
-        className="withdraw-btn-client"
-        onClick={() =>
-          handleWithdrawRequest(contract.id)
-        }
-      >
-        Withdraw Request
-      </button>
-    )}
+            {/* =====================================
+                PAY
+            ===================================== */}
 
-    <button
-      className="pay-btn-client"
-      onClick={() =>
-        navigate(`/clientlayout/wallet/${contract.id}`)
-      }
-    >
-      PAY
-    </button>
+            {showPayButton && (
 
-  </div>
-)}
+              <button
+                className="pay-btn-client"
+                onClick={() =>
+                  navigate(
+                    `/clientlayout/wallet/${contract.id}`
+                  )
+                }
+              >
+                PAY
+              </button>
+
+            )}
+
+
+            {/* =====================================
+                CANCEL
+                ALWAYS REMAINS VISIBLE
+            ===================================== */}
+
+            {(
+              contract.status === "accepted_pending_fund" ||
+              contract.status === "active" ||
+              contract.status === "disputed"
+            ) && (
+
+              <button
+                className="cancel-btn-client"
+                onClick={() =>
+                  setShowModal(true)
+                }
+              >
+                Cancel Contract
+              </button>
+
+            )}
+
+
+            {/* =====================================
+                WITHDRAW
+                SHOW BESIDE CANCEL
+                ONLY ACTIVE + REQUESTED
+            ===================================== */}
+
+            {contract.status === "active" &&
+              cancelRequested && (
+
+                <button
+                  className="withdraw-btn-client"
+                  onClick={() =>
+                    handleWithdrawRequest(
+                      contract.id
+                    )
+                  }
+                >
+                  Withdraw Request
+                </button>
+
+              )}
+
+
+            {/* =====================================
+                COMPLETED / CANCELLED
+                DELETE ONLY
+            ===================================== */}
+
+            {(
+              contract.status === "completed" ||
+              contract.status === "cancelled"
+            ) && (
+
+              <button
+                className="deletecontract-client"
+                onClick={handleDeleteFromUI}
+              >
+                Delete
+              </button>
+
+            )}
+
           </div>
 
         </div>
@@ -620,37 +756,43 @@ export default function ContractDetails() {
 
 
           {
-            contract.phases?.map((phase) => (
+            contract.phases?.map(
+              (phase) => (
 
-              <div
-                className="stage-item"
-                key={phase.id}
-              >
+                <div
+                  className="stage-item"
+                  key={phase.id}
+                >
 
-                <div>
+                  <div>
 
-                  <h4>
-                    {phase.title}
-                  </h4>
+                    <h4>
+                      {phase.title}
+                    </h4>
 
-                  <p>
-                    {phase.duration_in_days} days · {phase.status}
-                  </p>
+                    <p>
+                      {phase.duration_in_days}
+                      {" "}
+                      days · {phase.status}
+                    </p>
+
+                  </div>
+
+
+                  <span>
+                    ${phase.amount}
+                  </span>
 
                 </div>
 
-
-                <span>
-                  ${phase.amount}
-                </span>
-
-              </div>
-
-            ))
+              )
+            )
           }
 
 
-          <button className="workspace-btn">
+          <button
+            className="workspace-btn"
+          >
             Go to Project Workspace →
           </button>
 
@@ -669,10 +811,6 @@ export default function ContractDetails() {
             <div className="cancel-request-card">
 
 
-              {/* =====================================
-                  HEADER
-              ===================================== */}
-
               <div className="cancel-request-header">
 
                 <div>
@@ -687,13 +825,8 @@ export default function ContractDetails() {
 
                 </div>
 
-
               </div>
 
-
-              {/* =====================================
-                  REQUEST MESSAGE
-              ===================================== */}
 
               <div className="cancel-request-message">
 
@@ -715,10 +848,6 @@ export default function ContractDetails() {
               </div>
 
 
-              {/* =====================================
-                  ACTIVITY
-              ===================================== */}
-
               <div className="cancel-request-activity">
 
                 <span className="cancel-request-label">
@@ -729,18 +858,22 @@ export default function ContractDetails() {
                 <div className="cancel-request-list">
 
                   {
-                    responsefree?.map((res, index) => (
+                    responsefree?.map(
+                      (res, index) => (
 
-                      <div
-                        className="cancel-request-item"
-                        key={res?.id || index}
-                      >
+                        <div
+                          className="cancel-request-item"
+                          key={
+                            res?.id || index
+                          }
+                        >
 
-                        {res?.respond}
+                          {res?.respond}
 
-                      </div>
+                        </div>
 
-                    ))
+                      )
+                    )
                   }
 
                 </div>
@@ -748,17 +881,8 @@ export default function ContractDetails() {
               </div>
 
 
-              {/* =====================================
-                  ACTIONS
-              ===================================== */}
-
               {
                 !isRequester && (
-
-                  /*
-                    أنا لست صاحب الطلب
-                    → Accept + Reject
-                  */
 
                   <div className="cancel-request-actions">
 
@@ -766,7 +890,9 @@ export default function ContractDetails() {
                     <button
                       className="cancel-request-accept"
                       onClick={() =>
-                        handleAccept(contract.id)
+                        handleAccept(
+                          contract.id
+                        )
                       }
                     >
                       Accept Cancellation
@@ -776,9 +902,11 @@ export default function ContractDetails() {
                     <button
                       className="cancel-request-reject"
                       onClick={() =>
-                        handleReject(contract.id)
+                        handleReject(
+                          contract.id
+                        )
                       }
-                    >
+                      >
                       Reject Cancellation
                     </button>
 
@@ -854,14 +982,14 @@ export default function ContractDetails() {
           <div className="rating-modal">
 
 
-            {/* HEADER */}
-
             <div className="rating-modal-header">
 
               <div>
 
                 <h2>
-                  Rate {contract.freelancer?.name || "Freelancer"}'s Work
+                  Rate{" "}
+                  {contract.freelancer?.name ||
+                    "Freelancer"}'s Work
                 </h2>
 
 
@@ -875,8 +1003,6 @@ export default function ContractDetails() {
             </div>
 
 
-            {/* STARS */}
-
             <div className="rating-section">
 
               <label>
@@ -887,28 +1013,30 @@ export default function ContractDetails() {
               <div className="stars-container">
 
                 {
-                  [1, 2, 3, 4, 5].map((star) => (
+                  [1, 2, 3, 4, 5].map(
+                    (star) => (
 
-                    <button
-                      key={star}
-                      type="button"
-                      className={
-                        `star-btn ${
-                          star <= rating
-                            ? "active-star"
-                            : ""
-                        }`
-                      }
-                      onClick={() =>
-                        setRating(star)
-                      }
-                    >
+                      <button
+                        key={star}
+                        type="button"
+                        className={
+                          `star-btn ${
+                            star <= rating
+                              ? "active-star"
+                              : ""
+                          }`
+                        }
+                        onClick={() =>
+                          setRating(star)
+                        }
+                      >
 
-                      <FaStar />
+                        <FaStar />
 
-                    </button>
+                      </button>
 
-                  ))
+                    )
+                  )
                 }
 
               </div>
@@ -926,8 +1054,6 @@ export default function ContractDetails() {
 
             </div>
 
-
-            {/* FEEDBACK */}
 
             <div className="feedback-section">
 
@@ -954,8 +1080,6 @@ export default function ContractDetails() {
 
             </div>
 
-
-            {/* ACTIONS */}
 
             <div className="rating-modal-actions">
 
@@ -1026,8 +1150,6 @@ export default function ContractDetails() {
           <div className="cancel-modal">
 
 
-            {/* HEADER */}
-
             <div className="modal-header">
 
               <h2>
@@ -1046,8 +1168,6 @@ export default function ContractDetails() {
 
             </div>
 
-
-            {/* DESCRIPTION */}
 
             <p className="modal-description">
 
@@ -1089,8 +1209,6 @@ export default function ContractDetails() {
             </p>
 
 
-            {/* WARNING */}
-
             <div className="warning-box">
 
               ⚠ Cancelling this contract may apply a cancellation fee
@@ -1099,8 +1217,6 @@ export default function ContractDetails() {
 
             </div>
 
-
-            {/* ACCEPT POLICY */}
 
             <div className="accept-box">
 
@@ -1123,15 +1239,15 @@ export default function ContractDetails() {
             </div>
 
 
-            {/* MODAL ACTIONS */}
-
             <div className="modal-actions">
 
 
               <button
                 className="confirm-btn"
                 onClick={() =>
-                  cancelcontract(contract.id)
+                  cancelcontract(
+                    contract.id
+                  )
                 }
               >
                 Cancel Contract

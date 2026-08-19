@@ -18,6 +18,7 @@ export default function TasksandFiles() {
         sessionStorage.getItem(`phaseStatus_${phaseId}`) ||
         ""
     );
+    
     const [showFileModal, setShowFileModal] = useState(false);
     const [fileType, setFileType] = useState(null);
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -148,13 +149,8 @@ export default function TasksandFiles() {
 
         }
     };
+    
    const AddFile = async () => {
-
-    if (files.length > 0 || url) {
-        setFileError("You can only add one file or one link.");
-        return;
-    }
-
     try {
 
         setFileError("");
@@ -226,7 +222,6 @@ export default function TasksandFiles() {
     const DeleteFile = async (type, id) => {
 
     try {
-
         setFileError("");
 
         if (type === "file") {
@@ -374,6 +369,7 @@ export default function TasksandFiles() {
 
         <h2>Project Files</h2>
 
+
         {phaseStatus === "in_progress" && (
             <button
                 className="add-btn"
@@ -387,6 +383,9 @@ export default function TasksandFiles() {
                 Add File
             </button>
         )}
+
+       
+
 
     </div>
 
@@ -426,7 +425,7 @@ export default function TasksandFiles() {
 
                 <button
                     className="delete-btn"
-                    onClick={() => DeleteFile("file", file.id)}
+                    onClick={() => DeleteFile("file", phaseId)}
                 >
                     <FaTrash />
                 </button>
@@ -517,7 +516,9 @@ export default function TasksandFiles() {
 
                                 <button
                                     className="file-option"
+                                     disabled={files.length > 0}
                                     onClick={() => setFileType("upload")}
+
                                 >
 
                                     <div className="option-icon upload-icon">
