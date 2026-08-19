@@ -377,7 +377,7 @@ export default function TasksandFiles() {
                     setFileError("");
                     setShowFileModal(true);
                 }}
-                disabled={files.length > 0}
+               
             >
                 <FaPlus />
                 Add File
@@ -406,7 +406,7 @@ export default function TasksandFiles() {
                 <div className="file-info">
 
                     <div className="file-icon">
-                        <FaFileArchive />
+                        <FaFileArchive  disabled={files.length > 0}/>
                     </div>
 
                     <div className="file-content">

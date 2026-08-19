@@ -80,12 +80,16 @@ const removePhase = (index) => {
         
         try {
             const url = isEditMode ? `${baseURL}${UpdateContract}${projectId}` : `${baseURL}${CreateContract}${projectId}`
-            const body = {
-                ...data,
-                deadline: toDashDate(data.deadline),
-                freelancer_id: freelancerId,
-                type,
-            };
+           const body = {
+    title: data.title,
+    total_budget: data.total_budget,
+    duration_in_days:data.duration_in_days,
+    freelancer_id: freelancerId,
+    type,
+};
+if (type === "single_phase") {
+    body.deadline = data.deadline;
+}
 
             if (type === "multi_phase") {
                 body.phases = phases.map((phase) => ({
@@ -220,6 +224,22 @@ const removePhase = (index) => {
                                 value={data.deadline}
                                 onChange={handleChange}
                             />
+                             <div className="contract-input-group">
+
+                                <label>
+                                    Duration (Days)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="duration_in_days"
+                                    value={data.duration_in_days}
+                                    onChange={(e) =>
+                                        handlePhaseChange(index, e)
+                                    }
+                                />
+
+                            </div>
 
                         </div>
 
