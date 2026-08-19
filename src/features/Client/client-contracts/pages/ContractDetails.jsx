@@ -8,6 +8,7 @@ import {
   CancelContract,
   GetContractById,
   GetRespondByContract,
+  GetReviewByContract,
   RejectCancelContract,
   ReturnToCancelContract,
   ReviewsCreateReview
@@ -33,6 +34,12 @@ export default function ContractDetails() {
   const [rating, setRating] = useState(0);
 
   const [comment, setComment] = useState("");
+
+  // هل العميل قيّم العقد من قبل؟
+  const [reviewed, setReviewed] = useState(false);
+
+  // هل المودال فرضي (إجباري عند فتح العقد المكتمل غير المُقيَّم)؟
+  const [ratingModalForced, setRatingModalForced] = useState(false);
 
   const [responsefree, setResponse] = useState([]);
 
@@ -100,6 +107,12 @@ export default function ContractDetails() {
 
       setContract(res.data.contract);
 
+      if (res.data.contract?.status === "completed") {
+
+        checkReviewStatus();
+
+      }
+
     } catch (err) {
 
       console.log(err);
@@ -133,12 +146,61 @@ export default function ContractDetails() {
       setShowRatingModal(false);
       setRating(0);
       setComment("");
+      setReviewed(true);
+      setRatingModalForced(false);
 
       console.log(res.data);
 
     } catch (err) {
 
       console.log(err.response?.data);
+
+    }
+
+  };
+
+
+  // =========================================
+  // CHECK IF THE CLIENT ALREADY REVIEWED
+  // =========================================
+
+  const checkReviewStatus = async () => {
+
+    try {
+
+      const res = await axios.get(
+        `${baseURL}${GetReviewByContract}${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      if (res.data?.review) {
+
+        setReviewed(true);
+
+      }
+
+    } catch (err) {
+
+      /*
+        الرقم 404 = "review not found"
+        أي أن العميل لم يقم بالتقييم بعد
+        → فتح مودال التقييم إجبارياً.
+      */
+
+      if (err.response?.status === 404) {
+
+        setReviewed(false);
+
+        setRating(0);
+        setComment("");
+        setRatingModalForced(true);
+        setShowRatingModal(true);
+
+      }
 
     }
 
@@ -740,7 +802,7 @@ export default function ContractDetails() {
           RATING
       ========================================= */}
 
-      {contract.status === "completed" && (
+      {contract.status === "completed" && !reviewed && (
 
         <div className="rate-freelancer-box">
 
@@ -897,22 +959,23 @@ export default function ContractDetails() {
 
             <div className="rating-modal-actions">
 
+              {!ratingModalForced && (
+                <button
+                  className="rating-cancel-btn"
+                  type="button"
+                  onClick={() => {
 
-              <button
-                className="rating-cancel-btn"
-                type="button"
-                onClick={() => {
+                    setShowRatingModal(false);
 
-                  setShowRatingModal(false);
+                    setRating(0);
 
-                  setRating(0);
+                    setComment("");
 
-                  setComment("");
-
-                }}
-              >
-                Cancel
-              </button>
+                  }}
+                >
+                  Cancel
+                </button>
+              )}
 
 
               <button

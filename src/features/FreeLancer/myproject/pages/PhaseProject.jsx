@@ -74,7 +74,10 @@ export default function PhasesProject(){
                     </div>
 
                     <button className="tasks-btn"
-                    onClick={()=>navigate(`/freelancerlayout/projectfree/phasedetails/${phase.id}`)}
+                    onClick={()=>{
+                        sessionStorage.setItem(`phaseStatus_${phase.id}` , phase.status);
+                        navigate(`/freelancerlayout/projectfree/phasedetails/${phase.id}` , { state: { phaseStatus: phase.status } });
+                    }}
                     >
                         View Tasks
                     </button>

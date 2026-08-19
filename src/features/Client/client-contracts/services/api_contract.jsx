@@ -3,6 +3,7 @@ export const UpdateContract='UpdateContract/';
 export const GetAllClientsContracts='GetAllClientsContracts/';
 export const GetContractById = 'GetContractById/';
 export const ReviewsCreateReview='Reviews/CreateReview/';
+export const GetReviewByContract='Reviews/GetReviewByContract/';
 export const CancelContract='CancelContract/';
 export const GetRespondByContract='GetRespondByContract/';
 export const AcceptCancelContract='AcceptCancelContract/';
