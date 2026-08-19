@@ -164,9 +164,11 @@ export default function FreelancerContractDetailes() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      ).then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
-      console.log(res.data);
 
     } catch (err) {
 
@@ -199,9 +201,13 @@ export default function FreelancerContractDetailes() {
         }
       );
 
-      console.log(res.data);
+      
 
       setRejectSuccess(id);
+      then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
       setTimeout(() => {
         setRejectSuccess(null);
@@ -420,6 +426,17 @@ export default function FreelancerContractDetailes() {
 
     }
 
+  };
+
+
+  /*
+  ============================================================
+  Delete Contract (UI only - completed / cancelled)
+  ============================================================
+  */
+
+  const handleDeleteContract = () => {
+    navigate("/FreeLancerLayout/contractfree");
   };
 
 
@@ -802,6 +819,20 @@ export default function FreelancerContractDetailes() {
             className="Rejectbtn"
           >
             Reject Contract
+          </button>
+
+        </div>
+
+      ) : contractdetailes?.status === "completed" ||
+        contractdetailes?.status === "cancelled" ? (
+
+        <div className="Buttons">
+
+          <button
+            className="Cancelbtncontract"
+            onClick={handleDeleteContract}
+          >
+            Delete
           </button>
 
         </div>

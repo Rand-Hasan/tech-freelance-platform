@@ -42,10 +42,10 @@ export default function CreateContractt() {
         });
     };
 
-    // ===== Ensures the date is always sent as YYYY-MM-DD (dashes), never with slashes =====
+    // ===== Ensures the date is always sent as YYYY-MM-DD (ISO 8601), never with slashes or time =====
     const toDashDate = (dateString) => {
         if (!dateString) return dateString;
-        return dateString.replaceAll("/", "-");
+        return dateString.replaceAll("/", "-").slice(0, 10);
     };
 
     const handlePhaseChange = (index, e) => {
@@ -215,7 +215,7 @@ const removePhase = (index) => {
                             </label>
 
                             <input
-                                type="text"
+                                type="date"
                                 name="deadline"
                                 value={data.deadline}
                                 onChange={handleChange}
@@ -294,7 +294,7 @@ const removePhase = (index) => {
                                 </label>
 
                                 <input
-                                    type="text"
+                                    type="date"
                                     name="deadline"
                                     value={phase.deadline}
                                     onChange={(e) =>
