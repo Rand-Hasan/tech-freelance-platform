@@ -215,7 +215,7 @@ const removePhase = (index) => {
                             </label>
 
                             <input
-                                type="text"
+                                type="date"
                                 name="deadline"
                                 value={data.deadline}
                                 onChange={handleChange}
@@ -294,7 +294,7 @@ const removePhase = (index) => {
                                 </label>
 
                                 <input
-                                    type="text"
+                                    type="date"
                                     name="deadline"
                                     value={phase.deadline}
                                     onChange={(e) =>
