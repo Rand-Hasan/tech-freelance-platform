@@ -147,17 +147,17 @@ useEffect(() => {
         
         try {
             const url = isEditMode ? `${baseURL}${UpdateContract}${id}` : `${baseURL}${CreateContract}${projectId}`
-           const body = {
+  const body = {
     title: data.title,
     total_budget: data.total_budget,
-    duration_in_days:data.duration_in_days,
     freelancer_id: freelancerId,
     type,
 };
-if (type === "single_phase") {
-    body.deadline = data.deadline;
-}
 
+if (type === "single_phase") {
+    body.duration_in_days = data.duration_in_days;
+    body.deadline = toDashDate(data.deadline);
+}
             if (type === "multi_phase") {
                 body.phases = phases.map((phase) => ({
                     ...phase,
