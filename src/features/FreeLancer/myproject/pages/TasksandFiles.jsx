@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft, FaPlus, FaTrash, FaFileAlt, FaLink, FaUpload, FaTimes, FaFileArchive } from "react-icons/fa";
 import '../styles/TasksandFiles.css';
 import Cookies from "universal-cookie";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
 import { AddTask, CheckTask, DeleteFiles, DeleteTask, DeleteUrl, GetPhaseFiles, GetPhaseTask, UploadProjectsFile } from "../services/api-myproject";
@@ -12,6 +12,13 @@ export default function TasksandFiles() {
     const cookies = new Cookies();
     const token = cookies.get('token-freelancer');
     const navigate = useNavigate();
+    const location = useLocation();
+    const [phaseStatus] = useState(
+        location.state?.phaseStatus ||
+        sessionStorage.getItem(`phaseStatus_${phaseId}`) ||
+        ""
+    );
+    
     const [showFileModal, setShowFileModal] = useState(false);
     const [fileType, setFileType] = useState(null);
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -22,7 +29,7 @@ export default function TasksandFiles() {
     const [url, setUrl] = useState("");
     const [fileUrl, setFileUrl] = useState("");
     const [taskError, setTaskError] = useState("");
-const [fileError, setFileError] = useState("");
+    const [fileError, setFileError] = useState("");
     useEffect(() => {
         showtasks();
     }, [phaseId]);
@@ -285,16 +292,18 @@ const [fileError, setFileError] = useState("");
 
         <h2>Tasks</h2>
 
-        <button
-            className="add-btn"
-            onClick={() => {
-                setTaskError("");
-                setShowTaskModal(true);
-            }}
-        >
-            <FaPlus />
-            Add Task
-        </button>
+        {phaseStatus === "in_progress" && (
+            <button
+                className="add-btn"
+                onClick={() => {
+                    setTaskError("");
+                    setShowTaskModal(true);
+                }}
+            >
+                <FaPlus />
+                Add Task
+            </button>
+        )}
 
     </div>
 
@@ -360,17 +369,23 @@ const [fileError, setFileError] = useState("");
 
         <h2>Project Files</h2>
 
-        <button
-            className="add-btn"
-            onClick={() => {
-                setFileError("");
-                setShowFileModal(true);
-            }}
-           
-        >
-            <FaPlus />
-            Add File
-        </button>
+
+        {phaseStatus === "in_progress" && (
+            <button
+                className="add-btn"
+                onClick={() => {
+                    setFileError("");
+                    setShowFileModal(true);
+                }}
+                disabled={files.length > 0}
+            >
+                <FaPlus />
+                Add File
+            </button>
+        )}
+
+       
+
 
     </div>
 

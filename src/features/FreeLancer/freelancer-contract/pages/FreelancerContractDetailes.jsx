@@ -431,6 +431,17 @@ export default function FreelancerContractDetailes() {
 
   /*
   ============================================================
+  Delete Contract (UI only - completed / cancelled)
+  ============================================================
+  */
+
+  const handleDeleteContract = () => {
+    navigate("/FreeLancerLayout/contractfree");
+  };
+
+
+  /*
+  ============================================================
   Loading
   ============================================================
   */
@@ -808,6 +819,20 @@ export default function FreelancerContractDetailes() {
             className="Rejectbtn"
           >
             Reject Contract
+          </button>
+
+        </div>
+
+      ) : contractdetailes?.status === "completed" ||
+        contractdetailes?.status === "cancelled" ? (
+
+        <div className="Buttons">
+
+          <button
+            className="Cancelbtncontract"
+            onClick={handleDeleteContract}
+          >
+            Delete
           </button>
 
         </div>
