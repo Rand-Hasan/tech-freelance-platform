@@ -16,6 +16,7 @@ export default function StagesAndTasks() {
   const { id: ProjectId } = useParams();
   const [deleteErrors, setDeleteErrors] = useState({});
   const [phase, setphase] = useState([]);
+  const [contractStatus, setContractStatus] = useState("");
   const cookies = new Cookies();
   const token = cookies.get("token-client");
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ export default function StagesAndTasks() {
       .then((response) => {
         console.log("Trueeeee", response);
         setphase(response.phases || []);
+        setContractStatus(response.contract_status || "");
       })
       .catch((error) => {
         console.log(error.message);
@@ -149,9 +151,11 @@ export default function StagesAndTasks() {
   }
   return (
     <div className="dadOfEveryPhases">
-      <div onClick={HandleAddPhase} className="AddPhase">
-        +
-      </div>
+      {contractStatus !== "completed" && (
+        <div onClick={HandleAddPhase} className="AddPhase">
+          +
+        </div>
+      )}
 
       {phase.length === 0 ? (
         <div
