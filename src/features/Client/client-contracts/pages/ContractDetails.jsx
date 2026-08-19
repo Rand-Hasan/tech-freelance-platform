@@ -169,11 +169,16 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      );
+      )
 
-      console.log("Cancel response:", res.data);
+      .then((response) => {
+        console.log("Trueeeeeeeeeeee", response.json);
+        window.location.reload();
+      })
 
 
+      // فقط active يعمل cancellation request
+      // ويظهر Withdraw بجانب Cancel
       if (contract?.status === "active") {
 
         localStorage.setItem(
@@ -246,8 +251,7 @@ export default function ContractDetails() {
             Authorization: `Bearer ${token}`
           }
         }
-      )
-
+      );
 
       window.location.reload();
 
@@ -413,11 +417,11 @@ export default function ContractDetails() {
 
   /*
     SINGLE PHASE:
-    accepted-pending-fund -> PAY
+    accepted_pending_fund -> PAY
     active -> NO PAY
 
     MULTI PHASE:
-    accepted-pending-fund -> PAY
+    accepted_pending_fund -> PAY
     active -> PAY
   */
 
@@ -584,7 +588,7 @@ export default function ContractDetails() {
             ===================================== */}
 
             {showPayButton && (
-          <div>
+
               <button
                 className="pay-btn-client"
                 onClick={() =>
@@ -594,44 +598,21 @@ export default function ContractDetails() {
                 }
               >
                 PAY
-
               </button>
-          </div>
+
             )}
 
 
             {/* =====================================
-                ACTIVE
-                CANCEL / WITHDRAW
+                CANCEL
+                ALWAYS REMAINS VISIBLE
             ===================================== */}
 
-{(
-  contract.status === "active" ||
-  contract.status === "accepted_pending_fund"
-) && (
-  cancelRequested ? (
-    <button
-      className="cancel-btn withdraw-btn"
-      onClick={() => handleWithdrawRequest(contract.id)}
-    >
-      Withdraw Request
-    </button>
-  ) : (
-    <button
-      className="cancel-btn"
-      onClick={() => setShowModal(true)}
-    >
-      Cancel Contract
-    </button>
-  )
-)}
-
-            {/* =====================================
-                DISPUTED
-                CANCEL ONLY
-            ===================================== */}
-
-            {contract.status === "disputed"  && (
+            {(
+              contract.status === "accepted_pending_fund" ||
+              contract.status === "active" ||
+              contract.status === "disputed"
+            ) && (
 
               <button
                 className="cancel-btn-client"
@@ -646,12 +627,37 @@ export default function ContractDetails() {
 
 
             {/* =====================================
+                WITHDRAW
+                SHOW BESIDE CANCEL
+                ONLY ACTIVE + REQUESTED
+            ===================================== */}
+
+            {contract.status === "active" &&
+              cancelRequested && (
+
+                <button
+                  className="withdraw-btn-client"
+                  onClick={() =>
+                    handleWithdrawRequest(
+                      contract.id
+                    )
+                  }
+                >
+                  Withdraw Request
+                </button>
+
+              )}
+
+
+            {/* =====================================
                 COMPLETED / CANCELLED
                 DELETE ONLY
             ===================================== */}
 
-            {(contract.status === "completed" ||
-              contract.status === "cancelled") && (
+            {(
+              contract.status === "completed" ||
+              contract.status === "cancelled"
+            ) && (
 
               <button
                 className="deletecontract-client"
@@ -838,7 +844,7 @@ export default function ContractDetails() {
                           contract.id
                         )
                       }
-                    >
+                      >
                       Reject Cancellation
                     </button>
 
