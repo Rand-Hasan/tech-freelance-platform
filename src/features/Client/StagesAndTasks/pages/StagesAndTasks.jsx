@@ -181,19 +181,20 @@ export default function StagesAndTasks() {
           >
             {/* Three dots */}
             {phase?.status === "in_review" && (
-              <div className="options_menu_container">
+              <div className="phase_menu_container">
                 <button
-                  className="dots_btn"
+                  className="phase_dots_btn"
                   onClick={(e) => {
-                    toggleMenu(phase.id);
                     e.stopPropagation();
+                    toggleMenu(phase.id);
+                    
                   }}
                 >
                   ⋮
                 </button>
 
                 {activeMenuId === phase.id && (
-                  <div className="dropdown_menu">
+                  <div className="phase_dropdown_menu" >
                     <button
                       onClick={(e) => {
                         HandleUpdatePhase(phase.id);
