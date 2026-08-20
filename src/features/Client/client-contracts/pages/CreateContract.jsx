@@ -82,7 +82,7 @@ const removePhase = (index) => {
             const url = isEditMode ? `${baseURL}${UpdateContract}${projectId}` : `${baseURL}${CreateContract}${projectId}`
             const body = {
                 ...data,
-                deadline: toDashDate(data.deadline),
+                deadline: type === "single_phase" ? toDashDate(data.deadline) : undefined,
                 freelancer_id: freelancerId,
                 type,
             };

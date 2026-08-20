@@ -313,12 +313,14 @@ function AssessmentQuestionsf() {
                   ⬅️ Assessment Level
                 </button>
 
-                <button
-                  className="previous-button"
-                  onClick={() => navigate("/CreatePortifolio")}
-                >
-                  Next to Create Portifolio ➡️
-                </button>
+                {result.score_percentage >= 30 && (
+                  <button
+                    className="previous-button"
+                    onClick={() => navigate("/CreatePortifolio")}
+                  >
+                    Next to Create Portifolio ➡️
+                  </button>
+                )}
 
                 {/* {result.passed && (
                   <button
