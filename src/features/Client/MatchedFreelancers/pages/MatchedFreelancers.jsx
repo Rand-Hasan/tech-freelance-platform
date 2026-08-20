@@ -35,11 +35,11 @@ export default function MatchedFreelancers() {
     const remainMs = getRemainingMs();
 
     if (remainMs > 0) {
-      const minutes = Math.ceil(remainMs / 60000);
-      setErrorMessage(
-        `You can filter only once every 30 minutes. Please wait ${minutes} minute(s).`
-      );
-      return;
+      // const minutes = Math.ceil(remainMs / 10000);
+      // setErrorMessage(
+      //   `You can filter only once every 30 minutes. Please wait ${minutes} minute(s).`
+      // );
+      // return;
     }
 
     localStorage.setItem(COOLDOWN_KEY, String(Date.now()));

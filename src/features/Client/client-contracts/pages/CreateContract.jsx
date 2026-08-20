@@ -1,10 +1,12 @@
-import { useState } from "react";
-import Cookies from "universal-cookie";
+import { useState, useEffect } from "react";import Cookies from "universal-cookie";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../../../services/Api/api";
-import { CreateContract, UpdateContract } from "../services/api_contract";
-import '../styles/CreateContract.css'
+import {
+    CreateContract,
+    UpdateContract,
+    GetContractById
+} from "../services/api_contract";import '../styles/CreateContract.css'
 export default function CreateContractt() {
     const cookies = new Cookies();
     const token = cookies.get('token-client');
@@ -30,11 +32,12 @@ export default function CreateContractt() {
         },
     ]);
 
-    const [data, setData] = useState({
-        title: "",
-        total_budget: "",
-        deadline: "",
-    });
+  const [data, setData] = useState({
+    title: "",
+    total_budget: "",
+    deadline: "",
+    duration_in_days: "",
+});
     const handleChange = (e) => {
         setData({
             ...data,
@@ -76,17 +79,85 @@ const removePhase = (index) => {
     setPhases(updatedPhases);
 
 };
+useEffect(() => {
+    if (isEditMode && id) {
+
+        const getContractDetails = async () => {
+
+            try {
+
+                const res = await axios.get(
+                    `${baseURL}${GetContractById}${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const contract = res.data.contract;
+
+                if (!contract) return;
+
+                // تحديد نوع العقد
+                setType(contract.type);
+
+                // البيانات الأساسية
+               setData({
+    title: contract.title || "",
+    total_budget: contract.total_budget || "",
+    deadline: contract.phases?.[0]?.deadline || "",
+    duration_in_days: contract.phases?.[0]?.duration_in_days || "",
+});
+
+                // إذا Multi Phase
+                if (
+                    contract.type === "multi_phase" &&
+                    contract.phases?.length > 0
+                ) {
+                    setPhases(
+                        contract.phases.map((phase) => ({
+                            title: phase.title || "",
+                            amount: phase.amount || "",
+                            deadline: phase.deadline || "",
+                            allowed_revisions:
+                                phase.allowed_revisions || "",
+                            duration_in_days:
+                                phase.duration_in_days || "",
+                        }))
+                    );
+                }
+
+            } catch (err) {
+
+                console.log(
+                    "ERROR GET CONTRACT:",
+                    err.response?.data
+                );
+
+            }
+
+        };
+
+        getContractDetails();
+
+    }
+}, [isEditMode, id]);
     const handleSubmit = async () => {
         
         try {
-            const url = isEditMode ? `${baseURL}${UpdateContract}${projectId}` : `${baseURL}${CreateContract}${projectId}`
-            const body = {
-                ...data,
-                deadline: type === "single_phase" ? toDashDate(data.deadline) : undefined,
-                freelancer_id: freelancerId,
-                type,
-            };
+            const url = isEditMode ? `${baseURL}${UpdateContract}${id}` : `${baseURL}${CreateContract}${projectId}`
+  const body = {
+    title: data.title,
+    total_budget: data.total_budget,
+    freelancer_id: freelancerId,
+    type,
+};
 
+if (type === "single_phase") {
+    body.duration_in_days = data.duration_in_days;
+    body.deadline = toDashDate(data.deadline);
+}
             if (type === "multi_phase") {
                 body.phases = phases.map((phase) => ({
                     ...phase,
@@ -220,6 +291,22 @@ const removePhase = (index) => {
                                 value={data.deadline}
                                 onChange={handleChange}
                             />
+                             <div className="contract-input-group">
+
+                                <label>
+                                    Duration (Days)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="duration_in_days"
+                                    value={data.duration_in_days}
+                                    onChange={
+                                        handleChange
+                                    }
+                                />
+
+                            </div>
 
                         </div>
 
