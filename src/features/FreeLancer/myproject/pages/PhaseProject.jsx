@@ -22,7 +22,7 @@ export default function PhasesProject(){
         }) 
         setPhases(res.data.phases);
        }catch(err){
-      console.log(err)
+      console.log(err.message?.data)
        }
       }
      if (!phases) {

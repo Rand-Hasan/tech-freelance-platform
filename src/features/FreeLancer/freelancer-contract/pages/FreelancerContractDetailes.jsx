@@ -848,7 +848,7 @@ export default function FreelancerContractDetailes() {
             Cancel Contract
           </button>
 
-          {contractdetailes?.status === "active" && cancelRequested && (
+          {contractdetailes?.status === "active" ||contractdetailes?.status === "disputed" && cancelRequested && (
 
             <button
               className="Cancelbtncontract"
