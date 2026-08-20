@@ -178,13 +178,13 @@
     cursor: pointer;
     font-size: 30px;
 }
-.options_menu_container {
+.phase_menu_container {
     position: absolute;
     top: 15px;
     right: 20px;
 }
 
-.dots_btn {
+.phase_dots_btn {
     background: none;
     border: none;
     font-size: 24px;
@@ -195,11 +195,11 @@
     line-height: 1;
 }
 
-.dots_btn:hover {
+.phase_dots_btn:hover {
     color: #000;
 }
 
-.dropdown_menu {
+.phase_dropdown_menu {
     position: absolute;
     right: 0;
     top: 30px;
@@ -211,7 +211,7 @@
     border: 1px solid #eee;
 }
 
-.dropdown_menu button {
+.phase_dropdown_menu button {
     background: none;
     border: none;
     width: 100%;
@@ -224,7 +224,7 @@
     white-space: nowrap;
 }
 
-.dropdown_menu button:hover {
+.phase_dropdown_menu button:hover {
     background-color: #f5f5f5;
     color: #006F59;
 }
